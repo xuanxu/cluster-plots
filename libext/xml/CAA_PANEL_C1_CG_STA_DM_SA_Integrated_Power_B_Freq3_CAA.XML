@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_STA_DM_SA_Integrated_Power_B_Freq3_CAA</PANEL_ID>
+
+	<INFO>C1 STAFF</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_STA_DM</PARAMID>
+	              		<DATASETID>C1_CP_STA_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>SA_Integrated_Power_B_Freq3__C1_CP_STA_DM</PARAMID>
+                       		<DATASETID>C1_CP_STA_DM</DATASETID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>nT2</UNIT>
+				<LABEL>B Power(512-4024Hz)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

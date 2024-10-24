@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_PEA_DM_pressure_CAA</PANEL_ID>
+
+	<INFO>C1 PEACE</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_PEA_DM</PARAMID>
+	              		<DATASETID>C1_CP_PEA_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>pressure__C1_CP_PEA_DM</PARAMID>
+                       		<DATASETID>C1_CP_PEA_DM</DATASETID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>nPa</UNIT>
+				<LABEL>P</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

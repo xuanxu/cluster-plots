@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_MULT_PEA_RAP_ELECTRON_OMNI_CAA</PANEL_ID>
+
+	<INFO>C3 PEA-RAP</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Energy(eV)</UNIT>
+				<RANGE>1,406500</RANGE>
+				<LABEL>Electron</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>0</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>time_tags__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<DATASETID>C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>Energy__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>Data__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<DATASETID>C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>20</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni_av__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>NRJ_TO_LOG</NAME>
+            			<VALUE>1,406500</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Energy__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<DATASETID>C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Energy_log__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+ 
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Energy_log__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_Data_Energy_omni_av__C3_CP_MULT_PEA_RAP_ELECTRON_OMNI</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+
+
+		<PLOT>
+
+                        <ORDER>1</ORDER>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>0</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C3_CP_EFW_L3_P</PARAMID>
+                    			<DATASETID>C3_CP_EFW_L3_P</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C3_CP_EFW_L3_P</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C3_CP_EFW_L3_P</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Spacecraft_Potential__C3_CP_EFW_L3_P</PARAMID>
+                       			<DATASETID>C3_CP_EFW_L3_P</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C3_CP_EFW_L3_P</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C3_CP_EFW_L3_P</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Spacecraft_Potential_av__C3_CP_EFW_L3_P</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EFW_POTENTIAL</NAME>
+                		<ARGUMENT>
+                    			<PARAMID>Spacecraft_Potential_av__C3_CP_EFW_L3_P</PARAMID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Spacecraft_Potential_upd_av__C3_CP_EFW_L3_P</PARAMID>
+                   			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C3_CP_EFW_L3_P</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Spacecraft_Potential_upd_av__C3_CP_EFW_L3_P</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>purple</COLOR>
+                		<NAME>C3</NAME>
+            		</LINE>
+
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<DISPLAY>0</DISPLAY>
+				<LOG>1</LOG>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

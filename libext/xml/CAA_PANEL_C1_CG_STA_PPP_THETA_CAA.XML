@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C1_CG_STA_PPP_THETA_CAA</PANEL_ID>
+
+	<INFO>C1 STA</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Freq(Hz)</UNIT>
+				<RANGE>5,4000</RANGE>
+				<LABEL>Theta</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>0,90.</PREGEN_RANGE>
+                                <RANGE>0,90.</RANGE>
+				<LOG>0</LOG>
+				<UNIT>degrees</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>-1</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Time__C1_CP_STA_PPP</PARAMID>
+                			<DATASETID>C1_CP_STA_PPP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_jul__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_av__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+
+                		<ARGUMENT>
+                    			<PARAMID>THSVD_mfa__C1_CP_STA_PPP</PARAMID>
+                    			<DATASETID>C1_CP_STA_PPP</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>BSUM__C1_CP_STA_PPP</PARAMID>
+                    			<DATASETID>C1_CP_STA_PPP</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>BSUM_bsum__C1_CP_STA_PPP</PARAMID>
+                    			<RANGE>1e-7,1e20</RANGE>
+                    			<ALIAS>INPUT_3</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>spectro_THSVD_mfa_Frequency_filter_BSUM_bsum__C1_CP_STA_PPP</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+        
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>RESOLVE_NRJ</NAME>
+                		<VALUE>logarithmic</VALUE>
+                		<VALUE>5,4000</VALUE>
+                		<ARGUMENT>
+                    			<PARAMID>Frequency__C1_CP_STA_PPP</PARAMID>
+                    			<DATASETID>C1_CP_STA_PPP</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Frequency_resolved__C1_CP_STA_PPP</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+		        </PROCESSING>
+
+
+        		<PROCESSING>
+            			<ORDER>4</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>16</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_THSVD_mfa_Frequency_filter_BSUM_bsum__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_jul__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_av__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_THSVD_mfa_Frequency_filter_BSUM_bsum_av__C1_CP_STA_PPP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_av__C1_CP_STA_PPP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Frequency_resolved__C1_CP_STA_PPP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_THSVD_mfa_Frequency_filter_BSUM_bsum_av__C1_CP_STA_PPP</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+
+		<PLOT>
+
+                        <ORDER>2</ORDER>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>0</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C1_CP_FGM_SPIN</PARAMID>
+                    			<DATASETID>C1_CP_FGM_SPIN</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C1_CP_FGM_SPIN</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C1_CP_FGM_SPIN</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>B_mag__C1_CP_FGM_SPIN</PARAMID>
+                       			<DATASETID>C1_CP_FGM_SPIN</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C1_CP_FGM_SPIN</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C1_CP_FGM_SPIN</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>B_mag_av__C1_CP_FGM_SPIN</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>FGM_GYRO</NAME>
+                		<ARGUMENT>
+                    			<PARAMID>B_mag_av__C1_CP_FGM_SPIN</PARAMID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>B_mag_gyro_av__C1_CP_FGM_SPIN</PARAMID>
+                   			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C1_CP_FGM_SPIN</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>B_mag_gyro_av__C1_CP_FGM_SPIN</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>magenta</COLOR>
+                		<NAME>C1</NAME>
+            		</LINE>
+
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<DISPLAY>0</DISPLAY>
+				<LOG>1</LOG>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+
+
+	</SUBPANEL>
+
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

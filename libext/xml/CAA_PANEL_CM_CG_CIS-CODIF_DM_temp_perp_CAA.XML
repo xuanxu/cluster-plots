@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>CM_CG_CIS-CODIF_DM_temp_perp_CAA</PANEL_ID>
+
+	<INFO>CM CIS-CODIF</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_CIS-CODIF_DM</PARAMID>
+	              		<DATASETID>C1_CP_CIS-CODIF_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>temp_perp__C1_CP_CIS-CODIF_DM</PARAMID>
+                       		<DATASETID>C1_CP_CIS-CODIF_DM</DATASETID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>1</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>eV</UNIT>
+				<LABEL>Tperp</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+                <PLOT>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C3_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C3_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>temp_perp__C3_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C3_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>C3</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>eV</UNIT>
+                                <LABEL>Tperp</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+                <PLOT>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C4_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C4_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>temp_perp__C4_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C4_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>C4</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>eV</UNIT>
+                                <LABEL>Tperp</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+	</SUBPANEL>
+
+</PANEL>
+

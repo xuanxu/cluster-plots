@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_STA_PSD_INTPOWER_E_BD3_CAA</PANEL_ID>
+
+	<INFO>C3 STA-SA</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.92</SIZE>
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>mV2/m</UNIT>
+				<LABEL>E Power(512-4096Hz)</LABEL>
+			</AXIS>
+
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time__C3_CP_STA_PSD</PARAMID>
+                    			<DATASETID>C3_CP_STA_PSD</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_jul__C3_CP_STA_PSD</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_av__C3_CP_STA_PSD</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+                                <VALUE>512,4096,0</VALUE>
+                		<ARGUMENT>
+                    			<PARAMID>EE_xxyy_sr2__C3_CP_STA_PSD</PARAMID>
+                    			<DATASETID>C3_CP_STA_PSD</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Frequency__C3_CP_STA_PSD</PARAMID>
+                    			<DATASETID>C3_CP_STA_PSD</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>EE_xxyy_sr2_filter_Frequency_bd3__C3_CP_STA_PSD</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>CALC_ITP</NAME>
+            			<VALUE>2</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>EE_xxyy_sr2_filter_Frequency_bd3__C3_CP_STA_PSD</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Frequency__C3_CP_STA_PSD</PARAMID>
+                                        <DATASETID>C3_CP_STA_PSD</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>EE_xxyy_sr2_itp_bd3__C3_CP_STA_PSD</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+       
+            		<PROCESSING>
+                   		<ORDER>4</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>12</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>EE_xxyy_sr2_itp_bd3__C3_CP_STA_PSD</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_jul__C3_CP_STA_PSD</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_av__C3_CP_STA_PSD</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>EE_xxyy_sr2_itp_bd3_av__C3_CP_STA_PSD</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+
+			<PLOT_DATA>
+				<PARAMID>Time_av__C3_CP_STA_PSD</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>EE_xxyy_sr2_itp_bd3_av__C3_CP_STA_PSD</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+                		<NAME>C3</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+		</PLOT>
+
+	</SUBPANEL>
+
+
+
+	<SUBPANEL>
+                <ORDER>2</ORDER>
+		<SIZE>0.08</SIZE>
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>mode change</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+			</AXIS>
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>STA_EXTRACT_MODE</NAME>
+                                <VALUE>SA</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Status__C3_CP_STA_PSD</PARAMID>
+                                        <DATASETID>C3_CP_STA_PSD</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>Status_SA__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>FILTER_MODE</NAME>
+                                <VALUE>BM3</VALUE>
+
+                                <ARGUMENT>
+                                        <PARAMID>Time__C3_CP_STA_PSD</PARAMID>
+                                        <DATASETID>C3_CP_STA_PSD</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Status_SA__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C3_CT_AUX_TMMODE</PARAMID>
+                                        <DATASETID>C3_CT_AUX_TMMODE</DATASETID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>event_code__C3_CT_AUX_TMMODE</PARAMID>
+                                        <DATASETID>C3_CT_AUX_TMMODE</DATASETID>
+                                        <ALIAS>INPUT_4</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>Status_SA_noBM3__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+
+                        </PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>STA_MODE_CHANGE</NAME>
+				<VALUE>SA</VALUE>
+
+                                <ARGUMENT>
+                                        <PARAMID>Time__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Status_SA_noBM3__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>Time_SA_mode__C3_CP_STA_PSD</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Status_SA_noBM3_mode__C3_CP_STA_PSD</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+
+        		</PROCESSING>
+
+
+			<PLOT_DATA>
+				<PARAMID>Time_SA_mode__C3_CP_STA_PSD</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Status_SA_noBM3_mode__C3_CP_STA_PSD</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+				<THICK>6</THICK>
+				<LEGEND>0</LEGEND>
+            		</LINE>
+		</PLOT>
+	</SUBPANEL>
+
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

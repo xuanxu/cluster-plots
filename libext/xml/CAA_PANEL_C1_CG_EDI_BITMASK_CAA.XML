@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_EDI_BITMASK_CAA</PANEL_ID>
+
+	<INFO>C1 EDI</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.14</SIZE>
+
+		<PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C1_CP_EDI_MP</PARAMID>
+                                        <DATASETID>C1_CP_EDI_MP</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+        	        <PROCESSING>
+        	                <ORDER>2</ORDER>
+        	                <NAME>EDI_BITMASK</NAME>
+
+    	                    	<ARGUMENT>
+    	                            <PARAMID>status__C1_CP_EDI_MP</PARAMID>
+                                	<DATASETID>C1_CP_EDI_MP</DATASETID>
+                        	        <ALIAS>INPUT_1</ALIAS>
+                	                <TYPE>INPUT</TYPE>
+        	                </ARGUMENT>
+
+   	                     <ARGUMENT>
+                                	<PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                        	        <ALIAS>OUTPUT_1</ALIAS>
+                	                <TYPE>OUTPUT</TYPE>
+        	                </ARGUMENT>
+	                </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>status_bits_1__C1_CP_EDI_MP</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>status_bits_1__C1_CP_EDI_MP</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>bit 1</NAME>
+				<THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>bit 1</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_2__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_2__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 2</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 2</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>3</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>2</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_3__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_3__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 3</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 3</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>4</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>3</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_4__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_4__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 4</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 4</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>5</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_5__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_5__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 5</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 5</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>6</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>5</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_6__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_6__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 6</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 6</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>7</ORDER>
+                <SIZE>0.14</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>6</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>status_bits_7__C1_CP_EDI_MP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>status_bits_7__C1_CP_EDI_MP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>bit 7</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 7</LABEL>
+				<RANGE>0,2</RANGE>
+				<TICKNAMES> , </TICKNAMES>
+				<TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+
+</PANEL>
+

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_CIS-HIA_ONBOARD_MOMENTS_VGSE_X_CAA</PANEL_ID>
+
+	<INFO>C1 CIS</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+		                <VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                			<DATASETID>C1_CP_CIS-HIA_ONBOARD_MOMENTS</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>velocity_gse__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                        		<DATASETID>C1_CP_CIS-HIA_ONBOARD_MOMENTS</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                                        <DATASETID>C1_CP_CIS-HIA_ONBOARD_MOMENTS</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>velocity_gse_X__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>3</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>velocity_gse_X__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>velocity_gse_X_av__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>velocity_gse_X_av__C1_CP_CIS-HIA_ONBOARD_MOMENTS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/h</UNIT>
+				<LABEL>Vx (ions) (GSE)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

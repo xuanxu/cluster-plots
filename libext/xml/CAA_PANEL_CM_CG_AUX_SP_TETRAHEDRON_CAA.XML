@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>CM_CG_AUX_SP_TETRAHEDRON_CAA</PANEL_ID>
+
+	<INFO>CL AUX</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__CL_SP_AUX</PARAMID>
+                    			<DATASETID>CL_SP_AUX</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul_av__CL_SP_AUX</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__CL_SP_AUX</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>sc_geom_elong__CL_SP_AUX</PARAMID>
+                       			<DATASETID>CL_SP_AUX</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul_av__CL_SP_AUX</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__CL_SP_AUX</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>sc_geom_elong_av__CL_SP_AUX</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__CL_SP_AUX</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>sc_geom_elong_av__CL_SP_AUX</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>Elongation</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>Tetrahedron</LABEL>
+				<RANGE>0,1</RANGE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>60</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>sc_geom_planarity__CL_SP_AUX</PARAMID>
+                                        <DATASETID>CL_SP_AUX</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__CL_SP_AUX</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__CL_SP_AUX</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>sc_geom_planarity_av__CL_SP_AUX</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__CL_SP_AUX</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>sc_geom_planarity_av__CL_SP_AUX</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>Planarity</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT> </UNIT>
+            			<LABEL>Tetrahedron</LABEL>
+                                <RANGE>0,1</RANGE>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+	</SUBPANEL>
+
+</PANEL>
+

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_PEA_PITCH_FIX_HIGH_CAA</PANEL_ID>
+
+	<INFO>C3 PEA</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>5000-10000 eV</UNIT>
+				<RANGE>0,180</RANGE>
+				<LABEL>pitch-angle (degrees) - no zero</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>time_tags__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<DATASETID>C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+
+                		<ARGUMENT>
+                    			<PARAMID>Data__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                    			<DATASETID>C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Sweep_Energy__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                    			<DATASETID>C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Sweep_Energy_high__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                    			<RANGE>5000,10000</RANGE>
+                    			<ALIAS>INPUT_3</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>Sweep_PitchAngle__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high_avdim__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+
+        		<PROCESSING>
+            			<ORDER>4</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>16</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high_avdim__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high_av__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Sweep_PitchAngle__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_Data_Sweep_PitchAngle_filter_Sweep_Energy_high_av__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+    	<BUTTON>
+        	<NAME>UPDATE_FILTER_DIM</NAME>
+        	<TITLE>Energy Filter</TITLE>
+        	<UNIT>eV</UNIT>
+        	<TYPE>TEXT_RANGE</TYPE>
+        	<PARAMID>Sweep_Energy_high__C3_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+        	<VALUE>5000,10000</VALUE>
+    	</BUTTON>
+
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

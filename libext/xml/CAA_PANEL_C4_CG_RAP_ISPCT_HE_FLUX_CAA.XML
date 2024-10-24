@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_RAP_ISPCT_HE_FLUX_CAA</PANEL_ID>
+
+	<INFO>C4 RAP</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time_tags__C4_CP_RAP_ISPCT_He</PARAMID>
+                    			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+        	        <PROCESSING>
+        	                <ORDER>2</ORDER>
+        	                <NAME>ZERO_TO_NAN</NAME>
+
+    	                    	<ARGUMENT>
+    	                            <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                	<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                        	        <ALIAS>INPUT_1</ALIAS>
+                	                <TYPE>INPUT</TYPE>
+        	                </ARGUMENT>
+
+   	                     <ARGUMENT>
+                                	<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                        	        <ALIAS>OUTPUT_1</ALIAS>
+                	                <TYPE>OUTPUT</TYPE>
+        	                </ARGUMENT>
+	                </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                        		<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>           
+		     		<ARGUMENT>
+                    			<PARAMID>Helium_Dif_Flux_0__C4_CP_RAP_ISPCT_He</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>4</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_0__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_0_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Helium_Dif_Flux_0_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>cyan</COLOR>
+                		<NAME>30 keV</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(He)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>1</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_1__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+       			</PROCESSING>
+        
+       		 	<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_1__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_1_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Helium_Dif_Flux_1_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>purple</COLOR>
+            			<NAME>138 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(He)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>2</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_2__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_2__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_2_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Helium_Dif_Flux_2_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>grey</COLOR>
+            			<NAME>172 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(He)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>3</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_3__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_3__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_3_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Helium_Dif_Flux_3_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>235 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(He)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_4__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_4__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_4_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Helium_Dif_Flux_4_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>BlueViolet</COLOR>
+            			<NAME>351 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(He)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>5</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_5__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_5__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Helium_Dif_Flux_5_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Helium_Dif_Flux_5_av__C4_CP_RAP_ISPCT_He</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>737 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(He)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>6</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                        		<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>Helium_Dif_Flux_6__C4_CP_RAP_ISPCT_He</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_6__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_6_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Helium_Dif_Flux_6_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>DarkSlateGrey</COLOR>
+                		<NAME>1689 keV</NAME>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(He)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>7</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Helium_Dif_Flux_no_zero__C4_CP_RAP_ISPCT_He</PARAMID>
+                        		<DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Helium_Dif_Flux__C4_CP_RAP_ISPCT_He</PARAMID>
+                                        <DATASETID>C4_CP_RAP_ISPCT_He</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>Helium_Dif_Flux_7__C4_CP_RAP_ISPCT_He</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_7__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Helium_Dif_Flux_7_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C4_CP_RAP_ISPCT_He</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Helium_Dif_Flux_7_av__C4_CP_RAP_ISPCT_He</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>orange</COLOR>
+                		<NAME>3799 keV</NAME>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(He)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

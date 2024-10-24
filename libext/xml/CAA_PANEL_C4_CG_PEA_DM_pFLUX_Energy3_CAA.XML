@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_PEA_DM_pFLUX_Energy3_CAA</PANEL_ID>
+
+	<INFO>C4 PEA</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C4_CP_PEA_DM</PARAMID>
+	              		<DATASETID>C4_CP_PEA_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>pFLUX_Energy3__C4_CP_PEA_DM</PARAMID>
+                       		<DATASETID>C4_CP_PEA_DM</DATASETID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>particles/(cm2 s str keV)</UNIT>
+				<LABEL>e- (800-2000 eV)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

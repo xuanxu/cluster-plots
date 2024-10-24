@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_PEA_DM_EFLUX1_CAA</PANEL_ID>
+
+	<INFO>C4 PEA</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C4_CP_PEA_DM_TEST</PARAMID>
+                    			<DATASETID>C4_CP_PEA_DM_TEST</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C4_CP_PEA_DM_TEST</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C4_CP_PEA_DM_TEST</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>180</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>eFLUX_Energy1__C4_CP_PEA_DM_TEST</PARAMID>
+                       			<DATASETID>C4_CP_PEA_DM_TEST</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C4_CP_PEA_DM_TEST</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C4_CP_PEA_DM_TEST</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>eFLUX_Energy1_av__C4_CP_PEA_DM_TEST</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C4_CP_PEA_DM_TEST</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>eFLUX_Energy1_av__C4_CP_PEA_DM_TEST</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+				<LABEL>eFlux(energy1)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>CM_CG_FGM_CAVF_CAA</PANEL_ID>
+
+	<INFO>CM FGM</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity__C1_CQ_FGM_CAVF</PARAMID>
+                                        <DATASETID>C1_CQ_FGM_CAVF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_jul__C1_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_plot__C1_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_jul__C1_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_plot__C1_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_cav__C1_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Caveat_Validity_plot__C1_CQ_FGM_CAVF</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Caveat_Validity_cav__C1_CQ_FGM_CAVF</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>C1 caveat</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.25</SIZE>
+
+                <PLOT>
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity__C2_CQ_FGM_CAVF</PARAMID>
+                                        <DATASETID>C2_CQ_FGM_CAVF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_jul__C2_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_plot__C2_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                       <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>GET_CAVEAT</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_jul__C2_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_plot__C2_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_cav__C2_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>Caveat_Validity_plot__C2_CQ_FGM_CAVF</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>Caveat_Validity_cav__C2_CQ_FGM_CAVF</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>red</COLOR>
+                                <NAME>C2</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>C2 caveat</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+	<SUBPANEL>
+		<ORDER>3</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity__C3_CQ_FGM_CAVF</PARAMID>
+                                        <DATASETID>C3_CQ_FGM_CAVF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_jul__C3_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_plot__C3_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_jul__C3_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_plot__C3_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_cav__C3_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Caveat_Validity_plot__C3_CQ_FGM_CAVF</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Caveat_Validity_cav__C3_CQ_FGM_CAVF</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+                		<NAME>C3</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>C3 caveat</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+	<SUBPANEL>
+		<ORDER>4</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity__C4_CQ_FGM_CAVF</PARAMID>
+                                        <DATASETID>C4_CQ_FGM_CAVF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_jul__C4_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Caveat_Validity_plot__C4_CQ_FGM_CAVF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_jul__C4_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_plot__C4_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Caveat_Validity_cav__C4_CQ_FGM_CAVF</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Caveat_Validity_plot__C4_CQ_FGM_CAVF</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Caveat_Validity_cav__C4_CQ_FGM_CAVF</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>C4 caveat</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+
+
+</PANEL>
+

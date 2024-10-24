@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>D1_CG_HIA_3D_PEF_ANTI_CAA</PANEL_ID>
+
+	<INFO>D1 HIA</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>-45 - 45 degrees</UNIT>
+				<RANGE>4,35000</RANGE>
+				<LABEL>ions (anti)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e3,1e7</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s sr keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>time_tags__D1_CP_HIA_3D_PEF</PARAMID>
+                			<DATASETID>D1_CP_HIA_3D_PEF</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>ZERO_TO_NAN</NAME>
+
+                                <ARGUMENT>
+                                        <PARAMID>3d_ions__D1_CP_HIA_3D_PEF</PARAMID>
+                                        <DATASETID>D1_CP_HIA_3D_PEF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>3d_ions_no_zero__D1_CP_HIA_3D_PEF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+
+                		<ARGUMENT>
+                    			<PARAMID>3d_ions_no_zero__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>phi__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<DATASETID>D1_CP_HIA_3D_PEF</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>phi_anti__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<RANGE>-45,45</RANGE>
+                    			<ALIAS>INPUT_3</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+        
+        		<PROCESSING>
+            			<ORDER>4</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>energy_table__D1_CP_HIA_3D_PEF</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti_avdim__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+
+            		<PROCESSING>
+                		<ORDER>5</ORDER>
+                		<NAME>RESOLVE_NRJ</NAME>
+                		<VALUE>logarithmic</VALUE>
+                		<VALUE>4,35000</VALUE>
+                		<ARGUMENT>
+                    			<PARAMID>energy_table__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<DATASETID>D1_CP_HIA_3D_PEF</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>energy_table_resolved__D1_CP_HIA_3D_PEF</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+		        </PROCESSING>
+
+
+        		<PROCESSING>
+            			<ORDER>6</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>16</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti_avdim__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti_av__D1_CP_HIA_3D_PEF</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__D1_CP_HIA_3D_PEF</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>energy_table_resolved__D1_CP_HIA_3D_PEF</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_3d_ions_no_zero_energy_table_filter_phi_anti_av__D1_CP_HIA_3D_PEF</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+    	<BUTTON>
+        	<NAME>UPDATE_FILTER_DIM</NAME>
+        	<TITLE>Phi Filter</TITLE>
+        	<UNIT>degrees</UNIT>
+        	<TYPE>TEXT_RANGE</TYPE>
+        	<PARAMID>phi_anti__D1_CP_HIA_3D_PEF</PARAMID>
+        	<VALUE>-45,45</VALUE>
+    	</BUTTON>
+
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

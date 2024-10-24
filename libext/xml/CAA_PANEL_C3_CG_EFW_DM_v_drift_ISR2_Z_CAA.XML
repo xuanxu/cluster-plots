@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C3_CG_EFW_v_drift_ISR2_Z_CAA</PANEL_ID>
+
+	<INFO>C3 EFW</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>1</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>v_drift_ISR2__C3_CP_EFW_DM</PARAMID>
+                        		<DATASETID>C3_CP_EFW_DM</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>v_drift_ISR2__C3_CP_EFW_DM</PARAMID>
+                                        <DATASETID>C3_CP_EFW_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>v_drift_ISR2_Z__C3_CP_EFW_DM</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C3_CP_EFW_DM</PARAMID>
+                                <DATASETID>C3_CP_EFW_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>v_drift_ISR2_Z__C3_CP_EFW_DM</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+                		<NAME>C3</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/s</UNIT>
+				<LABEL>Vz (ISR2)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C3_CG_RAP_ESPCT6_FLUX_CAA</PANEL_ID>
+
+	<INFO>C3 RAP</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time_tags__C3_CP_RAP_ESPCT6</PARAMID>
+                    			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+        	        <PROCESSING>
+        	                <ORDER>2</ORDER>
+        	                <NAME>ZERO_TO_NAN</NAME>
+
+    	                    	<ARGUMENT>
+    	                            <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                	<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                        	        <ALIAS>INPUT_1</ALIAS>
+                	                <TYPE>INPUT</TYPE>
+        	                </ARGUMENT>
+
+   	                     <ARGUMENT>
+                                	<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                        	        <ALIAS>OUTPUT_1</ALIAS>
+                	                <TYPE>OUTPUT</TYPE>
+        	                </ARGUMENT>
+	                </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                        		<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>           
+		     		<ARGUMENT>
+                    			<PARAMID>Electron_Dif_Flux_0__C3_CP_RAP_ESPCT6</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>4</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Dif_Flux_0__C3_CP_RAP_ESPCT6</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Dif_Flux_0_av__C3_CP_RAP_ESPCT6</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Electron_Dif_Flux_0_av__C3_CP_RAP_ESPCT6</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>cyan</COLOR>
+                		<NAME>39 keV</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(e-)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>1</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_1__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+       			</PROCESSING>
+        
+       		 	<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_1__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_1_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Electron_Dif_Flux_1_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>purple</COLOR>
+            			<NAME>51 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(e-)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>2</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_2__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_2__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_2_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Electron_Dif_Flux_2_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>grey</COLOR>
+            			<NAME>68 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(e-)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>3</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_3__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_3__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_3_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Electron_Dif_Flux_3_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>95 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(e-)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_4__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_4__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_4_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Electron_Dif_Flux_4_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>BlueViolet</COLOR>
+            			<NAME>128 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(e-)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>5</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_no_zero__C3_CP_RAP_ESPCT6</PARAMID>
+                			<DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Electron_Dif_Flux__C3_CP_RAP_ESPCT6</PARAMID>
+                                        <DATASETID>C3_CP_RAP_ESPCT6</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_5__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_5__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Electron_Dif_Flux_5_av__C3_CP_RAP_ESPCT6</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Electron_Dif_Flux_5_av__C3_CP_RAP_ESPCT6</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>244 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(e-)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+
+	</SUBPANEL>
+
+</PANEL>
+

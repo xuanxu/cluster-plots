@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C1_CG_RAP_HSPCT_SPEC_CAA</PANEL_ID>
+
+	<INFO>C1 RAP</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>E(keV)</UNIT>
+				<RANGE>27,4007</RANGE>
+				<LABEL>H+(OMNIDIR)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+			</AXIS>
+
+
+        	<PROCESSING>
+            		<ORDER>1</ORDER>
+            		<NAME>TIME_SPEC_AVERAGE</NAME>
+            		<VALUE>0</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags__C1_CP_RAP_HSPCT</PARAMID>
+                		<DATASETID>C1_CP_RAP_HSPCT</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_jul__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_av__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+
+                <PROCESSING>
+                        <ORDER>2</ORDER>
+                        <NAME>ZERO_TO_NAN</NAME>
+
+                        <ARGUMENT>
+                                <PARAMID>Proton_Dif_Flux__C1_CP_RAP_HSPCT</PARAMID>
+                                <DATASETID>C1_CP_RAP_HSPCT</DATASETID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+
+                        <ARGUMENT>
+                                <PARAMID>Proton_Dif_Flux_no_zero__C1_CP_RAP_HSPCT</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+
+        	<PROCESSING>
+            		<ORDER>3</ORDER>
+            		<NAME>RESHAPE_NRJ</NAME>
+            		<VALUE>logarithmic</VALUE>
+            		<VALUE>27,4007</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>Proton_Dif_Flux_no_zero__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Dimension_E__C1_CP_RAP_HSPCT</PARAMID>
+                		<DATASETID>C1_CP_RAP_HSPCT</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Proton_Dif_Flux_no_zero_Dimension_E_reshaped__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Dimension_E_reshaped__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        	<PROCESSING>
+            		<ORDER>4</ORDER>
+            		<NAME>SPECTRO_AVERAGE</NAME>
+            		<VALUE>20</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Proton_Dif_Flux_no_zero_Dimension_E_reshaped__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_jul__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_av__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Proton_Dif_Flux_no_zero_Dimension_E_reshaped_av__C1_CP_RAP_HSPCT</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        
+        
+        
+        	<PLOT_DATA>
+            		<PARAMID>Time_tags_av__C1_CP_RAP_HSPCT</PARAMID>
+            		<TYPE>X</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>Dimension_E_reshaped__C1_CP_RAP_HSPCT</PARAMID>
+            		<TYPE>Y</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>spectro_Proton_Dif_Flux_no_zero_Dimension_E_reshaped_av__C1_CP_RAP_HSPCT</PARAMID>
+            		<TYPE>Z</TYPE>
+        	</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>
+

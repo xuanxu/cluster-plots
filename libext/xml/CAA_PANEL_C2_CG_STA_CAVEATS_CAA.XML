@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C2_CG_STA_CAVEATS_CAA</PANEL_ID>
+
+	<INFO>C2 STA</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Time_range__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                                        <DATASETID>C2_CQ_STA_NOTSRP_MTR_CAVEATS</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_range_jul__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_range_plot__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_range_jul__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_range_plot__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_range_cav__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_range_plot__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Time_range_cav__C2_CQ_STA_NOTSRP_MTR_CAVEATS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>red</COLOR>
+                		<NAME>no srp</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>caveat </UNIT>
+				<LABEL>no srp</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.25</SIZE>
+
+                <PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-4</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                    			<DATASETID>C2_CQ_STA_SA_PSD_NEG_CAVEATS</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_jul__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_plot__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+                       <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>GET_CAVEAT</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>Time_jul__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_plot__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_cav__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>Time_plot__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>Time_cav__C2_CQ_STA_SA_PSD_NEG_CAVEATS</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>red</COLOR>
+                                <NAME>neg psd</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>caveat </UNIT>
+                                <LABEL>neg psd</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+	<SUBPANEL>
+		<ORDER>3</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                                        <DATASETID>C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range_jul__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range_plot__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_jul__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_plot__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_cav__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_Range_plot__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Time_Range_cav__C2_CQ_STA_SA_UNDEF_MFA_TR_CAVEATS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>red</COLOR>
+                		<NAME>mfa undef</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>caveat </UNIT>
+				<LABEL>mfa undef</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+	<SUBPANEL>
+		<ORDER>4</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME_RANGE</NAME>
+                                <VALUE>-4</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                                        <DATASETID>C2_CQ_STA_CALIB_YTR_CAVEATS</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range_jul__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_Range_plot__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>GET_CAVEAT</NAME>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_jul__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_plot__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_Range_cav__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_Range_plot__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Time_Range_cav__C2_CQ_STA_CALIB_YTR_CAVEATS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>red</COLOR>
+                		<NAME>calibration</NAME>
+                                <LEGEND>0</LEGEND>
+				<THICK>6</THICK>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>caveat </UNIT>
+				<LABEL>calibration</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+
+
+</PANEL>
+

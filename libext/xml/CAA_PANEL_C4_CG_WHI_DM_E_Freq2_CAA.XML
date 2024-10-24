@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_WHI_DM_E_Freq2_CAA</PANEL_ID>
+
+	<INFO>C4 WHI</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C4_CP_WHI_DM</PARAMID>
+	              		<DATASETID>C4_CP_WHI_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>E_Freq2__C4_CP_WHI_DM</PARAMID>
+                       		<DATASETID>C4_CP_WHI_DM</DATASETID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>V2/(m2 Hz)</UNIT>
+				<LABEL>E (20-40 kHz)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

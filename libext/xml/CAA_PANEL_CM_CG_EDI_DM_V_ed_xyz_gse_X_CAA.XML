@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>CM_CG_EDI_V_ed_xyz_gse_X_CAA</PANEL_ID>
+
+	<INFO>CM EDI</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>V_ed_xyz_gse__C1_CP_EDI_DM_TEST</PARAMID>
+                        		<DATASETID>C1_CP_EDI_DM_TEST</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse__C1_CP_EDI_DM_TEST</PARAMID>
+                                        <DATASETID>C1_CP_EDI_DM_TEST</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>V_ed_xyz_gse_X__C1_CP_EDI_DM_TEST</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_EDI_DM_TEST</PARAMID>
+                                <DATASETID>C1_CP_EDI_DM_TEST</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>V_ed_xyz_gse_X__C1_CP_EDI_DM_TEST</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>1</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/s</UNIT>
+				<LABEL>Vx (GSE)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>0</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse__C2_CP_EDI_DM_TEST</PARAMID>
+                                        <DATASETID>C2_CP_EDI_DM_TEST</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse__C2_CP_EDI_DM_TEST</PARAMID>
+                                        <DATASETID>C2_CP_EDI_DM_TEST</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse_X__C2_CP_EDI_DM_TEST</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C2_CP_EDI_DM_TEST</PARAMID>
+                                <DATASETID>C2_CP_EDI_DM_TEST</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>V_ed_xyz_gse_X__C2_CP_EDI_DM_TEST</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>red</COLOR>
+                                <NAME>C3</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>km/s</UNIT>
+                                <LABEL>Vx (GSE)</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>0</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse__C3_CP_EDI_DM_TEST</PARAMID>
+                                        <DATASETID>C3_CP_EDI_DM_TEST</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse__C3_CP_EDI_DM_TEST</PARAMID>
+                                        <DATASETID>C3_CP_EDI_DM_TEST</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>V_ed_xyz_gse_X__C3_CP_EDI_DM_TEST</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C3_CP_EDI_DM_TEST</PARAMID>
+                                <DATASETID>C3_CP_EDI_DM_TEST</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>V_ed_xyz_gse_X__C3_CP_EDI_DM_TEST</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>C4</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>km/s</UNIT>
+                                <LABEL>Vx (GSE)</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+	</SUBPANEL>
+
+</PANEL>
+

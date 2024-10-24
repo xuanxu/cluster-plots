@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_STA_CWF_BGSE_TOT_CAA</PANEL_ID>
+
+	<INFO>C4 STAFF</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time__C4_CP_STA_CWF_GSE</PARAMID>
+                    			<DATASETID>C4_CP_STA_CWF_GSE</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_jul__C4_CP_STA_CWF_GSE</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_av__C4_CP_STA_CWF_GSE</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>TOTAL_POWER</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>B_vec_xyz_Instrument__C4_CP_STA_CWF_GSE</PARAMID>
+                                        <DATASETID>C4_CP_STA_CWF_GSE</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>B_vec_xyz_Instrument_totp__C4_CP_STA_CWF_GSE</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>3</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>B_vec_xyz_Instrument_totp__C4_CP_STA_CWF_GSE</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_jul__C4_CP_STA_CWF_GSE</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_av__C4_CP_STA_CWF_GSE</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>B_vec_xyz_Instrument_totp_av__C4_CP_STA_CWF_GSE</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_av__C4_CP_STA_CWF_GSE</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>B_vec_xyz_Instrument_totp_av__C4_CP_STA_CWF_GSE</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>nT</UNIT>
+				<LABEL>|B|</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+
+

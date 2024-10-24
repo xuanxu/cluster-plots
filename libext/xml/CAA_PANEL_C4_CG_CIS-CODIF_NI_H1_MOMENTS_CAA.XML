@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_CIS-CODIF_NI_H1_MOMENTS_CAA</PANEL_ID>
+
+	<INFO>C4 CIS</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>0</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                    			<DATASETID>C4_CP_CIS-CODIF_HS_H1_MOMENTS</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_minmax__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_MINMAX</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>density__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                       			<DATASETID>C4_CP_CIS-CODIF_HS_H1_MOMENTS</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_minmax__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>density_minmax__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_minmax__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>density_minmax__C4_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>1/cm!E3!N</UNIT>
+				<LABEL>Ni(H+)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>

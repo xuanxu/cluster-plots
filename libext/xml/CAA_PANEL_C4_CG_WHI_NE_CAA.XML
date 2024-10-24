@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_WHI_NE_CAA</PANEL_ID>
+
+	<INFO>C4 WHI</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                    			<DATASETID>C4_CP_WHI_ELECTRON_DENSITY</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>20</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Density__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                                        <DATASETID>C4_CP_WHI_ELECTRON_DENSITY</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Density_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Electron_Density_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>all</NAME>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>1/cm3</UNIT>
+				<LABEL>Ne(e-)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+				<VALUE>A</VALUE>
+                		<ARGUMENT>
+                    			<PARAMID>Electron_Density__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                    			<DATASETID>C4_CP_WHI_ELECTRON_DENSITY</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Spectrum_Type__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                    			<DATASETID>C4_CP_WHI_ELECTRON_DENSITY</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>Electron_Density_filter_Spectrum_Type_active__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>20</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Density_filter_Spectrum_Type_active__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Electron_Density_filter_Spectrum_Type_active_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Electron_Density_filter_Spectrum_Type_active_av__C4_CP_WHI_ELECTRON_DENSITY</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>magenta</COLOR>
+                		<NAME>active</NAME>
+				<TYPE>scatter</TYPE>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>1/cm3</UNIT>
+				<LABEL>Ne(e-)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+
+	</SUBPANEL>
+
+</PANEL>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C3_CG_CIS-CODIF_H1_MOMENTS_VGSE_TOT_CAA</PANEL_ID>
+
+	<INFO>C3 CIS</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>TOTAL_POWER</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>velocity__C3_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_HS_H1_MOMENTS</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_totp__C3_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>TOTAL_POWER</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>velocity__C3_CP_CIS-CODIF_LS_H1_MOMENTS</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_LS_H1_MOMENTS</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_totp__C3_CP_CIS-CODIF_LS_H1_MOMENTS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>MERGE_2D</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C3_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_HS_H1_MOMENTS</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C3_CP_CIS-CODIF_LS_H1_MOMENTS</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_LS_H1_MOMENTS</DATASETID>
+                                        <ALIAS>INPUT_4</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_totp__C3_CP_CIS-CODIF_HS_H1_MOMENTS</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_totp__C3_CP_CIS-CODIF_LS_H1_MOMENTS</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_totp__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+			<PROCESSING>
+				<ORDER>4</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+
+
+            		<PROCESSING>
+                   		<ORDER>4</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>velocity_totp__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>velocity_totp_av__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>velocity_totp_av__C3_CP_CIS-CODIF_H1_MOMENTS</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+                		<NAME>C3</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>km/h</UNIT>
+				<LABEL>|V| (H+) (GSE)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+	</SUBPANEL>
+
+</PANEL>

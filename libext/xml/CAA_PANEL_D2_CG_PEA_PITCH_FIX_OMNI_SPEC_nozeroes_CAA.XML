@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>D2_CG_PEA_PITCH_FIX_OMNI_SPEC_CAA</PANEL_ID>
+
+	<INFO>D2 PEA</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>e-(eV)</UNIT>
+				<RANGE>1,30000</RANGE>
+				<LABEL>PEACE (OMNIDIR)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>time_tags__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<DATASETID>D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>Sweep_Energy__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>Data__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<DATASETID>D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_Energy_omni__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>16</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_Energy_omni__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Sweep_Energy_omni_av__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>NRJ_TO_LOG</NAME>
+            			<VALUE>1,30000</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Sweep_Energy__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<DATASETID>D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Sweep_Energy_log__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+ 
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Sweep_Energy_log__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_Data_Sweep_Energy_omni_av__D2_CP_PEA_PITCH_FIX_NOZERO_DEFlux</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C2_CG_MULT_CIS_RAP_PROTON_OMNI_CAA</PANEL_ID>
+
+	<INFO>C2 CIS-RAP</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Energy(eV)</UNIT>
+				<RANGE>20,1800000</RANGE>
+				<LABEL>Proton</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>0</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>time_tags__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<DATASETID>C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>Energy__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>Data__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<DATASETID>C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>20</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_jul__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>time_tags_av__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Data_Energy_omni_av__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>NRJ_TO_LOG</NAME>
+            			<VALUE>20,1800000</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Energy__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<DATASETID>C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Energy_log__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+ 
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Energy_log__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_Data_Energy_omni_av__C2_CP_MULT_CIS_RAP_PROTON_NOZERO_OMNI</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

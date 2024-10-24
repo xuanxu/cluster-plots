@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C1_CG_CIS-CODIF_PAD_O1_PERP_CAA</PANEL_ID>
+
+	<INFO>C1 CIS-CODIF</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>85-95 degrees</UNIT>
+				<RANGE>20,38500</RANGE>
+				<LABEL>E(O+) (perp) (eV)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e4,1e7</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm2 s sr keV)</UNIT>
+			</AXIS>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>FILTER_DIM</NAME>
+
+                		<ARGUMENT>
+                    			<PARAMID>Differential_Particle_Flux__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                    			<DATASETID>C1_CP_CIS-CODIF_PAD_HS_O1_PF</DATASETID>
+                    			<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>pitch_angle__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                    			<DATASETID>C1_CP_CIS-CODIF_PAD_HS_O1_PF</DATASETID>
+                    			<ALIAS>INPUT_2</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>pitch_angle_perp__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                    			<RANGE>85,95</RANGE>
+                    			<ALIAS>INPUT_3</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                	    		<TYPE>OUTPUT</TYPE>
+        	        	</ARGUMENT>
+	            	</PROCESSING>
+
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>energy_table__C1_CP_CIS-CODIF_PAD_HS_O1_PF</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+
+        		<PROCESSING>
+            			<ORDER>4</ORDER>
+            			<NAME>RESHAPE_NRJ</NAME>
+            			<VALUE>logarithmic</VALUE>
+            			<VALUE>20,38500</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>energy_table__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<DATASETID>C1_CP_CIS-CODIF_PAD_HS_O1_PF</DATASETID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+        	    		</ARGUMENT>
+	        	</PROCESSING>
+
+
+                        <PROCESSING>
+                                <ORDER>5</ORDER>
+                                <NAME>FILTER_DIM</NAME>
+
+                                <ARGUMENT>
+                                        <PARAMID>Differential_Particle_Flux__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <DATASETID>C1_CP_CIS-CODIF_PAD_LS_O1_PF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>pitch_angle__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <DATASETID>C1_CP_CIS-CODIF_PAD_LS_O1_PF</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>pitch_angle_perp__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <RANGE>85,95</RANGE>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+                        <PROCESSING>
+                                <ORDER>6</ORDER>
+                                <NAME>AVERAGE_DIM</NAME>
+                                <VALUE>energy_table__C1_CP_CIS-CODIF_PAD_LS_O1_PF</VALUE>
+
+                                <ARGUMENT>
+                                        <PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+
+                                <ARGUMENT>
+                                        <PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+                        <PROCESSING>
+                                <ORDER>7</ORDER>
+                                <NAME>RESHAPE_NRJ</NAME>
+                                <VALUE>logarithmic</VALUE>
+                                <VALUE>20,38500</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>energy_table__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <DATASETID>C1_CP_CIS-CODIF_PAD_LS_O1_PF</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+        	<PROCESSING>
+            		<ORDER>8</ORDER>
+            		<NAME>MERGE</NAME>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                		<DATASETID>C1_CP_CIS-CODIF_PAD_HS_O1_PF</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                		<ALIAS>INPUT_4</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                		<DATASETID>C1_CP_CIS-CODIF_PAD_LS_O1_PF</DATASETID>
+                		<ALIAS>INPUT_5</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_LS_O1_PF</PARAMID>
+                		<ALIAS>INPUT_6</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>OUTPUT_3</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+                <PROCESSING>
+                        <ORDER>8</ORDER>
+                        <NAME>TIME_SPEC_AVERAGE</NAME>
+                        <VALUE>-1</VALUE>
+                        <ARGUMENT>
+                                <PARAMID>time_tags__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                                <DATASETID>C1_CP_CIS-CODIF_PAD_HS_O1_PF</DATASETID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>time_tags_jul__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>time_tags_av__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                                <ALIAS>OUTPUT_2</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+
+        	<PROCESSING>
+            		<ORDER>9</ORDER>
+            		<NAME>SPECTRO_AVERAGE</NAME>
+            		<VALUE>16</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_jul__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_av__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped_av__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>energy_table_reshaped__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_Differential_Particle_Flux_energy_table_filter_pitch_angle_perp_avdim_reshaped_av__C1_CP_CIS-CODIF_PAD_O1_PF</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+    	<BUTTON>
+        	<NAME>UPDATE_FILTER_DIM</NAME>
+        	<TITLE>PA Filter</TITLE>
+        	<UNIT>degrees</UNIT>
+        	<TYPE>TEXT_RANGE</TYPE>
+        	<PARAMID>pitch_angle_perp__C1_CP_CIS-CODIF_PAD_HS_O1_PF</PARAMID>
+        	<VALUE>85,95</VALUE>
+    	</BUTTON>
+
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

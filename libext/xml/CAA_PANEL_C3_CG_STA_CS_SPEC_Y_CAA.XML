@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_STA_CS_SPEC_Y_CAA</PANEL_ID>
+
+	<INFO>C3 STA-SC</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Freq(Hz)</UNIT>
+				<RANGE>0.1,225</RANGE>
+				<LABEL>|By| (GSE)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e-4,1</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>nT</UNIT>
+			</AXIS>
+
+
+        
+        	<PROCESSING>
+            		<ORDER>1</ORDER>
+            		<NAME>CALC_MODULO</NAME>
+
+            		<ARGUMENT>
+                		<PARAMID>Complex_Spectrum__C3_CP_STA_CS_NBR</PARAMID>
+                		<DATASETID>C3_CP_STA_CS_NBR</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+       
+            	<PROCESSING>
+                	<ORDER>2</ORDER>
+                	<NAME>EXTRACT_COMP</NAME>
+                	<VALUE>1</VALUE>
+                	<ARGUMENT>
+                        	<PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_NBR</PARAMID>
+                        	<ALIAS>INPUT_1</ALIAS>
+                        	<TYPE>INPUT</TYPE>
+                	</ARGUMENT>
+                        <ARGUMENT>
+                        	<PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_NBR</PARAMID>
+                                <ALIAS>INPUT_2</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                	<ARGUMENT>
+                   		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS_NBR</PARAMID>
+                   		<ALIAS>OUTPUT_1</ALIAS>
+                   		<TYPE>OUTPUT</TYPE>
+                	</ARGUMENT>
+            	</PROCESSING> 
+        
+        	<PROCESSING>
+            		<ORDER>3</ORDER>
+            		<NAME>RESHAPE_NRJ</NAME>
+            		<VALUE>logarithmic</VALUE>
+            		<VALUE>0.1,225</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Frequency__C3_CP_STA_CS_NBR</PARAMID>
+                		<DATASETID>C3_CP_STA_CS_NBR</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_reshaped_Y__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Frequency_reshaped__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+       
+
+
+
+
+                <PROCESSING>
+                        <ORDER>4</ORDER>
+                        <NAME>CALC_MODULO</NAME>
+
+                        <ARGUMENT>
+                                <PARAMID>Complex_Spectrum__C3_CP_STA_CS_HBR</PARAMID>
+                                <DATASETID>C3_CP_STA_CS_HBR</DATASETID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+
+                <PROCESSING>
+                        <ORDER>5</ORDER>
+                        <NAME>EXTRACT_COMP</NAME>
+                        <VALUE>1</VALUE>
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>INPUT_2</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+
+                <PROCESSING>
+                        <ORDER>6</ORDER>
+                        <NAME>RESHAPE_NRJ</NAME>
+                        <VALUE>logarithmic</VALUE>
+                        <VALUE>0.1,225</VALUE>
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>Frequency__C3_CP_STA_CS_HBR</PARAMID>
+                                <DATASETID>C3_CP_STA_CS_HBR</DATASETID>
+                                <ALIAS>INPUT_2</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>spectro_Complex_Spectrum_Frequency_modulo_reshaped_Y__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>Frequency_reshaped__C3_CP_STA_CS_HBR</PARAMID>
+                                <ALIAS>OUTPUT_2</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+
+
+
+
+
+
+
+
+        	<PROCESSING>
+            		<ORDER>7</ORDER>
+            		<NAME>MERGE</NAME>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_reshaped_Y__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time__C3_CP_STA_CS_NBR</PARAMID>
+                		<DATASETID>C3_CP_STA_CS_NBR</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Frequency_reshaped__C3_CP_STA_CS_NBR</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_reshaped_Y__C3_CP_STA_CS_HBR</PARAMID>
+                		<ALIAS>INPUT_4</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time__C3_CP_STA_CS_HBR</PARAMID>
+                		<DATASETID>C3_CP_STA_CS_HBR</DATASETID>
+                		<ALIAS>INPUT_5</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Frequency_reshaped__C3_CP_STA_CS_HBR</PARAMID>
+                		<ALIAS>INPUT_6</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Frequency__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>OUTPUT_3</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+
+                <PROCESSING>
+                        <ORDER>8</ORDER>
+                        <NAME>TIME_SPEC_AVERAGE</NAME>
+                        <VALUE>1</VALUE>
+                        <ARGUMENT>
+                                <PARAMID>Time__C3_CP_STA_CS</PARAMID>
+                                <DATASETID>C3_CP_STA_CS_NBR</DATASETID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>Time_jul__C3_CP_STA_CS</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                        <ARGUMENT>
+                                <PARAMID>Time_av__C3_CP_STA_CS</PARAMID>
+                                <ALIAS>OUTPUT_2</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+ 
+        	<PROCESSING>
+            		<ORDER>9</ORDER>
+            		<NAME>SPECTRO_AVERAGE</NAME>
+            		<VALUE>12</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_jul__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_av__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y_av__C3_CP_STA_CS</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        
+        
+        
+        	<PLOT_DATA>
+            		<PARAMID>Time_av__C3_CP_STA_CS</PARAMID>
+            		<TYPE>X</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>Frequency__C3_CP_STA_CS</PARAMID>
+            		<TYPE>Y</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>spectro_Complex_Spectrum_Frequency_modulo_Y_av__C3_CP_STA_CS</PARAMID>
+            		<TYPE>Z</TYPE>
+        	</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>
+

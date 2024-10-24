@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_AUX_POSACCGSE_1M_V_X_CAA</PANEL_ID>
+
+	<INFO>C4 AUX</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>sc_velacc_xyz_gse__C4_CP_AUX_POSACCGSE_1M</PARAMID>
+                        		<DATASETID>C4_CP_AUX_POSACCGSE_1M</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>sc_velacc_xyz_gse__C4_CP_AUX_POSACCGSE_1M</PARAMID>
+                                        <DATASETID>C4_CP_AUX_POSACCGSE_1M</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>sc_velacc_xyz_gse_X__C4_CP_AUX_POSACCGSE_1M</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C4_CP_AUX_POSACCGSE_1M</PARAMID>
+                                <DATASETID>C4_CP_AUX_POSACCGSE_1M</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>sc_velacc_xyz_gse_X__C4_CP_AUX_POSACCGSE_1M</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>C4</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/s</UNIT>
+				<LABEL>vx acc (GSE)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

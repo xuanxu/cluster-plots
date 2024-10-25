@@ -528,14 +528,14 @@ def filt_dim(sProc,lParam,arrData):
                 flag_delta = 1
 
             if flag_delta == 1:
-                filterP = sFilter['arrData'].astype(np.float) + sFilter['arrDeltaP'].astype(np.float)
-                filterM = sFilter['arrData'].astype(np.float) - sFilter['arrDeltaM'].astype(np.float)
+                filterP = sFilter['arrData'].astype(float) + sFilter['arrDeltaP'].astype(float)
+                filterM = sFilter['arrData'].astype(float) - sFilter['arrDeltaM'].astype(float)
                 if float(yrange[1]) > float(yrange[0]):
                     idx_inval = np.logical_or((filterP < float(yrange[0])) , (filterM > float(yrange[1])))
                 else:
                     idx_inval = np.logical_and((filterP < float(yrange[0])) , (filterM > float(yrange[1])))
             else:
-                idx_inval = np.where((sFilter['arrData'].astype(np.float) < float(yrange[0])) | (sFilter['arrData'].astype(np.float) > float(yrange[1])))
+                idx_inval = np.where((sFilter['arrData'].astype(float) < float(yrange[0])) | (sFilter['arrData'].astype(float) > float(yrange[1])))
 
         else:
             if sFilter['type'] == 'INT' or sFilter['type'] == 'FLOAT':
@@ -2462,8 +2462,8 @@ def filter_mode(sProc,lParam,arrData):
 
         out_data = np.array(deepcopy(sData['arrData']))
 
-        int_time_min = np.array(((sTimeTM['arrData'][:,0]).astype(np.float)))
-        int_time_max = np.array(((sTimeTM['arrData'][:,1]).astype(np.float)))
+        int_time_min = np.array(((sTimeTM['arrData'][:,0]).astype(float)))
+        int_time_max = np.array(((sTimeTM['arrData'][:,1]).astype(float)))
 
         # loop on intervals to filter
         time_min = int_time_min[idx_mode]

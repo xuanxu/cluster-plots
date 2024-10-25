@@ -33,8 +33,8 @@ def get_time_param(did):
     # we request a slighlty bigger cef file than the time interval to take into account the record delta+-
     # we now only keep the data contained in the plot time-span
     if ceflib.vattr(name,"VALUE_TYPE") == "ISO_TIME":
-        delta_min = (get_attr("DELTA_MINUS",name).astype(np.float) * 1000)
-        delta_max = (get_attr("DELTA_PLUS",name).astype(np.float) * 1000)
+        delta_min = (get_attr("DELTA_MINUS",name).astype(float) * 1000)
+        delta_max = (get_attr("DELTA_PLUS",name).astype(float) * 1000)
 
         int_time_min = time_vect - delta_min
         int_time_max = time_vect + delta_max

@@ -54,8 +54,8 @@ def find_gaps(sPlotTime, min_gap_length):
 ##############################################################################################################
 def calc_jultime(sTime,paramid):
 
-    delta_min = ((sTime['arrDeltaM']).astype(np.float) * 1000)
-    delta_max = ((sTime['arrDeltaP']).astype(np.float) * 1000)
+    delta_min = ((sTime['arrDeltaM']).astype(float) * 1000)
+    delta_max = ((sTime['arrDeltaP']).astype(float) * 1000)
 
     int_time_min = sTime['arrData'] - delta_min
     int_time_max = sTime['arrData'] + delta_max
@@ -76,8 +76,8 @@ def calc_jultime_range(sTime,paramid):
         int_time_min = [np.nan]
         int_time_max = [np.nan]
     else:
-        int_time_min = ((sTime['arrData'][:,0]).astype(np.float))
-        int_time_max = ((sTime['arrData'][:,1]).astype(np.float))
+        int_time_min = ((sTime['arrData'][:,0]).astype(float))
+        int_time_max = ((sTime['arrData'][:,1]).astype(float))
 
     sJulTime = mkp.make_sParameter()
     sJulTime['arrData'] = sTime['arrData']

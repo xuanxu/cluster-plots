@@ -22,7 +22,7 @@ ROOT_PATH = "/caa/web/flask/plot_panels-stage/"
 
 #load_dotenv()
 ROOT_PATH = os.getenv("APP_PATH")
-
+ROOT_PATH="."
 # threading
 #-----------
 class GetCEFThread(threading.Thread):

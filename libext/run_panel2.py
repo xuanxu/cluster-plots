@@ -65,10 +65,10 @@ def get_data(list_arg):
 
         #if os.path.isfile(cef_file) == False:
         if True:
-                if int(flag_csa) == 1:
-                	download_data_csa(dataset,n_start,n_stop,file_dir)
-                else:
-                	download_data_caa(dataset, n_start, n_stop, cef_file)
+            if int(flag_csa) == 1:
+                download_data_csa(dataset,n_start,n_stop,file_dir)
+            else:
+                download_data_caa(dataset, n_start, n_stop, cef_file)
     else:
         # extract just the wanted data
         cef_file = file_dir+dataset+"__"+strDate_orig+"_V00.cef.gz"
@@ -165,11 +165,11 @@ def run_panel2(list_panel,start,stop,date_orig,json_file,cef_path,flag_csa,flag_
             interval = (Time(stop) - Time(start)) * 60 * 24
             tmp = panel.split('FGM')
             if interval <= 10:
-            	panel_fgm = tmp[0]+'FGM_FULL'+tmp[1]
+                panel_fgm = tmp[0]+'FGM_FULL'+tmp[1]
             elif interval <= 60:
                 if panel[0] == 'C':
                     panel_fgm = tmp[0]+'FGM_5VPS'+tmp[1]
-                else :
+                else:
                     panel_fgm = tmp[0]+'FGM_FULL'+tmp[1]
             else:
                 panel_fgm = tmp[0]+'FGM_SPIN'+tmp[1]

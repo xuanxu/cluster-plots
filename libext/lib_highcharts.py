@@ -157,7 +157,7 @@ def create_json(sSubPanel,arrData):
                 # priority is given to heatmap info when overplotting line
                 delta_t = [float(el['arrDeltaP'])+float(el['arrDeltaM']) for (ind,el) in enumerate(arrData) if el['paramid'] == x_tag][0]
                 delta_y = [float(el['arrDeltaP'])+float(el['arrDeltaM']) for (ind,el) in enumerate(arrData) if el['paramid'] == y_tag][0]
-                delta_y = np.array(np.where(np.isnan(np.asfarray(delta_y,float)), None, delta_y))
+                delta_y = np.array(np.where(np.isnan(np.asarray(delta_y,float)), None, delta_y))
             else:
                 delta_t = 0
                 delta_y = 0
@@ -227,10 +227,10 @@ def create_json(sSubPanel,arrData):
             # TBD: what if y_data multi-dimensional ???
             if flag_empty == 0:
                 if nonan_x_data[0] > glb.date_start_milli:
-                    nonan_y_data = np.insert(nonan_y_data,0,np.NAN,axis=0)
+                    nonan_y_data = np.insert(nonan_y_data,0,np.nan,axis=0)
                     nonan_x_data = np.insert(nonan_x_data,0,glb.date_start_milli)
                 if nonan_x_data[-1] < glb.date_stop_milli:
-                    nonan_y_data = np.insert(nonan_y_data,len(nonan_y_data),np.NAN,axis=0)
+                    nonan_y_data = np.insert(nonan_y_data,len(nonan_y_data),np.nan,axis=0)
                     nonan_x_data = np.insert(nonan_x_data,len(nonan_x_data),glb.date_stop_milli)
             else:
                 # empty plot
@@ -331,14 +331,14 @@ def create_json(sSubPanel,arrData):
                 delta_t = [el['arrDeltaP'] for (ind,el) in enumerate(arrData) if el['paramid'] == x_tag][0]
                 if nonan_x_data[0] > glb.date_start_milli+delta_t/2:
                     print("add start null")
-                    nonan_z_data = np.insert(nonan_z_data,0,np.NAN,axis=0)
+                    nonan_z_data = np.insert(nonan_z_data,0,np.nan,axis=0)
                     nonan_x_data = np.insert(nonan_x_data,0,glb.date_start_milli+delta_t/2)
-                    #z_data = np.insert(z_data,0,np.NAN,axis=0)
+                    #z_data = np.insert(z_data,0,np.nan,axis=0)
                     #x_data = np.insert(x_data,0,glb.date_start_milli+delta_t/2)
                 if nonan_x_data[-1] < glb.date_stop_milli-delta_t/2:
-                    nonan_z_data = np.insert(nonan_z_data,len(nonan_z_data),np.NAN,axis=0)
+                    nonan_z_data = np.insert(nonan_z_data,len(nonan_z_data),np.nan,axis=0)
                     nonan_x_data = np.insert(nonan_x_data,len(nonan_x_data),glb.date_stop_milli-delta_t/2)
-                    #z_data = np.insert(z_data,len(z_data),np.NAN,axis=0)
+                    #z_data = np.insert(z_data,len(z_data),np.nan,axis=0)
                     #x_data = np.insert(x_data,len(x_data),glb.date_stop_milli-delta_t/2)
 
 

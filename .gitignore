@@ -1,3 +1,8 @@
+# .DS_Store Mac files
+.DS_Store
+
+# PYTHON RELATED FILES:
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -63,5 +68,36 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#.DS_Store Mac files
-.DS_Store
+# Generated chart files
+/libext/results/
+
+# RAILS & RUBY RELATED FILES:
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all environment files.
+/.env*
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+/public/assets
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

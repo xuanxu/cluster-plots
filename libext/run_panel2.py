@@ -4,6 +4,7 @@ import getopt
 import subprocess
 import numpy as np
 import os
+from os.path import join, dirname
 import gzip
 from astropy.time import Time, TimeDelta
 #from dotenv import load_dotenv
@@ -22,7 +23,7 @@ ROOT_PATH = "/caa/web/flask/plot_panels-stage/"
 
 #load_dotenv()
 ROOT_PATH = os.getenv("APP_PATH")
-ROOT_PATH="."
+ROOT_PATH= dirname(__file__)
 # threading
 #-----------
 class GetCEFThread(threading.Thread):
@@ -123,7 +124,7 @@ def download_data_csa(ds, start_date, stop_date, file_dir):
 
 #################################################################################################################################
 
-def run_panel2(list_panel,start,stop,date_orig,json_file,cef_path,flag_csa,flag_server,output_type,plot_name,upd_list,list_zeroes):
+def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,flag_server,output_type,plot_name,upd_list,list_zeroes):
 
     username = getpass.getuser()
     if username == 'apache' or username == 'root':
@@ -134,13 +135,13 @@ def run_panel2(list_panel,start,stop,date_orig,json_file,cef_path,flag_csa,flag_
     else:
         #file_dir = "/caa/processing01/" + username + "/flask_files/"
         #file_dir = "/tmp/" + username + "/flask_files/"
-        file_dir = os.getenv("FILE_PATH_DEV")
-        xml_dir = "./xml/"
+        file_dir =  join(dirname(__file__), "results", "cef_files")
+        xml_dir = join(dirname(__file__), "xml/")
 
     stopo = (date_orig.split('/'))[1]
     starto = (date_orig.split('/'))[0]
 
-
+    json_file = join(dirname(__file__), "results", "json_charts", json_file_name)
 
     # find XML files and extract the list of datasets to read
     flag_first = 1

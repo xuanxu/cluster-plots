@@ -133,10 +133,8 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
         #xml_dir = ROOT_PATH+"/xml/"
         xml_dir = os.getenv('XML_PATH')
     else:
-        #file_dir = "/caa/processing01/" + username + "/flask_files/"
-        #file_dir = "/tmp/" + username + "/flask_files/"
         file_dir =  join(dirname(__file__), "results", "cef_files")
-        xml_dir = join(dirname(__file__), "xml/")
+        xml_dir = join(dirname(__file__), "xml")
 
     stopo = (date_orig.split('/'))[1]
     starto = (date_orig.split('/'))[0]
@@ -175,9 +173,9 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
             else:
                 panel_fgm = tmp[0]+'FGM_SPIN'+tmp[1]
 
-            xml = xml_dir+"/fgm/CAA_PANEL_"+panel_fgm+".XML"    
+            xml = join(xml_dir, "fgm", "CAA_PANEL_"+panel_fgm+".XML")    
         else:
-            xml = xml_dir+"CAA_PANEL_"+panel+".XML"
+            xml = join(xml_dir, "CAA_PANEL_"+panel+".XML")
 
         with open(xml, 'rt') as f:
             tree = ET.parse(f)

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_EDI_QZC_CAA</PANEL_ID>
+
+	<INFO>C1 EDI</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C1_CP_EDI_QZC</PARAMID>
+                    			<DATASETID>C1_CP_EDI_QZC</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul__C1_CP_EDI_QZC</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C1_CP_EDI_QZC</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>QZC_COUNTS_PER_SECOND</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU1_PA_90__C1_CP_EDI_QZC</PARAMID>
+                                        <DATASETID>C1_CP_EDI_QZC</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Status__C1_CP_EDI_QZC</PARAMID>
+                                        <DATASETID>C1_CP_EDI_QZC</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU1_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>QZC_COUNTS_PER_SECOND</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU2_PA_90__C1_CP_EDI_QZC</PARAMID>
+                                        <DATASETID>C1_CP_EDI_QZC</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Status__C1_CP_EDI_QZC</PARAMID>
+                                        <DATASETID>C1_CP_EDI_QZC</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU2_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>PARAM_AVERAGE</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU1_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU2_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>counts_GDU_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>5</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>180</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>counts_GDU_PA_90_cps__C1_CP_EDI_QZC</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C1_CP_EDI_QZC</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C1_CP_EDI_QZC</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>counts_GDU_PA_90_cps_av__C1_CP_EDI_QZC</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C1_CP_EDI_QZC</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>counts_GDU_PA_90_cps_av__C1_CP_EDI_QZC</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+				<LEGEND>0</LEGEND>
+            		</LINE>
+
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>counts/s</UNIT>
+				<LABEL>Background e- (90 pa)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>

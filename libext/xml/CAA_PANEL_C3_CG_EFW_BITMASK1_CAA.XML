@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C3_CG_EFW_BITMASK1_CAA</PANEL_ID>
+
+	<INFO>C3 EFW</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.125</SIZE>
+
+		<PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <DATASETID>C3_CP_EFW_L3_E3D_INERT</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+        	        <PROCESSING>
+        	                <ORDER>2</ORDER>
+        	                <NAME>EFW_BITMASK</NAME>
+
+    	                    	<ARGUMENT>
+    	                            <PARAMID>E_bitmask__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                	<DATASETID>C3_CP_EFW_L3_E3D_INERT</DATASETID>
+                        	        <ALIAS>INPUT_1</ALIAS>
+                	                <TYPE>INPUT</TYPE>
+        	                </ARGUMENT>
+
+   	                     <ARGUMENT>
+                                	<PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                        	        <ALIAS>OUTPUT_1</ALIAS>
+                	                <TYPE>OUTPUT</TYPE>
+        	                </ARGUMENT>
+	                </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>8</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>E_bitmask_bits_8__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>E_bitmask_bits_8__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>green</COLOR>
+                		<NAME>bit 9</NAME>
+				<THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>bit 9</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>9</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_9__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_9__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 10</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 10</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>3</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>10</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_10__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_10__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 11</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 11</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>4</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>11</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_11__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_11__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 12</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 12</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>5</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>12</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_12__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_12__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 13</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 13</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>6</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>13</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_13__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_13__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 14</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 14</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>7</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>14</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_14__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_14__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 15</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 15</LABEL>
+				<RANGE>0,2</RANGE>
+				<TICKNAMES> , </TICKNAMES>
+				<TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>6</ORDER>
+                <SIZE>0.125</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>3</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>15</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>E_bitmask_bits_15__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_plot__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>E_bitmask_bits_15__C3_CP_EFW_L3_E3D_INERT</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>bit 16</NAME>
+                                <THICK>6</THICK>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>bit 16</LABEL>
+                                <RANGE>0,2</RANGE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+
+</PANEL>
+

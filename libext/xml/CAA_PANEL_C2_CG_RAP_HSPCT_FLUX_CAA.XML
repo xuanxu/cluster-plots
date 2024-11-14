@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C2_CG_RAP_HSPCT_FLUX_CAA</PANEL_ID>
+
+	<INFO>C2 RAP</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time_tags__C2_CP_RAP_HSPCT</PARAMID>
+                    			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+        	        <PROCESSING>
+        	                <ORDER>2</ORDER>
+        	                <NAME>ZERO_TO_NAN</NAME>
+
+    	                    	<ARGUMENT>
+    	                            <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                	<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                        	        <ALIAS>INPUT_1</ALIAS>
+                	                <TYPE>INPUT</TYPE>
+        	                </ARGUMENT>
+
+   	                     <ARGUMENT>
+                                	<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                        	        <ALIAS>OUTPUT_1</ALIAS>
+                	                <TYPE>OUTPUT</TYPE>
+        	                </ARGUMENT>
+	                </PROCESSING>
+
+            		<PROCESSING>
+                		<ORDER>3</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                        		<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>           
+		     		<ARGUMENT>
+                    			<PARAMID>Proton_Dif_Flux_0__C2_CP_RAP_HSPCT</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>4</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_0__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_0_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Proton_Dif_Flux_0_av__C2_CP_RAP_HSPCT</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>cyan</COLOR>
+                		<NAME>28 keV</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(H+)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>1</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_1__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+       			</PROCESSING>
+        
+       		 	<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_1__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_1_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Proton_Dif_Flux_1_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>purple</COLOR>
+            			<NAME>75 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(H+)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>2</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_2__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_2__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_2_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Proton_Dif_Flux_2_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>grey</COLOR>
+            			<NAME>92 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(H+)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>3</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_3__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_3__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_3_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Proton_Dif_Flux_3_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>160 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(H+)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>4</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_4__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_4__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_4_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Proton_Dif_Flux_4_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>BlueViolet</COLOR>
+            			<NAME>374 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(H+)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>5</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                			<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_5__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PROCESSING>
+            			<ORDER>2</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>60</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_5__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Proton_Dif_Flux_5_av__C2_CP_RAP_HSPCT</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Proton_Dif_Flux_5_av__C2_CP_RAP_HSPCT</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>962 keV</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+            			<LABEL>Flux(H+)</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>6</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                        		<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>Proton_Dif_Flux_6__C2_CP_RAP_HSPCT</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_6__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_6_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Proton_Dif_Flux_6_av__C2_CP_RAP_HSPCT</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>DarkSlateGrey</COLOR>
+                		<NAME>1885 keV</NAME>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(H+)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>7</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>Proton_Dif_Flux_no_zero__C2_CP_RAP_HSPCT</PARAMID>
+                        		<DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Proton_Dif_Flux__C2_CP_RAP_HSPCT</PARAMID>
+                                        <DATASETID>C2_CP_RAP_HSPCT</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+		     		<ARGUMENT>
+                    			<PARAMID>Proton_Dif_Flux_7__C2_CP_RAP_HSPCT</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_7__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Proton_Dif_Flux_7_av__C2_CP_RAP_HSPCT</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C2_CP_RAP_HSPCT</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Proton_Dif_Flux_7_av__C2_CP_RAP_HSPCT</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>orange</COLOR>
+                		<NAME>4007 keV</NAME>
+            		</LINE>
+
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+				<LABEL>Flux(H+)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

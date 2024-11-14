@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C2_CG_PEA_DM_CAA</PANEL_ID>
+
+	<INFO>C2 PEA</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C2_CP_PEA_DM</PARAMID>
+                    			<DATASETID>C2_CP_PEA_DM</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>180</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>eFlux_Energy1__C2_CP_PEA_DM</PARAMID>
+                       			<DATASETID>C2_CP_PEA_DM</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>eFlux_Energy1_av__C2_CP_PEA_DM</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>eFlux_Energy1_av__C2_CP_PEA_DM</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>SC-30 eV</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>keV/cm^2-s-str-keV</UNIT>
+				<LABEL>Flux (e-)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>TIME_AVERAGE</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy2__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy2_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>eFlux_Energy2_av__C2_CP_PEA_DM</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>80-200 eV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>keV/cm^2-s-str-keV</UNIT>
+            			<LABEL>Flux (e-)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        
+                                <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>TIME_AVERAGE</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                       <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy3__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy3_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>eFlux_Energy3_av__C2_CP_PEA_DM</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>green</COLOR>
+            			<NAME>0.8-2 keV</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>1</LOG>
+            			<UNIT>keV/cm^2-s-str-keV</UNIT>
+            			<LABEL>Flux (e-)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+
+
+                <PLOT>
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>TIME_AVERAGE</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                       <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy4__C2_CP_PEA_DM</PARAMID>
+                                        <DATASETID>C2_CP_PEA_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>eFlux_Energy4_av__C2_CP_PEA_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_av__C2_CP_PEA_DM</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>eFlux_Energy4_av__C2_CP_PEA_DM</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>8-20 keV</NAME>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>1</LOG>
+                                <UNIT>keV/cm^2-s-str-keV</UNIT>
+                                <LABEL>Flux (e-)</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+	</SUBPANEL>
+
+</PANEL>
+

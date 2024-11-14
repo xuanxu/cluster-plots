@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_CIS-CODIF_HS_H1_PEF_SPEC_CAA</PANEL_ID>
+
+	<INFO>C3 CODIF</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>E(eV)</UNIT>
+				<RANGE>20,38500</RANGE>
+				<LABEL> H+ HS (OMNIDIR)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>keV/(cm2 s str keV)</UNIT>
+			</AXIS>
+
+
+        	<PROCESSING>
+            		<ORDER>1</ORDER>
+            		<NAME>TIME_SPEC_AVERAGE</NAME>
+            		<VALUE>-1</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>time_tags__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<DATASETID>C3_CP_CIS-CODIF_HS_H1_PEF</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_jul__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_av__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+
+
+                <PROCESSING>
+                        <ORDER>2</ORDER>
+                        <NAME>ZERO_TO_NAN</NAME>
+
+                        <ARGUMENT>
+                                <PARAMID>3d_ions__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                                <DATASETID>C3_CP_CIS-CODIF_HS_H1_PEF</DATASETID>
+                                <ALIAS>INPUT_1</ALIAS>
+                                <TYPE>INPUT</TYPE>
+                        </ARGUMENT>
+
+                        <ARGUMENT>
+                                <PARAMID>3d_ions_no_zero__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                                <ALIAS>OUTPUT_1</ALIAS>
+                                <TYPE>OUTPUT</TYPE>
+                        </ARGUMENT>
+                </PROCESSING>
+        
+        	<PROCESSING>
+            		<ORDER>3</ORDER>
+            		<NAME>AVERAGE_DIM</NAME>
+            		<VALUE>energy_table__C3_CP_CIS-CODIF_HS_H1_PEF</VALUE>
+
+            		<ARGUMENT>
+                		<PARAMID>3d_ions_no_zero__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<DATASETID>C3_CP_CIS-CODIF_HS_H1_PEF</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+
+            		<ARGUMENT>
+                		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        	<PROCESSING>
+            		<ORDER>4</ORDER>
+            		<NAME>RESHAPE_NRJ</NAME>
+            		<VALUE>logarithmic</VALUE>
+            		<VALUE>20,38500</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>energy_table__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<DATASETID>C3_CP_CIS-CODIF_HS_H1_PEF</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni_reshaped__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>energy_table_reshaped__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        	<PROCESSING>
+            		<ORDER>5</ORDER>
+            		<NAME>SPECTRO_AVERAGE</NAME>
+            		<VALUE>20</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni_reshaped__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_jul__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_av__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni_reshaped_av__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        
+        
+        
+        	<PLOT_DATA>
+            		<PARAMID>time_tags_av__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+            		<TYPE>X</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>energy_table_reshaped__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+            		<TYPE>Y</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>spectro_3d_ions_no_zero_energy_table_omni_reshaped_av__C3_CP_CIS-CODIF_HS_H1_PEF</PARAMID>
+            		<TYPE>Z</TYPE>
+        	</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>
+

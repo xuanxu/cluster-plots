@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_PEA_PITCH_SPIN_OMNI_CAA</PANEL_ID>
+
+	<INFO>C3 PEA</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>e-(eV)</UNIT>
+				<RANGE>1,30000</RANGE>
+				<LABEL>PEACE (OMINIDIR)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>{z_title}</UNIT>
+			</AXIS>
+
+
+        	<PROCESSING>
+            		<ORDER>1</ORDER>
+            		<NAME>TIME_INTERP_SPEC</NAME>
+            		<VALUE>4</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>time_tags__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<DATASETID>C3_CP_PEA_PITCH_SPIN_DEFlux</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_jul__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_itp__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+
+        
+        	<PROCESSING>
+            		<ORDER>2</ORDER>
+            		<NAME>AVERAGE_DIM</NAME>
+            		<VALUE>Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</VALUE>
+
+            		<ARGUMENT>
+                		<PARAMID>Data__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<DATASETID>C3_CP_PEA_PITCH_SPIN_DEFlux</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+
+            		<ARGUMENT>
+                		<PARAMID>spectro_av_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        	<PROCESSING>
+            		<ORDER>3</ORDER>
+            		<NAME>RESHAPE_NRJ</NAME>
+            		<VALUE>logarithmic</VALUE>
+            		<VALUE>1,30000</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_av_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<DATASETID>C3_CP_PEA_PITCH_SPIN_DEFlux</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_reshaped_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Sweep_Energy_reshaped__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        	<PROCESSING>
+            		<ORDER>4</ORDER>
+            		<NAME>SPECTRO_INTERPOL</NAME>
+            		<VALUE>16</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_reshaped_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_jul__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>time_tags_itp__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_omni_itp_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        
+        
+        
+        	<PLOT_DATA>
+            		<PARAMID>time_tags_itp__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+            		<TYPE>X</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>Sweep_Energy_reshaped__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+            		<TYPE>Y</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>spectro_omni_itp_Sweep_Energy__C3_CP_PEA_PITCH_SPIN_DEFlux</PARAMID>
+            		<TYPE>Z</TYPE>
+        	</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>
+

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_RAP_ISPCT_CNO_SPEC_CAA</PANEL_ID>
+
+	<INFO>C3 RAP</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>1</LOG>
+				<UNIT>E(keV)</UNIT>
+				<RANGE>83,4050</RANGE>
+				<LABEL>CNO(OMNIDIR)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e6,1e9</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+			</AXIS>
+
+
+        	<PROCESSING>
+            		<ORDER>1</ORDER>
+            		<NAME>TIME_SPEC_AVERAGE</NAME>
+            		<VALUE>0</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<DATASETID>C3_CP_RAP_ISPCT_CNO</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_jul__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_av__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+
+
+        	<PROCESSING>
+            		<ORDER>2</ORDER>
+            		<NAME>RESHAPE_NRJ</NAME>
+            		<VALUE>logarithmic</VALUE>
+            		<VALUE>83,4050</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>CNO_Dif_Flux__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                                <DATASETID>C3_CP_RAP_ISPCT_CNO</DATASETID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Dimension_E__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<DATASETID>C3_CP_RAP_ISPCT_CNO</DATASETID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_CNO_Dif_Flux_Dimension_E_reshaped__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Dimension_E_reshaped__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>OUTPUT_2</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        	<PROCESSING>
+            		<ORDER>3</ORDER>
+            		<NAME>SPECTRO_AVERAGE</NAME>
+            		<VALUE>20</VALUE>
+            		<ARGUMENT>
+                		<PARAMID>spectro_CNO_Dif_Flux_Dimension_E_reshaped__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>INPUT_1</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_jul__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>INPUT_2</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>Time_tags_av__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>INPUT_3</ALIAS>
+                		<TYPE>INPUT</TYPE>
+            		</ARGUMENT>
+            		<ARGUMENT>
+                		<PARAMID>spectro_CNO_Dif_Flux_Dimension_E_reshaped_av__C3_CP_RAP_ISPCT_CNO</PARAMID>
+                		<ALIAS>OUTPUT_1</ALIAS>
+                		<TYPE>OUTPUT</TYPE>
+            		</ARGUMENT>
+        	</PROCESSING>
+        
+        
+        
+        
+        
+        	<PLOT_DATA>
+            		<PARAMID>Time_tags_av__C3_CP_RAP_ISPCT_CNO</PARAMID>
+            		<TYPE>X</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>Dimension_E_reshaped__C3_CP_RAP_ISPCT_CNO</PARAMID>
+            		<TYPE>Y</TYPE>
+        	</PLOT_DATA>
+        	<PLOT_DATA>
+            		<PARAMID>spectro_CNO_Dif_Flux_Dimension_E_reshaped_av__C3_CP_RAP_ISPCT_CNO</PARAMID>
+            		<TYPE>Z</TYPE>
+        	</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>
+

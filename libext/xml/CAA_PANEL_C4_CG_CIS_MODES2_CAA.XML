@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_CIS_MODES2_CAA</PANEL_ID>
+
+	<INFO>C4 CIS</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.25</SIZE>
+
+		<PLOT>
+
+
+                       <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>GET_TIME</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C4_CP_CIS_MODES</PARAMID>
+                                        <DATASETID>C4_CP_CIS_MODES</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_NONE</NAME>
+                   		<VALUE>180</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>codif_rpa__C4_CP_CIS_MODES</PARAMID>
+                                        <DATASETID>C4_CP_CIS_MODES</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul__C4_CP_CIS_MODES</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>codif_rpa_none__C4_CP_CIS_MODES</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                <DATASETID>C4_CP_CIS_MODES</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>codif_rpa_none__C4_CP_CIS_MODES</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>codif_rpa</NAME>
+                                <LEGEND>0</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>codif rpa</LABEL>
+                                <RANGE>-0.5,1.5</RANGE>
+                                <TICKNAMES>off,on</TICKNAMES>
+                                <TICKVALUES>0,1</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+	</SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.25</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>DATA_NONE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>codif_msh__C4_CP_CIS_MODES</PARAMID>
+                                        <DATASETID>C4_CP_CIS_MODES</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>codif_msh_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>codif_msh_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>codif_msh</NAME>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>codif msh</LABEL>
+                                <RANGE>-0.5,1.5</RANGE>
+                                <TICKNAMES>off,on</TICKNAMES>
+                                <TICKVALUES>0,1</TICKVALUES>
+				<ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+        <SUBPANEL>
+                <ORDER>3</ORDER>
+                <SIZE>0.25</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>DATA_NONE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>cis_sw__C4_CP_CIS_MODES</PARAMID>
+                                        <DATASETID>C4_CP_CIS_MODES</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>cis_sw_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>cis_sw_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>cis_sw</NAME>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>cis sw</LABEL>
+                                <RANGE>-0.5,1.5</RANGE>
+                                <TICKNAMES>off,on</TICKNAMES>
+                                <TICKVALUES>0,1</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+
+        <SUBPANEL>
+                <ORDER>4</ORDER>
+                <SIZE>0.25</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>4</ORDER>
+                                <NAME>DATA_NONE</NAME>
+                                <VALUE>180</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>codif_sensitivity__C4_CP_CIS_MODES</PARAMID>
+                                        <DATASETID>C4_CP_CIS_MODES</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>codif_sensitivity_none__C4_CP_CIS_MODES</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>codif_sensitivity_none__C4_CP_CIS_MODES</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>codif_sens</NAME>
+                                <LEGEND>0</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>codif sens</LABEL>
+                                <RANGE>-0.5,1.5</RANGE>
+                                <TICKNAMES>ls,hs</TICKNAMES>
+                                <TICKVALUES>0,1</TICKVALUES>
+                                <ROTATE>1</ROTATE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+        </SUBPANEL>
+
+
+</PANEL>
+

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C4_CG_AUX_ESOC_MEP_LOW_CAA</PANEL_ID>
+
+	<INFO>C4 AUX</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time_tags__C4_CP_AUX_ESOC_MEP</PARAMID>
+                    			<DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>90</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Temp_Low1__C4_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Temp_Low1_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Temp_Low1_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>cyan</COLOR>
+                		<NAME>L1</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>Celsius</UNIT>
+				<LABEL>Low Temp</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+       		 	<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low2__C4_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low2_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Low2_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>purple</COLOR>
+            			<NAME>L2</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>Low Temp</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low3__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low3_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Low3_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>grey</COLOR>
+            			<NAME>L3</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>Low Temp</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+    		<PLOT>
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low4__C4_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low4_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Low4_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>L4</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>Low Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low5__C4_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low5_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Low5_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>BlueViolet</COLOR>
+            			<NAME>L5</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>Low Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low6__C4_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C4_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Low6_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Low6_av__C4_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>L6</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>Low Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+
+	</SUBPANEL>
+
+</PANEL>
+

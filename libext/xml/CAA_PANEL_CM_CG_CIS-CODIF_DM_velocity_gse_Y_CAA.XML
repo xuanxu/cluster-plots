@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>CM_CG_CIS-CODIF_DM_velocity_gse_Y_CAA</PANEL_ID>
+
+	<INFO>CM CIS-CODIF</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>2</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>1</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>velocity_gse__C1_CP_CIS-CODIF_DM</PARAMID>
+                        		<DATASETID>C1_CP_CIS-CODIF_DM</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C1_CP_CIS-CODIF_DM</PARAMID>
+                                        <DATASETID>C1_CP_CIS-CODIF_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                		<ARGUMENT>
+                    			<PARAMID>velocity_gse_Y__C1_CP_CIS-CODIF_DM</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C1_CP_CIS-CODIF_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>velocity_gse_Y__C1_CP_CIS-CODIF_DM</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>C1</NAME>
+                                <LEGEND>1</LEGEND>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/s</UNIT>
+				<LABEL>Vy (H+) (GSE)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C3_CP_CIS-CODIF_DM</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C3_CP_CIS-CODIF_DM</PARAMID>
+                                        <DATASETID>C3_CP_CIS-CODIF_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse_Y__C3_CP_CIS-CODIF_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C3_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C3_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>velocity_gse_Y__C3_CP_CIS-CODIF_DM</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>C3</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>km/s</UNIT>
+                                <LABEL>Vy (H+) (GSE)</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>EXTRACT_COMP</NAME>
+                                <VALUE>1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C4_CP_CIS-CODIF_DM</PARAMID>
+                                        <DATASETID>C4_CP_CIS-CODIF_DM</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse__C4_CP_CIS-CODIF_DM</PARAMID>
+                                        <DATASETID>C4_CP_CIS-CODIF_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>velocity_gse_Y__C4_CP_CIS-CODIF_DM</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C4_CP_CIS-CODIF_DM</PARAMID>
+                                <DATASETID>C4_CP_CIS-CODIF_DM</DATASETID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>velocity_gse_Y__C4_CP_CIS-CODIF_DM</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>blue</COLOR>
+                                <NAME>C4</NAME>
+                                <LEGEND>1</LEGEND>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>km/s</UNIT>
+                                <LABEL>Vy (H+) (GSE)</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+	</SUBPANEL>
+
+</PANEL>
+

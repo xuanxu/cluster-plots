@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_EDI_CRF_SETTINGS_CAA</PANEL_ID>
+
+	<INFO>C1 EDI</INFO>
+
+        <PANEL_TYPE>status</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+		<SIZE>0.45</SIZE>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>time_tags__C1_CP_EDI_CRF</PARAMID>
+                    			<DATASETID>C1_CP_EDI_CRF</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>time_tags_jul_av__C1_CP_EDI_CRF</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>60</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>bcrt_indx_gdu1__C1_CP_EDI_CRF</PARAMID>
+                       			<DATASETID>C1_CP_EDI_CRF</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_jul_av__C1_CP_EDI_CRF</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>bcrt_indx_gdu1_av__C1_CP_EDI_CRF</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>bcrt_indx_gdu1_av__C1_CP_EDI_CRF</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>blue</COLOR>
+                		<NAME>gun1</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT> </UNIT>
+				<LABEL>beam</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <TICKNAMES>0,10,20,30</TICKNAMES>
+                                <TICKVALUES>0,10,20,30</TICKVALUES>
+                                <RANGE>-0.5,30.5</RANGE>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>60</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>bcrt_indx_gdu2__C1_CP_EDI_CRF</PARAMID>
+                                        <DATASETID>C1_CP_EDI_CRF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>bcrt_indx_gdu2_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+        
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>DATA_OFFSET</NAME>
+                                <VALUE>0.1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>bcrt_indx_gdu2_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>bcrt_indx_gdu2_av_shift__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>bcrt_indx_gdu2_av_shift__C1_CP_EDI_CRF</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>gun 2</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT> </UNIT>
+            			<LABEL>beam</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <TICKNAMES>0,10,20,30</TICKNAMES>
+                                <TICKVALUES>0,10,20,30</TICKVALUES>
+                                <RANGE>-0.5,30.5</RANGE>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    	</SUBPANEL>
+
+
+
+
+
+
+
+        <SUBPANEL>
+                <ORDER>2</ORDER>
+                <SIZE>0.45</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>TIME_AVERAGE</NAME>
+                                <VALUE>-1</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C1_CP_EDI_CRF</PARAMID>
+                                        <DATASETID>C1_CP_EDI_CRF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>60</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>crf__C1_CP_EDI_CRF</PARAMID>
+                                        <DATASETID>C1_CP_EDI_CRF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_jul_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>crf_av__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags_av__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>crf_av__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>black</COLOR>
+                                <NAME>crf</NAME>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>crf</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <TICKNAMES>0,10,20</TICKNAMES>
+                                <TICKVALUES>0,10,20</TICKVALUES>
+                                <RANGE>-0.5,21</RANGE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+	</SUBPANEL>
+
+       <SUBPANEL>
+                <ORDER>3</ORDER>
+                <SIZE>0.1</SIZE>
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>EDI_CODE</NAME>
+                                <ARGUMENT>
+                                        <PARAMID>code_flag__C1_CP_EDI_CRF</PARAMID>
+                                        <DATASETID>C1_CP_EDI_CRF</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>time_tags__C1_CP_EDI_CRF</PARAMID>
+                                        <DATASETID>C1_CP_EDI_CRF</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>code_long__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>code_short__C1_CP_EDI_CRF</PARAMID>
+                                        <ALIAS>OUTPUT_2</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>code_short__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>grey</COLOR>
+                                <NAME>short</NAME>
+				<THICK>6</THICK>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT> </UNIT>
+                                <LABEL>code</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                                <RANGE>0,2</RANGE>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+                <PLOT>
+                        <PLOT_DATA>
+                                <PARAMID>time_tags__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>code_long__C1_CP_EDI_CRF</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>magenta</COLOR>
+                                <NAME>long</NAME>
+                                <THICK>6</THICK>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+				<RANGE>0,2</RANGE>
+                                <UNIT> </UNIT>
+                                <LABEL>code</LABEL>
+                                <ROTATE>1</ROTATE>
+                                <TICKNAMES> , </TICKNAMES>
+                                <TICKVALUES>0,2</TICKVALUES>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+        </SUBPANEL>
+
+
+</PANEL>
+

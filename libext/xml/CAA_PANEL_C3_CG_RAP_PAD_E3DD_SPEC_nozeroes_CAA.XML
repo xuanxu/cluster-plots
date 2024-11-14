@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+	<PANEL_ID>C3_CG_RAP_PAD_E3DD_SPEC_CAA</PANEL_ID>
+
+	<INFO>C3 RAP E3DD</INFO>
+
+        <PANEL_TYPE>spectrogram</PANEL_TYPE>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+			<ORDER>1</ORDER>
+
+			<PLOT_TYPE>spectrogram</PLOT_TYPE>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>pa (degrees)</UNIT>
+				<RANGE>0,180</RANGE>
+				<LABEL>E(e-)</LABEL>
+			</AXIS>
+			<AXIS>
+				<TYPE>ZAXIS</TYPE>
+				<PREGEN_RANGE>1e-1,1e6</PREGEN_RANGE>
+				<LOG>1</LOG>
+				<UNIT>Particles/(cm^2 s sr keV)</UNIT>
+			</AXIS>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>TIME_SPEC_AVERAGE</NAME>
+            			<VALUE>0</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<DATASETID>C3_CP_RAP_PAD_E3DD</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>OUTPUT_2</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+                        <PROCESSING>
+                                <ORDER>2</ORDER>
+                                <NAME>ZERO_TO_NAN</NAME>
+
+                                <ARGUMENT>
+                                        <PARAMID>PAD_Electron_Dif_flux__C3_CP_RAP_PAD_E3DD</PARAMID>
+                                        <DATASETID>C3_CP_RAP_PAD_E3DD</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>PAD_Electron_Dif_flux_no_zero__C3_CP_RAP_PAD_E3DD</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+        
+        		<PROCESSING>
+            			<ORDER>3</ORDER>
+            			<NAME>AVERAGE_DIM</NAME>
+            			<VALUE>Dimension_Pitch__C3_CP_RAP_PAD_E3DD</VALUE>
+
+            			<ARGUMENT>
+                			<PARAMID>PAD_Electron_Dif_flux_no_zero__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+
+            			<ARGUMENT>
+                			<PARAMID>spectro_PAD_Electron_Dif_flux_no_zero_Dimension_Pitch_omni__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        		<PROCESSING>
+            			<ORDER>4</ORDER>
+            			<NAME>SPECTRO_AVERAGE</NAME>
+            			<VALUE>20</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>spectro_PAD_Electron_Dif_flux_no_zero_Dimension_Pitch_omni__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+           			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>spectro_PAD_Electron_Dif_flux_no_zero_Dimension_Pitch_omni_av__C3_CP_RAP_PAD_E3DD</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        
+        
+        
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C3_CP_RAP_PAD_E3DD</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Dimension_Pitch__C3_CP_RAP_PAD_E3DD</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>spectro_PAD_Electron_Dif_flux_no_zero_Dimension_Pitch_omni_av__C3_CP_RAP_PAD_E3DD</PARAMID>
+            			<TYPE>Z</TYPE>
+        		</PLOT_DATA>
+
+
+		</PLOT>
+
+	</SUBPANEL>
+
+	<AXIS> 
+		<TYPE>XAXIS</TYPE>
+		<LOG>0</LOG>
+		<UNIT></UNIT>
+		<LABEL>UT</LABEL>
+	</AXIS>
+
+</PANEL>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C2_CG_AUX_ESOC_MEP_HIGH_CAA</PANEL_ID>
+
+	<INFO>C2 AUX</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+			<PROCESSING>
+				<ORDER>1</ORDER>
+				<NAME>TIME_AVERAGE</NAME>
+                		<VALUE>-1</VALUE>
+				<ARGUMENT>
+					<PARAMID>Time_tags__C2_CP_AUX_ESOC_MEP</PARAMID>
+                    			<DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                    			<TYPE>INPUT</TYPE>
+				</ARGUMENT>
+  				<ARGUMENT>
+					<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+					<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+                		<ARGUMENT>
+					<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+					<ALIAS>OUTPUT_2</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+				</ARGUMENT>
+            		</PROCESSING>
+
+            		<PROCESSING>
+                   		<ORDER>2</ORDER>
+                   		<NAME>DATA_AVERAGE</NAME>
+                   		<VALUE>90</VALUE>
+                   		<ARGUMENT>
+                       			<PARAMID>Temp_Upp1__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                       			<ALIAS>INPUT_1</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>INPUT_2</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>INPUT_3</ALIAS>
+                       			<TYPE>INPUT</TYPE>
+                   		</ARGUMENT>
+                   		<ARGUMENT>
+                       			<PARAMID>Temp_Upp1_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                       			<ALIAS>OUTPUT_1</ALIAS>
+                       			<TYPE>OUTPUT</TYPE>
+                 		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>Temp_Upp1_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>cyan</COLOR>
+                		<NAME>U1</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>Celsius</UNIT>
+				<LABEL>High Temp</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+       		 	<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp2__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp2_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Upp2_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>purple</COLOR>
+            			<NAME>U2</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>High Temp</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp3__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+					<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp3_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Upp3_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>grey</COLOR>
+            			<NAME>U3</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>High Temp</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+
+
+    		<PLOT>
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp4__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp4_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Upp4_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>U4</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>High Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp5__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp5_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Upp5_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>BlueViolet</COLOR>
+            			<NAME>U5</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>High Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+    		<PLOT>
+
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>DATA_AVERAGE</NAME>
+            			<VALUE>90</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp6__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_2</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>INPUT_3</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>Temp_Upp6_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+
+        		<PLOT_DATA>
+            			<PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>Temp_Upp6_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>U6</NAME>
+        		</LINE>
+
+        		<ORDER>1</ORDER>
+
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>Celsius</UNIT>
+            			<LABEL>High Temp</LABEL>
+        		</AXIS>
+
+        		<PLOT_TYPE>line</PLOT_TYPE>
+
+    		</PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>90</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Temp_Upp7__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Temp_Upp7_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>Temp_Upp7_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>green</COLOR>
+                                <NAME>U7</NAME>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>Celsius</UNIT>
+                                <LABEL>High Temp</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+
+                <PLOT>
+
+                        <PROCESSING>
+                                <ORDER>1</ORDER>
+                                <NAME>DATA_AVERAGE</NAME>
+                                <VALUE>90</VALUE>
+                                <ARGUMENT>
+                                        <PARAMID>Temp_Upp8__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <DATASETID>C2_CP_AUX_ESOC_MEP</DATASETID>
+                                        <ALIAS>INPUT_1</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_tags_jul_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>INPUT_3</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>Temp_Upp8_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                        <ALIAS>OUTPUT_1</ALIAS>
+                                        <TYPE>OUTPUT</TYPE>
+                                </ARGUMENT>
+                        </PROCESSING>
+
+                        <PLOT_DATA>
+                                <PARAMID>Time_tags_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                <TYPE>X</TYPE>
+                        </PLOT_DATA>
+                        <PLOT_DATA>
+                                <PARAMID>Temp_Upp8_av__C2_CP_AUX_ESOC_MEP</PARAMID>
+                                <TYPE>Y</TYPE>
+                        </PLOT_DATA>
+
+                        <LINE>
+                                <COLOR>orange</COLOR>
+                                <NAME>U8</NAME>
+                        </LINE>
+
+                        <ORDER>1</ORDER>
+
+                        <AXIS>
+                                <TYPE>YAXIS</TYPE>
+                                <LOG>0</LOG>
+                                <UNIT>Celsius</UNIT>
+                                <LABEL>High Temp</LABEL>
+                        </AXIS>
+
+                        <PLOT_TYPE>line</PLOT_TYPE>
+
+                </PLOT>
+
+	</SUBPANEL>
+
+</PANEL>
+

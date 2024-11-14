@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PANEL>
+
+	<PANEL_ID>C1_CG_EFW_v_drift_ISR2_CAA</PANEL_ID>
+
+	<INFO>C1 EFW</INFO>
+
+	<SUBPANEL>
+		<ORDER>1</ORDER>
+
+		<PLOT>
+
+            		<PROCESSING>
+                		<ORDER>1</ORDER>
+                		<NAME>EXTRACT_COMP</NAME>
+                		<VALUE>0</VALUE>
+                		<ARGUMENT>
+                        		<PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                        		<DATASETID>C1_CP_EFW_DM</DATASETID>
+                        		<ALIAS>INPUT_1</ALIAS>
+                        		<TYPE>INPUT</TYPE>
+                		</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                                        <DATASETID>C1_CP_EFW_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>           
+		     		<ARGUMENT>
+                    			<PARAMID>v_drift_ISR2_X__C1_CP_EFW_DM</PARAMID>
+                    			<ALIAS>OUTPUT_1</ALIAS>
+                    			<TYPE>OUTPUT</TYPE>
+                		</ARGUMENT>
+            		</PROCESSING>
+
+			<PLOT_DATA>
+				<PARAMID>time_tags__C1_CP_EFW_DM</PARAMID>
+                                <DATASETID>C1_CP_EFW_DM</DATASETID>
+				<TYPE>X</TYPE>
+			</PLOT_DATA>
+            		<PLOT_DATA>
+                		<PARAMID>v_drift_ISR2_X__C1_CP_EFW_DM</PARAMID>
+                		<TYPE>Y</TYPE>
+            		</PLOT_DATA>
+
+            		<LINE>
+                		<COLOR>black</COLOR>
+                		<NAME>X</NAME>
+            		</LINE>
+            
+			<ORDER>1</ORDER>
+
+			<AXIS>
+				<TYPE>YAXIS</TYPE>
+				<LOG>0</LOG>
+				<UNIT>km/s</UNIT>
+				<LABEL>V (ISR2)</LABEL>
+			</AXIS>
+
+			<PLOT_TYPE>line</PLOT_TYPE>
+
+		</PLOT>
+
+
+    		<PLOT>
+
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>1</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                			<DATASETID>C1_CP_EFW_DM</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                                        <DATASETID>C1_CP_EFW_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>v_drift_ISR2_Y__C1_CP_EFW_DM</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+       			</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags__C1_CP_EFW_DM</PARAMID>
+                                <DATASETID>C1_CP_EFW_DM</DATASETID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>v_drift_ISR2_Y__C1_CP_EFW_DM</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>red</COLOR>
+            			<NAME>Y</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>km/s</UNIT>
+            			<LABEL>V (ISR2)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        
+    		</PLOT>
+
+    
+    		<PLOT>
+        
+        
+        		<PROCESSING>
+            			<ORDER>1</ORDER>
+            			<NAME>EXTRACT_COMP</NAME>
+            			<VALUE>2</VALUE>
+            			<ARGUMENT>
+                			<PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                			<DATASETID>C1_CP_EFW_DM</DATASETID>
+                			<ALIAS>INPUT_1</ALIAS>
+                			<TYPE>INPUT</TYPE>
+            			</ARGUMENT>
+                                <ARGUMENT>
+                                        <PARAMID>v_drift_ISR2__C1_CP_EFW_DM</PARAMID>
+                                        <DATASETID>C1_CP_EFW_DM</DATASETID>
+                                        <ALIAS>INPUT_2</ALIAS>
+                                        <TYPE>INPUT</TYPE>
+                                </ARGUMENT>
+            			<ARGUMENT>
+                			<PARAMID>v_drift_ISR2_Z__C1_CP_EFW_DM</PARAMID>
+                			<ALIAS>OUTPUT_1</ALIAS>
+                			<TYPE>OUTPUT</TYPE>
+            			</ARGUMENT>
+        		</PROCESSING>
+        
+        		<PLOT_DATA>
+            			<PARAMID>time_tags__C1_CP_EFW_DM</PARAMID>
+                                <DATASETID>C1_CP_EFW_DM</DATASETID>
+            			<TYPE>X</TYPE>
+        		</PLOT_DATA>
+        		<PLOT_DATA>
+            			<PARAMID>v_drift_ISR2_Z__C1_CP_EFW_DM</PARAMID>
+            			<TYPE>Y</TYPE>
+        		</PLOT_DATA>
+        
+        		<LINE>
+            			<COLOR>blue</COLOR>
+            			<NAME>Z</NAME>
+        		</LINE>
+        
+        		<ORDER>1</ORDER>
+        
+        		<AXIS>
+            			<TYPE>YAXIS</TYPE>
+            			<LOG>0</LOG>
+            			<UNIT>km/s</UNIT>
+            			<LABEL>V (ISR2)</LABEL>
+        		</AXIS>
+        
+        		<PLOT_TYPE>line</PLOT_TYPE>
+        	
+    		</PLOT>
+	</SUBPANEL>
+
+</PANEL>
+

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+##############
+#
+# We need to use the streaming version otherwise we can't name the output file !!
+#
+##############
+
+if [ $# -ne 4 ]; then
+        echo $USAGE
+        exit 1
+fi
+
+ds=$1
+begin_time=$2
+end_time=$3
+out_dir=$4
+
+startStr=${begin_time:0:4}${begin_time:5:2}${begin_time:8:2}_${begin_time:11:2}${begin_time:14:2}${begin_time:17:2}
+stopStr=${end_time:0:4}${end_time:5:2}${end_time:8:2}_${end_time:11:2}${end_time:14:2}${end_time:17:2}
+
+
+data_file=${out_dir}/${ds}__${startStr}_${stopStr}_V00.cef.gz
+echo $data_file
+
+## Download data
+
+echo "wget --content-disposition 'https://csa.esac.esa.int/csa-sl-tap/data?RETRIEVAL_TYPE=product&RETRIEVAL_ACCESS=streamed&DATASET_ID=${ds}&START_DATE=${begin_time}&END_DATE=${end_time}&GZIP=1' -O $data_file"
+
+wget --content-disposition \
+        "https://csa.esac.esa.int/csa-sl-tap/data?RETRIEVAL_TYPE=product&RETRIEVAL_ACCESS=streamed&DATASET_ID=${ds}&START_DATE=${begin_time}&END_DATE=${end_time}&GZIP=1" \
+        -O $data_file
+
+ret=$?
+
+if [ $ret -eq 8 ] && [ ! -s $data_file ]; then
+        echo "wget return with status = 8 and file has zero size; Probably there is no data for this interval. Removing data file"
+        rm $data_file
+fi

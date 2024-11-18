@@ -3,6 +3,7 @@
 
 # Local scripts
 zzzzz*
+.vscode/
 
 # .DS_Store Mac files
 .DS_Store

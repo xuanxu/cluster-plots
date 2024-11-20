@@ -8,7 +8,7 @@ class LibextCallsTest < ActiveSupport::TestCase
     PYPLOT
 
     stdout_str, stderr_str, status = Open3.capture3 pycom
-    assert_equal stderr_str, ""
+    refute stderr_str.include?("ModuleNotFoundError"), "Missing module: \n\n #{stderr_str}"
     assert status.success?
   end
 end

@@ -9,6 +9,6 @@ class LibextCallsTest < ActiveSupport::TestCase
 
     stdout_str, stderr_str, status = Open3.capture3 pycom
     assert_not stderr_str.include?("ModuleNotFoundError"), "Missing module: \n\n #{stderr_str}"
-    assert status.success?
+    assert status.success?, "Failed to run run_panel2.py: \n\n #{stderr_str}"
   end
 end

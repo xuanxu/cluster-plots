@@ -1,2 +1,4 @@
 astropy
 numpy
+matplotlib
+bottleneck

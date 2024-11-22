@@ -1,4 +1,3 @@
-
 import numpy as np
 import read_panel_xml as rpx
 import read_param_cef as rpc
@@ -11,13 +10,13 @@ import lib_highcharts as lhc
 from matplotlib.dates import DateFormatter
 import getopt, sys
 from astropy.utils.misc import JsonCustomEncoder
+import os, os.path
 
 import json
 #import ujson as json
 #import simplejson as json
 
 import time
-
 
 import global_vars as glb
 
@@ -175,6 +174,10 @@ def gen_panels(list_xml,list_cef,list_panels,start,stop,upd_list,json_file,list_
         json_data = {'start':glb.date_start_iso,'stop':glb.date_stop_iso,'panels':list_panels,'zeroes':list_zeroes,'num_panels':num_panels,'panels_arr':json_panel_arr,'list_cef':list_cef}
 
         print(json_file)
+
+        json_chart_path = os.path.dirname(json_file)
+        os.makedirs(json_chart_path, exist_ok=True)
+
         with open (json_file,'w') as f:
             json.dump(json_data,f,sort_keys=True, indent=4, cls=JsonCustomEncoder)
             #json.dump(json_data,f)

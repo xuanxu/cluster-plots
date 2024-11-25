@@ -1,5 +1,6 @@
 class Plot
   include ActiveModel::Model
+  include ActiveModel::Attributes
 
   attribute :start_time, :datetime
   attribute :end_time, :datetime

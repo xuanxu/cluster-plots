@@ -22,10 +22,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-2 px-5 flex">
-      <%= render "shared/header" %>
-      <%= yield %>
+  <body class="antialiased text-slate-700 dark:text-slate-400 bg-zinc-100 dark:bg-slate-900">
+    <%= render "shared/header" %>
+    <main class="container mx-auto mt-3 py-4 max-w-7xl bg-zinc-50 shadow-md">
+      <div class="w-full px-9 block">
+        <%= render "plots/form" %>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

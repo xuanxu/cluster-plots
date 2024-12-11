@@ -1,24 +1,27 @@
 <%= form_tag(plots_path, method: :get) do %>
-  <div class="grid sm:grid-cols-2 gap-5 w-full grid-cols-1">
-    <div class="block">
-      <%= label_tag :start_datetime, "Start time" %>
-      <div class="block w-full py-1">
-        <%= datetime_select :start_datetime, params[:start_datetime], class: "form-input mt-1 block w-full", include_seconds: true %>
+  <div class="grid lg:grid-cols-2 gap-4 w-full grid-cols-1">
+    <div class="block min-w-max">
+      <%= label_tag :start_datetime, "Start time", class: "font-bold" %>
+      <div class="block w-full pb-1">
+        <%= datetime_select :start_datetime, params[:start_datetime], include_seconds: true %>
       </div>
 
-      <%= label_tag :duration, "Duration" %>
-      <div class="block w-full py-1 fright">
-        <%= select_time Time.now, class: "form-input mt-1 block w-full", include_seconds: true %>
+      <%= label_tag :duration, "Duration", class: "font-bold" %>
+      <div class="block w-full pb-1 fright">
+        Days / Hours : Minutes : Seconds <%= select_tag :duration_days, options_for_select((0..31).map{|n| [n,n]}) %> / <%= select_time Time.now, include_seconds: true %>
       </div>
 
-      <%= label_tag :stop_datetime, "Stop time" %>
-      <div class="block w-full py-1">
-        <%= datetime_select :stop_datetime, params[:stop_datetime], class: "form-input mt-1 block w-full", min: '2000-01-01T00:00:10', max: '2024-12-31T00:00:10', include_seconds: true %>
+      <%= label_tag :stop_datetime, "Stop time", class: "font-bold" %>
+      <div class="block w-full pb-1">
+        <%= datetime_select :stop_datetime, params[:stop_datetime], min: '2000-01-01T00:00:10', max: '2024-12-31T00:00:10', include_seconds: true %>
       </div>
     </div>
 
-    <div class="block">
-
+    <div class="large:flex">
+      <%= label_tag :panel_list, "Selected panels", class: "font-bold" %>
+      <div class="block w-full pb-1">
+        <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-48" %>
+      </div>
     </div>
   </div>
 <% end %>

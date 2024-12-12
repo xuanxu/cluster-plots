@@ -8,7 +8,8 @@
 
       <%= label_tag :duration, "Duration", class: "font-bold" %>
       <div class="block w-full pb-1">
-        Days / Hours : Minutes : Seconds <%= select_tag :duration_days, options_for_select((0..31).map{|n| [n,n]}) %> / <%= select_time Time.now, include_seconds: true %>
+        <span class="text-sm">Days / Hours : Minutes : Seconds</span>
+        <%= select_tag :duration_days, options_for_select((0..31).map{|n| [n,n]}) %> / <%= select_time Time.now, include_seconds: true %>
       </div>
 
       <%= label_tag :stop_datetime, "Stop time", class: "font-bold" %>

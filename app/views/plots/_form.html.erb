@@ -18,8 +18,8 @@
       </div>
 
       <div class="block w-full mt-2 py-1">
-        <%= button_tag "⏪️ Previous interval", class: "bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select previous time interval" %>
         <%= button_tag "📈 Plot panels", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        <%= button_tag "⏪️ Previous interval", class: "bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select previous time interval" %>
         <%= button_tag "Next interval ⏩️", class: "bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select next time interval" %>
       </div>
     </div>
@@ -36,4 +36,7 @@
       </div>
     </div>
   </div>
+
+<%= render "panels/list" %>
+
 <% end %>

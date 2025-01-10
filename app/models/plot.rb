@@ -7,4 +7,8 @@ class Plot
   attribute :panels, :string
   attribute :json_file, :string
   attribute :mission, :string
+
+  def ready?
+    true
+  end
 end

@@ -1,27 +1,35 @@
 <%= form_tag(generate_plots_path, method: :get) do %>
   <div class="grid lg:grid-cols-2 gap-4 w-full grid-cols-1">
     <div class="block min-w-max">
-      <%= label_tag :start_datetime, "Start time", class: "font-bold" %>
+    <span class="font-bold">Start time</span>
       <div class="block w-full pb-1">
-        <%= datetime_select :start_datetime, params[:start_datetime], include_seconds: true %>
+        <% # datetime_select :start_datetime, params[:start_datetime], include_seconds: true, value: "2000-01-01T00:00:00"  %>
+        <%= date_field_tag :start_date, params[:start_date] || "2000-01-01", min: "2000-01-01", max: "2024-12-31" %>
+        <%= time_field_tag :start_time, params[:start_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
       </div>
 
-      <%= label_tag :stop_datetime, "Stop time", class: "font-bold" %>
+      <span class="font-bold">Stop time</span>
       <div class="block w-full pb-1">
-        <%= datetime_select :stop_datetime, params[:stop_datetime], min: '2000-01-01T00:00:10', max: '2024-12-31T00:00:10', include_seconds: true %>
+        <% # datetime_select :stop_datetime, params[:stop_datetime], min: "2000-01-01T00:00:10", max: "2024-12-31T00:00:10", include_seconds: true %>
+        <%= date_field_tag :stop_date, (params[:stop_date] || "2000-01-01"), min: "2000-01-01", max: "2024-12-31" %>
+        <%= time_field_tag 'stop_time', params[:stop_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
       </div>
 
       <div class="block w-full pb-1 mt-2">
         <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span>
-        <%= select_tag :duration_days, options_for_select((0..31).map{|n| [n,n]}) %> / <%= select_time Time.now, include_seconds: true %>
+        <%= select_tag :duration_days, options_for_select((0..31).map{|n| [n,n]}) %> /
+        <%= select_tag :duration_hours, options_for_select((0..23).map{|n| [n,n]}) %> :
+        <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :
+        <%= select_tag :duration_seconds, options_for_select((0..59).map{|n| [n,n]}) %>
+
       </div>
 
       <div id="plot_times" class="text-slate-400">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
 
       <div class="block w-full mt-2 py-1">
         <%= button_tag "<i class='fa-duotone fa-solid fa-chart-line'></i> Plot panels".html_safe, class: "mb-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-        <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select previous time interval" %>
-        <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select next time interval" %>
+        <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select previous time interval" %>
+        <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select next time interval" %>
       </div>
     </div>
 
@@ -31,11 +39,11 @@
         <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-44" %>
       </div>
       <div class="block w-full mt-2 py-1 float-right whitespace-nowrap">
-        <%= button_tag "<i class='fa fa-angle-up'></i> Up".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
-        <%= button_tag "<i class='fa fa-angle-down'></i> Down".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
-        <!-- <%= button_tag "<i class='fa fa-minus'></i> Remove".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %> -->
-        <%= button_tag "<i class='fa fa-upload'></i> Import".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
-        <%= button_tag "<i class='fa fa-file-arrow-down'></i> Save selection".html_safe, type: 'button', class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
+        <%= button_tag "<i class='fa fa-angle-up'></i> Up".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
+        <%= button_tag "<i class='fa fa-angle-down'></i> Down".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
+        <!-- <%= button_tag "<i class='fa fa-minus'></i> Remove".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %> -->
+        <%= button_tag "<i class='fa fa-upload'></i> Import".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
+        <%= button_tag "<i class='fa fa-file-arrow-down'></i> Save selection".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded" %>
       </div>
     </div>
   </div>

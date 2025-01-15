@@ -12,3 +12,41 @@ var toggle_panels = function() {
 }
 
 document.getElementById("panels_heading").addEventListener('click', toggle_panels);
+
+var sync_duration = function() {
+  var start_date = document.getElementById("start_date");
+  var start_time = document.getElementById("start_time");
+  var stop_date = document.getElementById("stop_date");
+  var stop_time = document.getElementById("stop_time");
+  var duration_days = document.getElementById("duration_days");
+  var duration_hours = document.getElementById("duration_hours");
+  var duration_minutes = document.getElementById("duration_minutes");
+  var duration_seconds = document.getElementById("duration_seconds");
+  var plot_times = document.getElementById("plot_times");
+
+  var start = new Date(start_date.value + " " + start_time.value);
+  var stop = new Date(stop_date.value + " " + stop_time.value);
+  var diff = stop - start;
+
+  if (diff < 0) {
+    duration_days.value = 0;
+    duration_hours.value = 0;
+    duration_minutes.value = 0;
+    duration_seconds.value = 0;
+  } else {
+  var hours = Math.floor(diff / 1000 / 60 / 60);
+  var minutes = Math.floor(diff / 1000 / 60 % 60);
+  var seconds = Math.floor(diff / 1000 % 60);
+  duration_days.value = Math.floor(hours / 24);
+  duration_hours.value = hours % 24;
+  duration_minutes.value = minutes;
+  duration_seconds.value = seconds;
+
+  plot_times.innerHTML = start_date.value + "T" + start_time.value + "Z " + stop_date.value + "T" + stop_time.value + "Z";
+  }
+}
+
+document.getElementById("start_date").addEventListener('change', sync_duration);
+document.getElementById("start_time").addEventListener('change', sync_duration);
+document.getElementById("stop_date").addEventListener('change', sync_duration);
+document.getElementById("stop_time").addEventListener('change', sync_duration);

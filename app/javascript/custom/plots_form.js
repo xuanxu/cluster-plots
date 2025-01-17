@@ -98,3 +98,24 @@ function next_interval() {
   sync_stop_time();
 }
 document.getElementById("next_interval").addEventListener('click', next_interval);
+
+function previous_interval() {
+  var start_date = document.getElementById("start_date");
+  var start_time = document.getElementById("start_time");
+  var duration_days = document.getElementById("duration_days");
+  var duration_hours = document.getElementById("duration_hours");
+  var duration_minutes = document.getElementById("duration_minutes");
+  var duration_seconds = document.getElementById("duration_seconds");
+
+  var new_start = new Date(start_date.value + " " + start_time.value + "Z");
+  new_start.setDate(new_start.getDate() - parseInt(duration_days.value));
+  new_start.setHours(new_start.getHours() - parseInt(duration_hours.value));
+  new_start.setMinutes(new_start.getMinutes() - parseInt(duration_minutes.value));
+  new_start.setSeconds(new_start.getSeconds() - parseInt(duration_seconds.value));
+
+  start_date.value = new_start.toISOString().slice(0, 10);
+  start_time.value = new_start.toISOString().slice(11, 19);
+
+  sync_stop_time();
+}
+document.getElementById("previous_interval").addEventListener('click', previous_interval);

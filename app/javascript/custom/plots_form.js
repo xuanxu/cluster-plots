@@ -1,13 +1,12 @@
 // Update plot times
 function update_plot_times() {
-  var plot_times = document.getElementById("plot_times");
   var start_date = document.getElementById("start_date");
   var start_time = document.getElementById("start_time");
   var stop_date = document.getElementById("stop_date");
   var stop_time = document.getElementById("stop_time");
 
   var plot_time_interval_value = start_date.value + "T" + start_time.value + "Z " + stop_date.value + "T" + stop_time.value + "Z";
-  plot_times.innerHTML = plot_time_interval_value;
+  document.getElementById("plot_times").innerHTML = plot_time_interval_value;
   document.getElementById("plot_time_interval").value = plot_time_interval_value;
 }
 

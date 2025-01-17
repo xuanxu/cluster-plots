@@ -5,7 +5,10 @@ function update_plot_times() {
   var start_time = document.getElementById("start_time");
   var stop_date = document.getElementById("stop_date");
   var stop_time = document.getElementById("stop_time");
-  plot_times.innerHTML = start_date.value + "T" + start_time.value + "Z " + stop_date.value + "T" + stop_time.value + "Z";
+
+  var plot_time_interval_value = start_date.value + "T" + start_time.value + "Z " + stop_date.value + "T" + stop_time.value + "Z";
+  plot_times.innerHTML = plot_time_interval_value;
+  document.getElementById("plot_time_interval").value = plot_time_interval_value;
 }
 
 // Show/hide list of panels checkboxes

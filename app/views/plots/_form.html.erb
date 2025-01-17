@@ -28,7 +28,7 @@
       <div class="block w-full mt-2 py-1">
         <%= button_tag "<i class='fa-duotone fa-solid fa-chart-line'></i> Plot panels".html_safe, class: "mb-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
         <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select previous time interval" %>
-        <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select next time interval" %>
+        <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "next_interval", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded", title: "Select next time interval" %>
       </div>
     </div>
 

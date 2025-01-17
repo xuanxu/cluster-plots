@@ -85,3 +85,16 @@ document.getElementById("duration_days").addEventListener('change', sync_stop_ti
 document.getElementById("duration_hours").addEventListener('change', sync_stop_time);
 document.getElementById("duration_minutes").addEventListener('change', sync_stop_time);
 document.getElementById("duration_seconds").addEventListener('change', sync_stop_time);
+
+function next_interval() {
+  var start_date = document.getElementById("start_date");
+  var start_time = document.getElementById("start_time");
+  var stop_date = document.getElementById("stop_date");
+  var stop_time = document.getElementById("stop_time");
+
+  start_date.value = stop_date.value;
+  start_time.value = stop_time.value;
+
+  sync_stop_time();
+}
+document.getElementById("next_interval").addEventListener('click', next_interval);

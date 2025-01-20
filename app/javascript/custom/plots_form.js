@@ -156,7 +156,7 @@ function select_instrument(event){
   });
   clicked_link.classList.add('instrument_selected');
 
-  const instrument_panels_lists = document.querySelectorAll('div.instrument_panels_list');
+  const instrument_panels_lists = document.querySelectorAll('div.' + clicked_link.dataset.mission + '_instrument_panels_list');
   instrument_panels_lists.forEach(instrument_panels_list => {
     instrument_panels_list.style.display = "none";
   });

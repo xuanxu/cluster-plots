@@ -148,7 +148,8 @@ mission_links.forEach(mission_link => {
 const instrument_links = document.querySelectorAll('nav a.instrument_option');
 function select_instrument(event){
   event.preventDefault();
-  instrument_links.forEach(instrument_link => {
+  const mission_instrument_links = document.querySelectorAll('nav a.' + event.target.dataset.mission);
+  mission_instrument_links.forEach(instrument_link => {
     instrument_link.classList.remove('instrument_selected');
   });
   event.target.classList.add('instrument_selected');

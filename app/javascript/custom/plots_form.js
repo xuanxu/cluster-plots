@@ -88,6 +88,7 @@ document.getElementById("duration_hours").addEventListener('change', sync_stop_t
 document.getElementById("duration_minutes").addEventListener('change', sync_stop_time);
 document.getElementById("duration_seconds").addEventListener('change', sync_stop_time);
 
+// Calculate times for next interval with set duration
 function next_interval() {
   var start_date = document.getElementById("start_date");
   var start_time = document.getElementById("start_time");
@@ -101,6 +102,7 @@ function next_interval() {
 }
 document.getElementById("next_interval").addEventListener('click', next_interval);
 
+// Calculate times for previous interval with set duration
 function previous_interval() {
   var start_date = document.getElementById("start_date");
   var start_time = document.getElementById("start_time");
@@ -121,3 +123,24 @@ function previous_interval() {
   sync_stop_time();
 }
 document.getElementById("previous_interval").addEventListener('click', previous_interval);
+
+// Select mission tabs
+const mission_links = document.querySelectorAll('nav a.mission_option');
+function select_mission(event){
+  event.preventDefault();
+  mission_links.forEach(mission_link => {
+    mission_link.classList.remove('mission_selected');
+  });
+  event.target.classList.add('mission_selected');
+
+  const mission_panels_lists = document.querySelectorAll('div.mission_panels_list');
+  mission_panels_lists.forEach(mission_panels_list => {
+    mission_panels_list.style.display = "none";
+  });
+  const mission_panels_list = document.getElementById(event.target.id + "_panels");
+  mission_panels_list.style.display = "block";
+}
+mission_links.forEach(mission_link => {
+  mission_link.addEventListener('click', function(event) { select_mission(event); });
+});
+

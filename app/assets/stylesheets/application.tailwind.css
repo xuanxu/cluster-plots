@@ -19,4 +19,10 @@
   a.mission_selected {
     @apply border-b-4 border-slate-600 text-slate-700;
   }
+  a.instrument_option {
+    @apply pb-2 hover:border-b-4 hover:border-slate-500 text-slate-500;
+  }
+  a.instrument_selected {
+    @apply border-b-4 border-slate-600 text-slate-700;
+  }
 }

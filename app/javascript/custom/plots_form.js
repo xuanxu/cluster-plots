@@ -144,3 +144,22 @@ mission_links.forEach(mission_link => {
   mission_link.addEventListener('click', function(event) { select_mission(event); });
 });
 
+// Select instrument tabs
+const instrument_links = document.querySelectorAll('nav a.instrument_option');
+function select_instrument(event){
+  event.preventDefault();
+  instrument_links.forEach(instrument_link => {
+    instrument_link.classList.remove('instrument_selected');
+  });
+  event.target.classList.add('instrument_selected');
+
+  const instrument_panels_lists = document.querySelectorAll('div.instrument_panels_list');
+  instrument_panels_lists.forEach(instrument_panels_list => {
+    instrument_panels_list.style.display = "none";
+  });
+  const instrument_panels_list = document.getElementById(event.target.id + "_panels");
+  instrument_panels_list.style.display = "block";
+}
+instrument_links.forEach(instrument_link => {
+  instrument_link.addEventListener('click', function(event) { select_instrument(event); });
+});

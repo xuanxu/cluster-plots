@@ -1,15 +1,82 @@
 <span id="panels_heading" class="font-medium my-2 block">Panel selection <i class='fa fa-caret-down'></i></span>
 
 <div id="panels">
-  <div class="block w-full pb-1">
+  <div class="block w-full pb-1 mb-6">
     <nav id="missions" class="font-bold space-x-6">
       <a id="cluster" class="mission_option mission_selected" href="#"><%= image_tag "cluster-icon.png", width: "36", class: "inline" %> Cluster</a>
       <a id="double_star" class="mission_option" href="#"><%= image_tag "double-star-icon.png", width: "30", class: "inline" %> Double Star</a>
       <a id="data_mining" class="mission_option" href="#" title="One minute averaged parameters used in the data mining tool - https://caa.esac.esa.int/data-mining/"><i class="fa-solid fa-database text-red-900"></i> Cluster Data Mining</a>
     </nav>
   </div>
-</div>
 
-<div id="cluster_panels" class="mission_panels_list">Cluster panels </div>
-<div id="double_star_panels" class="mission_panels_list hidden">DS panels </div>
-<div id="data_mining_panels" class="mission_panels_list hidden">DM panels </div>
+  <div id="cluster_panels" class="mission_panels_list">
+    <nav class="font-bold space-x-4 mb-6">
+      <a id="cluster_ASPOC" class="cluster instrument_option instrument_selected">ASPOC</a>
+      <a id="cluster_AUX" class="cluster instrument_option">AUX</a>
+      <a id="cluster_CIS" class="cluster instrument_option">CIS</a>
+      <a id="cluster_EDI" class="cluster instrument_option">EDI</a>
+      <a id="cluster_EFW" class="cluster instrument_option">EFW</a>
+      <a id="cluster_FGM" class="cluster instrument_option">FGM</a>
+      <a id="cluster_PEACE" class="cluster instrument_option">PEACE</a>
+      <a id="cluster_RAPID" class="cluster instrument_option">RAPID</a>
+      <a id="cluster_STAFF" class="cluster instrument_option">STAFF</a>
+      <a id="cluster_WHISPER" class="cluster instrument_option">WHISPER</a>
+      <a id="cluster_MULTI" class="cluster instrument_option">MULTI</a>
+    </nav>
+
+    <div id="cluster_ASPOC_panels" class=""></div>
+    <div id="cluster_AUX_panels" class="hidden"></div>
+    <div id="cluster_CIS_panels" class="hidden"></div>
+    <div id="cluster_EDI_panels" class="hidden"></div>
+    <div id="cluster_EFW_panels" class="hidden"></div>
+    <div id="cluster_FGM_panels" class="hidden"></div>
+    <div id="cluster_PEACE_panels" class="hidden"></div>
+    <div id="cluster_RAPID_panels" class="hidden"></div>
+    <div id="cluster_STAFF_panels" class="hidden"></div>
+    <div id="cluster_WHISPER_panels" class="hidden"></div>
+    <div id="cluster_MULTI_panels" class="hidden"></div>
+  </div>
+
+  <div id="double_star_panels" class="mission_panels_list hidden">
+    <nav class="font-bold space-x-4 mb-6">
+      <a id="double_star_ASPOC" class="double_star instrument_option instrument_selected">ASPOC</a>
+      <a id="double_star_AUX" class="double_star instrument_option">AUX</a>
+      <a id="double_star_HIA" class="double_star instrument_option">HIA</a>
+      <a id="double_star_FGM" class="double_star instrument_option">FGM</a>
+      <a id="double_star_PEACE" class="double_star instrument_option">PEACE</a>
+      <a id="double_star_STAFF-DWP" class="double_star instrument_option">FGM</a>
+    </nav>
+
+    <div id="double_star_ASPOC_panels" class=""></div>
+    <div id="double_star_AUX_panels" class="hidden"></div>
+    <div id="double_star_HIA_panels" class="hidden"></div>
+    <div id="double_star_FGM_panels" class="hidden"></div>
+    <div id="double_star_PEACE_panels" class="hidden"></div>
+    <div id="double_star_STAFF-DWP_panels" class="hidden"></div>
+  </div>
+
+  <div id="data_mining_panels" class="mission_panels_list hidden">
+    <nav class="font-bold space-x-4 mb-6">
+      <a id="data_mining_AUX" class="data_mining instrument_option instrument_selected">AUX</a>
+      <a id="data_mining_CIS" class="data_mining instrument_option">CIS</a>
+      <a id="data_mining_EDI" class="data_mining instrument_option">EDI</a>
+      <a id="data_mining_EFW" class="data_mining instrument_option">EFW</a>
+      <a id="data_mining_FGM" class="data_mining instrument_option">FGM</a>
+      <a id="data_mining_PEACE" class="data_mining instrument_option">PEACE</a>
+      <a id="data_mining_RAPID" class="data_mining instrument_option">RAPID</a>
+      <a id="data_mining_STAFF" class="data_mining instrument_option">STAFF</a>
+      <a id="data_mining_WHISPER" class="data_mining instrument_option">WHISPER</a>
+    </nav>
+
+    <div id="data_mining_AUX_panels" class=""></div>
+    <div id="data_mining_CIS_panels" class="hidden"></div>
+    <div id="data_mining_EDI_panels" class="hidden"></div>
+    <div id="data_mining_EFW_panels" class="hidden"></div>
+    <div id="data_mining_FGM_panels" class="hidden"></div>
+    <div id="data_mining_PEACE_panels" class="hidden"></div>
+    <div id="data_mining_RAPID_panels" class="hidden"></div>
+    <div id="data_mining_STAFF_panels" class="hidden"></div>
+    <div id="data_mining_WHISPER_panels" class="hidden"></div>
+  </div>
+
+</div>

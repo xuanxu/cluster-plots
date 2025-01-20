@@ -128,16 +128,17 @@ document.getElementById("previous_interval").addEventListener('click', previous_
 const mission_links = document.querySelectorAll('nav a.mission_option');
 function select_mission(event){
   event.preventDefault();
+  var clicked_link = event.currentTarget;
   mission_links.forEach(mission_link => {
     mission_link.classList.remove('mission_selected');
   });
-  event.target.classList.add('mission_selected');
+  clicked_link.classList.add('mission_selected');
 
   const mission_panels_lists = document.querySelectorAll('div.mission_panels_list');
   mission_panels_lists.forEach(mission_panels_list => {
     mission_panels_list.style.display = "none";
   });
-  const mission_panels_list = document.getElementById(event.target.id + "_panels");
+  const mission_panels_list = document.getElementById(clicked_link.id + "_panels");
   mission_panels_list.style.display = "block";
 }
 mission_links.forEach(mission_link => {
@@ -148,17 +149,18 @@ mission_links.forEach(mission_link => {
 const instrument_links = document.querySelectorAll('nav a.instrument_option');
 function select_instrument(event){
   event.preventDefault();
-  const mission_instrument_links = document.querySelectorAll('nav a.' + event.target.dataset.mission);
+  var clicked_link = event.currentTarget;
+  const mission_instrument_links = document.querySelectorAll('nav a.' + clicked_link.dataset.mission);
   mission_instrument_links.forEach(instrument_link => {
     instrument_link.classList.remove('instrument_selected');
   });
-  event.target.classList.add('instrument_selected');
+  clicked_link.classList.add('instrument_selected');
 
   const instrument_panels_lists = document.querySelectorAll('div.instrument_panels_list');
   instrument_panels_lists.forEach(instrument_panels_list => {
     instrument_panels_list.style.display = "none";
   });
-  const instrument_panels_list = document.getElementById(event.target.id + "_panels");
+  const instrument_panels_list = document.getElementById(clicked_link.id + "_panels");
   instrument_panels_list.style.display = "block";
 }
 instrument_links.forEach(instrument_link => {

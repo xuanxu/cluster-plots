@@ -11,3 +11,12 @@
     @apply font-semibold text-3xl pb-5 text-zinc-700;
   }
 }
+
+@layer components {
+  a.mission_option {
+    @apply pb-4 hover:border-b-4 hover:border-slate-500 text-slate-500;
+  }
+  a.mission_selected {
+    @apply border-b-4 border-slate-600 text-slate-700;
+  }
+}

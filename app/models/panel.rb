@@ -3,4 +3,5 @@ class Panel < ApplicationRecord
   validates_uniqueness_of :name, scope: :mission
 
   scope :ready, -> { where(active: true).where(stage: false) }
+  scope :by_mission, ->(mission) { where(mission: mission) }
 end

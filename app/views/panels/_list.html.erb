@@ -24,17 +24,57 @@
       <a id="cluster_MULTI" data-mission="cluster" class="cluster instrument_option">MULTI</a>
     </nav>
 
-    <div id="cluster_ASPOC_panels" class=""></div>
-    <div id="cluster_AUX_panels" class="hidden"></div>
-    <div id="cluster_CIS_panels" class="hidden"></div>
-    <div id="cluster_EDI_panels" class="hidden"></div>
-    <div id="cluster_EFW_panels" class="hidden"></div>
-    <div id="cluster_FGM_panels" class="hidden"></div>
-    <div id="cluster_PEACE_panels" class="hidden"></div>
-    <div id="cluster_RAPID_panels" class="hidden"></div>
-    <div id="cluster_STAFF_panels" class="hidden"></div>
-    <div id="cluster_WHISPER_panels" class="hidden"></div>
-    <div id="cluster_MULTI_panels" class="hidden"></div>
+    <div class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+      <div id="cluster_ASPOC_panels" class="cluster_instrument_panels_list">
+        <table>
+          <colgroup>
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="200">
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>C1</th>
+              <th>C2</th>
+              <th>C3</th>
+              <th>C4</th>
+              <th>CM</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+
+            <tr>
+              <!-- disabled checkbox -->
+              <td> <input disabled="" id="datasets-1" name="datasets" type="checkbox" value="0"> </td>
+              <td> <input id="datasets-2" name="datasets" type="checkbox" value="C2_CG_ASP_IONC_CAA/ASPOC C2: Ion emission current"> </td>
+              <td> <input id="datasets-3" name="datasets" type="checkbox" value="C3_CG_ASP_IONC_CAA/ASPOC C3: Ion emission current"> </td>
+              <td> <input id="datasets-4" name="datasets" type="checkbox" value="C4_CG_ASP_IONC_CAA/ASPOC C4: Ion emission current"> </td>
+              <td><input id="datasets-5" name="datasets" type="checkbox" value="CM_CG_ASP_IONC_CAA/ASPOC CM: Ion emission current"> </td>
+              <td></td>
+              <td></td>
+              <td title="Ci_CG_ASP_IONC_CAA">Ion emission current</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div id="cluster_AUX_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_CIS_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_EDI_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_EFW_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_FGM_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_PEACE_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_RAPID_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_STAFF_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_WHISPER_panels" class="cluster_instrument_panels_list hidden"></div>
+      <div id="cluster_MULTI_panels" class="cluster_instrument_panels_list hidden"></div>
+    </div>
   </div>
 
   <div id="double_star_panels" class="mission_panels_list hidden">

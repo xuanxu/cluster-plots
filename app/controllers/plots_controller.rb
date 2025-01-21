@@ -1,4 +1,6 @@
 class PlotsController < ApplicationController
+  before_action :load_panels
+
   def index
   end
 
@@ -11,5 +13,12 @@ class PlotsController < ApplicationController
     if @plot.ready?
       render :show
     end
+  end
+
+  private
+  def load_panels
+    @cluster_panels = Panel.ready.where(mission: "cluster")
+    @double_star_panels = Panel.ready.where(mission: "double_star")
+    @data_mining_panels = Panel.ready.where(mission: "data_mining")
   end
 end

@@ -1,0 +1,52 @@
+  <div id="<%= mission %>_panels" class="mission_panels_list <%= initially_hidden ? 'hidden' : '' %>">
+    <nav class="font-bold space-x-4 mb-6">
+      <% panels.keys.each do |instrument| %>
+        <a id="<%= mission %>_<%= instrument %>" data-mission="<%= mission %>" class="<%= mission %> instrument_option <%= instrument == panels.keys.first ? "instrument_selected" : "" %>"><%= instrument %></a>
+      <% end %>
+    </nav>
+
+    <div class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+    <% panels.each_pair do |instrument, instrument_panels| %>
+      <div id="<%= mission %>_<%= instrument %>_panels" class="<%= mission %>_instrument_panels_list <%= instrument == panels.keys.first ? '' : 'hidden' %>">
+        <table>
+          <colgroup>
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col width="5">
+            <col>
+            <col width="5">
+            <col width="200">
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>C1</th>
+              <th>C2</th>
+              <th>C3</th>
+              <th>C4</th>
+              <th>CM</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+
+            <% instrument_panels.each do |panel| %>
+              <tr>
+                <!-- disabled checkbox -->
+                <td> <input type="checkbox" value="C1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C1: <%= panel.title %>"> </td>
+                <td> <input type="checkbox" value="C2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C2: <%= panel.title %>"> </td>
+                <td> <input type="checkbox" value="C3_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C3: <%= panel.title %>"> </td>
+                <td> <input type="checkbox" value="C4_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C4: <%= panel.title %>"> </td>
+                <td><input type="checkbox" value="CM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> CM: <%= panel.title %>"> </td>
+                <td title="Ci_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+    </div>
+  </div>

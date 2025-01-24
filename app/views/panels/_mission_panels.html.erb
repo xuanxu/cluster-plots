@@ -32,17 +32,7 @@
             </tr>
 
             <% instrument_panels.each do |panel| %>
-              <tr>
-                <!-- disabled checkbox -->
-                <td> <input type="checkbox" value="C1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C1: <%= panel.title %>"> </td>
-                <td> <input type="checkbox" value="C2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C2: <%= panel.title %>"> </td>
-                <td> <input type="checkbox" value="C3_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C3: <%= panel.title %>"> </td>
-                <td> <input type="checkbox" value="C4_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C4: <%= panel.title %>"> </td>
-                <td><input type="checkbox" value="CM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> CM: <%= panel.title %>"> </td>
-                <td title="Ci_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <%= render partial: "panels/panel", locals: { panel: panel } %>
             <% end %>
           </tbody>
         </table>

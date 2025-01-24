@@ -11,6 +11,9 @@
   h2 {
     @apply font-semibold text-3xl pb-5 text-zinc-700;
   }
+  td {
+    @apply px-1 lg:px-2;
+  }
 }
 
 @layer components {

@@ -25,6 +25,11 @@
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <td title="Ci_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
-  <td></td>
-  <td></td>
+  <% if panel.zeroes? %>
+    <td title="Filter out zero values in the input data"> <input type="checkbox" value="zero_Ci_CG_<%= panel.name %>_CAA"> </td>
+    <td title="Filter out zero values in the input data">Filter out zeroes</td>
+  <% else %>
+    <td></td>
+    <td></td>
+  <% end %>
 </tr>

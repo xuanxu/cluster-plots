@@ -1,30 +1,15 @@
-  <div id="<%= mission %>_panels" class="mission_panels_list <%= initially_hidden ? 'hidden' : '' %>">
-    <nav class="font-bold space-x-4 mb-6">
-      <% panels.keys.each do |instrument| %>
-        <a id="<%= mission %>_<%= instrument %>" data-mission="<%= mission %>" class="<%= mission %> instrument_option <%= instrument == panels.keys.first ? "instrument_selected" : "" %>"><%= instrument %></a>
-      <% end %>
-    </nav>
+<span id="panels_heading" class="font-medium my-2 block">Panel selection <i class='fa fa-caret-down'></i></span>
 
-    <div class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
-    <% panels.each_pair do |instrument, instrument_panels| %>
-      <div id="<%= mission %>_<%= instrument %>_panels" class="<%= mission %>_instrument_panels_list <%= instrument == panels.keys.first ? '' : 'hidden' %>">
-        <table>
-          <tbody>
-            <tr>
-              <th>C1</th>
-              <th>C2</th>
-              <th>C3</th>
-              <th>C4</th>
-              <th>CM</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <% instrument_panels.each do |panel| %>
-              <%= render partial: "panels/panel", locals: { panel: panel } %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
-    </div>
+<div id="panels">
+  <div class="block w-full pb-1 mb-6">
+    <nav id="missions" class="font-bold space-x-6 whitespace-nowrap">
+      <a id="cluster" class="mission_option mission_selected" href="#"><%= image_tag "cluster-icon.png", width: "36", class: "inline" %> Cluster</a>
+      <a id="double_star" class="mission_option" href="#"><%= image_tag "double-star-icon.png", width: "30", class: "inline" %> Double Star</a>
+      <a id="data_mining" class="mission_option" href="#" title="One minute averaged parameters used in the data mining tool - https://caa.esac.esa.int/data-mining/"><i class="fa-solid fa-database text-red-900"></i> Cluster Data Mining</a>
+    </nav>
   </div>
+
+  <%= render partial: "panels/instrument_panels", locals: { mission: "cluster", panels: @cluster_panels_by_instrument, initially_hidden: false } %>
+  <%= render partial: "panels/instrument_panels", locals: { mission: "double_star", panels: @double_star_panels_by_instrument, initially_hidden: true } %>
+  <%= render partial: "panels/instrument_panels", locals: { mission: "data_mining", panels: @data_mining_panels_by_instrument, initially_hidden: true } %>
+</div>

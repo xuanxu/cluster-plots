@@ -16,7 +16,7 @@
       </div>
 
       <div class="block w-full pb-1 mt-2">
-        <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span>
+        <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span><br>
         <%= select_tag :duration_days, options_for_select((0..100).map{|n| [n,n]}) %> /
         <%= select_tag :duration_hours, options_for_select((0..23).map{|n| [n,n]}) %> :
         <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :

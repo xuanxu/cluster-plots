@@ -1,7 +1,7 @@
 <div id="<%= mission %>_panels" class="mission_panels_list <%= initially_hidden ? 'hidden' : '' %>">
 <nav class="font-bold space-x-4 mb-6">
   <% panels.keys.each do |instrument| %>
-    <a id="<%= mission %>_<%= instrument %>" data-mission="<%= mission %>" class="<%= mission %> instrument_option <%= instrument == panels.keys.first ? "instrument_selected" : "" %>"><%= instrument %></a>
+    <a id="<%= mission %>_<%= instrument %>" data-mission="<%= mission %>" class="<%= mission %> instrument_option <%= instrument == panels.keys.first ? "instrument_selected" : "" %>"  href="#"><%= instrument %></a>
   <% end %>
 </nav>
 

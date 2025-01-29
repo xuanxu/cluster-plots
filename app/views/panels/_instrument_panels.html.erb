@@ -10,17 +10,9 @@
   <div id="<%= mission %>_<%= instrument %>_panels" class="<%= mission %>_instrument_panels_list <%= instrument == panels.keys.first ? '' : 'hidden' %>">
     <table>
       <tbody>
-        <tr>
-          <th>C1</th>
-          <th>C2</th>
-          <th>C3</th>
-          <th>C4</th>
-          <th>CM</th>
-          <th></th>
-          <th></th>
-        </tr>
+        <%= render partial: "panels/table_headers", locals: { mission: mission } %>
         <% instrument_panels.each do |panel| %>
-          <%= render partial: "panels/panel", locals: { panel: panel } %>
+          <%= render partial: "panels/panel", locals: { panel: panel, mission: mission } %>
         <% end %>
       </tbody>
     </table>

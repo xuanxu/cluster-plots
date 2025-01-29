@@ -1,0 +1,36 @@
+<tr>
+  <% if panel.sc1? %>
+    <td> <input type="checkbox" value="C1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C1: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.sc2? %>
+    <td> <input type="checkbox" value="C2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C2: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.sc3? %>
+    <td> <input type="checkbox" value="C3_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C3: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.sc4? %>
+    <td> <input type="checkbox" value="C4_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C4: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.scM? %>
+    <td> <input type="checkbox" value="CM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> CM: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <td title="Ci_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
+  <% if panel.zeroes? %>
+    <td title="Filter out zero values in the input data">
+      <input id="filter_zeroes_<%= panel.id %>" type="checkbox" value="zero_Ci_CG_<%= panel.name %>_CAA">
+      <label for="filter_zeroes_<%= panel.id %>">Filter out zeroes</label>
+    </td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

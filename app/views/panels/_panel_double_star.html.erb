@@ -1,0 +1,26 @@
+<tr>
+  <% if panel.sc1? %>
+    <td> <input type="checkbox" value="D1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C1: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.sc2? %>
+    <td> <input type="checkbox" value="D2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C2: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <% if panel.scM? %>
+    <td> <input type="checkbox" value="DM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> CM: <%= panel.title %>"> </td>
+  <% else %>
+    <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
+  <% end %>
+  <td title="Di_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
+  <% if panel.zeroes? %>
+    <td title="Filter out zero values in the input data">
+      <input id="filter_zeroes_<%= panel.id %>" type="checkbox" value="zero_Di_CG_<%= panel.name %>_CAA">
+      <label for="filter_zeroes_<%= panel.id %>">Filter out zeroes</label>
+    </td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

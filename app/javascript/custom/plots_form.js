@@ -166,3 +166,28 @@ function select_instrument(event){
 instrument_links.forEach(instrument_link => {
   instrument_link.addEventListener('click', function(event) { select_instrument(event); });
 });
+
+// Add/remove selected panel when checkbox is clicked
+function select_panel(event) {
+  var panel = event.currentTarget;
+  var panel_list = document.getElementById("panel_list");
+
+  if (panel.checked) {
+    var option = document.createElement("option");
+    option.value = panel.value;
+    option.id = "selected_panel_" + panel.dataset.panel_id;
+    option.text = panel.value.split("/")[1];
+    panel_list.add(option);
+  } else {
+    var option_list = panel_list.options;
+    for (var i = 0; i < option_list.length; i++) {
+      if (option_list[i].id == "selected_panel_" + panel.dataset.panel_id) {
+        option_list.remove(i);
+      }
+    }
+  }
+}
+const panel_checkboxes = document.querySelectorAll('input.panel_checkbox');
+panel_checkboxes.forEach(panel_checkbox => {
+  panel_checkbox.addEventListener('change', function(event) { select_panel(event); });
+});

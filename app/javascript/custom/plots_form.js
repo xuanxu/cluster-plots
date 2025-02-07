@@ -24,6 +24,24 @@ var toggle_panels = function() {
 }
 document.getElementById("panels_heading").addEventListener('click', toggle_panels);
 
+// Show/hide duration fields
+var show_duration = function(event) {
+  event.preventDefault();
+  var duration_fields = document.getElementById("duration_fields");
+  var show_duration_heading = document.getElementById("show_duration_heading");
+  duration_fields.style.display = "block";
+  show_duration_heading.style.display = "none";
+}
+var hide_duration = function(event) {
+  event.preventDefault();
+  var duration_fields = document.getElementById("duration_fields");
+  var show_duration_heading = document.getElementById("show_duration_heading");
+  duration_fields.style.display = "none";
+  show_duration_heading.style.display = "inline";
+}
+document.getElementById("show_duration_heading").addEventListener('click', function(event) { show_duration(event) });
+document.getElementById("hide_duration_heading").addEventListener('click', function(event) { hide_duration(event) });
+
 // Update duration fields when start and stop times are changed
 var sync_duration = function() {
   var start_date = document.getElementById("start_date");

@@ -14,9 +14,10 @@
         <%= date_field_tag :stop_date, (params[:stop_date] || "2000-01-01"), min: "2000-01-01", max: "2024-12-31" %>
         <%= time_field_tag 'stop_time', params[:stop_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
       </div>
-
-      <div class="block w-full pb-1 mt-2">
-        <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span><br>
+      <a href="#" id="show_duration_heading" class="text-sm underline decoration-blue-400 text-blue-400">use duration intervals</a>
+      <div id="duration_fields" class="block w-full pb-1 mt-2 hidden">
+        <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span>
+        <a href="#" id="hide_duration_heading" class="text-sm underline decoration-blue-500 text-blue-500">hide</a><br>
         <%= select_tag :duration_days, options_for_select((0..100).map{|n| [n,n]}) %> /
         <%= select_tag :duration_hours, options_for_select((0..23).map{|n| [n,n]}) %> :
         <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :

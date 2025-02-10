@@ -254,3 +254,14 @@ function move_down(event) {
   }
 }
 document.getElementById("move_panel_down").addEventListener('click', move_down);
+
+// Remove selected panel from the list
+function remove_panel(event) {
+  var options = document.getElementById("panel_list").options;
+  for (var i = options.length - 1; i >= 0; i--) {
+    if (options[i].selected == true) {
+      panel_list.remove(i);
+    }
+  }
+}
+document.getElementById("remove_panel").addEventListener('click', remove_panel);

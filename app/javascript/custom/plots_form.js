@@ -193,7 +193,7 @@ function select_panel(event) {
   if (panel.checked) {
     var option = document.createElement("option");
     option.value = panel.value;
-    option.id = "selected_panel_" + panel.dataset.panel_id;
+    option.id = "selected_panel_" + panel.id;
     option.text = panel.value.split("/")[1];
     option.dataset.origin_checkbox_id = panel.id;
     panel_list.add(option);
@@ -218,15 +218,17 @@ function move_up(event) {
     if (options[i].selected == true && i > 0) {
       var selected_option = options[i];
       var previous_option = options[i - 1];
-      var tmp_option_data = [selected_option.id, selected_option.value, selected_option.text];
-      var tmp_previous_data = [previous_option.id, previous_option.value, previous_option.text];
+      var tmp_option_data = [selected_option.id, selected_option.value, selected_option.text, selected_option.dataset.origin_checkbox_id];
+      var tmp_previous_data = [previous_option.id, previous_option.value, previous_option.text, previous_option.dataset.origin_checkbox_id];
       previous_option.id = tmp_option_data[0];
       previous_option.value = tmp_option_data[1];
       previous_option.text = tmp_option_data[2];
+      previous_option.dataset.origin_checkbox_id = tmp_option_data[3];
       previous_option.selected = true;
       selected_option.id = tmp_previous_data[0];
       selected_option.value = tmp_previous_data[1];
       selected_option.text = tmp_previous_data[2];
+      selected_option.dataset.origin_checkbox_id = tmp_previous_data[3];
       selected_option.selected = false;
     }
   }
@@ -240,15 +242,17 @@ function move_down(event) {
     if (options[i].selected == true && i < options.length - 1) {
       var selected_option = options[i];
       var next_option = options[i + 1];
-      var tmp_option_data = [selected_option.id, selected_option.value, selected_option.text];
-      var tmp_next_data = [next_option.id, next_option.value, next_option.text];
+      var tmp_option_data = [selected_option.id, selected_option.value, selected_option.text, selected_option.dataset.origin_checkbox_id];
+      var tmp_next_data = [next_option.id, next_option.value, next_option.text, next_option.dataset.origin_checkbox_id];
       next_option.id = tmp_option_data[0];
       next_option.value = tmp_option_data[1];
       next_option.text = tmp_option_data[2];
+      next_option.dataset.origin_checkbox_id = tmp_option_data[3];
       next_option.selected = true;
       selected_option.id = tmp_next_data[0];
       selected_option.value = tmp_next_data[1];
       selected_option.text = tmp_next_data[2];
+      selected_option.dataset.origin_checkbox_id = tmp_next_data[3];
       selected_option.selected = false;
     }
   }
@@ -260,6 +264,7 @@ function remove_panel(event) {
   var options = document.getElementById("panel_list").options;
   for (var i = options.length - 1; i >= 0; i--) {
     if (options[i].selected == true) {
+      document.getElementById(options[i].dataset.origin_checkbox_id).checked = false;
       panel_list.remove(i);
     }
   }

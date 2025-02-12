@@ -27,7 +27,7 @@
   <td title="Ci_CG_<%= panel.name %>_CAA"><%= panel.title %></td>
   <% if panel.zeroes? %>
     <td title="Filter out zero values in the input data">
-      <input id="filter_zeroes_<%= panel.id %>" type="checkbox" value="zero_Ci_CG_<%= panel.name %>_CAA">
+      <input id="filter_zeroes_<%= panel.id %>" type="checkbox" class="zero_checkbox" value="zero_Ci_CG_<%= panel.name %>_CAA">
       <label for="filter_zeroes_<%= panel.id %>">Filter out zeroes</label>
     </td>
   <% else %>

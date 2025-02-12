@@ -259,7 +259,7 @@ function move_down(event) {
 }
 document.getElementById("move_panel_down").addEventListener('click', move_down);
 
-// Remove selected panel from the list
+// Remove selected panels from the list
 function remove_panel(event) {
   var options = document.getElementById("panel_list").options;
   for (var i = options.length - 1; i >= 0; i--) {
@@ -270,3 +270,36 @@ function remove_panel(event) {
   }
 }
 document.getElementById("remove_panel").addEventListener('click', remove_panel);
+
+// Save selected panels as file for download
+function save_panels(event) {
+  var panels_info = [];
+
+  var selected_panels = document.getElementById("panel_list").options;
+  for (var i = 0; i < selected_panels.length; i++) {
+    panels_info.push(selected_panels[i].value.split("/")[0]);
+  }
+
+  var zeroes_filters = document.getElementsByClassName("zero_checkbox");
+  for (var i = 0; i < zeroes_filters.length; i++) {
+    if (zeroes_filters[i].checked){
+      panels_info.push(zeroes_filters[i].value);
+    }
+  }
+
+  var selected_time_interval =  "TIME," + document.getElementById('plot_time_interval').value.replace(" ", ",");
+  panels_info.push(selected_time_interval);
+
+  var blob = new Blob([panels_info.join("\n")], {type: "text/plain;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "caa-panel-selection-" + get_timestamp() +".csv";
+  a.click();
+}
+document.getElementById("save_panel_list").addEventListener('click', save_panels);
+
+// Get a simple timestamp for file names
+function get_timestamp() {
+  return new Date().toISOString().slice(0, 19).replace("T", "").replace(/-/g, "").replace(/:/g, "");
+}

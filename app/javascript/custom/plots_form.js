@@ -1,3 +1,23 @@
+// Reset panel selection
+var unselect_all_panels = function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var panel_list = document.getElementById("panel_list");
+  var selected_options = panel_list.options;
+  for (var i = selected_options.length - 1; i >= 0; i--) {
+    panel_list.remove(i);
+  }
+  var panel_checkboxes = document.getElementsByClassName("panel_checkbox");
+  for (var i = 0; i < panel_checkboxes.length; i++) {
+    panel_checkboxes[i].checked = false;
+  }
+  var zeroes_filters = document.getElementsByClassName("zero_checkbox");
+  for (var i = 0; i < zeroes_filters.length; i++) {
+    zeroes_filters[i].checked = false;
+  }
+}
+document.getElementById("clear_panel_selection").addEventListener('click', function(event) { unselect_all_panels(event) });
+
 // Update plot times
 function update_plot_times() {
   var start_date = document.getElementById("start_date");
@@ -14,12 +34,15 @@ function update_plot_times() {
 var toggle_panels = function() {
   var panels_listings = document.getElementById("panels");
   var panels_heading = document.getElementById("panels_heading");
+  var clear_panels_link = document.getElementById("clear_panel_selection");
   if (panels_listings.style.display === "none") {
     panels_listings.style.display = "block";
     panels_heading.innerHTML = "Panel selection <i class='fa fa-caret-down'></i>"
+    clear_panels_link.style.display = "inline";
   } else {
     panels_listings.style.display = "none";
     panels_heading.innerHTML = "Show panel selection <i class='fa fa-caret-right'></i>"
+    clear_panels_link.style.display = "none";
   }
 }
 document.getElementById("panels_heading").addEventListener('click', toggle_panels);

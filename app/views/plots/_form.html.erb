@@ -43,8 +43,9 @@
         <%= button_tag "<i class='fa fa-angle-up'></i> <span class='hidden md:inline'>Up</span>".html_safe, type: "button", id: "move_panel_up", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
         <%= button_tag "<i class='fa fa-angle-down'></i> <span class='hidden md:inline'>Down</span>".html_safe, type: "button", id: "move_panel_down", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
         <%= button_tag "<i class='fa fa-minus'></i> <span class='hidden md:inline'>Remove</span>".html_safe, type: "button", id: "remove_panel", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+        <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", id: "import_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
         <%= button_tag "<i class='fa fa-file-arrow-down'></i> <span class='hidden md:inline'>Save selection</span>".html_safe, type: "button", id: "save_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+        <input type="file" class="hidden" id="import_panels_file" accept=".csv"/>
       </div>
     </div>
   </div>

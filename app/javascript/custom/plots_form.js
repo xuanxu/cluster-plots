@@ -326,3 +326,48 @@ document.getElementById("save_panel_list").addEventListener('click', save_panels
 function get_timestamp() {
   return new Date().toISOString().slice(0, 19).replace("T", "").replace(/-/g, "").replace(/:/g, "");
 }
+
+// Import panels selection from file
+function import_panels(){
+  document.getElementById('import_panels_file').click();
+}
+function load_panels_information(){
+  document.getElementById("clear_panel_selection").click();
+  var panel_checkboxes = document.getElementsByClassName("panel_checkbox");
+  var zeroes_filters = document.getElementsByClassName("zero_checkbox");
+  var file = document.getElementById('import_panels_file').files[0];
+  var reader = new FileReader();
+  reader.onload = function(event){
+    var import_file_lines = event.target.result.split("\n");
+    for (var i = 0; i < import_file_lines.length; i++) {
+      var line = import_file_lines[i].trim();
+      if (line.match(/^zero_/)) {
+        for (var j = 0; j < zeroes_filters.length; j++) {
+          if (zeroes_filters[j].value == line) {
+            zeroes_filters[j].checked = true;
+          }
+        }
+      } else if (line.match(/^TIME,/)) {
+        var time_parts = line.split(",");
+        var start_datetime = String(time_parts[1]);
+        var stop_datetime = String(time_parts[2]);
+        if (start_datetime.match(/^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$/) && stop_datetime.match(/^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$/)) {
+          document.getElementById('start_date').value = start_datetime.slice(0, 10);
+          document.getElementById('start_time').value = start_datetime.slice(11, 19);
+          document.getElementById('stop_date').value = stop_datetime.slice(0, 10);
+          document.getElementById('stop_time').value = stop_datetime.slice(11, 19);
+          sync_duration();
+        }
+      } else {
+        for (var k = 0; k < panel_checkboxes.length; k++) {
+          if (panel_checkboxes[k].dataset.panel_code == line) {
+            panel_checkboxes[k].click();
+          }
+        }
+      }
+    }
+  }
+  reader.readAsText(file);
+}
+document.getElementById("import_panel_list").addEventListener('click', import_panels);
+document.getElementById("import_panels_file").addEventListener('change', load_panels_information);

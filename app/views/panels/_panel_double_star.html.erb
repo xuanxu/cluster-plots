@@ -1,16 +1,16 @@
 <tr>
   <% if panel.sc1? %>
-    <td> <input id="<%= panel.mission %>_D1_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_id="<%= panel.mission %>_D1_<%= panel.id %>" value="D1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> D1: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_D1_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="D1_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> D1: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.sc2? %>
-    <td> <input id="<%= panel.mission %>_D2_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_id="<%= panel.mission %>_D2_<%= panel.id %>" value="D2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> D2: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_D2_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="D2_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> D2: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.scM? %>
-    <td> <input id="<%= panel.mission %>_DM_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_id="<%= panel.mission %>_DM_<%= panel.id %>" value="DM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> DM: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_DM_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="DM_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> DM: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>

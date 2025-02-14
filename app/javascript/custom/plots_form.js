@@ -215,15 +215,15 @@ function select_panel(event) {
 
   if (panel.checked) {
     var option = document.createElement("option");
-    option.value = panel.value;
+    option.value = panel.dataset.panel_code;
     option.id = "selected_panel_" + panel.id;
-    option.text = panel.value.split("/")[1];
+    option.text = panel.value;
     option.dataset.origin_checkbox_id = panel.id;
     panel_list.add(option);
   } else {
     var option_list = panel_list.options;
     for (var i = 0; i < option_list.length; i++) {
-      if (option_list[i].id == "selected_panel_" + panel.dataset.panel_id) {
+      if (option_list[i].id == "selected_panel_" + panel.id) {
         option_list.remove(i);
       }
     }
@@ -300,7 +300,7 @@ function save_panels(event) {
 
   var selected_panels = document.getElementById("panel_list").options;
   for (var i = 0; i < selected_panels.length; i++) {
-    panels_info.push(selected_panels[i].value.split("/")[0]);
+    panels_info.push(selected_panels[i].value);
   }
 
   var zeroes_filters = document.getElementsByClassName("zero_checkbox");

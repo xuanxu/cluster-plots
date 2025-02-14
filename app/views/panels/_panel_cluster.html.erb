@@ -1,26 +1,26 @@
 <tr>
   <% if panel.sc1? %>
-    <td> <input id="<%= panel.mission %>_C1_<%= panel.id %>" type="checkbox" class="panel_checkbox" value="C1_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C1: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_C1_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="C1_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> C1: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.sc2? %>
-    <td> <input id="<%= panel.mission %>_C2_<%= panel.id %>" type="checkbox" class="panel_checkbox" value="C2_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C2: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_C2_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="C2_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> C2: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.sc3? %>
-    <td> <input id="<%= panel.mission %>_C3_<%= panel.id %>" type="checkbox" class="panel_checkbox" value="C3_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C3: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_C3_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="C3_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> C3: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.sc4? %>
-    <td> <input id="<%= panel.mission %>_C4_<%= panel.id %>" type="checkbox" class="panel_checkbox" value="C4_CG_<%= panel.name %>_CAA/<%= panel.experiment %> C4: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_C4_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="C4_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> C4: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>
   <% if panel.scM? %>
-    <td> <input id="<%= panel.mission %>_CM_<%= panel.id %>" type="checkbox" class="panel_checkbox" value="CM_CG_<%= panel.name %>_CAA/<%= panel.experiment %> CM: <%= panel.title %>"> </td>
+    <td> <input id="<%= panel.mission %>_CM_<%= panel.id %>" type="checkbox" class="panel_checkbox" data-panel_code="CM_CG_<%= panel.name %>_CAA" value="<%= panel.experiment %> CM: <%= panel.title %> (<%= panel.mission.humanize %>)"> </td>
   <% else %>
     <td> <input type="checkbox" disabled="disabled" class="bg-slate-100 border-slate-300"></td>
   <% end %>

@@ -1,1 +1,12 @@
-Plot
+Plot info:
+
+<p>Start date: <%= @start_date %></p>
+<p>Start time: <%= @start_time %></p>
+<p>Stop date: <%= @stop_date %></p>
+<p>Stop time: <%= @stop_time %></p>
+
+<ol>
+  <% @p.each do |panel| %>
+    <li><%= panel %></li>
+  <% end %>
+</ol>

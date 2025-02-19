@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :plots, only: [ :index, :new, :create, :show ] do
     collection do
-      get :generate
+      post :generate
     end
   end
 

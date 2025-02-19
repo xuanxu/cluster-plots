@@ -371,3 +371,17 @@ function load_panels_information(){
 }
 document.getElementById("import_panel_list").addEventListener('click', import_panels);
 document.getElementById("import_panels_file").addEventListener('change', load_panels_information);
+
+// Submit form with selected panels
+var submit_plots_form = function(event) {
+  event.preventDefault();
+
+  var plot_panel_list = "";
+  var panels = document.getElementById('panel_list').options;
+	for (var i = 0; i < panels.length; i++) {
+		plot_panel_list += panels[i].value + ",";
+  }
+  document.getElementById("plot_panels").value = plot_panel_list;
+  document.getElementById("plots_info").submit();
+}
+document.getElementById("submit_plots_info").addEventListener('click', function(event) { submit_plots_form(event) });

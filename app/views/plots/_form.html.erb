@@ -1,54 +1,56 @@
-<%= form_tag(generate_plots_path, method: :get) do %>
-  <div class="grid lg:grid-cols-2 gap-4 w-full grid-cols-1">
-    <div class="block min-w-max">
-    <span class="font-bold">Start time</span>
-      <div class="block w-full pb-1">
-        <% # datetime_select :start_datetime, params[:start_datetime], include_seconds: true, value: "2000-01-01T00:00:00"  %>
-        <%= date_field_tag :start_date, params[:start_date] || "2000-01-01", min: "2000-01-01", max: "2024-12-31" %>
-        <%= time_field_tag :start_time, params[:start_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
-      </div>
+<%= form_tag(generate_plots_path, method: :post, id: "plots_info") do %>
+  <%= hidden_field_tag "plot[time_interval]", "2000-01-01T00:00:00Z 2000-01-01T00:00:00Z" %>
+  <%= hidden_field_tag "plot[panels]", "" %>
+<% end %>
 
-      <span class="font-bold">Stop time</span>
-      <div class="block w-full pb-1">
-        <% # datetime_select :stop_datetime, params[:stop_datetime], min: "2000-01-01T00:00:10", max: "2024-12-31T00:00:10", include_seconds: true %>
-        <%= date_field_tag :stop_date, (params[:stop_date] || "2000-01-01"), min: "2000-01-01", max: "2024-12-31" %>
-        <%= time_field_tag 'stop_time', params[:stop_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
-      </div>
-      <a href="#" id="show_duration_heading" class="text-sm underline decoration-blue-400 text-blue-400">use duration intervals</a>
-      <div id="duration_fields" class="block w-full pb-1 mt-2 hidden">
-        <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span>
-        <a href="#" id="hide_duration_heading" class="text-sm underline decoration-blue-500 text-blue-500">hide</a><br>
-        <%= select_tag :duration_days, options_for_select((0..100).map{|n| [n,n]}) %> /
-        <%= select_tag :duration_hours, options_for_select((0..23).map{|n| [n,n]}) %> :
-        <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :
-        <%= select_tag :duration_seconds, options_for_select((0..59).map{|n| [n,n]}) %>
-        <br>
-        <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", id: "previous_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select previous time interval" %>
-        <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "next_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select next time interval" %>
-      </div>
-
-      <div class="block w-full mt-2 py-1">
-        <%= button_tag "<i class='fa-duotone fa-solid fa-chart-line'></i> Plot panels".html_safe, class: "mb-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm" %>
-        <div id="plot_times" class="text-slate-400">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
-        <%= hidden_field_tag "plot_time_interval", "2000-01-01T00:00:00Z 2000-01-01T00:00:00Z" %>
-      </div>
+<div class="grid lg:grid-cols-2 gap-4 w-full grid-cols-1">
+  <div class="block min-w-max">
+  <span class="font-bold">Start time</span>
+    <div class="block w-full pb-1">
+      <% # datetime_select :start_datetime, params[:start_datetime], include_seconds: true, value: "2000-01-01T00:00:00"  %>
+      <%= date_field_tag :start_date, params[:start_date] || "2000-01-01", min: "2000-01-01", max: "2024-12-31" %>
+      <%= time_field_tag :start_time, params[:start_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
     </div>
 
-    <div class="large:flex">
-      <%= label_tag :panel_list, "Selected panels", class: "font-bold" %>
-      <div class="block w-full pb-1">
-        <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-44" %>
-      </div>
-      <div class="block w-full mt-2 py-1 float-right whitespace-nowrap">
-        <%= button_tag "<i class='fa fa-angle-up'></i> <span class='hidden md:inline'>Up</span>".html_safe, type: "button", id: "move_panel_up", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <%= button_tag "<i class='fa fa-angle-down'></i> <span class='hidden md:inline'>Down</span>".html_safe, type: "button", id: "move_panel_down", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <%= button_tag "<i class='fa fa-minus'></i> <span class='hidden md:inline'>Remove</span>".html_safe, type: "button", id: "remove_panel", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", id: "import_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <%= button_tag "<i class='fa fa-file-arrow-down'></i> <span class='hidden md:inline'>Save selection</span>".html_safe, type: "button", id: "save_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-        <input type="file" class="hidden" id="import_panels_file" accept=".csv"/>
-      </div>
+    <span class="font-bold">Stop time</span>
+    <div class="block w-full pb-1">
+      <% # datetime_select :stop_datetime, params[:stop_datetime], min: "2000-01-01T00:00:10", max: "2024-12-31T00:00:10", include_seconds: true %>
+      <%= date_field_tag :stop_date, (params[:stop_date] || "2000-01-01"), min: "2000-01-01", max: "2024-12-31" %>
+      <%= time_field_tag 'stop_time', params[:stop_time] || "00:00:00", min: "00:00:00", step: 1, include_seconds: true %>
+    </div>
+    <a href="#" id="show_duration_heading" class="text-sm underline decoration-blue-400 text-blue-400">use duration intervals</a>
+    <div id="duration_fields" class="block w-full pb-1 mt-2 hidden">
+      <span class="font-bold">Duration:</span> <span class="text-sm">(Days / HH : MM : SS)</span>
+      <a href="#" id="hide_duration_heading" class="text-sm underline decoration-blue-500 text-blue-500">hide</a><br>
+      <%= select_tag :duration_days, options_for_select((0..100).map{|n| [n,n]}) %> /
+      <%= select_tag :duration_hours, options_for_select((0..23).map{|n| [n,n]}) %> :
+      <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :
+      <%= select_tag :duration_seconds, options_for_select((0..59).map{|n| [n,n]}) %>
+      <br>
+      <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", id: "previous_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select previous time interval" %>
+      <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "next_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select next time interval" %>
+    </div>
+
+    <div class="block w-full mt-2 py-1">
+      <%= button_tag "<i class='fa-duotone fa-solid fa-chart-line'></i> Plot panels".html_safe, type: "button", id: "submit_plots_info", class: "mb-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm" %>
+      <div id="plot_times" class="text-slate-400">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
     </div>
   </div>
-<% end %>
+
+  <div class="large:flex">
+    <%= label_tag :panel_list, "Selected panels", class: "font-bold" %>
+    <div class="block w-full pb-1">
+      <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-44" %>
+    </div>
+    <div class="block w-full mt-2 py-1 float-right whitespace-nowrap">
+      <%= button_tag "<i class='fa fa-angle-up'></i> <span class='hidden md:inline'>Up</span>".html_safe, type: "button", id: "move_panel_up", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa fa-angle-down'></i> <span class='hidden md:inline'>Down</span>".html_safe, type: "button", id: "move_panel_down", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa fa-minus'></i> <span class='hidden md:inline'>Remove</span>".html_safe, type: "button", id: "remove_panel", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", id: "import_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa fa-file-arrow-down'></i> <span class='hidden md:inline'>Save selection</span>".html_safe, type: "button", id: "save_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <input type="file" class="hidden" id="import_panels_file" accept=".csv"/>
+    </div>
+  </div>
+</div>
 
 <%= render "panels/mission_panels" %>

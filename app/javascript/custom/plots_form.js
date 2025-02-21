@@ -390,8 +390,8 @@ document.getElementById("import_panels_file").addEventListener('change', load_pa
 
 // Submit form with selected panels
 var submit_plots_form = function(event) {
-  event.preventDefault();
-
+  hide_panels();
+  show_loading_info();
   var plot_panel_list = "";
   var panels = document.getElementById('panel_list').options;
 	for (var i = 0; i < panels.length; i++) {

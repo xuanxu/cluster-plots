@@ -1,12 +1,19 @@
-Plot info:
+<turbo-frame id="plots">
+  <%= render "plots/loading_plot_data" %>
 
-<p>Start date: <%= @start_date %></p>
-<p>Start time: <%= @start_time %></p>
-<p>Stop date: <%= @stop_date %></p>
-<p>Stop time: <%= @stop_time %></p>
+  <div class="font-bold space-x-4 mt-6 text-red-900">
+  <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
+  </div>
+  <div id="plots_data" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+    <p>Start date: <%= @start_date %></p>
+    <p>Start time: <%= @start_time %></p>
+    <p>Stop date: <%= @stop_date %></p>
+    <p>Stop time: <%= @stop_time %></p>
 
-<ol>
-  <% @p.each do |panel| %>
-    <li><%= panel %></li>
-  <% end %>
-</ol>
+    <ol>
+      <% @p.each do |panel| %>
+        <li><%= panel %></li>
+      <% end %>
+    </ol>
+  </div>
+</turbo-frame>

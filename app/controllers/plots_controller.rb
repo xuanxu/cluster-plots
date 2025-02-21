@@ -19,7 +19,6 @@ class PlotsController < ApplicationController
 
     @plot = Plot.new()
 
-
     if @plot.ready?
       render :show
     end

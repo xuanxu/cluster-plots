@@ -398,6 +398,6 @@ var submit_plots_form = function(event) {
 		plot_panel_list += panels[i].value + ",";
   }
   document.getElementById("plot_panels").value = plot_panel_list;
-  document.getElementById("plots_info").submit();
+  document.getElementById("plots_info").requestSubmit();
 }
 document.getElementById("submit_plots_info").addEventListener('click', function(event) { submit_plots_form(event) });

@@ -1,4 +1,4 @@
-<%= form_tag(generate_plots_path, method: :post, id: "plots_info") do %>
+<%= form_tag(generate_plots_path, method: :post, id: "plots_info", data: { "turbo-frame" => "plots" }) do %>
   <%= hidden_field_tag "plot[time_interval]", "2000-01-01T00:00:00Z 2000-01-01T00:00:00Z" %>
   <%= hidden_field_tag "plot[panels]", "" %>
 <% end %>
@@ -54,3 +54,7 @@
 </div>
 
 <%= render "panels/mission_panels" %>
+
+<turbo-frame id="plots">
+  <%= render "plots/loading_plot_data" %>
+</turbo-frame>

@@ -47,6 +47,22 @@ var toggle_panels = function() {
 }
 document.getElementById("panels_heading").addEventListener('click', toggle_panels);
 
+// Hide panel selection
+var hide_panels = function() {
+  var panels_listings = document.getElementById("panels");
+  var panels_heading = document.getElementById("panels_heading");
+  var clear_panels_link = document.getElementById("clear_panel_selection");
+  panels_listings.style.display = "none";
+  panels_heading.innerHTML = "Show panel selection <i class='fa fa-caret-right'></i>"
+  clear_panels_link.style.display = "none";
+}
+
+// Show loading info
+var show_loading_info = function() {
+  var loading_info = document.getElementById("loading_info");
+  loading_info.style.display = "block";
+}
+
 // Show/hide duration fields
 var show_duration = function(event) {
   event.preventDefault();

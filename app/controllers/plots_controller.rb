@@ -17,7 +17,9 @@ class PlotsController < ApplicationController
 
     @p = panels.split(",")
 
-    @plot = Plot.new()
+    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: panels)
+    @plot_info = @plot.call_csa
+
 
     if @plot.ready?
       render :show

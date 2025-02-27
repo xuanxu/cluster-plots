@@ -700,7 +700,7 @@ def resh_nrj(sProc,lParam,arrData):
 
 
         resolved_data = np.empty((num_record,num_y))
-        resolved_data[:] = np.NAN
+        resolved_data[:] = np.nan
 
         ytype,ymin,ymax = sProc['value'].split(',')
 
@@ -926,7 +926,7 @@ def interpolate_fixed_nrj(sProc,lParam,arrData):
         num_y = (sData['arrData'].shape)[1]
 
         itp_data = np.empty((num_x,glb.NUM_YDATA_SPEC))
-        itp_data[:] = np.NAN
+        itp_data[:] = np.nan
 
         delta_nrj = (ymax-ymin)/glb.NUM_YDATA_SPEC
         itp_nrj = [x*delta_nrj+ymin for x in range(glb.NUM_YDATA_SPEC)]
@@ -997,10 +997,10 @@ def interpolate_3D(sJulTime,sPlotTime,sData,arrData,outputid,sProc,lParam):
             # insert nans at the beginning and end of the data for interpolation
             delta_t = sPlotTime['arrDeltaP']
             if x_data[0] > glb.date_start_milli+delta_t/2:
-                z_data = np.insert(z_data,0,np.NAN,axis=0)
+                z_data = np.insert(z_data,0,np.nan,axis=0)
                 x_data = np.insert(x_data,0,glb.date_start_milli+delta_t/2)
             if x_data[-1] < glb.date_stop_milli-delta_t/2:
-                z_data = np.insert(z_data,len(z_data),np.NAN,axis=0)
+                z_data = np.insert(z_data,len(z_data),np.nan,axis=0)
                 x_data = np.insert(x_data,len(x_data),glb.date_stop_milli-delta_t/2)
 
             sJulTime['arrData'] = x_data
@@ -1026,7 +1026,7 @@ def interpolate_3D(sJulTime,sPlotTime,sData,arrData,outputid,sProc,lParam):
 
             x_data = sJulTime['arrData']
             itp_data = np.empty((num_x,num_y))
-            itp_data[:] = np.NAN
+            itp_data[:] = np.nan
 
             for n in range(num_y):
                 #itp_data_n = insert_nans(np.squeeze(z_data[:,n]),sNaN)
@@ -1071,7 +1071,7 @@ def average_3D(sJulTime,sPlotTime,sData,arrData,outputid,sProc,lParam):
             z_data = sData['arrData']
 
             av_data = np.empty((num_x,num_y))
-            av_data[:] = np.NAN
+            av_data[:] = np.nan
 
 
             # fill in array
@@ -1980,10 +1980,10 @@ def edi_code(sProc,lParam,arrData):
         data = deepcopy(sData['arrData'])
 
         short_freq = np.empty(num_data)
-        short_freq[:] = np.NAN
+        short_freq[:] = np.nan
 
         long_freq = np.empty(num_data)
-        long_freq[:] = np.NAN
+        long_freq[:] = np.nan
 
         idx_short = np.where((data == 0) | (data == 2))
         short_freq[idx_short] = 1
@@ -2037,7 +2037,7 @@ def edi_bitmask(sProc,lParam,arrData):
         num_bits = 7
 
         data = np.empty((num_data,num_comp))
-        data[:] = np.NAN
+        data[:] = np.nan
 
         for bit in range(num_bits):
             bm = num_bits-bit-1
@@ -2093,7 +2093,7 @@ def efw_bitmask(sProc,lParam,arrData):
         num_bits = 16
 
         data = np.empty((num_data,num_bits))
-        data[:] = np.NAN
+        data[:] = np.nan
 
         for bit in range(num_bits):
             bm = num_bits-bit-1
@@ -2148,9 +2148,9 @@ def rap_int_time(sProc,lParam,arrData):
         data_on = np.empty((num_data))
         data_off = np.empty((num_data))
         data_hist = np.empty((num_data))
-        data_on[:] = np.NAN
-        data_off[:] = np.NAN
-        data_hist[:] = np.NAN
+        data_on[:] = np.nan
+        data_off[:] = np.nan
+        data_hist[:] = np.nan
 
         ind_on = np.where(sData3['arrData'] == 1)
         ind_off = np.where(sData3['arrData'] == 0)
@@ -2282,7 +2282,7 @@ def get_caveat(sProc,lParam,arrData):
         int_time_max = np.array(sPlotTime['arrData']) + sPlotTime['arrDeltaP']
 
         data = np.empty((num_data))
-        data[:] = np.NAN
+        data[:] = np.nan
 
         cav_time_min = sTime['arrDeltaM']
         cav_time_max = sTime['arrDeltaP']

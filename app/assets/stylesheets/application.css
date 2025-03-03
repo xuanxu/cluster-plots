@@ -8,3 +8,18 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@keyframes textappear {
+  0% {
+    color: #752929;
+  }
+  75% {
+    color: #3e1414;
+  }
+  100% {
+    color: inherit;
+  }
+}
+.animation_text_in {
+  animation: textappear 2s;
+}

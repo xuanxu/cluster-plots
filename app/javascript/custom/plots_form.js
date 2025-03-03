@@ -235,6 +235,7 @@ function select_panel(event) {
     option.id = "selected_panel_" + panel.id;
     option.text = panel.value;
     option.dataset.origin_checkbox_id = panel.id;
+    option.className = "animation_text_in";
     panel_list.add(option);
   } else {
     var option_list = panel_list.options;

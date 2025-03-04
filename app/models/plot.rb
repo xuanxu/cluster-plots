@@ -15,10 +15,11 @@ class Plot
   end
 
   def call_csa
-    pycom =<<-PYPLOT
-    python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -n 'test.ps' -t 'highcharts' -c 1 -j 'test-#{rand(999999)}.json' -o '#{start_datetime}/#{end_datetime}'
+    pycom =<<~PYPLOT
+      python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -n 'test.ps' -t 'highcharts' -c 1 -j 'test-#{rand(999999)}.json' -o '#{start_datetime}/#{end_datetime}'
     PYPLOT
 
+    Rails.logger.info " * Running command: #{pycom}"
     stdout_str, stderr_str, status = Open3.capture3 pycom
 
     if status.success?

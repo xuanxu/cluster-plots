@@ -26,6 +26,12 @@ class PlotsController < ApplicationController
     end
   end
 
+  def show
+    if @plot.nil?
+      redirect_to new_plot_path
+    end
+  end
+
   private
   def load_panels
     @cluster_panels_by_instrument = Panel.ready.by_mission("cluster").to_a.group_by { |panel| panel.experiment }

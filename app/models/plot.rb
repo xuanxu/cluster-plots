@@ -1,4 +1,5 @@
 require "open3"
+require "oj"
 
 class Plot
   include ActiveModel::Model
@@ -15,15 +16,16 @@ class Plot
   end
 
   def call_csa
+    json_file = "test-#{rand(999999)}.json"
     pycom =<<~PYPLOT
-      python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -n 'test.ps' -t 'highcharts' -c 1 -j 'test-#{rand(999999)}.json' -o '#{start_datetime}/#{end_datetime}'
+      python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -n 'test.ps' -t 'highcharts' -c 1 -j '#{json_file}' -o '#{start_datetime}/#{end_datetime}'
     PYPLOT
 
     Rails.logger.info " * Running command: #{pycom}"
     stdout_str, stderr_str, status = Open3.capture3 pycom
 
     if status.success?
-      stdout_str
+      Oj.load_file("#{Rails.root}/libext/results/json_charts/#{json_file}")
     else
       "Error #{stderr_str}"
     end

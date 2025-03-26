@@ -15,7 +15,48 @@
         <li><%= panel %></li>
       <% end %>
     </ol>
-
-    <p><%= @plot_info %></p>
   </div>
-</turbo-frame>
+  <div id="echarts_plot" style="width: 100%; height: 400px;"></div>
+
+  <script>
+    function show_plot(jsonData){
+      // Extract data for the line plot
+      const data = JSON.parse(jsonData);
+      const plotData = data.panels_arr[0].subpanels[0].plot[0].data.map(point => ({
+          value: [point[0], point[1]] // Timestamp and value
+        }));
+
+        // Initialize ECharts
+        const chart = echarts.init(document.getElementById('echarts_plot'));
+
+        // Configure the chart
+        const option = {
+          title: {
+            text: data.panels_arr[0].label
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          xAxis: {
+            type: 'time',
+            name: data.panels_arr[0].xtitle
+          },
+          yAxis: {
+            type: 'value', // Linear y-axis
+            name: data.panels_arr[0].subpanels[0].ytitle
+          },
+          series: [
+            {
+              name: data.panels_arr[0].label,
+              type: 'line',
+              data: plotData
+            }
+          ]
+        };
+
+        // Render the chart
+        chart.setOption(option);
+    }
+    show_plot('<%= @plot_data.to_json %>');
+  </script>
+  </turbo-frame>

@@ -15,7 +15,45 @@
         <li><%= panel %></li>
       <% end %>
     </ol>
-
-    <p><%= @plot_info %></p>
   </div>
+  <div id="highcharts_plot"></div>
+  <script>
+    function show_plot(jsonData){
+      // Extract data for the line plot
+      const data = JSON.parse(jsonData);
+      const plotData = data.panels_arr[0].subpanels[0].plot[0].data.map(point => ({
+        x: point[0], // Timestamp
+        y: point[1]  // Value
+      }));
+
+      // Render the Highcharts line plot
+      Highcharts.chart('highcharts_plot', {
+        chart: {
+          type: 'line'
+        },
+        title: {
+          text: data.panels_arr[0].label
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: data.panels_arr[0].xtitle
+          }
+        },
+        yAxis: {
+          title: {
+            text: data.panels_arr[0].subpanels[0].ytitle
+          },
+          type: data.panels_arr[0].subpanels[0].ytype // e.g., 'logarithmic'
+        },
+        series: [{
+          name: data.panels_arr[0].label,
+          data: plotData
+        }]
+      });
+    }
+    show_plot('<%= @plot_info.to_json.html_safe %>');
+  </script>
 </turbo-frame>
+
+

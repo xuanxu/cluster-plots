@@ -5,6 +5,7 @@
   <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
   </div>
   <div id="plots_data" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+    <!--
     <p>Start date: <%= @start_date %></p>
     <p>Start time: <%= @start_time %></p>
     <p>Stop date: <%= @stop_date %></p>
@@ -15,6 +16,7 @@
         <li><%= panel %></li>
       <% end %>
     </ol>
+    -->
   </div>
   <div id="highcharts_plot"></div>
 
@@ -154,7 +156,7 @@
                     },
               // Add the plot label (eg: C1 EFW)
                           load: function () {
-                              var label = this.renderer.label(json.label)
+                              var label = this.renderer.label(json_panels.panels_arr[0].label)
                               .css({
                                   width: '80px',
                                   color: '#222',

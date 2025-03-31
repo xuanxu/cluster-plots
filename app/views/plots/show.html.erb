@@ -17,8 +17,10 @@
     </ol>
   </div>
   <div id="highcharts_plot"></div>
+
+
   <script>
-    function show_plot(jsonData){
+    function show_plot_OLD(jsonData){
       // Extract data for the line plot
       const data = JSON.parse(jsonData);
       const plotData = data.panels_arr[0].subpanels[0].plot[0].data.map(point => ({
@@ -52,8 +54,219 @@
         }]
       });
     }
+
+    function show_plot(jsonData){
+      const json_panels = JSON.parse(jsonData);
+      const json = json_panels.panels_arr[0].subpanels[0];
+
+      const default_line_thickness = 2;
+
+      var sub_height = json.size + '%';
+	    // custom ticks ?
+      var flag_ticks = json.ytickflag;
+      if (flag_ticks == 1) {
+              tick_val = json.ytickval;
+      } else {
+              tick_val = undefined;
+      }
+
+      if (json.rotate == 0) {
+              yoffset = 80;
+              ywidth = 150;
+      } else {
+              yoffset = 60;
+              ywidth = undefined;
+      }
+      const font_size = '11px';
+      var subTop = 100 - json.size;
+      var axisLineWidth = 2;
+      var axisTickWidth = 2;
+
+      majorGridDisplay = 1;
+      minorGridDisplay = 1;
+      yrange = json.yrange_caa;
+
+      if (json.type == 'line') {
+
+        //store data
+        //----------
+        var num_lines = json.plot.length;
+
+        series = [];
+        for (var l = 0; l < num_lines; l++) {
+
+          if  (json_panels.panels_arr[0].panel_type == 'status') {
+            line_thickness =  json.plot[l].thick;
+          } else {
+            line_thickness = default_line_thickness;
+          }
+
+          if (json.plot[l].legend == 0) {
+            display_legend = false;
+            name = json.plot[l].name;
+          } else {
+            display_legend = true;
+            name = json.plot[l].name;
+          }
+
+          if (json.plot[l].type == 'scatter') {
+          symbol = 'cross';
+          radius = 3;
+          line_width = 0;
+          marker_line_width = 2;
+          enabled = true;
+          } else {
+          symbol = 'circle';
+          radius = line_thickness/2.;
+          line_width = line_thickness;
+          enabled = undefined;
+          marker_line_width = 0;
+          }
+
+          line = {
+            name: name,
+            type: json.plot[l].type,
+            showInLegend: display_legend,
+            color: json.plot[l].color,
+            lineWidth: line_width,
+            data: json.plot[l].data,
+            marker: {
+              enabled: enabled,
+              symbol:  symbol,
+              radius:  radius,
+              lineColor: null,
+              lineWidth: marker_line_width
+            }
+          }
+
+          series.push(line);
+        }
+      }
+
+      new Highcharts.Chart( {
+            chart: {
+                type: 'line',
+                renderTo: 'highcharts_plot',
+                zoomType: 'x',
+                events:{
+                    selection: function (event) {
+                        return zoom(event,div);
+                    },
+              // Add the plot label (eg: C1 EFW)
+                          load: function () {
+                              var label = this.renderer.label(json.label)
+                              .css({
+                                  width: '80px',
+                                  color: '#222',
+                                  fontSize: '11px'
+                                  })
+                              .attr({
+                                  'stroke': 'silver',
+                                  'stroke-width': 2,
+                                  'r': 5,
+                                  'padding': 10
+                            })
+                              .add();
+
+                              label.align(Highcharts.extend(label.getBBox(), {
+                                  align: 'right',
+                                  verticalAlign: 'top',
+                                  y: -5,
+                x: -7
+                              }), null, 'spacingBox');
+                          }
+
+                      }
+                  },
+                  yAxis: [{
+                      title: {
+                        enabled: true,
+                        rotation: json.rotate,
+                        offset: yoffset,
+            style :{
+              fontSize: font_size,
+              width: ywidth
+            },
+            text: json.ytitle
+              },
+
+              tickPositions: tick_val,
+              labels: {
+                style :{ fontSize: font_size },
+
+                formatter: function () {
+                  var label = this.axis.defaultLabelFormatter.call(this);
+                  if (flag_ticks == 1) {
+                      tickvalues = json.ytickval;
+                      ticknames = json.yticktxt;
+                      idx = tickvalues.findIndex(tic => tic === this.value);
+                      return ticknames[idx];
+                  } else {
+                      return label;
+                  }
+
+              }
+          },
+                      //lineColor: '#FF00FF',
+          height: sub_height,
+          top: subTop + '%',
+          offset: 0,
+                      minPadding: 0,
+                      maxPadding: 0,
+                      min: yrange[0],
+                      max: yrange[1],
+                      startOnTick: false,
+                      endOnTick: false,
+                      lineWidth: axisLineWidth,
+                      tickWidth: axisTickWidth,
+                      type: json.ytype,
+          minorTicks: true,
+          minorTicksLength: 5,
+          minorTickWidth: 1,
+                      gridLineWidth: majorGridDisplay,
+                      minorGridLineWidth: minorGridDisplay,
+          //gridLineWidth: 0,
+                      //minorGridLineWidth: 0
+          //alternateGridColor: 'yellow'
+                  },
+            {
+          // axis on the opposite side to "close" the box
+          title: {
+                enabled: false
+            },
+          opposite: true,
+          labels: {
+              enabled: false
+            },
+                      height: sub_height,
+                      top: subTop + '%',
+                      offset: 0,
+          minPadding: 0,
+          maxPadding: 0,
+          min: yrange[0],
+          max: yrange[1],
+          startOnTick: false,
+          endOnTick: false,
+                      lineWidth: axisLineWidth,
+                      tickWidth: axisTickWidth,
+          type: json.ytype,
+                      minorTicks: true,
+                      minorTicksLength: 5,
+                      minorTickWidth: 1,
+          gridLineWidth: majorGridDisplay,
+          minorGridLineWidth: minorGridDisplay,
+          gridZIndex: 1
+          }
+                  ],
+
+            // data
+            series: series,
+
+        });
+
+    }
+
+
     show_plot('<%= @plot_info.to_json.html_safe %>');
   </script>
 </turbo-frame>
-
-

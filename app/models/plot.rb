@@ -45,4 +45,8 @@ class Plot
       "Error #{stderr_str}"
     end
   end
+
+  def test_call
+    Oj.load_file("#{Rails.root}/libext/results/json_charts/test-60184.json")
+  end
 end

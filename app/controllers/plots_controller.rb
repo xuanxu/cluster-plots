@@ -19,7 +19,7 @@ class PlotsController < ApplicationController
 
     @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: @p.join(","))
 
-    #@plot_info = @plot.call_csa
+    # @plot_info = @plot.call_csa
     @plot_info = @plot.test_call
 
     if @plot.ready?

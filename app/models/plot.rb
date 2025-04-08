@@ -37,6 +37,12 @@ class Plot
     Rails.logger.info " * Running command: #{pycom.join(' ')}"
     stdout_str, stderr_str, status = Open3.capture3(*pycom)
 
+    if Rails.env.development?
+      Rails.logger.info "*************** DATA PROCESSING **************"
+      Rails.logger.info "#{stdout_str}"
+      Rails.logger.info "**********************************************"
+    end
+
     if status.success?
       Oj.load_file("#{Rails.root}/libext/results/json_charts/#{json_file}")
     else

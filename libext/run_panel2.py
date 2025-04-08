@@ -7,7 +7,6 @@ import os
 from os.path import join, dirname
 import gzip
 from astropy.time import Time, TimeDelta
-#from dotenv import load_dotenv
 
 import threading
 import getpass
@@ -18,12 +17,8 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
-ROOT_PATH = "/caa/web/flask/plot_panels-stage/" 
-#ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-
-#load_dotenv()
-ROOT_PATH = os.getenv("APP_PATH")
 ROOT_PATH= dirname(__file__)
+
 # threading
 #-----------
 class GetCEFThread(threading.Thread):

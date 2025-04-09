@@ -16,6 +16,7 @@ class Plot
   end
 
   def call_csa
+    # return test_call
     json_file = "test-#{rand(999999)}.json"
 
     pycom = [

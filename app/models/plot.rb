@@ -18,7 +18,7 @@ class Plot
   def call_csa
     json_file = "test-#{rand(999999)}.json"
     pycom =<<~PYPLOT
-      python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -n 'test.ps' -t 'highcharts' -c 1 -j '#{json_file}' -o '#{start_datetime}/#{end_datetime}'
+      python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -j '#{json_file}' -o '#{start_datetime}/#{end_datetime}'
     PYPLOT
 
     pycom = [

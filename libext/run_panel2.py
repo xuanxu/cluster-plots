@@ -54,10 +54,10 @@ def get_data(list_arg):
 
 
     if int(flag_server) == 1:
-        cef_file = file_dir+dataset+"__"+strDate+"_V00.cef.gz"
+        cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
         # request file from server
         if int(flag_server) == 1:
-                cef_file = file_dir+dataset+"__"+strDate+"_V00.cef.gz"
+                cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
 
         #if os.path.isfile(cef_file) == False:
         if True:
@@ -67,7 +67,7 @@ def get_data(list_arg):
                 download_data_caa(dataset, n_start, n_stop, cef_file)
     else:
         # extract just the wanted data
-        cef_file = file_dir+dataset+"__"+strDate_orig+"_V00.cef.gz"
+        cef_file = join(file_dir, dataset+"__"+strDate_orig+"_V00.cef.gz")
         cefmerge_file = dataset+"__"+strDate+"_V00" # cefmerge adds the .cef"
 
         if os.path.isfile(cef_file):
@@ -78,7 +78,7 @@ def get_data(list_arg):
             print("can't find expected input file for cefmerge:",cef_file)
 
 
-        cef_file = file_dir + cefmerge_file + ".cef"
+        cef_file = join(file_dir, cefmerge_file + ".cef")
 
     return cef_file
 

@@ -80,6 +80,8 @@ def get_data(list_arg):
 
         cef_file = join(file_dir, cefmerge_file + ".cef")
 
+    print(" * CEF file:", cef_file);
+
     return cef_file
 
 
@@ -232,6 +234,8 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
 
     startTime = time.time()
     res = gp.gen_panels(list_xml,list_cef,list_panel,start,stop,upd_list,json_file,list_zeroes,output_type=output_type,plot_name=plot_name)
+    print('LIST_XML: ',list_xml)
+    print('LIST_CEF: ',list_cef)
     print('gen_panels:', time.time() - startTime)
 
 #print 'res:',res

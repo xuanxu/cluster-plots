@@ -16,6 +16,7 @@ class Plot
   end
 
   def call_csa
+    # return test_call
     json_file = "test-#{rand(999999)}.json"
     pycom =<<~PYPLOT
       python #{Rails.root}/libext/run_panel2.py -b '#{start_datetime}' -e '#{end_datetime}' -p '#{panels}' -j '#{json_file}' -o '#{start_datetime}/#{end_datetime}'
@@ -48,5 +49,9 @@ class Plot
     else
       "Error #{stderr_str}"
     end
+  end
+
+  def test_call
+    Oj.load_file("#{Rails.root}/libext/results/json_charts/test-493689.json")
   end
 end

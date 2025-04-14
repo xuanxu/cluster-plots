@@ -54,10 +54,7 @@
       var yrange = json.yrange_caa;
 
       if (json.type == 'line') {
-        //store data
-        //----------
         var num_lines = json.plot.length;
-
         series = [];
         for (var l = 0; l < num_lines; l++) {
 
@@ -89,13 +86,26 @@
             marker_line_width = 0;
           }
 
+          // Convert data points - ensure numbers not strings
+          const convertedData = json.plot[l].data.map(point => {
+            if (Array.isArray(point)) {
+              return [
+                // Convert timestamp to number if it's a string
+                typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+                // Convert value to number if it's a string
+                typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+              ];
+            }
+            return point;
+          });
+
           line = {
             name: name,
             type: json.plot[l].type,
             showInLegend: display_legend,
             color: json.plot[l].color,
             lineWidth: line_width,
-            data: json.plot[l].data,
+            data: convertedData,
             marker: {
               enabled: enabled,
               symbol:  symbol,

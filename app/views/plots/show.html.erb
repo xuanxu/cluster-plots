@@ -26,24 +26,23 @@
     function show_plot(jsonData){
       const json_panels = JSON.parse(jsonData);
       const json = json_panels.panels_arr[0].subpanels[0];
-
       const default_line_thickness = 2;
 
       var sub_height = json.size + '%';
 	    // custom ticks ?
       var flag_ticks = json.ytickflag;
       if (flag_ticks == 1) {
-              tick_val = json.ytickval;
+        tick_val = json.ytickval;
       } else {
-              tick_val = undefined;
+        tick_val = undefined;
       }
 
       if (json.rotate == 0) {
-              yoffset = 80;
-              ywidth = 150;
+        yoffset = 80;
+        ywidth = 150;
       } else {
-              yoffset = 60;
-              ywidth = undefined;
+        yoffset = 60;
+        ywidth = undefined;
       }
       const font_size = '11px';
       var subTop = 100 - json.size;
@@ -55,7 +54,6 @@
       yrange = json.yrange_caa;
 
       if (json.type == 'line') {
-
         //store data
         //----------
         var num_lines = json.plot.length;
@@ -111,136 +109,120 @@
         }
       }
 
-      new Highcharts.Chart( {
-            chart: {
-                type: 'line',
-                renderTo: 'highcharts_plot',
-                zoomType: 'x',
-                events:{
-                    selection: function (event) {
-                        return zoom(event,div);
-                    },
-              // Add the plot label (eg: C1 EFW)
-                          load: function () {
-                              var label = this.renderer.label(json_panels.panels_arr[0].label)
-                              .css({
-                                  width: '80px',
-                                  color: '#222',
-                                  fontSize: '11px'
-                                  })
-                              .attr({
-                                  'stroke': 'silver',
-                                  'stroke-width': 2,
-                                  'r': 5,
-                                  'padding': 10
-                            })
-                              .add();
-
-                              label.align(Highcharts.extend(label.getBBox(), {
-                                  align: 'right',
-                                  verticalAlign: 'top',
-                                  y: -5,
-                x: -7
-                              }), null, 'spacingBox');
-                          }
-
-                      }
-                  },
-                  xAxis: {
-                    type: 'datetime',
-                    title: {
-                      text: json_panels.panels_arr[0].xtitle || 'Time'
-                    }
-                  },
-                  yAxis: [{
-                      title: {
-                        enabled: true,
-                        rotation: json.rotate,
-                        offset: yoffset,
-            style :{
-              fontSize: font_size,
-              width: ywidth
+      new Highcharts.Chart({
+        chart: {
+          type: 'line',
+          renderTo: 'highcharts_plot',
+          zoomType: 'x',
+          events:{
+            selection: function (event) {
+              return zoom(event,div);
             },
-            text: json.ytitle
-              },
-
-              tickPositions: tick_val,
-              labels: {
-                style :{ fontSize: font_size },
-
-                formatter: function () {
-                  var label = this.axis.defaultLabelFormatter.call(this);
-                  if (flag_ticks == 1) {
-                      tickvalues = json.ytickval;
-                      ticknames = json.yticktxt;
-                      idx = tickvalues.findIndex(tic => tic === this.value);
-                      return ticknames[idx];
-                  } else {
-                      return label;
-                  }
-
-              }
-          },
-                      //lineColor: '#FF00FF',
-          height: sub_height,
-          top: subTop + '%',
-          offset: 0,
-                      minPadding: 0,
-                      maxPadding: 0,
-                      min: yrange[0],
-                      max: yrange[1],
-                      startOnTick: false,
-                      endOnTick: false,
-                      lineWidth: axisLineWidth,
-                      tickWidth: axisTickWidth,
-                      type: json.ytype,
-          minorTicks: true,
-          minorTicksLength: 5,
-          minorTickWidth: 1,
-                      gridLineWidth: majorGridDisplay,
-                      minorGridLineWidth: minorGridDisplay,
-          //gridLineWidth: 0,
-                      //minorGridLineWidth: 0
-          //alternateGridColor: 'yellow'
-                  },
-            {
-          // axis on the opposite side to "close" the box
-          title: {
-                enabled: false
-            },
-          opposite: true,
-          labels: {
-              enabled: false
-            },
-                      height: sub_height,
-                      top: subTop + '%',
-                      offset: 0,
-          minPadding: 0,
-          maxPadding: 0,
-          min: yrange[0],
-          max: yrange[1],
-          startOnTick: false,
-          endOnTick: false,
-                      lineWidth: axisLineWidth,
-                      tickWidth: axisTickWidth,
-          type: json.ytype,
-                      minorTicks: true,
-                      minorTicksLength: 5,
-                      minorTickWidth: 1,
-          gridLineWidth: majorGridDisplay,
-          minorGridLineWidth: minorGridDisplay,
-          gridZIndex: 1
+            // Add the plot label (eg: C1 EFW)
+            load: function () {
+              var label = this.renderer.label(json_panels.panels_arr[0].label)
+              .css({
+                width: '80px',
+                color: '#222',
+                fontSize: '11px'
+              })
+              .attr({
+                'stroke': 'silver',
+                'stroke-width': 2,
+                'r': 5,
+                'padding': 10
+              })
+              .add();
+                label.align(Highcharts.extend(label.getBBox(), {
+                  align: 'right',
+                  verticalAlign: 'top',
+                  y: -5,
+                  x: -7
+                }), null, 'spacingBox');
+            }
           }
-                  ],
-
-            // data
-            series: series,
-
-        });
-
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: json_panels.panels_arr[0].xtitle || 'Time'
+          }
+        },
+        yAxis: [
+          {
+            title: {
+              enabled: true,
+              rotation: json.rotate,
+              offset: yoffset,
+              style :{
+                fontSize: font_size,
+                width: ywidth
+              },
+              text: json.ytitle
+            },
+            tickPositions: tick_val,
+            labels: {
+              style: { fontSize: font_size },
+              formatter: function () {
+                var label = this.axis.defaultLabelFormatter.call(this);
+                if (flag_ticks == 1) {
+                  tickvalues = json.ytickval;
+                  ticknames = json.yticktxt;
+                  idx = tickvalues.findIndex(tic => tic === this.value);
+                  return ticknames[idx];
+                } else {
+                  return label;
+                }
+              }
+            },
+            height: sub_height,
+            top: subTop + '%',
+            offset: 0,
+            minPadding: 0,
+            maxPadding: 100,
+            min: yrange[0],
+            max: yrange[1],
+            startOnTick: false,
+            endOnTick: false,
+            lineWidth: axisLineWidth,
+            tickWidth: axisTickWidth,
+            type: json.ytype,
+            minorTicks: true,
+            minorTicksLength: 5,
+            minorTickWidth: 1,
+            gridLineWidth: majorGridDisplay,
+            minorGridLineWidth: minorGridDisplay,
+          },
+          { // axis on the opposite side to "close" the box
+            title: { enabled: false },
+            opposite: true,
+            labels: { enabled: false },
+            height: sub_height,
+            top: subTop + '%',
+            offset: 0,
+            minPadding: 0,
+            maxPadding: 0,
+            min: yrange[0],
+            max: yrange[1],
+            startOnTick: false,
+            endOnTick: false,
+            lineWidth: axisLineWidth,
+            tickWidth: axisTickWidth,
+            type: json.ytype,
+            minorTicks: true,
+            minorTicksLength: 5,
+            minorTickWidth: 1,
+            gridLineWidth: majorGridDisplay,
+            minorGridLineWidth: minorGridDisplay,
+            gridZIndex: 1
+          }
+        ],
+        // data
+        series: series,
+      });
     }
 
-
     show_plot('<%= @plot_info.to_json.html_safe %>');
+
   </script>
 </turbo-frame>

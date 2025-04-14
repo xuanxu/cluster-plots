@@ -28,6 +28,7 @@
       const json = json_panels.panels_arr[0].subpanels[0];
       const default_line_thickness = 2;
       const font_size = '11px';
+      const chart_title = "<%= @start_date + "T" + @start_time + "/" + @stop_date + "T" + @stop_time %>";
 
       var sub_height = json.size + '%';
 	    // custom ticks ?
@@ -120,6 +121,7 @@
       }
 
       new Highcharts.Chart({
+        title: { text: chart_title},
         chart: {
           type: 'line',
           renderTo: 'highcharts_plot',

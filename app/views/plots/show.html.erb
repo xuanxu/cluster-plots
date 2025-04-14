@@ -22,40 +22,6 @@
 
 
   <script>
-    function show_plot_OLD(jsonData){
-      // Extract data for the line plot
-      const data = JSON.parse(jsonData);
-      const plotData = data.panels_arr[0].subpanels[0].plot[0].data.map(point => ({
-        x: point[0], // Timestamp
-        y: point[1]  // Value
-      }));
-
-      // Render the Highcharts line plot
-      Highcharts.chart('highcharts_plot', {
-        chart: {
-          type: 'line'
-        },
-        title: {
-          text: data.panels_arr[0].label
-        },
-        xAxis: {
-          type: 'datetime',
-          title: {
-            text: data.panels_arr[0].xtitle
-          }
-        },
-        yAxis: {
-          title: {
-            text: data.panels_arr[0].subpanels[0].ytitle
-          },
-          type: data.panels_arr[0].subpanels[0].ytype // e.g., 'logarithmic'
-        },
-        series: [{
-          name: data.panels_arr[0].label,
-          data: plotData
-        }]
-      });
-    }
 
     function show_plot(jsonData){
       const json_panels = JSON.parse(jsonData);
@@ -112,17 +78,17 @@
           }
 
           if (json.plot[l].type == 'scatter') {
-          symbol = 'cross';
-          radius = 3;
-          line_width = 0;
-          marker_line_width = 2;
-          enabled = true;
+            symbol = 'cross';
+            radius = 3;
+            line_width = 0;
+            marker_line_width = 2;
+            enabled = true;
           } else {
-          symbol = 'circle';
-          radius = line_thickness/2.;
-          line_width = line_thickness;
-          enabled = undefined;
-          marker_line_width = 0;
+            symbol = 'circle';
+            radius = line_thickness/2.;
+            line_width = line_thickness;
+            enabled = undefined;
+            marker_line_width = 0;
           }
 
           line = {

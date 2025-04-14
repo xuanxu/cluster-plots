@@ -27,6 +27,7 @@
       const json_panels = JSON.parse(jsonData);
       const json = json_panels.panels_arr[0].subpanels[0];
       const default_line_thickness = 2;
+      const font_size = '11px';
 
       var sub_height = json.size + '%';
 	    // custom ticks ?
@@ -44,14 +45,13 @@
         yoffset = 60;
         ywidth = undefined;
       }
-      const font_size = '11px';
       var subTop = 100 - json.size;
-      var axisLineWidth = 2;
+      var axisLineWidth = 1;
       var axisTickWidth = 2;
 
-      majorGridDisplay = 1;
-      minorGridDisplay = 1;
-      yrange = json.yrange_caa;
+      var majorGridDisplay = 1;
+      var minorGridDisplay = 1;
+      var yrange = json.yrange_caa;
 
       if (json.type == 'line') {
         //store data
@@ -179,7 +179,7 @@
             top: subTop + '%',
             offset: 0,
             minPadding: 0,
-            maxPadding: 100,
+            maxPadding: 0,
             min: yrange[0],
             max: yrange[1],
             startOnTick: false,

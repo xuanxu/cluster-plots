@@ -48,6 +48,6 @@ class Plot
   end
 
   def test_call
-    Oj.load_file("#{Rails.root}/libext/results/json_charts/test-493689.json")
+    Oj.load_file("#{Rails.root}/libext/results/json_charts/aaa-test.json")
   end
 end

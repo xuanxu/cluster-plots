@@ -41,6 +41,8 @@ class Plot
       Rails.logger.info "*************** DATA PROCESSING **************"
       Rails.logger.info "#{stdout_str}"
       Rails.logger.info "**********************************************"
+      Rails.logger.info "#{stderr_str}"
+      Rails.logger.info "**********************************************"
     end
 
     if status.success?

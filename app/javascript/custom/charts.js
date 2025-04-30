@@ -1,15 +1,17 @@
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
   if (typeof(chart_json_data) !== undefined) {
-    show_plot(chart_json_data, "highcharts_plot", chart_datetime_title)
+    show_plot(chart_json_data, "highcharts_plot");
+  }
+  if (typeof(chart_datetime_title) !== undefined) {
+    titleChart(chart_datetime_title);
   }
 })
 
-function show_plot(jsonData, targetDiv, chartTitle){
+function show_plot(jsonData, targetDiv){
   const json_panels = JSON.parse(jsonData);
   const json = json_panels.panels_arr[0].subpanels[0];
   const default_line_thickness = 2;
   const font_size = '11px';
-  const chart_title = chartTitle;
 
   var sub_height = json.size + '%';
   // custom ticks ?
@@ -95,7 +97,7 @@ function show_plot(jsonData, targetDiv, chartTitle){
   }
 
   new Highcharts.Chart({
-    title: { text: chart_title},
+    title: { text: "" },
     chart: {
       type: 'line',
       renderTo: targetDiv,
@@ -206,4 +208,27 @@ function show_plot(jsonData, targetDiv, chartTitle){
     // data
     series: series,
   });
+}
+
+function titleChart(titleText) {
+
+  var title_chart = new Highcharts.Chart({
+    chart: {
+      renderTo: "title-chart"
+    },
+    exporting: {
+      sourceWidth: 1000,
+      sourceHeight: 50
+    },
+    title:{
+      text: titleText,
+      enabled: true,
+      y: 20,
+      style: {
+        fontWeight: 'bold'
+      }
+    }
+  });
+
+
 }

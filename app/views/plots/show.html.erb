@@ -5,9 +5,11 @@
     <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
   </div>
 
-
-  <div id="title-chart" style="height: 50px"></div>
-  <div id="highcharts_plot" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md"></div>
+  <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+    <div id="title-chart" style="height: 50px"></div>
+    <div id="highcharts_plot"></div>
+    <div id="axis-chart" xstyle="height: 50px"></div>
+  </div>
 
   <script>
     var chart_json_data = '<%= @plot_info.to_json.html_safe %>';

@@ -2,21 +2,34 @@ var title_chart, axis_chart;
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
   if (typeof(chart_json_data) !== undefined) {
-    show_plot(chart_json_data, "highcharts_plot");
+    show_plots(chart_json_data);
   }
   if (typeof(chart_start_datetime) !== undefined) {
     titleChart( chart_start_datetime + "/" + chart_stop_datetime);
   }
 })
 
-function show_plot(jsonData, targetDiv){
+function show_plots(jsonData){
   setHighchartsGlobalSettings();
 
   const json_panels = JSON.parse(jsonData);
-  const json = json_panels.panels_arr[0].subpanels[0];
+
+  for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
+    var plot_data = json_panels.panels_arr[nplot];
+    create_plot(plot_data, nplot);
+  }
+}
+
+function create_plot(plot_data, nplot){
+  var json = plot_data.subpanels[0];
+
   const default_line_thickness = 2;
   const font_size = '11px';
+  var axisLineWidth = 2;
+  var axisTickWidth = 2;
 
+  var majorGridDisplay = 1;
+  var minorGridDisplay = 1;
   var sub_height = json.size + '%';
   // custom ticks ?
   var flag_ticks = json.ytickflag;
@@ -32,11 +45,6 @@ function show_plot(jsonData, targetDiv){
     ywidth = 150;
   }
   var subTop = 100 - json.size;
-  var axisLineWidth = 2;
-  var axisTickWidth = 2;
-
-  var majorGridDisplay = 1;
-  var minorGridDisplay = 1;
   var yrange = json.yrange_caa;
 
   if (json.type == 'line') {
@@ -44,7 +52,7 @@ function show_plot(jsonData, targetDiv){
     var series = [];
     for (var l = 0; l < num_lines; l++) {
       var line_thickness = default_line_thickness;
-      if  (json_panels.panels_arr[0].panel_type == 'status') {
+      if  (plot_data.panel_type == 'status') {
         line_thickness =  json.plot[l].thick;
       }
 
@@ -104,7 +112,7 @@ function show_plot(jsonData, targetDiv){
     title: { text: "" },
     chart: {
       type: 'line',
-      renderTo: targetDiv,
+      renderTo: 'highcharts_plot_' + nplot,
       zoomType: 'x',
       events:{
         selection: function (event) {
@@ -112,7 +120,7 @@ function show_plot(jsonData, targetDiv){
         },
         // Add the plot label (eg: C1 EFW)
         load: function () {
-          var label = this.renderer.label(json_panels.panels_arr[0].label)
+          var label = this.renderer.label(plot_data.label)
           .css({
             width: '80px',
             color: '#222',
@@ -263,9 +271,11 @@ function show_plot(jsonData, targetDiv){
     series: series,
   });
 
-  var axis_start_datetime = line_plot.xAxis[0].getExtremes().min;
-  var axis_stop_datetime = line_plot.xAxis[0].getExtremes().max;
-  axisChart(axis_start_datetime, axis_stop_datetime)
+  if (nplot == 0) {
+    var axis_start_datetime = line_plot.xAxis[0].getExtremes().min;
+    var axis_stop_datetime = line_plot.xAxis[0].getExtremes().max;
+    axisChart(axis_start_datetime, axis_stop_datetime)
+  }
 }
 
 function titleChart(titleText) {
@@ -288,7 +298,7 @@ function titleChart(titleText) {
   });
 }
 
-function axisChart(start,stop) {
+function axisChart(start, stop) {
   axis_chart = new Highcharts.Chart({
     title: { enabled: false, text: "" },
     chart: {

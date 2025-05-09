@@ -5,7 +5,7 @@
     <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
   </div>
 
-  <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
+  <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1400] bg-white shadow-md">
     <div id="title-chart" style="height: 50px"></div>
     <% @plot_info["panels_arr"].size.times do |i| %>
       <div id="highcharts_plot_<%= i %>"></div>

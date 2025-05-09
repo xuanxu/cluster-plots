@@ -16,7 +16,8 @@ class Plot
   end
 
   def call_csa
-    # return test_call
+    return test_call if Rails.env.local?
+
     json_file = "test-#{rand(999999)}.json"
 
     pycom = [

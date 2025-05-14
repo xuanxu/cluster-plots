@@ -16,6 +16,8 @@ class Plot
   end
 
   def call_csa
+    return test_call if Rails.env.local?
+
     json_file = "test-#{rand(999999)}.json"
 
     pycom = [
@@ -44,5 +46,9 @@ class Plot
     else
       "Error #{stderr_str}"
     end
+  end
+
+  def test_call
+    Oj.load_file("#{Rails.root}/libext/results/json_charts/aaa-test.json")
   end
 end

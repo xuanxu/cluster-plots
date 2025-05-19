@@ -1,4 +1,5 @@
 var title_chart, axis_chart;
+var all_plots = [];
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
   if (typeof(chart_json_data) !== undefined) {
@@ -17,7 +18,9 @@ function show_plots(jsonData){
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];
     create_plot(plot_data, nplot);
+    all_plots << create_plot(plot_data, nplot);
   }
+  window["all_plots"] = all_plots;
 }
 
 function create_plot(plot_data, nplot){
@@ -268,6 +271,8 @@ function create_plot(plot_data, nplot){
     var axis_stop_datetime = line_plot.xAxis[0].getExtremes().max;
     axisChart(axis_start_datetime, axis_stop_datetime)
   }
+
+  return line_plot;
 }
 
 function titleChart(titleText) {
@@ -288,6 +293,7 @@ function titleChart(titleText) {
       }
     }
   });
+  window["title_chart"] = title_chart;
 }
 
 function axisChart(start, stop) {

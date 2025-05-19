@@ -17,7 +17,6 @@ function show_plots(jsonData){
 
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];
-    create_plot(plot_data, nplot);
     all_plots << create_plot(plot_data, nplot);
   }
   window["all_plots"] = all_plots;

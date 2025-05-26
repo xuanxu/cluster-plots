@@ -142,7 +142,7 @@ def create_json(sSubPanel,arrData):
         y_tag = [d['paramid'] for d in elt['sData'] if d['type'] == "Y"][0]
 
         x_data = [list(el['arrData']) for (ind,el) in enumerate(arrData) if el['paramid'] == x_tag][0]
-        y_data = [list(el['arrData']) for (ind,el) in enumerate(arrData) if el['paramid'] == y_tag]
+        y_data = [list(el['arrData']) if el['arrData'].ndim > 0 else [el['arrData']] for (ind,el) in enumerate(arrData) if el['paramid'] == y_tag]
 
         flag_empty = 1
         if len(y_data) > 0:

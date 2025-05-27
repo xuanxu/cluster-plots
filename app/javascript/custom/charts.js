@@ -49,6 +49,8 @@ function create_plot(plot_data, nplot){
   var subTop = 100 - json.size;
   var yrange = json.yrange_caa;
 
+  var plot = undefined;
+
   if (json.type == 'line') {
     var num_lines = json.plot.length;
     var series = [];
@@ -108,170 +110,175 @@ function create_plot(plot_data, nplot){
 
       series.push(line);
     }
+
+    plot = new Highcharts.Chart({
+      title: { text: "" },
+      chart: {
+        type: 'line',
+        renderTo: 'highcharts_plot_' + nplot,
+        zoomType: 'x',
+        events:{
+          selection: function (event) {
+            return zoom(event,div);
+          },
+          // Add the plot label (eg: C1 EFW)
+          load: function () {
+            var label = this.renderer.label(plot_data.label)
+            .css({
+              width: '80px',
+              color: '#222',
+              fontSize: '11px'
+            })
+            .attr({
+              'stroke': 'silver',
+              'stroke-width': 2,
+              'r': 5,
+              'padding': 10
+            })
+            .add();
+              label.align(Highcharts.extend(label.getBBox(), {
+                align: 'right',
+                verticalAlign: 'top',
+                y: -5,
+                x: -7
+              }), null, 'spacingBox');
+          }
+        }
+      },
+      xAxis: [
+        {
+          type: 'datetime',
+          title: {
+            enable: false,
+          },
+          labels: { enabled: false },
+          startOnTick: false,
+          endOnTick: false,
+          minPadding: 0,
+          maxPadding: 0,
+          lineWidth: 2,
+          tickLength: 5,
+          tickWidth: 2,
+          minorTickLength: 2,
+          minorTickWidth: 1,
+          minorTickInterval: 'auto',
+          gridLineWidth: 1,
+          gridLineColor: '#ADD8E6',
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        },
+        {
+          type: 'datetime',
+          opposite: true,
+          linkedTo: 0,
+          title: { enabled: false },
+          labels: { enabled: false },
+          startOnTick: false,
+          endOnTick: false,
+          minPadding: 0,
+          maxPadding: 0,
+          lineWidth: axisLineWidth,
+          tickLength: 5,
+          tickWidth: 2,
+          minorTickLength: 2,
+          minorTickWidth: 1,
+          gridLineWidth: 0,
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        }
+      ],
+      yAxis: [
+        {
+          title: {
+            enabled: true,
+            rotation: json.rotate,
+            offset: yoffset,
+            style :{
+              fontSize: font_size,
+              width: ywidth
+            },
+            text: json.ytitle
+          },
+          tickPositions: tick_val,
+          labels: {
+            style: { fontSize: font_size },
+            formatter: function () {
+              var label = this.axis.defaultLabelFormatter.call(this);
+              if (flag_ticks == 1) {
+                tickvalues = json.ytickval;
+                ticknames = json.yticktxt;
+                idx = tickvalues.findIndex(tic => tic === this.value);
+                return ticknames[idx];
+              } else {
+                return label;
+              }
+            }
+          },
+          plotLines: [{
+            color: '#A9A9A9',
+            width: 2,
+            value: 0,
+            dashStyle: 'ShortDash'
+          }],
+          height: sub_height,
+          top: subTop + '%',
+          offset: 0,
+          min: yrange[0],
+          max: yrange[1],
+          startOnTick: false,
+          endOnTick: false,
+          lineWidth: axisLineWidth,
+          tickWidth: axisTickWidth,
+          type: json.ytype,
+          minorTicks: true,
+          minorTicksLength: 5,
+          minorTickWidth: 1,
+          gridLineWidth: majorGridDisplay,
+          minorGridLineWidth: minorGridDisplay,
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        },
+        { // axis on the opposite side to "close" the box
+          title: { enabled: false },
+          tickPositions: tick_val,
+          opposite: true,
+          linkedTo: 0,
+          labels: { enabled: false },
+          height: sub_height,
+          top: subTop + '%',
+          startOnTick: false,
+          endOnTick: false,
+          lineWidth: axisLineWidth,
+          tickWidth: axisTickWidth,
+          type: json.ytype,
+          minorTicks: true,
+          minorTicksLength: 5,
+          minorTickWidth: 1,
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        }
+      ],
+      // data
+      series: series,
+    });
+  } else {
+    //plot_heatmap(plot_data, nplot);
   }
 
-  var line_plot = new Highcharts.Chart({
-    title: { text: "" },
-    chart: {
-      type: 'line',
-      renderTo: 'highcharts_plot_' + nplot,
-      zoomType: 'x',
-      events:{
-        selection: function (event) {
-          return zoom(event,div);
-        },
-        // Add the plot label (eg: C1 EFW)
-        load: function () {
-          var label = this.renderer.label(plot_data.label)
-          .css({
-            width: '80px',
-            color: '#222',
-            fontSize: '11px'
-          })
-          .attr({
-            'stroke': 'silver',
-            'stroke-width': 2,
-            'r': 5,
-            'padding': 10
-          })
-          .add();
-            label.align(Highcharts.extend(label.getBBox(), {
-              align: 'right',
-              verticalAlign: 'top',
-              y: -5,
-              x: -7
-            }), null, 'spacingBox');
-        }
-      }
-    },
-    xAxis: [
-      {
-        type: 'datetime',
-        title: {
-          enable: false,
-        },
-        labels: { enabled: false },
-        startOnTick: false,
-        endOnTick: false,
-        minPadding: 0,
-        maxPadding: 0,
-        lineWidth: 2,
-        tickLength: 5,
-        tickWidth: 2,
-        minorTickLength: 2,
-        minorTickWidth: 1,
-        minorTickInterval: 'auto',
-        gridLineWidth: 1,
-        gridLineColor: '#ADD8E6',
-        lineColor: '#CBD6EA',
-        tickColor: '#CBD6EA',
-        minorTickColor: '#CBD6EA'
-      },
-      {
-        type: 'datetime',
-        opposite: true,
-        linkedTo: 0,
-        title: { enabled: false },
-        labels: { enabled: false },
-        startOnTick: false,
-        endOnTick: false,
-        minPadding: 0,
-        maxPadding: 0,
-        lineWidth: axisLineWidth,
-        tickLength: 5,
-        tickWidth: 2,
-        minorTickLength: 2,
-        minorTickWidth: 1,
-        gridLineWidth: 0,
-        lineColor: '#CBD6EA',
-        tickColor: '#CBD6EA',
-        minorTickColor: '#CBD6EA'
-      }
-    ],
-    yAxis: [
-      {
-        title: {
-          enabled: true,
-          rotation: json.rotate,
-          offset: yoffset,
-          style :{
-            fontSize: font_size,
-            width: ywidth
-          },
-          text: json.ytitle
-        },
-        tickPositions: tick_val,
-        labels: {
-          style: { fontSize: font_size },
-          formatter: function () {
-            var label = this.axis.defaultLabelFormatter.call(this);
-            if (flag_ticks == 1) {
-              tickvalues = json.ytickval;
-              ticknames = json.yticktxt;
-              idx = tickvalues.findIndex(tic => tic === this.value);
-              return ticknames[idx];
-            } else {
-              return label;
-            }
-          }
-        },
-        plotLines: [{
-          color: '#A9A9A9',
-          width: 2,
-          value: 0,
-          dashStyle: 'ShortDash'
-        }],
-        height: sub_height,
-        top: subTop + '%',
-        offset: 0,
-        min: yrange[0],
-        max: yrange[1],
-        startOnTick: false,
-        endOnTick: false,
-        lineWidth: axisLineWidth,
-        tickWidth: axisTickWidth,
-        type: json.ytype,
-        minorTicks: true,
-        minorTicksLength: 5,
-        minorTickWidth: 1,
-        gridLineWidth: majorGridDisplay,
-        minorGridLineWidth: minorGridDisplay,
-        lineColor: '#CBD6EA',
-        tickColor: '#CBD6EA',
-        minorTickColor: '#CBD6EA'
-      },
-      { // axis on the opposite side to "close" the box
-        title: { enabled: false },
-        tickPositions: tick_val,
-        opposite: true,
-        linkedTo: 0,
-        labels: { enabled: false },
-        height: sub_height,
-        top: subTop + '%',
-        startOnTick: false,
-        endOnTick: false,
-        lineWidth: axisLineWidth,
-        tickWidth: axisTickWidth,
-        type: json.ytype,
-        minorTicks: true,
-        minorTicksLength: 5,
-        minorTickWidth: 1,
-        lineColor: '#CBD6EA',
-        tickColor: '#CBD6EA',
-        minorTickColor: '#CBD6EA'
-      }
-    ],
-    // data
-    series: series,
-  });
+  plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
+  plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
 
   if (nplot == 0) {
-    var axis_start_datetime = line_plot.xAxis[0].getExtremes().min;
-    var axis_stop_datetime = line_plot.xAxis[0].getExtremes().max;
+    var axis_start_datetime = plot.xAxis[0].getExtremes().min;
+    var axis_stop_datetime = plot.xAxis[0].getExtremes().max;
     axisChart(axis_start_datetime, axis_stop_datetime)
   }
 
-  return line_plot;
+  return plot;
 }
 
 function titleChart(titleText) {
@@ -412,3 +419,7 @@ function setHighchartsGlobalSettings(){
     series: []
   });
 }
+
+function plot_heatmap(plot_data, nplot){
+} //heatmap
+

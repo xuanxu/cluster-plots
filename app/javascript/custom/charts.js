@@ -24,6 +24,7 @@ function show_plots(jsonData){
 
 function create_plot(plot_data, nplot){
   var json = plot_data.subpanels[0];
+  var panel_type = plot_data.panel_type;
 
   const default_line_thickness = 2;
   const font_size = '11px';
@@ -56,7 +57,7 @@ function create_plot(plot_data, nplot){
     var series = [];
     for (var l = 0; l < num_lines; l++) {
       var line_thickness = default_line_thickness;
-      if  (plot_data.panel_type == 'status') {
+      if  (panel_type == 'status') {
         line_thickness =  json.plot[l].thick;
       }
 

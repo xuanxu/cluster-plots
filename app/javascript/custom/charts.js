@@ -208,9 +208,9 @@ function create_plot(plot_data, nplot){
             formatter: function () {
               var label = this.axis.defaultLabelFormatter.call(this);
               if (flag_ticks == 1) {
-                tickvalues = json.ytickval;
-                ticknames = json.yticktxt;
-                idx = tickvalues.findIndex(tic => tic === this.value);
+                var tickvalues = json.ytickval;
+                var ticknames = json.yticktxt;
+                var idx = tickvalues.findIndex(tic => tic === this.value);
                 return ticknames[idx];
               } else {
                 return label;
@@ -266,12 +266,14 @@ function create_plot(plot_data, nplot){
       // data
       series: series,
     });
+
+    plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
+    plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
+
   } else {
-    //plot_heatmap(plot_data, nplot);
+    plot = plot_heatmap(plot_data, nplot);
   }
 
-  plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
-  plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
 
   if (nplot == 0) {
     var axis_start_datetime = plot.xAxis[0].getExtremes().min;
@@ -422,5 +424,227 @@ function setHighchartsGlobalSettings(){
 }
 
 function plot_heatmap(plot_data, nplot){
+  var plot = undefined;
+  var json = plot_data.subpanels[0];
+	// define range to use
+  var zrange = json.zrange;
+  var ymin = json.yrange[0];
+  var ymax = json.yrange[1];
+
+  var yrange = json.yrange;
+  var yrange_plot = json.yrange_caa;
+
+  var subTop = 100 - json.size;
+  var sub_height = json.size + '%';
+
+  var axisLineWidth = 2;
+  var axisTickWidth = 2;
+
+  var majorGridDisplay = 1;
+  var minorGridDisplay = 1;
+
+  const font_size = '11px';
+  const default_line_thickness = 2;
+
+  plot = new Highcharts.Chart({
+    chart: {
+      renderTo: 'highcharts_plot_' + nplot,
+      type: 'heatmap',
+      zoomType: 'x',
+      events:{
+      // Add the plot label (eg: C1 EFW)
+      load: function () {
+        var label = this.renderer.label(plot_data.label)
+          .css({
+            width: '80px',
+            color: '#222',
+            fontSize: '11px'
+          })
+          .attr({
+            'stroke': 'silver',
+            'stroke-width': 2,
+            'r': 5,
+            'padding': 10
+          })
+          .add();
+            label.align(Highcharts.extend(label.getBBox(), {
+              align: 'right',
+              verticalAlign: 'top',
+              y: -5,
+              x: -7
+            }), null, 'spacingBox');
+          }
+      }
+    },
+    yAxis: [{
+      top: subTop + '%',
+      height: sub_height,
+      minPadding: 0,
+      maxPadding: 0,
+      startOnTick: false,
+      endOnTick: false,
+      tickWidth: 0,
+      lineWidth: 0,
+      min: yrange_plot[0],
+      max: yrange_plot[1],
+      minorGridLineWidth: 0,
+      gridLineColor: 'transparent',
+      title: {
+        // unit for the colorbar
+        enabled: true,
+        margin: 100,
+        text: json.ztitle
+      },
+      labels: {
+        enabled: false
+      },
+      type: 'linear',
+      minorTickLength: 0,
+      tickLength: 0,
+      opposite: true
+    },{
+      // visible axis
+      id: 'yAxis.HeatmapGrouping',
+      type: json.ytype,
+      min: yrange[0],
+      max: yrange[1],
+      title: {
+        enabled: true,
+        offset: 60,
+      style :{ fontSize: font_size },
+        text: json.ytitle
+      },
+      labels: {
+        style :{ fontSize: font_size }
+      },
+      top: subTop + '%',
+      height: sub_height,
+      minPadding: 0,
+      maxPadding: 0,
+      startOnTick: false,
+      endOnTick: false,
+      lineWidth: axisLineWidth,
+      tickWidth: axisTickWidth,
+      minorTicks: true,
+      minorTickLength: 5,
+      minorTickWidth: 1
+      //minorTickInterval: 0.1,
+      //gridLineWidth: majorGridDisplay,
+      //minorGridLineWidth: minorGridDisplay
+    }],
+    legend: { // placement of the color bar
+      align: 'right',
+      layout: 'vertical',
+      margin: 0,
+      verticalAlign: 'top',
+      y: 35,
+      x: -45,
+      symbolHeight: 170 // height of the colorbar
+    },
+    colorAxis: {
+      stops: [
+        [0, '#000000'],		// lower than min range
+        [0.125, '#0000ff'],
+        [0.25, '#007FFF'],
+        [0.375, '#00ffff'],
+        [0.5, '#7FFF7F'],
+        [0.625, '#ffff00'],
+        [0.75, '#FF7F00'],
+        [0.875, '#ff0000'],
+        [1, '#7F0000']		// higher than max range
+      ],
+      type: window["zType"+nplot],
+      min: zrange[0],
+      max: zrange[1],
+      reversed: false,
+      startOnTick: false,
+      endOnTick: false,
+      minorTickWidth: 1,
+      minorTickInterval: 0.1,
+      tickColor: '#000000',
+      tickWidth: 1,
+      // don't extend the graduations across the colorAxis
+      minorGridLineWidth: 0,
+      gridLineWidth: 0,
+      marker: null, // tooltip on the colorbar
+      labels: {
+      style :{ fontSize: font_size },
+      x: 7,
+      //format: '{value}'
+      formatter: function(){
+        if (json.ztype == 'logarithmic') {
+          return (this.value).toExponential(1);
+        } else {
+          return this.value;
+        }
+      }
+    }
+  }
+  },
+  function(plot) { //add this function to the chart definition to get synchronized crosshairs
+    //syncronizeCrossHairs(plot);
+  }
+  );
+
+  var num_lines = json.plot.length;
+  for (var l = 0; l < num_lines; l++) {
+  //store data
+  //----------
+  var data = [];
+
+  if (json.plot[l].type == 'line') {
+    var line_thickness = default_line_thickness;
+    data = json.plot[l].data;
+    var line = {
+      type: 'line',
+      name: json.plot[l].name,
+      color: json.plot[l].color,
+      lineWidth: line_thickness,
+      data: data,
+      marker: {
+          symbol: 'circle',
+          radius: json.plot[l].thick/2.
+      }
+    }
+    plot.addSeries(line, false);
+
+  } else {
+    data = json.plot[l].data;
+
+    var heatmap = {
+      type: 'heatmap',
+      pointPlacement: 'on', // properly align tickmarks
+      colsize: json.delta_x,
+      rowsize: json.delta_y,
+      data: data,
+      boostThreshold: 0
+    }
+
+    plot.addSeries(heatmap, false);
+  }
+
+  }
+
+  // store auto-scaling range
+  window["rangeCAA"+nplot] = json.zrange;
+  window["yRangeCAA"+nplot] = json.yrange;
+
+  //$('#rangeCAA'+nplot).prop("checked", true);
+
+  // Fill in option div
+  // $('#min_range'+nplot).val((zrange[0]).toExponential(1));
+  // $('#max_range'+nplot).val((zrange[1]).toExponential(1));
+
+  // $('#min_yrange'+nplot).val(yrange[0]);
+  // $('#max_yrange'+nplot).val(yrange[1]);
+
+  // somehow putting the grid display values directly
+  // in the axis definition seems to shift the first/last value of the heatmap ?!?
+  plot.yAxis[0].update({ gridLineWidth: majorGridDisplay,
+                                    minorGridLineWidth:minorGridDisplay });
+  plot.yAxis[1].update({ gridLineWidth: majorGridDisplay,
+                                      minorGridLineWidth:minorGridDisplay });
+
+  return plot;
 } //heatmap
 

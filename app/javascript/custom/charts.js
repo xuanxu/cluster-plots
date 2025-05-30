@@ -592,15 +592,27 @@ function plot_heatmap(plot_data, nplot){
   //----------
   var data = [];
 
+  var convertedData = json.plot[l].data.map(point => {
+    if (Array.isArray(point)) {
+      return [
+        // Convert timestamp to number if it's a string
+        typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+        // Convert value to number if it's a string
+        typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+      ];
+    }
+    return point;
+  });
+
   if (json.plot[l].type == 'line') {
     var line_thickness = default_line_thickness;
-    data = json.plot[l].data;
+
     var line = {
       type: 'line',
       name: json.plot[l].name,
       color: json.plot[l].color,
       lineWidth: line_thickness,
-      data: data,
+      data: convertedData,
       marker: {
           symbol: 'circle',
           radius: json.plot[l].thick/2.
@@ -609,14 +621,12 @@ function plot_heatmap(plot_data, nplot){
     plot.addSeries(line, false);
 
   } else {
-    data = json.plot[l].data;
-
     var heatmap = {
       type: 'heatmap',
       pointPlacement: 'on', // properly align tickmarks
       colsize: json.delta_x,
       rowsize: json.delta_y,
-      data: data,
+      data: convertedData,
       boostThreshold: 0
     }
 

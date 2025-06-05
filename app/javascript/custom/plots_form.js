@@ -130,7 +130,7 @@ var sync_stop_time = function() {
   var duration_seconds = document.getElementById("duration_seconds");
 
   var stop = new Date(start_date.value + " " + start_time.value + "Z");
-  stop.setDate(stop.getDate() + parseInt(duration_days.value));
+  stop.setDate(stop.getDate() + parseInt(duration_days.value || 0));
   stop.setHours(stop.getHours() + parseInt(duration_hours.value));
   stop.setMinutes(stop.getMinutes() + parseInt(duration_minutes.value));
   stop.setSeconds(stop.getSeconds() + parseInt(duration_seconds.value));

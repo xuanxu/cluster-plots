@@ -402,7 +402,8 @@ function setHighchartsGlobalSettings(){
       align: 'right',
       verticalAlign: 'middle',
       x: -5,
-      y: 10
+      y: 10,
+      navigation: { enabled: false } // disable legend navigation
     },
     labels: {
       align: 'right',

@@ -448,6 +448,7 @@ function plot_heatmap(plot_data, nplot){
   const default_line_thickness = 2;
 
   plot = new Highcharts.Chart({
+    title: { text: "" },
     chart: {
       renderTo: 'highcharts_plot_' + nplot,
       type: 'heatmap',
@@ -477,6 +478,61 @@ function plot_heatmap(plot_data, nplot){
           }
       }
     },
+    xAxis: [
+        {
+          type: 'datetime',
+          title: {
+            enable: false,
+          },
+          //labels: { enabled: false },
+          labels: {
+            enabled: true,
+            style: {
+              fontSize: '12px',
+            },
+            formatter: function () {
+              return Highcharts.dateFormat('%H:%M:%S', this.value);
+            }
+          },
+          min: 1577836940000,
+          max: 1577838516000,
+          startOnTick: false,
+          endOnTick: false,
+          minPadding: 0,
+          maxPadding: 0,
+          lineWidth: 2,
+          tickLength: 5,
+          tickWidth: 2,
+          minorTickLength: 2,
+          minorTickWidth: 1,
+          minorTickInterval: 'auto',
+          gridLineWidth: 1,
+          gridLineColor: '#ADD8E6',
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        },
+        {
+          type: 'datetime',
+          opposite: true,
+          linkedTo: 0,
+          title: { enabled: false },
+          labels: { enabled: false },
+          startOnTick: false,
+          endOnTick: false,
+          minPadding: 0,
+          maxPadding: 0,
+          lineWidth: axisLineWidth,
+          tickLength: 5,
+          tickWidth: 2,
+          minorTickLength: 2,
+          minorTickWidth: 1,
+          gridLineWidth: 0,
+          lineColor: '#CBD6EA',
+          tickColor: '#CBD6EA',
+          minorTickColor: '#CBD6EA'
+        }
+      ],
     yAxis: [{
       top: subTop + '%',
       height: sub_height,
@@ -528,10 +584,13 @@ function plot_heatmap(plot_data, nplot){
       tickWidth: axisTickWidth,
       minorTicks: true,
       minorTickLength: 5,
-      minorTickWidth: 1
+      minorTickWidth: 1,
       //minorTickInterval: 0.1,
       //gridLineWidth: majorGridDisplay,
       //minorGridLineWidth: minorGridDisplay
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
     }],
     legend: { // placement of the color bar
       align: 'right',
@@ -589,52 +648,52 @@ function plot_heatmap(plot_data, nplot){
 
   var num_lines = json.plot.length;
   for (var l = 0; l < num_lines; l++) {
-  //store data
-  //----------
-  var data = [];
+    //store data
+    //----------
+    var data = [];
 
-  var convertedData = json.plot[l].data.map(point => {
-    if (Array.isArray(point)) {
-      return [
-        // Convert timestamp to number if it's a string
-        typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
-        // Convert value to number if it's a string
-        typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
-      ];
-    }
-    return point;
-  });
-
-  if (json.plot[l].type == 'line') {
-    var line_thickness = default_line_thickness;
-
-    var line = {
-      type: 'line',
-      name: json.plot[l].name,
-      color: json.plot[l].color,
-      lineWidth: line_thickness,
-      data: convertedData,
-      marker: {
-          symbol: 'circle',
-          radius: json.plot[l].thick/2.
+    var convertedData = json.plot[l].data.map(point => {
+      if (Array.isArray(point)) {
+        return [
+          // Convert timestamp to number if it's a string
+          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+          // Convert value to number if it's a string
+          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+        ];
       }
-    }
-    plot.addSeries(line, false);
+      return point;
+    });
 
-  } else {
-    var heatmap = {
-      type: 'heatmap',
-      pointPlacement: 'on', // properly align tickmarks
-      colsize: json.delta_x,
-      rowsize: json.delta_y,
-      data: convertedData,
-      boostThreshold: 0
-    }
+    if (json.plot[l].type == 'line') {
+      var line_thickness = default_line_thickness;
 
-    plot.addSeries(heatmap, false);
+      var line = {
+        type: 'line',
+        name: json.plot[l].name,
+        color: json.plot[l].color,
+        lineWidth: line_thickness,
+        data: convertedData,
+        marker: {
+            symbol: 'circle',
+            radius: json.plot[l].thick/2.
+        }
+      }
+      plot.addSeries(line, false);
+
+    } else {
+      var heatmap = {
+        type: 'heatmap',
+        pointPlacement: 'on', // properly align tickmarks
+        colsize: json.delta_x,
+        rowsize: json.delta_y,
+        data: convertedData,
+        boostThreshold: 0
+      }
+
+      plot.addSeries(heatmap, false);
+    }
   }
 
-  }
 
   // store auto-scaling range
   window["rangeCAA"+nplot] = json.zrange;
@@ -656,6 +715,9 @@ function plot_heatmap(plot_data, nplot){
   plot.yAxis[1].update({ gridLineWidth: majorGridDisplay,
                                       minorGridLineWidth:minorGridDisplay });
 
+  plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
+  plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
+  plot.redraw();
   return plot;
 } //heatmap
 

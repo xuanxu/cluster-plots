@@ -422,6 +422,70 @@ function setHighchartsGlobalSettings(){
     },
     series: []
   });
+
+  // Plot heatmaps in canvas instead of SVG
+  // to improve performance with large datasets
+  (function (H) {
+    var Series = H.Series,
+        each = H.each;
+
+    /**
+     * Create a hidden canvas to draw the graph on. The contents is later copied over
+     * to an SVG image element.
+     */
+    Series.prototype.getContext = function () {
+      if (!this.canvas) {
+        this.canvas = document.createElement('canvas');
+        this.canvas.setAttribute('width', this.chart.chartWidth);
+        this.canvas.setAttribute('height', this.chart.chartHeight);
+        this.image = this.chart.renderer.image('', 0, 0, this.chart.chartWidth, this.chart.chartHeight).add(this.group);
+        this.ctx = this.canvas.getContext('2d');
+      }
+      return this.ctx;
+    };
+
+    /**
+     * Draw the canvas image inside an SVG image
+     */
+    Series.prototype.canvasToSVG = function () {
+      this.image.attr({ href: this.canvas.toDataURL('image/png') });
+    };
+
+    /**
+     * Wrap the drawPoints method to draw the points in canvas instead of the slower SVG,
+     * that requires one shape each point.
+     */
+    H.wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function () {
+      var ctx = this.getContext();
+      if (ctx) {
+        // draw the columns
+        this.points.forEach(function (point) {
+          var plotY = point.plotY,
+            shapeArgs,
+            pointAttr;
+
+          if (plotY !== undefined && !isNaN(plotY) && point.y !== null) {
+            shapeArgs = point.shapeArgs;
+            pointAttr = (point.pointAttr && point.pointAttr['']) || point.series.pointAttribs(point);
+            ctx.fillStyle = pointAttr.fill;
+            ctx.fillRect(shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height);
+          }
+        });
+        this.canvasToSVG();
+      } else {
+        this.chart.showLoading('Your browser doesn\'t support HTML5 canvas, <br>please use a modern browser');
+      }
+    });
+    H.seriesTypes.heatmap.prototype.directTouch = false; // Use k-d-tree
+  }(Highcharts));
+
+
+  Highcharts.Legend.prototype.update = function (options) {
+    this.options = Highcharts.merge(this.options, options);
+    this.chart.isDirtyLegend = true;
+    this.chart.isDirtyBox = true;
+    this.chart.redraw();
+  };
 }
 
 function plot_heatmap(plot_data, nplot){
@@ -455,8 +519,8 @@ function plot_heatmap(plot_data, nplot){
       zoomType: 'x',
       events:{
       // Add the plot label (eg: C1 EFW)
-      load: function () {
-        var label = this.renderer.label(plot_data.label)
+        load: function () {
+          var label = this.renderer.label(plot_data.label)
           .css({
             width: '80px',
             color: '#222',
@@ -469,13 +533,13 @@ function plot_heatmap(plot_data, nplot){
             'padding': 10
           })
           .add();
-            label.align(Highcharts.extend(label.getBBox(), {
-              align: 'right',
-              verticalAlign: 'top',
-              y: -5,
-              x: -7
-            }), null, 'spacingBox');
-          }
+          label.align(Highcharts.extend(label.getBBox(), {
+            align: 'right',
+            verticalAlign: 'top',
+            y: -5,
+            x: -7
+          }), null, 'spacingBox');
+        }
       }
     },
     xAxis: [
@@ -494,8 +558,6 @@ function plot_heatmap(plot_data, nplot){
               return Highcharts.dateFormat('%H:%M:%S', this.value);
             }
           },
-          min: 1577836940000,
-          max: 1577838516000,
           startOnTick: false,
           endOnTick: false,
           minPadding: 0,
@@ -568,7 +630,7 @@ function plot_heatmap(plot_data, nplot){
       title: {
         enabled: true,
         offset: 60,
-      style :{ fontSize: font_size },
+        style :{ fontSize: font_size },
         text: json.ytitle
       },
       labels: {
@@ -585,9 +647,8 @@ function plot_heatmap(plot_data, nplot){
       minorTicks: true,
       minorTickLength: 5,
       minorTickWidth: 1,
-      //minorTickInterval: 0.1,
-      //gridLineWidth: majorGridDisplay,
-      //minorGridLineWidth: minorGridDisplay
+      gridLineWidth: majorGridDisplay,
+      minorGridLineWidth: minorGridDisplay,
       lineColor: '#CBD6EA',
       tickColor: '#CBD6EA',
       minorTickColor: '#CBD6EA'
@@ -613,7 +674,7 @@ function plot_heatmap(plot_data, nplot){
         [0.875, '#ff0000'],
         [1, '#7F0000']		// higher than max range
       ],
-      type: window["zType"+nplot],
+      type: json.ztype,
       min: zrange[0],
       max: zrange[1],
       reversed: false,
@@ -648,8 +709,6 @@ function plot_heatmap(plot_data, nplot){
 
   var num_lines = json.plot.length;
   for (var l = 0; l < num_lines; l++) {
-    //store data
-    //----------
     var data = [];
 
     var convertedData = json.plot[l].data.map(point => {
@@ -657,8 +716,9 @@ function plot_heatmap(plot_data, nplot){
         return [
           // Convert timestamp to number if it's a string
           typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
-          // Convert value to number if it's a string
-          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+          // Convert values to numbers if they are a string
+          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1],
+          typeof point[2] === 'string' ? parseFloat(point[2]) : point[2],
         ];
       }
       return point;
@@ -699,21 +759,10 @@ function plot_heatmap(plot_data, nplot){
   window["rangeCAA"+nplot] = json.zrange;
   window["yRangeCAA"+nplot] = json.yrange;
 
-  //$('#rangeCAA'+nplot).prop("checked", true);
-
-  // Fill in option div
-  // $('#min_range'+nplot).val((zrange[0]).toExponential(1));
-  // $('#max_range'+nplot).val((zrange[1]).toExponential(1));
-
-  // $('#min_yrange'+nplot).val(yrange[0]);
-  // $('#max_yrange'+nplot).val(yrange[1]);
-
   // somehow putting the grid display values directly
   // in the axis definition seems to shift the first/last value of the heatmap ?!?
-  plot.yAxis[0].update({ gridLineWidth: majorGridDisplay,
-                                    minorGridLineWidth:minorGridDisplay });
-  plot.yAxis[1].update({ gridLineWidth: majorGridDisplay,
-                                      minorGridLineWidth:minorGridDisplay });
+  plot.yAxis[0].update({ gridLineWidth: majorGridDisplay,  minorGridLineWidth:minorGridDisplay });
+  plot.yAxis[1].update({ gridLineWidth: majorGridDisplay, minorGridLineWidth:minorGridDisplay });
 
   plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
   plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);

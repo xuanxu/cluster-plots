@@ -1,21 +1,28 @@
 <turbo-frame id="plots">
   <%= render "plots/loading_plot_data" %>
 
-  <div class="font-bold space-x-4 mt-6 text-red-900">
-  <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
+   <div class="font-bold space-x-4 mt-6 text-red-900">
+    <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
   </div>
-  <div id="plots_data" class="container mx-auto mt-3 px-4 py-2 max-w-7xl bg-white shadow-md">
-    <p>Start date: <%= @start_date %></p>
-    <p>Start time: <%= @start_time %></p>
-    <p>Stop date: <%= @stop_date %></p>
-    <p>Stop time: <%= @stop_time %></p>
 
-    <ol>
-      <% @p.each do |panel| %>
-        <li><%= panel %></li>
+  <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1400] bg-white shadow-md">
+    <div id="title-chart" style="height: 50px"></div>
+    <% if @plot_info.is_a? String %>
+      <div class="text-red-500 text-center mt-4">
+        <i class='fa-duotone fa-solid fa-exclamation-triangle'></i>
+        <%= @plot_info %>
+      </div>
+    <% else %>
+      <% @plot_info["panels_arr"].size.times do |i| %>
+        <div id="highcharts_plot_<%= i %>"></div>
       <% end %>
-    </ol>
-
-    <p><%= @plot_info %></p>
+    <% end %>
+    <div id="axis-chart" xstyle="height: 50px"></div>
   </div>
+
+  <script>
+    var chart_json_data = '<%= @plot_info.to_json.html_safe %>';
+    var chart_start_datetime = '<%= @start_date + "T" + @start_time %>';
+    var chart_stop_datetime = '<%= @stop_date + "T" + @stop_time %>';
+  </script>
 </turbo-frame>

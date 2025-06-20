@@ -716,12 +716,12 @@ def resh_nrj(sProc,lParam,arrData):
         num_data = np.count_nonzero(idx_data)
         if num_data > 0:
             if ytype == 'logarithmic':
-                nrj_band_min = np.log10(np.array(sNRJ['arrData'] - np.asfarray(sNRJ['arrDeltaM'],float)))
-                nrj_band_max = np.log10(np.array(sNRJ['arrData'] + np.asfarray(sNRJ['arrDeltaP'],float)))
+                nrj_band_min = np.log10(np.array(sNRJ['arrData'] - np.asarray(sNRJ['arrDeltaM'],dtype=float)))
+                nrj_band_max = np.log10(np.array(sNRJ['arrData'] + np.asarray(sNRJ['arrDeltaP'],dtype=float)))
                 #sNRJ['arrData'] = np.log10(sNRJ['arrData'])
             else:
-                nrj_band_min = np.array(sNRJ['arrData'] - np.asfarray(sNRJ['arrDeltaM'],float))
-                nrj_band_max = np.array(sNRJ['arrData'] + np.asfarray(sNRJ['arrDeltaP'],float))
+                nrj_band_min = np.array(sNRJ['arrData'] - np.asarray(sNRJ['arrDeltaM'],dtype=float))
+                nrj_band_max = np.array(sNRJ['arrData'] + np.asarray(sNRJ['arrDeltaP'],dtype=float))
 
             # can't use the logical_and with NaNs (throw a warning and app.py get stuck (?))
             idx_nan_min = np.isnan(nrj_band_min)

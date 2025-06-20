@@ -317,12 +317,58 @@ function plot_heatmap(plot_data, nplot){
   const font_size = '11px';
   const default_line_thickness = 2;
 
+  var series = [];
+  var num_lines = json.plot.length;
+  for (var l = 0; l < num_lines; l++) {
+    var data = [];
+
+    var convertedData = json.plot[l].data.map(point => {
+      if (Array.isArray(point)) {
+        return [
+          // Convert timestamp to number if it's a string
+          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+          // Convert values to numbers if they are a string
+          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1],
+          typeof point[2] === 'string' ? parseFloat(point[2]) : point[2],
+        ];
+      }
+      return point;
+    });
+
+    if (json.plot[l].type == 'line') {
+      var line_thickness = default_line_thickness;
+
+      var line = {
+        type: 'line',
+        name: json.plot[l].name,
+        color: json.plot[l].color,
+        lineWidth: line_thickness,
+        data: convertedData,
+        marker: {
+            symbol: 'circle',
+            radius: json.plot[l].thick/2.
+        }
+      }
+      series.push(line);
+    } else {
+      var heatmap = {
+        type: 'heatmap',
+        pointPlacement: 'on', // properly align tickmarks
+        colsize: json.delta_x,
+        rowsize: json.delta_y,
+        data: convertedData,
+        boostThreshold: 0
+      }
+
+      series.push(heatmap);
+    }
+  }
+
   plot = new Highcharts.Chart({
     title: { text: "" },
     chart: {
       renderTo: 'highcharts_plot_' + nplot,
       type: 'heatmap',
-      zoomType: 'x',
       events:{
       // Add the plot label (eg: C1 EFW)
         load: function () {
@@ -506,59 +552,14 @@ function plot_heatmap(plot_data, nplot){
         }
       }
     }
-  }
+    },
+    // data
+    series: series,
   },
   function(plot) { //add this function to the chart definition to get synchronized crosshairs
     //syncronizeCrossHairs(plot);
   }
   );
-
-  var num_lines = json.plot.length;
-  for (var l = 0; l < num_lines; l++) {
-    var data = [];
-
-    var convertedData = json.plot[l].data.map(point => {
-      if (Array.isArray(point)) {
-        return [
-          // Convert timestamp to number if it's a string
-          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
-          // Convert values to numbers if they are a string
-          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1],
-          typeof point[2] === 'string' ? parseFloat(point[2]) : point[2],
-        ];
-      }
-      return point;
-    });
-
-    if (json.plot[l].type == 'line') {
-      var line_thickness = default_line_thickness;
-
-      var line = {
-        type: 'line',
-        name: json.plot[l].name,
-        color: json.plot[l].color,
-        lineWidth: line_thickness,
-        data: convertedData,
-        marker: {
-            symbol: 'circle',
-            radius: json.plot[l].thick/2.
-        }
-      }
-      plot.addSeries(line, false);
-
-    } else {
-      var heatmap = {
-        type: 'heatmap',
-        pointPlacement: 'on', // properly align tickmarks
-        colsize: json.delta_x,
-        rowsize: json.delta_y,
-        data: convertedData,
-        boostThreshold: 0
-      }
-
-      plot.addSeries(heatmap, false);
-    }
-  }
 
   // somehow putting the grid display values directly
   // in the axis definition seems to shift the first/last value of the heatmap ?!?
@@ -567,6 +568,7 @@ function plot_heatmap(plot_data, nplot){
 
   plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
   plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
+  plot.zoomOut();
   plot.redraw();
 
   return plot;

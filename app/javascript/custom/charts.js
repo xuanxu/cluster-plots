@@ -138,7 +138,6 @@ function plot_line(plot_data, nplot){
     chart: {
       type: 'line',
       renderTo: 'highcharts_plot_' + nplot,
-      zoomType: 'x',
       events:{
         selection: function (event) {
           return zoom(event,div);
@@ -662,8 +661,8 @@ function setHighchartsGlobalSettings(){
       margin: [10, 120, 10, 120],
       height: 250,
       // hide highcharts default 'reset zoom' button
-      resetZoomButton: {
-        theme: { display: 'none' }
+      zooming: {
+        type: 'x',
       },
     },
     title: {

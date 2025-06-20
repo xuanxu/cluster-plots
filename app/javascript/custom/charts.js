@@ -23,17 +23,43 @@ function show_plots(jsonData){
 }
 
 function create_plot(plot_data, nplot){
+  var plot = undefined;
+  var json = plot_data.subpanels[0];
+
+  if (json.type == 'line') {
+    plot = plot_line(plot_data, nplot);
+  } else {
+    plot = plot_heatmap(plot_data, nplot);
+  }
+
+  if (nplot == 0) {
+    var axis_start_datetime = plot.xAxis[0].getExtremes().min;
+    var axis_stop_datetime = plot.xAxis[0].getExtremes().max;
+    axisChart(axis_start_datetime, axis_stop_datetime)
+  }
+
+  return plot;
+}
+
+function plot_line(plot_data, nplot){
+  var plot = undefined;
   var json = plot_data.subpanels[0];
   var panel_type = plot_data.panel_type;
 
-  const default_line_thickness = 2;
-  const font_size = '11px';
+  var yrange = json.yrange_caa;
+
+  var subTop = 100 - json.size;
+  var sub_height = json.size + '%';
+
   var axisLineWidth = 2;
   var axisTickWidth = 2;
 
   var majorGridDisplay = 1;
   var minorGridDisplay = 1;
-  var sub_height = json.size + '%';
+
+  const default_line_thickness = 2;
+  const font_size = '11px';
+
   // custom ticks ?
   var flag_ticks = json.ytickflag;
   var tick_val = undefined;
@@ -47,446 +73,226 @@ function create_plot(plot_data, nplot){
     yoffset = 80;
     ywidth = 150;
   }
-  var subTop = 100 - json.size;
-  var yrange = json.yrange_caa;
 
-  var plot = undefined;
-
-  if (json.type == 'line') {
-    var num_lines = json.plot.length;
-    var series = [];
-    for (var l = 0; l < num_lines; l++) {
-      var line_thickness = default_line_thickness;
-      if  (panel_type == 'status') {
-        line_thickness =  json.plot[l].thick;
-      }
-
-      var display_legend = true;
-      if (json.plot[l].legend == 0) {
-        display_legend = false;
-      }
-      var name = json.plot[l].name;
-
-      var symbol = 'circle';
-      var radius = line_thickness/2.;
-      var line_width = line_thickness;
-      var enabled = undefined;
-      var marker_line_width = 0;
-      if (json.plot[l].type == 'scatter') {
-        symbol = 'cross';
-        radius = 3;
-        line_width = 0;
-        marker_line_width = 2;
-        enabled = true;
-      }
-
-      // Convert data points - ensure numbers not strings
-      const convertedData = json.plot[l].data.map(point => {
-        if (Array.isArray(point)) {
-          return [
-            // Convert timestamp to number if it's a string
-            typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
-            // Convert value to number if it's a string
-            typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
-          ];
-        }
-        return point;
-      });
-
-      var line = {
-        name: name,
-        type: json.plot[l].type,
-        showInLegend: display_legend,
-        color: json.plot[l].color,
-        lineWidth: line_width,
-        data: convertedData,
-        marker: {
-          enabled: enabled,
-          symbol:  symbol,
-          radius:  radius,
-          lineColor: null,
-          lineWidth: marker_line_width
-        }
-      }
-
-      series.push(line);
+  var num_lines = json.plot.length;
+  var series = [];
+  for (var l = 0; l < num_lines; l++) {
+    var line_thickness = default_line_thickness;
+    if  (panel_type == 'status') {
+      line_thickness =  json.plot[l].thick;
     }
 
-    plot = new Highcharts.Chart({
-      title: { text: "" },
-      chart: {
-        type: 'line',
-        renderTo: 'highcharts_plot_' + nplot,
-        zoomType: 'x',
-        events:{
-          selection: function (event) {
-            return zoom(event,div);
-          },
-          // Add the plot label (eg: C1 EFW)
-          load: function () {
-            var label = this.renderer.label(plot_data.label)
-            .css({
-              width: '80px',
-              color: '#222',
-              fontSize: '11px'
-            })
-            .attr({
-              'stroke': 'silver',
-              'stroke-width': 2,
-              'r': 5,
-              'padding': 10
-            })
-            .add();
-              label.align(Highcharts.extend(label.getBBox(), {
-                align: 'right',
-                verticalAlign: 'top',
-                y: -5,
-                x: -7
-              }), null, 'spacingBox');
-          }
-        }
-      },
-      xAxis: [
-        {
-          type: 'datetime',
-          title: {
-            enable: false,
-          },
-          labels: { enabled: false },
-          startOnTick: false,
-          endOnTick: false,
-          minPadding: 0,
-          maxPadding: 0,
-          lineWidth: 2,
-          tickLength: 5,
-          tickWidth: 2,
-          minorTickLength: 2,
-          minorTickWidth: 1,
-          minorTickInterval: 'auto',
-          gridLineWidth: 1,
-          gridLineColor: '#ADD8E6',
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
-        },
-        {
-          type: 'datetime',
-          opposite: true,
-          linkedTo: 0,
-          title: { enabled: false },
-          labels: { enabled: false },
-          startOnTick: false,
-          endOnTick: false,
-          minPadding: 0,
-          maxPadding: 0,
-          lineWidth: axisLineWidth,
-          tickLength: 5,
-          tickWidth: 2,
-          minorTickLength: 2,
-          minorTickWidth: 1,
-          gridLineWidth: 0,
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
-        }
-      ],
-      yAxis: [
-        {
-          title: {
-            enabled: true,
-            rotation: json.rotate,
-            offset: yoffset,
-            style :{
-              fontSize: font_size,
-              width: ywidth
-            },
-            text: json.ytitle
-          },
-          tickPositions: tick_val,
-          labels: {
-            style: { fontSize: font_size },
-            formatter: function () {
-              var label = this.axis.defaultLabelFormatter.call(this);
-              if (flag_ticks == 1) {
-                var tickvalues = json.ytickval;
-                var ticknames = json.yticktxt;
-                var idx = tickvalues.findIndex(tic => tic === this.value);
-                return ticknames[idx];
-              } else {
-                return label;
-              }
-            }
-          },
-          plotLines: [{
-            color: '#A9A9A9',
-            width: 2,
-            value: 0,
-            dashStyle: 'ShortDash'
-          }],
-          height: sub_height,
-          top: subTop + '%',
-          offset: 0,
-          min: yrange[0],
-          max: yrange[1],
-          startOnTick: false,
-          endOnTick: false,
-          lineWidth: axisLineWidth,
-          tickWidth: axisTickWidth,
-          type: json.ytype,
-          minorTicks: true,
-          minorTicksLength: 5,
-          minorTickWidth: 1,
-          gridLineWidth: majorGridDisplay,
-          minorGridLineWidth: minorGridDisplay,
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
-        },
-        { // axis on the opposite side to "close" the box
-          title: { enabled: false },
-          tickPositions: tick_val,
-          opposite: true,
-          linkedTo: 0,
-          labels: { enabled: false },
-          height: sub_height,
-          top: subTop + '%',
-          startOnTick: false,
-          endOnTick: false,
-          lineWidth: axisLineWidth,
-          tickWidth: axisTickWidth,
-          type: json.ytype,
-          minorTicks: true,
-          minorTicksLength: 5,
-          minorTickWidth: 1,
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
-        }
-      ],
-      // data
-      series: series,
+    var display_legend = true;
+    if (json.plot[l].legend == 0) {
+      display_legend = false;
+    }
+    var name = json.plot[l].name;
+
+    var symbol = 'circle';
+    var radius = line_thickness/2.;
+    var line_width = line_thickness;
+    var enabled = undefined;
+    var marker_line_width = 0;
+    if (json.plot[l].type == 'scatter') {
+      symbol = 'cross';
+      radius = 3;
+      line_width = 0;
+      marker_line_width = 2;
+      enabled = true;
+    }
+
+    // Convert data points - ensure numbers not strings
+    const convertedData = json.plot[l].data.map(point => {
+      if (Array.isArray(point)) {
+        return [
+          // Convert timestamp to number if it's a string
+          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+          // Convert value to number if it's a string
+          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+        ];
+      }
+      return point;
     });
 
-    plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
-    plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
+    var line = {
+      name: name,
+      type: json.plot[l].type,
+      showInLegend: display_legend,
+      color: json.plot[l].color,
+      lineWidth: line_width,
+      data: convertedData,
+      marker: {
+        enabled: enabled,
+        symbol:  symbol,
+        radius:  radius,
+        lineColor: null,
+        lineWidth: marker_line_width
+      }
+    }
 
-  } else {
-    plot = plot_heatmap(plot_data, nplot);
+    series.push(line);
   }
 
+  plot = new Highcharts.Chart({
+    title: { text: "" },
+    chart: {
+      type: 'line',
+      renderTo: 'highcharts_plot_' + nplot,
+      zoomType: 'x',
+      events:{
+        selection: function (event) {
+          return zoom(event,div);
+        },
+        // Add the plot label (eg: C1 EFW)
+        load: function () {
+          var label = this.renderer.label(plot_data.label)
+          .css({
+            width: '80px',
+            color: '#222',
+            fontSize: '11px'
+          })
+          .attr({
+            'stroke': 'silver',
+            'stroke-width': 2,
+            'r': 5,
+            'padding': 10
+          })
+          .add();
+            label.align(Highcharts.extend(label.getBBox(), {
+              align: 'right',
+              verticalAlign: 'top',
+              y: -5,
+              x: -7
+            }), null, 'spacingBox');
+        }
+      }
+    },
+    xAxis: [
+      {
+        type: 'datetime',
+        title: {
+          enable: false,
+        },
+        labels: { enabled: false },
+        startOnTick: false,
+        endOnTick: false,
+        minPadding: 0,
+        maxPadding: 0,
+        lineWidth: 2,
+        tickLength: 5,
+        tickWidth: 2,
+        minorTickLength: 2,
+        minorTickWidth: 1,
+        minorTickInterval: 'auto',
+        gridLineWidth: 1,
+        gridLineColor: '#ADD8E6',
+        lineColor: '#CBD6EA',
+        tickColor: '#CBD6EA',
+        minorTickColor: '#CBD6EA'
+      },
+      {
+        type: 'datetime',
+        opposite: true,
+        linkedTo: 0,
+        title: { enabled: false },
+        labels: { enabled: false },
+        startOnTick: false,
+        endOnTick: false,
+        minPadding: 0,
+        maxPadding: 0,
+        lineWidth: axisLineWidth,
+        tickLength: 5,
+        tickWidth: 2,
+        minorTickLength: 2,
+        minorTickWidth: 1,
+        gridLineWidth: 0,
+        lineColor: '#CBD6EA',
+        tickColor: '#CBD6EA',
+        minorTickColor: '#CBD6EA'
+      }
+    ],
+    yAxis: [
+      {
+        title: {
+          enabled: true,
+          rotation: json.rotate,
+          offset: yoffset,
+          style :{
+            fontSize: font_size,
+            width: ywidth
+          },
+          text: json.ytitle
+        },
+        tickPositions: tick_val,
+        labels: {
+          style: { fontSize: font_size },
+          formatter: function () {
+            var label = this.axis.defaultLabelFormatter.call(this);
+            if (flag_ticks == 1) {
+              var tickvalues = json.ytickval;
+              var ticknames = json.yticktxt;
+              var idx = tickvalues.findIndex(tic => tic === this.value);
+              return ticknames[idx];
+            } else {
+              return label;
+            }
+          }
+        },
+        plotLines: [{
+          color: '#A9A9A9',
+          width: 2,
+          value: 0,
+          dashStyle: 'ShortDash'
+        }],
+        height: sub_height,
+        top: subTop + '%',
+        offset: 0,
+        min: yrange[0],
+        max: yrange[1],
+        startOnTick: false,
+        endOnTick: false,
+        lineWidth: axisLineWidth,
+        tickWidth: axisTickWidth,
+        type: json.ytype,
+        minorTicks: true,
+        minorTicksLength: 5,
+        minorTickWidth: 1,
+        gridLineWidth: majorGridDisplay,
+        minorGridLineWidth: minorGridDisplay,
+        lineColor: '#CBD6EA',
+        tickColor: '#CBD6EA',
+        minorTickColor: '#CBD6EA'
+      },
+      { // axis on the opposite side to "close" the box
+        title: { enabled: false },
+        tickPositions: tick_val,
+        opposite: true,
+        linkedTo: 0,
+        labels: { enabled: false },
+        height: sub_height,
+        top: subTop + '%',
+        startOnTick: false,
+        endOnTick: false,
+        lineWidth: axisLineWidth,
+        tickWidth: axisTickWidth,
+        type: json.ytype,
+        minorTicks: true,
+        minorTicksLength: 5,
+        minorTickWidth: 1,
+        lineColor: '#CBD6EA',
+        tickColor: '#CBD6EA',
+        minorTickColor: '#CBD6EA'
+      }
+    ],
+    // data
+    series: series,
+  });
 
-  if (nplot == 0) {
-    var axis_start_datetime = plot.xAxis[0].getExtremes().min;
-    var axis_stop_datetime = plot.xAxis[0].getExtremes().max;
-    axisChart(axis_start_datetime, axis_stop_datetime)
-  }
+  plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
+  plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
 
   return plot;
-}
-
-function titleChart(titleText) {
-  title_chart = new Highcharts.Chart({
-    chart: {
-      renderTo: "title-chart"
-    },
-    exporting: {
-      sourceWidth: 1000,
-      sourceHeight: 50
-    },
-    title:{
-      text: titleText,
-      enabled: true,
-      y: 20,
-      style: {
-        fontWeight: 'bold'
-      }
-    }
-  });
-  window["title_chart"] = title_chart;
-}
-
-function axisChart(start, stop) {
-  axis_chart = new Highcharts.Chart({
-    title: { enabled: false, text: "" },
-    chart: {
-      renderTo: 'axis-chart',
-      height: 50,
-      marginBottom: 40,
-      marginTop: 0,
-    },
-    exporting: {
-      sourceWidth: 1000,
-      sourceHeight: 40
-    },
-    yAxis: [{
-      showEmpty: true,
-      title: { enabled: false }
-    }],
-    xAxis: [{
-      type: 'datetime',
-      min: start,
-      max: stop,
-      showEmpty: true,
-      gridLineWidth: 0,
-      minorGridLineWidth: 0,
-      labels: {
-        enabled: true,
-        style: {
-          fontSize: '12px',
-        },
-        formatter: function () {
-          return Highcharts.dateFormat('%H:%M:%S', this.value);
-        }
-      },
-      lineWidth: 2,
-      tickWidth: 2,
-      tickLength: 5,
-      minorTickLength: 2,
-      minorTickWidth: 2,
-      minorTickInterval: 'auto',
-      lineColor: '#CBD6EA',
-      tickColor: '#CBD6EA',
-      minorTickColor: '#CBD6EA'
-    }]
-  });
-
-  window["axis_chart"] = axis_chart;
-  var line = {
-    color: 'black',
-    data: [],
-    showInLegend: false
-  }
-  axis_chart.addSeries(line, false);
-  axis_chart.redraw();
-}
-
-function setHighchartsGlobalSettings(){
-  Highcharts.setOptions({
-    global: {
-      time: { useUTC: true }
-    },
-    chart: {
-      backgroundColor:'white',
-      borderColor: '#003399',
-      borderWidth: 0,
-      margin: [10, 120, 10, 120],
-      height: 250,
-      // hide highcharts default 'reset zoom' button
-      resetZoomButton: {
-        theme: { display: 'none' }
-      },
-    },
-    title: {
-      enabled: false,
-      text: ''
-    },
-    exporting: {
-      allowHTML: true,
-      sourceWidth: 1000,
-      sourceHeight: 300,
-      fallbackToExportServer: false, // Ensure the export happens on the client side or not at all
-      buttons: {
-        contextButton: {
-          enabled: false // hide default highcharts download button
-        }
-      }
-    },
-    credits: {
-      enabled: false
-    },
-    legend: {
-      layout: 'vertical',
-      reversed: true,
-      borderWidth: 0,
-      floating: true,
-      align: 'right',
-      verticalAlign: 'middle',
-      x: -5,
-      y: 10,
-      navigation: { enabled: false } // disable legend navigation
-    },
-    labels: {
-      align: 'right',
-      x: -10,
-      y: 0
-    },
-    tooltip: { enabled: false },
-    plotOptions: {
-      enableMouseTracking: false,
-      series: {
-        states: {
-          inactive: { opacity: 1 }, // to cancel serie highlight on mouse hover need to set opacity to 1
-          hover: { enabled: false  },//disable any styling of a currently hovered line series => don't want the markers to be highlighted when hovering on the line
-         }
-      },
-    },
-    series: []
-  });
-
-  // Plot heatmaps in canvas instead of SVG
-  // to improve performance with large datasets
-  (function (H) {
-    var Series = H.Series,
-        each = H.each;
-
-    /**
-     * Create a hidden canvas to draw the graph on. The contents is later copied over
-     * to an SVG image element.
-     */
-    Series.prototype.getContext = function () {
-      if (!this.canvas) {
-        this.canvas = document.createElement('canvas');
-        this.canvas.setAttribute('width', this.chart.chartWidth);
-        this.canvas.setAttribute('height', this.chart.chartHeight);
-        this.image = this.chart.renderer.image('', 0, 0, this.chart.chartWidth, this.chart.chartHeight).add(this.group);
-        this.ctx = this.canvas.getContext('2d');
-      }
-      return this.ctx;
-    };
-
-    /**
-     * Draw the canvas image inside an SVG image
-     */
-    Series.prototype.canvasToSVG = function () {
-      this.image.attr({ href: this.canvas.toDataURL('image/png') });
-    };
-
-    /**
-     * Wrap the drawPoints method to draw the points in canvas instead of the slower SVG,
-     * that requires one shape each point.
-     */
-    H.wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function () {
-      var ctx = this.getContext();
-      if (ctx) {
-        // draw the columns
-        this.points.forEach(function (point) {
-          var plotY = point.plotY,
-            shapeArgs,
-            pointAttr;
-
-          if (plotY !== undefined && !isNaN(plotY) && point.y !== null) {
-            shapeArgs = point.shapeArgs;
-            pointAttr = (point.pointAttr && point.pointAttr['']) || point.series.pointAttribs(point);
-            ctx.fillStyle = pointAttr.fill;
-            ctx.fillRect(shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height);
-          }
-        });
-        this.canvasToSVG();
-      } else {
-        this.chart.showLoading('Your browser doesn\'t support HTML5 canvas, <br>please use a modern browser');
-      }
-    });
-    H.seriesTypes.heatmap.prototype.directTouch = false; // Use k-d-tree
-  }(Highcharts));
-
-
-  Highcharts.Legend.prototype.update = function (options) {
-    this.options = Highcharts.merge(this.options, options);
-    this.chart.isDirtyLegend = true;
-    this.chart.isDirtyBox = true;
-    this.chart.redraw();
-  };
-}
+} // plot_line
 
 function plot_heatmap(plot_data, nplot){
   var plot = undefined;
@@ -754,11 +560,6 @@ function plot_heatmap(plot_data, nplot){
     }
   }
 
-
-  // store auto-scaling range
-  window["rangeCAA"+nplot] = json.zrange;
-  window["yRangeCAA"+nplot] = json.yrange;
-
   // somehow putting the grid display values directly
   // in the axis definition seems to shift the first/last value of the heatmap ?!?
   plot.yAxis[0].update({ gridLineWidth: majorGridDisplay,  minorGridLineWidth:minorGridDisplay });
@@ -767,6 +568,213 @@ function plot_heatmap(plot_data, nplot){
   plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
   plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
   plot.redraw();
+
   return plot;
-} //heatmap
+} // plot_heatmap
+
+function titleChart(titleText) {
+  title_chart = new Highcharts.Chart({
+    chart: {
+      renderTo: "title-chart"
+    },
+    exporting: {
+      sourceWidth: 1000,
+      sourceHeight: 50
+    },
+    title:{
+      text: titleText,
+      enabled: true,
+      y: 20,
+      style: {
+        fontWeight: 'bold'
+      }
+    }
+  });
+  window["title_chart"] = title_chart;
+}
+
+function axisChart(start, stop) {
+  axis_chart = new Highcharts.Chart({
+    title: { enabled: false, text: "" },
+    chart: {
+      renderTo: 'axis-chart',
+      height: 50,
+      marginBottom: 40,
+      marginTop: 0,
+    },
+    exporting: {
+      sourceWidth: 1000,
+      sourceHeight: 40
+    },
+    yAxis: [{
+      showEmpty: true,
+      title: { enabled: false }
+    }],
+    xAxis: [{
+      type: 'datetime',
+      min: start,
+      max: stop,
+      showEmpty: true,
+      gridLineWidth: 0,
+      minorGridLineWidth: 0,
+      labels: {
+        enabled: true,
+        style: {
+          fontSize: '12px',
+        },
+        formatter: function () {
+          return Highcharts.dateFormat('%H:%M:%S', this.value);
+        }
+      },
+      lineWidth: 2,
+      tickWidth: 2,
+      tickLength: 5,
+      minorTickLength: 2,
+      minorTickWidth: 2,
+      minorTickInterval: 'auto',
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
+    }]
+  });
+
+  window["axis_chart"] = axis_chart;
+  var line = {
+    color: 'black',
+    data: [],
+    showInLegend: false
+  }
+  axis_chart.addSeries(line, false);
+  axis_chart.redraw();
+}
+
+function setHighchartsGlobalSettings(){
+  Highcharts.setOptions({
+    global: {
+      time: { useUTC: true }
+    },
+    chart: {
+      backgroundColor:'white',
+      borderColor: '#003399',
+      borderWidth: 0,
+      margin: [10, 120, 10, 120],
+      height: 250,
+      // hide highcharts default 'reset zoom' button
+      resetZoomButton: {
+        theme: { display: 'none' }
+      },
+    },
+    title: {
+      enabled: false,
+      text: ''
+    },
+    exporting: {
+      allowHTML: true,
+      sourceWidth: 1000,
+      sourceHeight: 300,
+      fallbackToExportServer: false, // Ensure the export happens on the client side or not at all
+      buttons: {
+        contextButton: {
+          enabled: false // hide default highcharts download button
+        }
+      }
+    },
+    credits: {
+      enabled: false
+    },
+    legend: {
+      layout: 'vertical',
+      reversed: true,
+      borderWidth: 0,
+      floating: true,
+      align: 'right',
+      verticalAlign: 'middle',
+      x: -5,
+      y: 10,
+      navigation: { enabled: false } // disable legend navigation
+    },
+    labels: {
+      align: 'right',
+      x: -10,
+      y: 0
+    },
+    tooltip: { enabled: false },
+    plotOptions: {
+      enableMouseTracking: false,
+      series: {
+        states: {
+          inactive: { opacity: 1 }, // to cancel serie highlight on mouse hover need to set opacity to 1
+          hover: { enabled: false  },//disable any styling of a currently hovered line series => don't want the markers to be highlighted when hovering on the line
+         }
+      },
+    },
+    series: []
+  });
+
+  // Plot heatmaps in canvas instead of SVG
+  // to improve performance with large datasets
+  (function (H) {
+    var Series = H.Series,
+        each = H.each;
+
+    /**
+     * Create a hidden canvas to draw the graph on. The contents is later copied over
+     * to an SVG image element.
+     */
+    Series.prototype.getContext = function () {
+      if (!this.canvas) {
+        this.canvas = document.createElement('canvas');
+        this.canvas.setAttribute('width', this.chart.chartWidth);
+        this.canvas.setAttribute('height', this.chart.chartHeight);
+        this.image = this.chart.renderer.image('', 0, 0, this.chart.chartWidth, this.chart.chartHeight).add(this.group);
+        this.ctx = this.canvas.getContext('2d');
+      }
+      return this.ctx;
+    };
+
+    /**
+     * Draw the canvas image inside an SVG image
+     */
+    Series.prototype.canvasToSVG = function () {
+      this.image.attr({ href: this.canvas.toDataURL('image/png') });
+    };
+
+    /**
+     * Wrap the drawPoints method to draw the points in canvas instead of the slower SVG,
+     * that requires one shape each point.
+     */
+    H.wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function () {
+      var ctx = this.getContext();
+      if (ctx) {
+        // draw the columns
+        this.points.forEach(function (point) {
+          var plotY = point.plotY,
+            shapeArgs,
+            pointAttr;
+
+          if (plotY !== undefined && !isNaN(plotY) && point.y !== null) {
+            shapeArgs = point.shapeArgs;
+            pointAttr = (point.pointAttr && point.pointAttr['']) || point.series.pointAttribs(point);
+            ctx.fillStyle = pointAttr.fill;
+            ctx.fillRect(shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height);
+          }
+        });
+        this.canvasToSVG();
+      } else {
+        this.chart.showLoading('Your browser doesn\'t support HTML5 canvas, <br>please use a modern browser');
+      }
+    });
+    H.seriesTypes.heatmap.prototype.directTouch = false; // Use k-d-tree
+  }(Highcharts));
+
+
+  Highcharts.Legend.prototype.update = function (options) {
+    this.options = Highcharts.merge(this.options, options);
+    this.chart.isDirtyLegend = true;
+    this.chart.isDirtyBox = true;
+    this.chart.redraw();
+  };
+}
+
+
 

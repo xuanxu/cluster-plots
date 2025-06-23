@@ -59,12 +59,10 @@ def get_data(list_arg):
         if int(flag_server) == 1:
                 cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
 
-        #if os.path.isfile(cef_file) == False:
-        if True:
-            if int(flag_csa) == 1:
-                download_data_csa(dataset,n_start,n_stop,file_dir)
-            else:
-                download_data_caa(dataset, n_start, n_stop, cef_file)
+        if int(flag_csa) == 1:
+            download_data_csa(dataset,n_start,n_stop,file_dir)
+        else:
+            download_data_caa(dataset, n_start, n_stop, cef_file)
     else:
         # extract just the wanted data
         cef_file = join(file_dir, dataset+"__"+strDate_orig+"_V00.cef.gz")
@@ -195,14 +193,6 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
 
     n_starto = (Time(starto) - TimeDelta(300.0, format='sec')).isot+'Z'
     n_stopo = (Time(stopo) + TimeDelta(300.0, format='sec')).isot+'Z'
-
-    #n_start = start
-    #n_stop = stop
-    #n_starto = starto
-    #n_stopo = stopo
-
-    #strDate = start[0:4]+start[5:7]+start[8:10]+"_"+start[11:13]+start[14:16]+start[17:19]+"_"+stop[0:4]+stop[5:7]+stop[8:10]+"_"+stop[11:13]+stop[14:16]+stop[17:19]
-    #strDate_orig = starto[0:4]+starto[5:7]+starto[8:10]+"_"+starto[11:13]+starto[14:16]+starto[17:19]+"_"+stopo[0:4]+stopo[5:7]+stopo[8:10]+"_"+stopo[11:13]+stopo[14:16]+stopo[17:19]
 
     strDate = n_start[0:4]+n_start[5:7]+n_start[8:10]+"_"+n_start[11:13]+n_start[14:16]+n_start[17:19]+"_"+n_stop[0:4]+n_stop[5:7]+n_stop[8:10]+"_"+n_stop[11:13]+n_stop[14:16]+n_stop[17:19]
     strDate_orig = n_starto[0:4]+n_starto[5:7]+n_starto[8:10]+"_"+n_starto[11:13]+n_starto[14:16]+n_starto[17:19]+"_"+n_stopo[0:4]+n_stopo[5:7]+n_stopo[8:10]+"_"+n_stopo[11:13]+n_stopo[14:16]+n_stopo[17:19]

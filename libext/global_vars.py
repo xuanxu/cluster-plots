@@ -1,4 +1,3 @@
-#import matplotlib.pyplot as plt
 import threading
 ceflib_lock = threading.Lock()
 

@@ -32,7 +32,7 @@ function create_plot(plot_data, nplot){
     plot = plot_heatmap(plot_data, nplot);
   }
 
-  if (nplot == 0) {
+  if (nplot == 0 && plot !== undefined) {
     var axis_start_datetime = plot.xAxis[0].getExtremes().min;
     var axis_stop_datetime = plot.xAxis[0].getExtremes().max;
     axisChart(axis_start_datetime, axis_stop_datetime)

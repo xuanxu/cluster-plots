@@ -30,6 +30,9 @@ function create_plot(plot_data, nplot){
     plot = plot_line(plot_data, nplot);
   } else if (plot_type == 'spectrogram') {
     plot = plot_heatmap(plot_data, nplot);
+  } else if (plot_type == 'status') {
+    plot = plot_line(plot_data, nplot);
+    add_subpanels(plot, plot_data, nplot);
   }
 
   if (nplot == 0 && plot !== undefined) {
@@ -571,6 +574,121 @@ function plot_heatmap(plot_data, nplot){
 
   return plot;
 } // plot_heatmap
+
+function add_subpanels(plot, plot_data, nplot) {
+  var subTop = 100 - plot_data.subpanels[0].size;
+  const font_size = '11px';
+
+  for (var subpanel_index = 1; subpanel_index < plot_data.subpanels.length; subpanel_index++) {
+    var subpanel_json = plot_data.subpanels[subpanel_index];
+
+    var sub_height = subpanel_json.size - 2 + '%';
+	  var num_lines = subpanel_json.plot.length;
+    subTop = subTop - subpanel_json.size;
+    var bck_color = '#FFFAFA';
+    if ( plot.yAxis.length % 4 == 0 ) { bck_color = 'white'; }
+    var flag_ticks = subpanel_json.ytickflag;
+    var tick_val = undefined;
+    if (flag_ticks == 1) { tick_val = subpanel_json.ytickval; }
+    var yoffset = 60;
+    var ywidth = undefined;
+    if (subpanel_json.rotate == 0) {
+      yoffset = 80;
+      ywidth = 150;
+    }
+
+    var axisLineWidth = 2;
+    var axisTickWidth = 2;
+
+    plot.addAxis({
+		  title: {
+        enabled: true,
+		    rotation: subpanel_json.rotate,
+        offset: yoffset,
+        style :{
+				  fontSize: font_size,
+				  width: ywidth
+		    },
+        text: subpanel_json.ytitle
+      },
+      tickPositions: tick_val,
+      labels: {
+        style :{ fontSize: font_size },
+        formatter: function () {
+          var label = this.axis.defaultLabelFormatter.call(this);
+          if (flag_ticks == 1) {
+            var tickvalues = subpanel_json.ytickval;
+            var ticknames = subpanel_json.yticktxt;
+            var idx = tickvalues.findIndex(tic => tic === this.value);
+            return ticknames[idx];
+          } else {
+            return label;
+          }
+        }
+      },
+      plotBands: [{
+        from: subpanel_json.yrange_caa[0],
+        to: subpanel_json.yrange_caa[1],
+        color: bck_color,
+        zIndex: 0
+      }],
+      height: sub_height,
+      top: subTop + '%',
+      offset: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      min: subpanel_json.yrange_caa[0],
+      max: subpanel_json.yrange_caa[1],
+      startOnTick: false,
+      endOnTick: false,
+      lineWidth: 2,
+      tickWidth: 2,
+      type: subpanel_json.ytype,
+      minorTicks: true,
+      minorTicksLength: 10,
+      minorTickWidth: 1,
+      gridLineWidth: 0,
+      minorGridLineWidth: 0,
+	  });
+
+    // axis on the opposite side to close the box
+    plot.addAxis({
+      linkedTo: plot.yAxis.length - 1,
+      opposite: true,
+      title: { enabled: false },
+      labels: { enabled: false },
+      plotLines: [{
+        value: subpanel_json.yrange_caa[0],
+        width: 1,
+        color: '#6D9EEB',
+        zIndex: 4
+      },{
+        value: subpanel_json.yrange_caa[1],
+        width: 1,
+        color: '#6D9EEB',
+        zIndex: 4
+      }],
+      height: sub_height,
+      top: subTop + '%',
+      offset: 0,
+      minPadding: 0,
+      maxPadding: 0,
+      min: subpanel_json.yrange_caa[0],
+      max: subpanel_json.yrange_caa[1],
+      startOnTick: false,
+      endOnTick: false,
+      lineWidth: axisLineWidth,
+      tickWidth: axisTickWidth,
+      type: subpanel_json.ytype,
+      minorTicks: true,
+      minorTicksLength: 10,
+      minorTickWidth: 1,
+      gridLineWidth: 0,
+      minorGridLineWidth: 0
+
+	});
+  }
+} // add_subpanels
 
 function titleChart(titleText) {
   title_chart = new Highcharts.Chart({

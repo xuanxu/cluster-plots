@@ -63,9 +63,7 @@ function plot_line(plot_data, nplot){
   // custom ticks ?
   var flag_ticks = json.ytickflag;
   var tick_val = undefined;
-  if (flag_ticks == 1) {
-    tick_val = json.ytickval;
-  }
+  if (flag_ticks == 1) { tick_val = json.ytickval; }
 
   var yoffset = 60;
   var ywidth = undefined;
@@ -567,6 +565,7 @@ function plot_heatmap(plot_data, nplot){
 
   plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
   plot.yAxis[1].setExtremes(yrange[0],yrange[1],true);
+
   plot.zoomOut();
   plot.redraw();
 

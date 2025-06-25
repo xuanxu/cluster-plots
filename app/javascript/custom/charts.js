@@ -24,11 +24,11 @@ function show_plots(jsonData){
 
 function create_plot(plot_data, nplot){
   var plot = undefined;
-  var json = plot_data.subpanels[0];
 
-  if (json.type == 'line') {
+  var plot_type = plot_data.panel_type;
+  if (plot_type == 'line') {
     plot = plot_line(plot_data, nplot);
-  } else {
+  } else if (plot_type == 'spectrogram') {
     plot = plot_heatmap(plot_data, nplot);
   }
 

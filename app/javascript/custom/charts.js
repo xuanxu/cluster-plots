@@ -685,8 +685,7 @@ function add_subpanels(plot, plot_data, nplot) {
       minorTickWidth: 1,
       gridLineWidth: 0,
       minorGridLineWidth: 0
-
-	});
+    });
   }
 } // add_subpanels
 

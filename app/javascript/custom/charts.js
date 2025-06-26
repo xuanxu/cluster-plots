@@ -647,8 +647,8 @@ function add_subpanels(plot, plot_data, nplot) {
       minorTicks: true,
       minorTicksLength: 10,
       minorTickWidth: 1,
-      gridLineWidth: 0,
-      minorGridLineWidth: 0,
+      gridLineWidth: 1,
+      minorGridLineWidth: 1,
 	  });
 
     // axis on the opposite side to close the box

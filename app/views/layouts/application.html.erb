@@ -15,11 +15,16 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   </head>
 
   <body class="antialiased text-slate-700 dark:text-slate-400 bg-zinc-100 dark:bg-slate-900">
     <%= render "shared/header" %>
-    <main class="container mx-auto mt-3 mb-10 py-4 max-w-7xl bg-zinc-50 shadow-md">
+    <main class="container mx-auto mt-3 mb-10 py-4 max-w-[1400] bg-zinc-50 shadow-md">
       <div class="w-full px-6 block">
         <%= yield %>
       </div>

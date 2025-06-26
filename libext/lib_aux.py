@@ -37,7 +37,7 @@ def fill_to_nan(data,fillval,data_type):
         if data_type.upper() == 'FLOAT':
             idx_fill = np.where(data == fillval)
         else:
-            idx_fill = np.where(np.asfarray(data,float) == fillval)
+            idx_fill = np.where(np.asarray(data,dtype=float) == fillval)
 
         num_fill = np.count_nonzero(idx_fill)
         if num_fill > 0:

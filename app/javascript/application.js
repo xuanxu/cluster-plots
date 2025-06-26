@@ -4,3 +4,6 @@ import "controllers"
 
 // Custom Cluster Plots files
 import "custom/plots_form"
+
+// Custom code to display charts
+import "custom/charts"

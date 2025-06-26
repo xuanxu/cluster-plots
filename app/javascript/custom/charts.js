@@ -698,7 +698,49 @@ function add_subpanels(plot, plot_data, nplot) {
       tickColor: '#CBD6EA',
       minorTickColor: '#CBD6EA'
     });
+
+    for (var l = 0; l < num_lines; l++) {
+      var display_legend = true;
+      var line_plot_info = subpanel_json.plot[l];
+      var line_name = line_plot_info.name
+      if (subpanel_json.plot[l].legend == 0) {
+        display_legend = false;
+      } else if (l == 0) {
+        line_name += '<br/> ... <br/>';
+      }
+
+      // Convert data points - ensure numbers not strings
+      const convertedData = line_plot_info.data.map(point => {
+        if (Array.isArray(point)) {
+          return [
+            // Convert timestamp to number if it's a string
+            typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+            // Convert value to number if it's a string
+            typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+          ];
+        }
+        return point;
+      });
+
+	    var line = {
+        name: line_name,
+        showInLegend: display_legend,
+        color: line_plot_info.color,
+        lineWidth: line_plot_info.thick,
+        data: convertedData,
+		    yAxis: new_axis_index,
+        marker: {
+          enabled: undefined,
+          symbol: 'circle',
+          radius: line_plot_info.thick / 2.,
+          lineWidth: 0,
+          lineColor: null,
+        }
+      }
+      plot.addSeries(line,false);
+    }
   }
+  plot.redraw();
 } // add_subpanels
 
 function titleChart(titleText) {

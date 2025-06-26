@@ -359,7 +359,6 @@ function plot_heatmap(plot_data, nplot){
         data: convertedData,
         boostThreshold: 0
       }
-
       series.push(heatmap);
     }
   }
@@ -654,6 +653,9 @@ function add_subpanels(plot, plot_data, nplot) {
       minorTickWidth: 1,
       gridLineWidth: 1,
       minorGridLineWidth: 1,
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
 	  });
 
     var new_axis_index = plot.yAxis.length - 1;
@@ -692,7 +694,10 @@ function add_subpanels(plot, plot_data, nplot) {
       minorTicksLength: 10,
       minorTickWidth: 1,
       gridLineWidth: 0,
-      minorGridLineWidth: 0
+      minorGridLineWidth: 0,
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
     });
   }
 } // add_subpanels

@@ -661,7 +661,6 @@ function add_subpanels(plot, plot_data, nplot) {
     var new_axis_index = plot.yAxis.length - 1;
     // axis on the opposite side to close the box
     plot.addAxis({
-      linkedTo: plot.yAxis.length - 1,
       id: 'subpanel_yAxis_opposite.' + subpanel_index,
       linkedTo: new_axis_index,
       opposite: true,

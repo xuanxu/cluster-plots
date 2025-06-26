@@ -578,6 +578,7 @@ function plot_heatmap(plot_data, nplot){
 function add_subpanels(plot, plot_data, nplot) {
   var subTop = 100 - plot_data.subpanels[0].size;
   const font_size = '11px';
+  var axis_labels = {};
 
   for (var subpanel_index = 1; subpanel_index < plot_data.subpanels.length; subpanel_index++) {
     var subpanel_json = plot_data.subpanels[subpanel_index];
@@ -587,9 +588,15 @@ function add_subpanels(plot, plot_data, nplot) {
     subTop = subTop - subpanel_json.size;
     var bck_color = '#FFFAFA';
     if ( plot.yAxis.length % 4 == 0 ) { bck_color = 'white'; }
+
+    var tick_values = undefined;
     var flag_ticks = subpanel_json.ytickflag;
-    var tick_val = undefined;
-    if (flag_ticks == 1) { tick_val = subpanel_json.ytickval; }
+    if (flag_ticks == 1) {
+      tick_values = subpanel_json.ytickval;
+      var left_yAxis_index = subpanel_index * 2
+      axis_labels[left_yAxis_index] = subpanel_json.yticktxt;
+    }
+
     var yoffset = 60;
     var ywidth = undefined;
     if (subpanel_json.rotate == 0) {
@@ -601,6 +608,7 @@ function add_subpanels(plot, plot_data, nplot) {
     var axisTickWidth = 2;
 
     plot.addAxis({
+      id: 'subpanel_yAxis.' + subpanel_index,
 		  title: {
         enabled: true,
 		    rotation: subpanel_json.rotate,
@@ -611,18 +619,15 @@ function add_subpanels(plot, plot_data, nplot) {
 		    },
         text: subpanel_json.ytitle
       },
-      tickPositions: tick_val,
+      tickPositions: tick_values,
       labels: {
         style :{ fontSize: font_size },
         formatter: function () {
-          var label = this.axis.defaultLabelFormatter.call(this);
           if (flag_ticks == 1) {
-            var tickvalues = subpanel_json.ytickval;
-            var ticknames = subpanel_json.yticktxt;
-            var idx = tickvalues.findIndex(tic => tic === this.value);
-            return ticknames[idx];
+            var idx = tick_values.findIndex(tic => tic === this.value);
+            return axis_labels[this.axis.index][idx];
           } else {
-            return label;
+            return this.axis.defaultLabelFormatter.call(this);
           }
         }
       },
@@ -651,9 +656,12 @@ function add_subpanels(plot, plot_data, nplot) {
       minorGridLineWidth: 1,
 	  });
 
+    var new_axis_index = plot.yAxis.length - 1;
     // axis on the opposite side to close the box
     plot.addAxis({
       linkedTo: plot.yAxis.length - 1,
+      id: 'subpanel_yAxis_opposite.' + subpanel_index,
+      linkedTo: new_axis_index,
       opposite: true,
       title: { enabled: false },
       labels: { enabled: false },
@@ -821,7 +829,7 @@ function setHighchartsGlobalSettings(){
       series: {
         states: {
           inactive: { opacity: 1 }, // to cancel serie highlight on mouse hover need to set opacity to 1
-          hover: { enabled: false  },//disable any styling of a currently hovered line series => don't want the markers to be highlighted when hovering on the line
+          hover: { enabled: false  }, // disable any styling of a currently hovered line series => don't want the markers to be highlighted when hovering on the line
          }
       },
     },

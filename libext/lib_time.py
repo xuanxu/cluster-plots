@@ -112,6 +112,7 @@ def calc_plottime(sJulTime,arrData,sProc,paramid,proc_type):
 
     # calculate time range in seconds and delta_t (plot resolution)
     period = math.ceil(glb.date_stop_milli - glb.date_start_milli)
+    num_data_max = (1 if num_data_max == 0 else num_data_max)
     delta_t = (period/num_data_max)
 
     # check what the plot resolution should be

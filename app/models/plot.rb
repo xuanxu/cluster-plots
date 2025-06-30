@@ -10,10 +10,18 @@ class Plot
   attribute :panels, :string
   attribute :json_file, :string
   attribute :mission, :string
+  attribute :data_error, :string
 
-  def ready?
-    true
+  def validate_data
+    if valid_params?
+      call_csa
+    else
+      Rails.logger.error "Data validation error: #{data_error}"
+      data_error
+    end
   end
+
+  private
 
   def call_csa
     return test_call if Rails.env.local?
@@ -51,5 +59,46 @@ class Plot
 
   def test_call
     Oj.load_file("#{Rails.root}/libext/results/json_charts/aaa-test.json")
+  end
+
+  def valid_params?
+    if panels.blank?
+      self.data_error = "No panels selected"
+      return false
+    end
+
+    begin
+      start_at = Time.parse(start_datetime)
+      end_at = Time.parse(end_datetime)
+    rescue ArgumentError
+      self.data_error = "Invalid format for start or end datetime"
+      return false
+    end
+
+    if start_at.nil? || end_at.nil?
+      self.data_error = "Start and end datetime must have a value"
+      return false
+    end
+
+    if start_at >= end_at
+      self.data_error = "Start datetime must be before end datetime"
+      return false
+    end
+
+    difference = end_at - start_at
+
+    if panels.split(",").all? { |panel_name| panel_name.include?("_DM_") }  # Only Data Mining panels
+      if difference.seconds.in_days > 31
+        self.data_error = "For the Cluster Data Mining panels the time interval must be lower than 31 days"
+        return false
+      end
+    else # Cluster or Double Star panels present
+      if difference.seconds.in_hours > 57
+        self.data_error = "Time interval must be less than 57 hours when panels from Cluster or Double Star are selected"
+        return false
+      end
+    end
+
+    return true
   end
 end

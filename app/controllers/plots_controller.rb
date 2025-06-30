@@ -18,12 +18,9 @@ class PlotsController < ApplicationController
     @p = panels.split(",").map(&:strip)
 
     @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: @p.join(","))
+    @plot_info = @plot.validate_data
 
-    @plot_info = @plot.call_csa
-
-    if @plot.ready?
-      render :show
-    end
+    render :show
   end
 
   def show

@@ -1,5 +1,5 @@
 var title_chart, axis_chart;
-var all_plots = [];
+var all_plots = {};
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
   if (typeof(chart_json_data) !== undefined) {
@@ -17,9 +17,9 @@ function show_plots(jsonData){
 
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];
-    all_plots << create_plot(plot_data, nplot);
+    all_plots["plot_" + nplot] = create_plot(plot_data, nplot);
   }
-  window["all_plots"] = all_plots;
+  window.all_plots = all_plots;
 }
 
 function create_plot(plot_data, nplot){
@@ -761,7 +761,7 @@ function titleChart(titleText) {
       }
     }
   });
-  window["title_chart"] = title_chart;
+  all_plots["title"] = title_chart;
 }
 
 function axisChart(start, stop) {
@@ -809,7 +809,6 @@ function axisChart(start, stop) {
     }]
   });
 
-  window["axis_chart"] = axis_chart;
   var line = {
     color: 'black',
     data: [],
@@ -817,6 +816,8 @@ function axisChart(start, stop) {
   }
   axis_chart.addSeries(line, false);
   axis_chart.redraw();
+
+  all_plots["axis"] = axis_chart;
 }
 
 function setHighchartsGlobalSettings(){

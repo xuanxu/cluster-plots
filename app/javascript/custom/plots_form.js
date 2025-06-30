@@ -59,6 +59,8 @@ var hide_panels = function() {
 
 // Show loading info
 var show_loading_info = function() {
+  var plots_info_container = document.getElementById("plots_container_wrapper");
+  plots_info_container.style.display = "none";
   var loading_info = document.getElementById("loading_info");
   loading_info.style.display = "block";
 }

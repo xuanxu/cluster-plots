@@ -140,9 +140,6 @@ function plot_line(plot_data, nplot){
       type: 'line',
       renderTo: 'highcharts_plot_' + nplot,
       events:{
-        selection: function (event) {
-          return zoom(event,div);
-        },
         // Add the plot label (eg: C1 EFW)
         load: function () {
           var label = this.renderer.label(plot_data.label)
@@ -835,6 +832,11 @@ function setHighchartsGlobalSettings(){
       zooming: {
         type: 'x',
       },
+      events: {
+        click: function (event) {
+          record_timestamp(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.xAxis[0].value));
+       }
+      }
     },
     title: {
       enabled: false,
@@ -877,8 +879,14 @@ function setHighchartsGlobalSettings(){
         states: {
           inactive: { opacity: 1 }, // to cancel serie highlight on mouse hover need to set opacity to 1
           hover: { enabled: false  }, // disable any styling of a currently hovered line series => don't want the markers to be highlighted when hovering on the line
-         }
-      },
+        },
+        events: {
+          // save time value of the nearest point when clicking on the serie
+          click: function (event) {
+            record_timestamp(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.point.x));
+          }
+        }
+      }
     },
     series: []
   });
@@ -948,5 +956,6 @@ function setHighchartsGlobalSettings(){
   };
 }
 
-
-
+function record_timestamp(x){
+  alert(x);
+}

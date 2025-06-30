@@ -43,17 +43,19 @@ class Plot
 
     if Rails.env.development?
       Rails.logger.info "*************** DATA PROCESSING **************"
-      Rails.logger.info "#{stdout_str}"
-      Rails.logger.info "**********************************************"
       Rails.logger.info "#{status.success? ? 'OK' : 'Failure'}"
-      Rails.logger.info "#{stderr_str}"
+      Rails.logger.info "**********************************************"
+      Rails.logger.info "#{stdout_str}"
       Rails.logger.info "**********************************************"
     end
 
     if status.success?
       Oj.load_file("#{Rails.root}/libext/results/json_charts/#{json_file}")
     else
-      "Error #{stderr_str}"
+      Rails.logger.info "****** ERROR GETTING/PROCESSING DATA *********"
+      Rails.logger.info "#{stderr_str}"
+      Rails.logger.info "**********************************************"
+      "Error getting/processing data from the Cluster Science Archive"
     end
   end
 

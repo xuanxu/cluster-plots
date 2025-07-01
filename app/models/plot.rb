@@ -101,6 +101,6 @@ class Plot
       end
     end
 
-    return true
+    true
   end
 end

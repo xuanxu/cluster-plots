@@ -1,5 +1,5 @@
-var title_chart, axis_chart;
-var all_plots = {};
+var title_chart, axis_chart, plot_charts;
+var all_charts = {};
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
   if (typeof(chart_json_data) !== undefined) {
@@ -12,14 +12,15 @@ document.getElementById("plots").addEventListener("turbo:frame-render", function
 
 function show_plots(jsonData){
   setHighchartsGlobalSettings();
-
   const json_panels = JSON.parse(jsonData);
 
+  plot_charts = {};
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];
-    all_plots["plot_" + nplot] = create_plot(plot_data, nplot);
+    plot_charts["plot_" + nplot] = create_plot(plot_data, nplot);
   }
-  window.all_plots = all_plots;
+  all_charts["plot_charts"] = plot_charts;
+  window.all_charts = all_charts;
 }
 
 function create_plot(plot_data, nplot){
@@ -758,7 +759,7 @@ function titleChart(titleText) {
       }
     }
   });
-  all_plots["title"] = title_chart;
+  all_charts["title"] = title_chart;
 }
 
 function axisChart(start, stop) {
@@ -814,7 +815,7 @@ function axisChart(start, stop) {
   axis_chart.addSeries(line, false);
   axis_chart.redraw();
 
-  all_plots["axis"] = axis_chart;
+  all_charts["axis"] = axis_chart;
 }
 
 function setHighchartsGlobalSettings(){

@@ -5,6 +5,15 @@
       <i class='fa-duotone fa-solid fa-chart-line'></i> PLOTS
     </div>
 
+    <% unless @plot_info.nil? || @plot_info.is_a?(String) %>
+      <div class="block w-full mt-2 py-1 whitespace-nowrap text-sm">
+        <%= button_tag "<i class='fa fa-grip-lines-vertical'></i> <span class='hidden md:inline'>Show crossline</span>".html_safe, type: "button", id: "toggle_crossline", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm" %>
+        <%= button_tag "<i class='fa fa-ellipsis-vertical'></i> <span class='hidden md:inline'>Hide crossline</span>".html_safe, type: "button", id: "toggle_crossline", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm" %>
+        <%= button_tag "<i class='fa fa-border-all'></i> <span class='hidden md:inline'>Display border</span>".html_safe, type: "button", id: "display_border", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm" %>
+        <%= button_tag "<i class='fa fa-border-none'></i> <span class='hidden md:inline'>Hide border</span>".html_safe, type: "button", id: "hide_border", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm" %>
+      </div>
+    <% end %>
+
     <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1400] bg-white shadow-md">
       <div id="title-chart" style="height: 50px"></div>
       <% if @plot_info.nil? || @plot_info.is_a?(String) %>

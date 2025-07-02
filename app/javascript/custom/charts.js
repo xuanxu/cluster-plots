@@ -2,10 +2,10 @@ var title_chart, axis_chart, plot_charts;
 var all_charts = {};
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
-  if (typeof(chart_json_data) !== undefined) {
+  if (typeof(chart_json_data) !== "undefined") {
     show_plots(chart_json_data);
   }
-  if (typeof(chart_start_datetime) !== undefined) {
+  if (typeof(chart_start_datetime) !== "undefined") {
     titleChart( chart_start_datetime + "/" + chart_stop_datetime);
   }
 })

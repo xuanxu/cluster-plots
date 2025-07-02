@@ -96,7 +96,7 @@ class Plot
       end
     else # Cluster or Double Star panels present
       if difference.seconds.in_hours > 57
-        self.data_error = "Time interval must be less than 57 hours when panels from Cluster or Double Star are selected"
+        self.data_error = "Time interval must be less than 57 hours (one orbit) when panels from Cluster or Double Star are selected"
         return false
       end
     end

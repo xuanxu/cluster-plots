@@ -3,9 +3,9 @@
   <%= hidden_field_tag "plot[panels]", "" %>
 <% end %>
 
-<div class="grid lg:grid-cols-2 gap-4 w-full grid-cols-1">
+<div class="grid lg:grid-cols-3 gap-16 w-full grid-cols-1">
   <div class="block min-w-max">
-  <span class="font-bold">Start time</span>
+    <span class="font-bold">Start time</span>
     <div class="block w-full pb-1">
       <% # datetime_select :start_datetime, params[:start_datetime], include_seconds: true, value: "2000-01-01T00:00:00"  %>
       <%= date_field_tag :start_date, params[:start_date] || "2000-01-01", min: "2000-01-01", max: "2024-12-31" %>
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="large:flex">
+  <div class="lg:col-span-2 lg:mr-[100px]">
     <%= label_tag :panel_list, "Selected panels", class: "font-bold" %>
     <div class="block w-full pb-1">
       <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-44" %>

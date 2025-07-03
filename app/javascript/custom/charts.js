@@ -14,10 +14,10 @@ function show_plots(jsonData){
   setHighchartsGlobalSettings();
   const json_panels = JSON.parse(jsonData);
 
-  plot_charts = {};
+  plot_charts = [];
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];
-    plot_charts["plot_" + nplot] = create_plot(plot_data, nplot);
+    plot_charts.push(create_plot(plot_data, nplot));
   }
   all_charts["plot_charts"] = plot_charts;
   window.all_charts = all_charts;

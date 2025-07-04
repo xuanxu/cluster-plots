@@ -1,10 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  connect(){
-    console.log("Chart Buttons Controller connected!");
-  }
-
   show_crossline() {
     var show_crossline_button = document.getElementById("show_crossline");
     show_crossline_button.style.display = "none";

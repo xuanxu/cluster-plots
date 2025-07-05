@@ -186,7 +186,7 @@ function plot_line(plot_data, nplot){
         gridLineColor: '#ADD8E6',
         lineColor: '#CBD6EA',
         tickColor: '#CBD6EA',
-        minorTickColor: '#CBD6EA'
+        minorTickColor: '#CBD6EA',
       },
       {
         type: 'datetime',
@@ -391,59 +391,57 @@ function plot_heatmap(plot_data, nplot){
         }
       }
     },
-    xAxis: [
-        {
-          type: 'datetime',
-          title: {
-            enable: false,
-          },
-          //labels: { enabled: false },
-          labels: {
-            enabled: true,
-            style: {
-              fontSize: '12px',
-            },
-            formatter: function () {
-              return Highcharts.dateFormat('%H:%M:%S', this.value);
-            }
-          },
-          startOnTick: false,
-          endOnTick: false,
-          minPadding: 0,
-          maxPadding: 0,
-          lineWidth: 2,
-          tickLength: 5,
-          tickWidth: 2,
-          minorTickLength: 2,
-          minorTickWidth: 1,
-          minorTickInterval: 'auto',
-          gridLineWidth: 1,
-          gridLineColor: '#ADD8E6',
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
+    xAxis: [{
+      type: 'datetime',
+      title: {
+        enable: false,
+      },
+      //labels: { enabled: false },
+      labels: {
+        enabled: true,
+        style: {
+          fontSize: '12px',
         },
-        {
-          type: 'datetime',
-          opposite: true,
-          linkedTo: 0,
-          title: { enabled: false },
-          labels: { enabled: false },
-          startOnTick: false,
-          endOnTick: false,
-          minPadding: 0,
-          maxPadding: 0,
-          lineWidth: axisLineWidth,
-          tickLength: 5,
-          tickWidth: 2,
-          minorTickLength: 2,
-          minorTickWidth: 1,
-          gridLineWidth: 0,
-          lineColor: '#CBD6EA',
-          tickColor: '#CBD6EA',
-          minorTickColor: '#CBD6EA'
+        formatter: function () {
+          return Highcharts.dateFormat('%H:%M:%S', this.value);
         }
-      ],
+      },
+      startOnTick: false,
+      endOnTick: false,
+      minPadding: 0,
+      maxPadding: 0,
+      lineWidth: 2,
+      tickLength: 5,
+      tickWidth: 2,
+      minorTickLength: 2,
+      minorTickWidth: 1,
+      minorTickInterval: 'auto',
+      gridLineWidth: 1,
+      gridLineColor: '#ADD8E6',
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA',
+    },
+    {
+      type: 'datetime',
+      opposite: true,
+      linkedTo: 0,
+      title: { enabled: false },
+      labels: { enabled: false },
+      startOnTick: false,
+      endOnTick: false,
+      minPadding: 0,
+      maxPadding: 0,
+      lineWidth: axisLineWidth,
+      tickLength: 5,
+      tickWidth: 2,
+      minorTickLength: 2,
+      minorTickWidth: 1,
+      gridLineWidth: 0,
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
+    }],
     yAxis: [{
       top: subTop + '%',
       height: sub_height,

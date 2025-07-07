@@ -22,6 +22,7 @@ export default class extends Controller {
     display_border_button.style.display = "none";
     var hide_border_button = document.getElementById("hide_border");
     hide_border_button.style.display = "inline";
+    manageBorder("show");
   }
 
   hide_border() {
@@ -29,5 +30,6 @@ export default class extends Controller {
     hide_border_button.style.display = "none";
     var display_border_button = document.getElementById("display_border");
     display_border_button.style.display = "inline";
+    manageBorder("hide");
   }
 }

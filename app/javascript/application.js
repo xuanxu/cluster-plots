@@ -6,4 +6,5 @@ import "controllers"
 import "custom/plots_form"
 
 // Custom code to display charts
+import "custom/chart-actions"
 import "custom/charts"

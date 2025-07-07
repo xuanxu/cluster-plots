@@ -30,16 +30,16 @@ function create_plot(plot_data, nplot){
   var plot = undefined;
 
   var plot_type = plot_data.panel_type;
-  if (plot_type == 'line') {
+  if (plot_type === 'line') {
     plot = plot_line(plot_data, nplot);
-  } else if (plot_type == 'spectrogram') {
+  } else if (plot_type === 'spectrogram') {
     plot = plot_heatmap(plot_data, nplot);
-  } else if (plot_type == 'status') {
+  } else if (plot_type === 'status') {
     plot = plot_line(plot_data, nplot);
     add_subpanels(plot, plot_data, nplot);
   }
 
-  if (nplot == 0 && plot !== undefined) {
+  if (nplot === 0 && plot !== undefined) {
     var axis_start_datetime = plot.xAxis[0].getExtremes().min;
     var axis_stop_datetime = plot.xAxis[0].getExtremes().max;
     axisChart(axis_start_datetime, axis_stop_datetime)
@@ -83,7 +83,7 @@ function plot_line(plot_data, nplot){
   var series = [];
   for (var l = 0; l < num_lines; l++) {
     var line_thickness = default_line_thickness;
-    if  (panel_type == 'status') {
+    if  (panel_type === 'status') {
       line_thickness =  json.plot[l].thick;
     }
 
@@ -98,7 +98,7 @@ function plot_line(plot_data, nplot){
     var line_width = line_thickness;
     var enabled = undefined;
     var marker_line_width = 0;
-    if (json.plot[l].type == 'scatter') {
+    if (json.plot[l].type === 'scatter') {
       symbol = 'cross';
       radius = 3;
       line_width = 0;
@@ -339,7 +339,7 @@ function plot_heatmap(plot_data, nplot){
       return point;
     });
 
-    if (json.plot[l].type == 'line') {
+    if (json.plot[l].type === 'line') {
       var line_thickness = default_line_thickness;
 
       var line = {
@@ -546,7 +546,7 @@ function plot_heatmap(plot_data, nplot){
       x: 7,
       //format: '{value}'
       formatter: function(){
-        if (json.ztype == 'logarithmic') {
+        if (json.ztype === 'logarithmic') {
           return (this.value).toExponential(1);
         } else {
           return this.value;
@@ -588,7 +588,7 @@ function add_subpanels(plot, plot_data, nplot) {
 	  var num_lines = subpanel_json.plot.length;
     subTop = subTop - subpanel_json.size;
     var bck_color = '#FFFAFA';
-    if ( plot.yAxis.length % 4 == 0 ) { bck_color = 'white'; }
+    if ( plot.yAxis.length % 4 === 0 ) { bck_color = 'white'; }
 
     var tick_values = undefined;
     var flag_ticks = subpanel_json.ytickflag;
@@ -707,7 +707,7 @@ function add_subpanels(plot, plot_data, nplot) {
       var line_name = line_plot_info.name
       if (subpanel_json.plot[l].legend == 0) {
         display_legend = false;
-      } else if (l == 0) {
+      } else if (l === 0) {
         line_name += '<br/> ... <br/>';
       }
 
@@ -978,7 +978,7 @@ function syncronizeCrossHairs(chart) {
       //remove old plot line and draw new plot line (crosshair) for this chart
       var chart_xAxis = syncronized_charts[i].xAxis[0];
       chart_xAxis.removePlotLine("custom_crossline_" + i);
-      if (window.visibility_crossline == 1) {
+      if (window.visibility_crossline === 1) {
         chart_xAxis.addPlotLine({
           value: chart.xAxis[0].translate(x, true),
           width: 1,

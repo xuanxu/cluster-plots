@@ -242,7 +242,7 @@ function select_panel(event) {
   } else {
     var option_list = panel_list.options;
     for (var i = 0; i < option_list.length; i++) {
-      if (option_list[i].id == "selected_panel_" + panel.id) {
+      if (option_list[i].id === "selected_panel_" + panel.id) {
         option_list.remove(i);
       }
     }

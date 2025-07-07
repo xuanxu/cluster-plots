@@ -1,3 +1,5 @@
+var visibility_crossline = 0
+window.visibility_crossline = visibility_crossline;
 var title_chart, axis_chart, plot_charts;
 var all_charts = {};
 
@@ -11,6 +13,7 @@ document.getElementById("plots").addEventListener("turbo:frame-render", function
 })
 
 function show_plots(jsonData){
+  window.all_charts = {title: undefined, axis: undefined, plot_charts: []};
   setHighchartsGlobalSettings();
   const json_panels = JSON.parse(jsonData);
 
@@ -284,6 +287,9 @@ function plot_line(plot_data, nplot){
     ],
     // data
     series: series,
+  },
+  function(chart) {
+    syncronizeCrossHairs(chart);
   });
 
   plot.yAxis[0].setExtremes(yrange[0],yrange[1],false);
@@ -551,8 +557,8 @@ function plot_heatmap(plot_data, nplot){
     // data
     series: series,
   },
-  function(plot) { //add this function to the chart definition to get synchronized crosshairs
-    //syncronizeCrossHairs(plot);
+  function(chart) {
+    syncronizeCrossHairs(chart);
   }
   );
 
@@ -651,7 +657,7 @@ function add_subpanels(plot, plot_data, nplot) {
       minorGridLineWidth: 1,
       lineColor: '#CBD6EA',
       tickColor: '#CBD6EA',
-      minorTickColor: '#CBD6EA'
+      minorTickColor: '#CBD6EA',
 	  });
 
     var new_axis_index = plot.yAxis.length - 1;
@@ -803,6 +809,9 @@ function axisChart(start, stop) {
       tickColor: '#CBD6EA',
       minorTickColor: '#CBD6EA'
     }]
+  },
+  function(chart) {
+    syncronizeCrossHairs(chart);
   });
 
   var line = {
@@ -953,6 +962,33 @@ function setHighchartsGlobalSettings(){
     this.chart.isDirtyBox = true;
     this.chart.redraw();
   };
+}
+
+// Add synchronized vertical line at mouse position
+function syncronizeCrossHairs(chart) {
+  var container = chart.container;
+
+  container.addEventListener('mousemove', function(e) {
+    var syncronized_charts = window.all_charts["plot_charts"].concat(window.all_charts["axis"]);
+    var num_plots = syncronized_charts.length;
+    var x = e.clientX - chart.plotLeft - container.offsetLeft;
+    var xAxis = chart.xAxis[0];
+
+    for (var i = 0; i < num_plots; i++) {
+      //remove old plot line and draw new plot line (crosshair) for this chart
+      var chart_xAxis = syncronized_charts[i].xAxis[0];
+      chart_xAxis.removePlotLine("custom_crossline_" + i);
+      if (window.visibility_crossline == 1) {
+        chart_xAxis.addPlotLine({
+          value: chart.xAxis[0].translate(x, true),
+          width: 1,
+          color: 'red',
+          id: "custom_crossline_" + i,
+          zIndex: 10   // or won't appear on heatmap
+        });
+      }
+    }
+  });
 }
 
 function record_timestamp(x){

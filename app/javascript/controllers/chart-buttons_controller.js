@@ -6,6 +6,7 @@ export default class extends Controller {
     show_crossline_button.style.display = "none";
     var hide_crossline_button = document.getElementById("hide_crossline");
     hide_crossline_button.style.display = "inline";
+    window.visibility_crossline = 1;
   }
 
   hide_crossline() {
@@ -13,6 +14,7 @@ export default class extends Controller {
     hide_crossline_button.style.display = "none";
     var show_crossline_button = document.getElementById("show_crossline");
     show_crossline_button.style.display = "inline";
+    window.visibility_crossline = 0;
   }
 
   display_border() {

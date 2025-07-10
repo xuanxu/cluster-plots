@@ -836,10 +836,6 @@ function setHighchartsGlobalSettings(){
       borderWidth: 0,
       margin: [10, 120, 10, 120],
       height: 250,
-      // hide highcharts default 'reset zoom' button
-      zooming: {
-        type: 'x',
-      },
       events: {
         click: function (event) {
           record_timestamp(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.xAxis[0].value));

@@ -748,7 +748,8 @@ function add_subpanels(plot, plot_data, nplot) {
 function titleChart(titleText) {
   title_chart = new Highcharts.Chart({
     chart: {
-      renderTo: "title-chart"
+      renderTo: "title-chart",
+      events: { click: undefined },
     },
     exporting: {
       sourceWidth: 1000,
@@ -774,6 +775,7 @@ function axisChart(start, stop) {
       height: 50,
       marginBottom: 40,
       marginTop: 0,
+      events: { click: undefined },
     },
     exporting: {
       sourceWidth: 1000,
@@ -839,7 +841,7 @@ function setHighchartsGlobalSettings(){
       events: {
         click: function (event) {
           record_timestamp(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.xAxis[0].value));
-       }
+        }
       }
     },
     title: {

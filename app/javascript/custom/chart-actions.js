@@ -6,3 +6,4 @@ function manageBorder(action="show") {
     borderable_charts[i].update({chart: { borderWidth: border_width }});
   }
 }
+window.manageBorder = manageBorder;

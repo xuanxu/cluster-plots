@@ -9,8 +9,23 @@ document.getElementById("plots").addEventListener("turbo:frame-render", function
   }
   if (typeof(chart_start_datetime) !== "undefined") {
     titleChart( chart_start_datetime + "/" + chart_stop_datetime);
+    set_plot_times(chart_start_datetime, chart_stop_datetime);
   }
 })
+
+// Set start and stop datetimes
+function set_plot_times(initial_datetime, end_datetime) {
+  document.getElementById("start_date").value = initial_datetime.slice(0, 10);
+  document.getElementById("start_time").value = initial_datetime.slice(11, 19);
+
+  document.getElementById("stop_date").value = end_datetime.slice(0, 10);
+  document.getElementById("stop_time").value = end_datetime.slice(11, 19);
+
+  document.getElementById("plot_times").innerHTML = initial_datetime + " " + end_datetime;
+  document.getElementById("plot_time_interval").value = initial_datetime + " " + end_datetime;
+
+  document.getElementById("stop_time").dispatchEvent(new Event('change'))
+}
 
 function show_plots(jsonData){
   window.all_charts = {title: undefined, axis: undefined, plot_charts: []};

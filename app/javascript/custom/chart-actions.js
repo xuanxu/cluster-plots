@@ -1,3 +1,4 @@
+// Show or hide plot borders
 function manageBorder(action="show") {
   const borderable_charts = window.all_charts["plot_charts"] || [];
   const border_width = action === "show" ? 1 : 0;

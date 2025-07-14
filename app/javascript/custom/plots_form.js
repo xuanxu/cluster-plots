@@ -18,6 +18,21 @@ var unselect_all_panels = function(event) {
 }
 document.getElementById("clear_panel_selection").addEventListener('click', function(event) { unselect_all_panels(event) });
 
+// Set start and stop datetimes
+function set_plot_times(initial_datetime, end_datetime) {
+  document.getElementById("start_date").value = initial_datetime.slice(0, 10);
+  document.getElementById("start_time").value = initial_datetime.slice(11, 19);
+
+  document.getElementById("stop_date").value = end_datetime.slice(0, 10);
+  document.getElementById("stop_time").value = end_datetime.slice(11, 19);
+
+  document.getElementById("plot_times").innerHTML = initial_datetime + " " + end_datetime;
+  document.getElementById("plot_time_interval").value = initial_datetime + " " + end_datetime;
+
+  document.getElementById("stop_time").dispatchEvent(new Event('change'))
+}
+window.set_plot_times = set_plot_times;
+
 // Update plot times
 function update_plot_times() {
   var start_date = document.getElementById("start_date");

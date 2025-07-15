@@ -61,4 +61,6 @@
 </turbo-frame>
 
 <div data-controller="zoom" data-action="zoom_in@window->zoom#zoomIn">
+  <%= hidden_field_tag "zoom_to", "" %>
+  <%= hidden_field_tag "previous_zoom_chain", "" %>
 </div

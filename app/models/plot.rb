@@ -12,7 +12,7 @@ class Plot
   attribute :mission, :string
   attribute :data_error, :string
 
-  def validate_data
+  def process_data
     if valid_params?
       call_csa
     else

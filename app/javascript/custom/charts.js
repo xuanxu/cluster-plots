@@ -144,7 +144,12 @@ function plot_line(plot_data, nplot){
     chart: {
       type: 'line',
       renderTo: 'highcharts_plot_' + nplot,
+      zoomType: 'x',
       events:{
+        selection: function (event) {
+          event.preventDefault();
+          return zoom_in_selection(event);
+        },
         // Add the plot label (eg: C1 EFW)
         load: function () {
           var label = this.renderer.label(plot_data.label)
@@ -373,8 +378,13 @@ function plot_heatmap(plot_data, nplot){
     chart: {
       renderTo: 'highcharts_plot_' + nplot,
       type: 'heatmap',
+      zoomType: 'x',
       events:{
-      // Add the plot label (eg: C1 EFW)
+        selection: function (event) {
+          event.preventDefault();
+          return zoom_in_selection(event);
+        },
+        // Add the plot label (eg: C1 EFW)
         load: function () {
           var label = this.renderer.label(plot_data.label)
           .css({
@@ -988,6 +998,15 @@ function syncronizeCrossHairs(chart) {
       }
     }
   });
+}
+
+function zoom_in_selection(event) {
+  if (event.xAxis) {
+    var start_selection = Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.xAxis[0].min);
+    var stop_selection = Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ",event.xAxis[0].max);
+    document.getElementById("zoom_to").value = start_selection + " " + stop_selection;
+    window.dispatchEvent(new CustomEvent("zoom_in"));
+  }
 }
 
 function record_timestamp(x){

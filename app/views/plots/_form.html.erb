@@ -27,12 +27,12 @@
       <%= select_tag :duration_minutes, options_for_select((0..59).map{|n| [n,n]}) %> :
       <%= select_tag :duration_seconds, options_for_select((0..59).map{|n| [n,n]}) %>
       <br>
-      <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", id: "previous_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select previous time interval" %>
-      <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "next_interval", class: "mt-2 mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm", title: "Select next time interval" %>
+      <%= button_tag "<i class='fa fa-angles-left'></i> Previous interval".html_safe, type: "button", id: "previous_interval", class: "mt-2 form_button", title: "Select previous time interval" %>
+      <%= button_tag "Next interval <i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "next_interval", class: "mt-2 form_button", title: "Select next time interval" %>
     </div>
 
     <div class="block w-full mt-2 py-1">
-      <%= button_tag "<i class='fa-duotone fa-solid fa-chart-area'></i> Plot panels".html_safe, type: "button", id: "submit_plots_info", class: "mb-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa-duotone fa-solid fa-chart-area'></i> Plot panels".html_safe, type: "button", id: "submit_plots_info", class: "main_action_button" %>
       <div id="plot_times" class="text-slate-400">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
     </div>
   </div>
@@ -43,11 +43,11 @@
       <%= select_tag :panel_list, options_for_select([]), multiple: true, class: "w-full h-44" %>
     </div>
     <div class="block w-full mt-2 py-1 float-right whitespace-nowrap">
-      <%= button_tag "<i class='fa fa-angle-up'></i> <span class='hidden md:inline'>Up</span>".html_safe, type: "button", id: "move_panel_up", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-      <%= button_tag "<i class='fa fa-angle-down'></i> <span class='hidden md:inline'>Down</span>".html_safe, type: "button", id: "move_panel_down", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-      <%= button_tag "<i class='fa fa-minus'></i> <span class='hidden md:inline'>Remove</span>".html_safe, type: "button", id: "remove_panel", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-      <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", id: "import_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
-      <%= button_tag "<i class='fa fa-file-arrow-down'></i> <span class='hidden md:inline'>Save selection</span>".html_safe, type: "button", id: "save_panel_list", class: "mb-1 bg-blue-200 text-blue-700 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-sm" %>
+      <%= button_tag "<i class='fa fa-angle-up'></i> <span class='hidden md:inline'>Up</span>".html_safe, type: "button", id: "move_panel_up", class: "form_button" %>
+      <%= button_tag "<i class='fa fa-angle-down'></i> <span class='hidden md:inline'>Down</span>".html_safe, type: "button", id: "move_panel_down", class: "form_button" %>
+      <%= button_tag "<i class='fa fa-minus'></i> <span class='hidden md:inline'>Remove</span>".html_safe, type: "button", id: "remove_panel", class: "form_button" %>
+      <%= button_tag "<i class='fa fa-upload'></i> <span class='hidden md:inline'>Import</span>".html_safe, type: "button", id: "import_panel_list", class: "form_button" %>
+      <%= button_tag "<i class='fa fa-file-arrow-down'></i> <span class='hidden md:inline'>Save selection</span>".html_safe, type: "button", id: "save_panel_list", class: "form_button" %>
       <input type="file" class="hidden" id="import_panels_file" accept=".csv"/>
     </div>
   </div>
@@ -60,7 +60,8 @@
   <div id="plots_container_wrapper"></div>
 </turbo-frame>
 
-<div data-controller="zoom" data-action="zoom_in@window->zoom#zoomIn">
+<div data-controller="zoom" data-action="zoom_in@window->zoom#zoom_in">
+  <%= hidden_field_tag "current_zoom", "" %>
   <%= hidden_field_tag "zoom_to", "" %>
   <%= hidden_field_tag "previous_zoom_chain", "" %>
 </div

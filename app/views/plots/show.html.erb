@@ -13,10 +13,10 @@
       </div>
     <% else %>
       <div data-controller="chart-buttons" class="block w-full mt-2 py-1 whitespace-nowrap text-sm">
-        <%= button_tag "<i class='fa fa-grip-lines-vertical'></i> <span class='hidden md:inline'>Show crossline</span>".html_safe, type: "button", id: "show_crossline", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm", data: { action: "click->chart-buttons#show_crossline" } %>
-        <%= button_tag "<i class='fa fa-ellipsis-vertical'></i> <span class='hidden md:inline'>Hide crossline</span>".html_safe, type: "button", id: "hide_crossline", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm hidden", data: { action: "click->chart-buttons#hide_crossline" }  %>
-        <%= button_tag "<i class='fa fa-border-all'></i> <span class='hidden md:inline'>Display border</span>".html_safe, type: "button", id: "display_border", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm", data: { action: "click->chart-buttons#display_border" }  %>
-        <%= button_tag "<i class='fa fa-border-none'></i> <span class='hidden md:inline'>Hide border</span>".html_safe, type: "button", id: "hide_border", class: "mb-1 bg-white text-red-900 hover:bg-red-900 hover:text-white py-2 px-4 rounded-sm hidden", data: { action: "click->chart-buttons#hide_border" }  %>
+        <%= button_tag "<i class='fa fa-grip-lines-vertical'></i> <span class='hidden md:inline'>Show crossline</span>".html_safe, type: "button", id: "show_crossline", class: "action_button", data: { action: "click->chart-buttons#show_crossline" } %>
+        <%= button_tag "<i class='fa fa-ellipsis-vertical'></i> <span class='hidden md:inline'>Hide crossline</span>".html_safe, type: "button", id: "hide_crossline", class: "action_button hidden", data: { action: "click->chart-buttons#hide_crossline" }  %>
+        <%= button_tag "<i class='fa fa-border-all'></i> <span class='hidden md:inline'>Display border</span>".html_safe, type: "button", id: "display_border", class: "action_button", data: { action: "click->chart-buttons#display_border" }  %>
+        <%= button_tag "<i class='fa fa-border-none'></i> <span class='hidden md:inline'>Hide border</span>".html_safe, type: "button", id: "hide_border", class: "action_button hidden", data: { action: "click->chart-buttons#hide_border" }  %>
       </div>
 
       <div class="flex">

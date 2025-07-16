@@ -10,6 +10,7 @@ document.getElementById("plots").addEventListener("turbo:frame-render", function
   if (typeof(chart_start_datetime) !== "undefined") {
     titleChart( chart_start_datetime + "/" + chart_stop_datetime);
     set_plot_times(chart_start_datetime, chart_stop_datetime);
+    set_current_zoom(chart_start_datetime + " " + chart_stop_datetime);
   }
 });
 

@@ -17,6 +17,7 @@
         <%= button_tag "<i class='fa fa-ellipsis-vertical'></i> <span class='hidden md:inline'>Hide crossline</span>".html_safe, type: "button", id: "hide_crossline", class: "action_button hidden", data: { action: "click->chart-buttons#hide_crossline" }  %>
         <%= button_tag "<i class='fa fa-border-all'></i> <span class='hidden md:inline'>Display border</span>".html_safe, type: "button", id: "display_border", class: "action_button", data: { action: "click->chart-buttons#display_border" }  %>
         <%= button_tag "<i class='fa fa-border-none'></i> <span class='hidden md:inline'>Hide border</span>".html_safe, type: "button", id: "hide_border", class: "action_button hidden", data: { action: "click->chart-buttons#hide_border" }  %>
+        <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden md:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
       </div>
 
       <div class="flex">

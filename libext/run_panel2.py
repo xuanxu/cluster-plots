@@ -120,21 +120,12 @@ def download_data_csa(ds, start_date, stop_date, file_dir):
 #################################################################################################################################
 
 def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,flag_server,output_type,plot_name,upd_list,list_zeroes):
-
-    username = getpass.getuser()
-    if username == 'apache' or username == 'root':
-        #file_dir = "/caa/web/downloads/www/flask-app/"
-        file_dir = cef_path
-        #xml_dir = ROOT_PATH+"/xml/"
-        xml_dir = os.getenv('XML_PATH')
-    else:
-        file_dir =  join(dirname(__file__), "results", "cef_files")
-        xml_dir = join(dirname(__file__), "xml")
+    file_dir =  join(dirname(__file__), "results", "cef_files")
+    xml_dir = join(dirname(__file__), "xml")
+    json_file = join(dirname(__file__), "results", "json_charts", json_file_name)
 
     stopo = (date_orig.split('/'))[1]
     starto = (date_orig.split('/'))[0]
-
-    json_file = join(dirname(__file__), "results", "json_charts", json_file_name)
 
     # find XML files and extract the list of datasets to read
     flag_first = 1

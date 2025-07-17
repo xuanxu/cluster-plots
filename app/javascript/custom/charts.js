@@ -28,6 +28,8 @@ function show_plots(jsonData){
   setHighchartsGlobalSettings();
   const json_panels = JSON.parse(jsonData);
 
+  set_cef_files_list(json_panels.list_cef);
+
   plot_charts = [];
   for (var nplot = 0 ; nplot < json_panels.panels_arr.length ; nplot++) {
     var plot_data = json_panels.panels_arr[nplot];

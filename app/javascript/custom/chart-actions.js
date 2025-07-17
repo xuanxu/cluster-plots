@@ -17,3 +17,10 @@ function set_current_zoom(current_time_inteval){
   }
 }
 window.set_current_zoom = set_current_zoom;
+
+// Set the CEF files list
+function set_cef_files_list(files_list) {
+  var cef_files = files_list.split(",").map(x => x.split("/").pop()).filter(entry => entry.trim() != '');
+  document.getElementById("download_cefs").dataset.cefs = cef_files.join(",");
+}
+window.set_cef_files_list = set_cef_files_list;

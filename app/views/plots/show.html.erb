@@ -25,6 +25,7 @@
         <%= button_tag "<i class='fa fa-border-all'></i> <span class='hidden md:inline'>Display border</span>".html_safe, type: "button", id: "display_border", class: "action_button", data: { action: "click->chart-buttons#display_border" }  %>
         <%= button_tag "<i class='fa fa-border-none'></i> <span class='hidden md:inline'>Hide border</span>".html_safe, type: "button", id: "hide_border", class: "action_button hidden", data: { action: "click->chart-buttons#hide_border" }  %>
         <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden md:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
+        <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden md:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", class: "action_button", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
       </div>
 
       <div class="flex">

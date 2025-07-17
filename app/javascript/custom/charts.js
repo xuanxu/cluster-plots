@@ -4,6 +4,15 @@ var title_chart, axis_chart, plot_charts;
 var all_charts = {};
 
 document.getElementById("plots").addEventListener("turbo:frame-render", function (event) {
+  if (typeof(status_processing_data) !== "undefined" && status_processing_data === 'error') {
+    set_current_zoom("");
+    status_processing_data = "";
+  } else {
+    process_plots_data();
+  }
+});
+
+function process_plots_data(){
   if (typeof(chart_json_data) !== "undefined") {
     show_plots(chart_json_data);
   }
@@ -12,7 +21,7 @@ document.getElementById("plots").addEventListener("turbo:frame-render", function
     set_plot_times(chart_start_datetime, chart_stop_datetime);
     set_current_zoom(chart_start_datetime + " " + chart_stop_datetime);
   }
-});
+}
 
 function show_plots(jsonData){
   window.all_charts = {title: undefined, axis: undefined, plot_charts: []};

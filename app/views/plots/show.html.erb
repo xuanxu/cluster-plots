@@ -6,10 +6,17 @@
     </div>
 
     <% if @plot_info.nil? || @plot_info.is_a?(String) %>
+      <div data-controller="chart-buttons" class="block w-full mt-2 py-1 whitespace-nowrap text-sm">
+        <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden md:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
+      </div>
+
       <div class="flex">
         <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1400px] bg-white shadow-md grow">
           <div id="form-error-message" class="font-bold text-lg text-red-500 text-center my-[50px]">‼️ <%= @plot_info %></div>
         </div>
+        <script>
+          var status_processing_data = 'error';
+        </script>
       </div>
     <% else %>
       <div data-controller="chart-buttons" class="block w-full mt-2 py-1 whitespace-nowrap text-sm">

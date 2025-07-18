@@ -17,7 +17,7 @@ function process_plots_data(){
     show_plots(chart_json_data);
   }
   if (typeof(chart_start_datetime) !== "undefined") {
-    titleChart( chart_start_datetime + "/" + chart_stop_datetime);
+    titleChart(chart_start_datetime + "/" + chart_stop_datetime);
     set_plot_times(chart_start_datetime, chart_stop_datetime);
     set_current_zoom(chart_start_datetime + " " + chart_stop_datetime);
   }

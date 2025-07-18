@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :plots, only: [ :index, :new, :create, :show ] do
     collection do
       post :generate
+      get :cef_files
     end
   end
 

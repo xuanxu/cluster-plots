@@ -23,6 +23,24 @@ class PlotsController < ApplicationController
     render :show
   end
 
+  def cef_files
+    file_list = params[:cefs].split(",").map(&:strip)
+    times = params[:times].to_s.strip.gsub(/\D/,"")
+
+    if file_list.empty?
+      send_data  '{"error": "No files available, try replotting"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
+      return
+    end
+
+    begin
+      send_data ZipCefFiles.zip_cef_data(file_list), filename: "cef_files_#{times}.zip", type: "application/zip", disposition: "attachment"
+    rescue ZipCefFiles::Error => e
+      send_data '{"error": "' + e.message + '"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
+    rescue
+      send_data '{"error": "Error generating the zip file, please try again later"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
+    end
+  end
+
   def show
     if @plot.nil?
       redirect_to new_plot_path
@@ -38,5 +56,9 @@ class PlotsController < ApplicationController
 
   def plot_params
     params.require(:plot).permit(:panels, :time_interval)
+  end
+
+  def def_files_params
+    params.require(:cefs, :times)
   end
 end

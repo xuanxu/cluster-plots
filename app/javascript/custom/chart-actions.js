@@ -22,5 +22,8 @@ window.set_current_zoom = set_current_zoom;
 function set_cef_files_list(files_list) {
   var cef_files = files_list.split(",").map(x => x.split("/").pop()).filter(entry => entry.trim() != '');
   document.getElementById("download_cefs").dataset.cefs = cef_files.join(",");
+  if (typeof(chart_start_datetime) !== "undefined" && typeof(chart_stop_datetime) !== "undefined") {
+    document.getElementById("download_cefs").dataset.times = chart_start_datetime + "-" + chart_stop_datetime;
+  }
 }
 window.set_cef_files_list = set_cef_files_list;

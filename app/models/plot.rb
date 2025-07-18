@@ -82,8 +82,13 @@ class Plot
       return false
     end
 
-    if start_at >= end_at
+    if start_at > end_at
       self.data_error = "Start datetime must be before end datetime"
+      return false
+    end
+
+    if start_at == end_at
+      self.data_error = "Time interval too short"
       return false
     end
 

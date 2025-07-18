@@ -405,6 +405,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase
+  rubyzip
   selenium-webdriver
   solid_cable
   solid_cache
@@ -418,4 +419,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   2.6.6
+   2.7.0

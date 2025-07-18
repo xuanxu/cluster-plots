@@ -45,6 +45,9 @@ gem "tailwindcss-rails", "~> 4.0"
 # Parse JSON faster
 gem "oj"
 
+# For creating zip files to download CEF files
+gem 'rubyzip'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

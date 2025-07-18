@@ -25,10 +25,10 @@ class PlotsController < ApplicationController
 
   def cef_files
     file_list = params[:cefs].split(",").map(&:strip)
-    times = params[:times].to_s.strip.gsub(/\D/,"")
+    times = params[:times].to_s.strip.gsub(/\D/, "")
 
     if file_list.empty?
-      send_data  '{"error": "No files available, try replotting"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
+      send_data '{"error": "No files available, try replotting"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
       return
     end
 

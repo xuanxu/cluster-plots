@@ -2,7 +2,6 @@ require "zip"
 require "tempfile"
 
 module ZipCefFiles
-
   class Error < StandardError; end
 
   CEF_FILES_PATH = File.join(Rails.root, "libext", "results", "cef_files")

@@ -32,4 +32,20 @@ export default class extends Controller {
     display_border_button.style.display = "inline";
     manageBorder("hide");
   }
+
+  show_adjusts_panel() {
+    document.getElementById("show_adjusts").classList.remove("md:inline");
+    document.getElementById("show_adjusts").classList.add("md:hidden");
+    document.getElementById("hide_adjusts").classList.remove("md:hidden");
+    document.getElementById("hide_adjusts").classList.add("md:inline");
+    document.getElementById("main_plots_panel").style.width = "80%";
+  }
+
+  hide_adjusts_panel() {
+    document.getElementById("hide_adjusts").classList.remove("md:inline");
+    document.getElementById("hide_adjusts").classList.add("md:hidden");
+    document.getElementById("show_adjusts").classList.remove("md:hidden");
+    document.getElementById("show_adjusts").classList.add("md:inline");
+    document.getElementById("main_plots_panel").style.width = "100%";
+  }
 }

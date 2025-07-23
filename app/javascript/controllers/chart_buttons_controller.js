@@ -34,18 +34,16 @@ export default class extends Controller {
   }
 
   show_adjusts_panel() {
-    document.getElementById("show_adjusts").classList.remove("md:inline");
-    document.getElementById("show_adjusts").classList.add("md:hidden");
-    document.getElementById("hide_adjusts").classList.remove("md:hidden");
-    document.getElementById("hide_adjusts").classList.add("md:inline");
-    document.getElementById("main_plots_panel").style.width = "80%";
+    document.getElementById("show_adjusts").classList.remove("lg:inline");
+    document.getElementById("show_adjusts").classList.add("lg:hidden");
+    document.getElementById("hide_adjusts").classList.remove("lg:hidden");
+    document.getElementById("hide_adjusts").classList.add("lg:inline");
   }
 
   hide_adjusts_panel() {
-    document.getElementById("hide_adjusts").classList.remove("md:inline");
-    document.getElementById("hide_adjusts").classList.add("md:hidden");
-    document.getElementById("show_adjusts").classList.remove("md:hidden");
-    document.getElementById("show_adjusts").classList.add("md:inline");
-    document.getElementById("main_plots_panel").style.width = "100%";
+    document.getElementById("hide_adjusts").classList.remove("lg:inline");
+    document.getElementById("hide_adjusts").classList.add("lg:hidden");
+    document.getElementById("show_adjusts").classList.remove("lg:hidden");
+    document.getElementById("show_adjusts").classList.add("lg:inline");
   }
 }

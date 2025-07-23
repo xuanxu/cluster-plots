@@ -28,9 +28,9 @@
           <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden md:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
           <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden md:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", class: "action_button", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
 
-          <%= button_tag "<i class='fa fa-sliders'></i>".html_safe, type: "button", id: "show_adjusts", class: "action_button float-right hidden md:inline", title: "Adjust plots", data: { action: "click->chart-buttons#show_adjusts_panel" }  %>
-          <%= button_tag "<i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "hide_adjusts", class: "action_button float-right hidden md:hidden", title: "Hide adjusts panel", data: { action: "click->chart-buttons#hide_adjusts_panel" }  %>
-        </div>
+            <%= button_tag "<i class='fa fa-sliders'></i>".html_safe, type: "button", id: "show_adjusts", class: "action_button float-right hidden lg:inline", title: "Adjust plots", data: { action: "click->chart-buttons#show_adjusts_panel" }  %>
+            <%= button_tag "<i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "hide_adjusts", class: "action_button float-right hidden lg:hidden", title: "Hide adjusts panel", data: { action: "click->chart-buttons#hide_adjusts_panel" }  %>
+          </div>
 
 
         <div class="flex">

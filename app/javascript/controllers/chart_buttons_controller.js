@@ -38,6 +38,12 @@ export default class extends Controller {
     document.getElementById("show_adjusts").classList.add("lg:hidden");
     document.getElementById("hide_adjusts").classList.remove("lg:hidden");
     document.getElementById("hide_adjusts").classList.add("lg:inline");
+
+    document.getElementById("main_plots_panel").classList.remove("col-span-10");
+    document.getElementById("main_plots_panel").classList.add("col-span-8");
+    document.getElementById("adjusts_panel").classList.remove("hidden");
+    document.getElementById("adjusts_panel").classList.remove("col-span-0");
+    document.getElementById("adjusts_panel").classList.add("col-span-2");
   }
 
   hide_adjusts_panel() {
@@ -45,5 +51,11 @@ export default class extends Controller {
     document.getElementById("hide_adjusts").classList.add("lg:hidden");
     document.getElementById("show_adjusts").classList.remove("lg:hidden");
     document.getElementById("show_adjusts").classList.add("lg:inline");
+
+    document.getElementById("adjusts_panel").classList.add("hidden");
+    document.getElementById("adjusts_panel").classList.remove("col-span-2");
+    document.getElementById("adjusts_panel").classList.add("col-span-0");
+    document.getElementById("main_plots_panel").classList.remove("col-span-8");
+    document.getElementById("main_plots_panel").classList.add("col-span-10");
   }
 }

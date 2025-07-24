@@ -319,6 +319,7 @@ document.getElementById("move_panel_down").addEventListener('click', move_down);
 // Remove selected panels from the list
 function remove_panel(event) {
   var options = document.getElementById("panel_list").options;
+  var panel_list = document.getElementById("panel_list");
   for (var i = options.length - 1; i >= 0; i--) {
     if (options[i].selected == true) {
       document.getElementById(options[i].dataset.origin_checkbox_id).checked = false;

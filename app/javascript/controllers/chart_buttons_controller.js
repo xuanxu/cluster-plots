@@ -64,6 +64,7 @@ export default class extends Controller {
     if (change_title_panel.classList.contains("hidden")) {
       document.getElementById("record_timestamps_mini_panel").classList.add("hidden");
       document.getElementById("record_timestamps_action").classList.remove("active");
+      document.getElementById("new_plot_title").value = window.all_charts["title"].options.title.text;
       change_title_panel.classList.remove("hidden");
       change_title_panel.classList.add("block");
       document.getElementById("change_title_action").classList.add("active");
@@ -87,5 +88,9 @@ export default class extends Controller {
       record_timestamps_panel.classList.add("hidden");
       document.getElementById("record_timestamps_action").classList.remove("active");
     }
+  }
+
+  update_plots_title() {
+    window.all_charts["title"].setTitle({text: document.getElementById("new_plot_title").value});
   }
 }

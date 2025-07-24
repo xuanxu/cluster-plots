@@ -55,8 +55,8 @@
             <%= button_tag "<i class='fa fa-stopwatch'></i> <span class='hidden lg:inline'>Record timestamps</span>".html_safe, type: "button", id: "record_timestamps_action", class: "action_button_small", data: { action: "click->chart-buttons#toggle_record_timestamps_panel" }  %>
 
             <div id="change_title_mini_panel" class="mt-4 py-2 px-1 hidden">
-              <input type="text" id="new_plot_title" class="w-[80%] text-sm px-1" placeholder="2020-01-01T00:02:20Z 2020-01-01T00:02:36Z" />
-              <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon active", title: "Update title" %>
+              <input type="text" id="new_plot_title" class="w-[80%] text-sm px-1" value=""/>
+              <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon active", title: "Update title", data: { action: "click->chart-buttons#update_plots_title" } %>
             </div>
 
             <div id="record_timestamps_mini_panel" class="mt-4 px-1 hidden">

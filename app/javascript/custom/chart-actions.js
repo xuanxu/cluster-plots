@@ -8,7 +8,6 @@ function manageBorder(action="show") {
 }
 window.manageBorder = manageBorder;
 
-
 // Set the current zoom value
 function set_current_zoom(current_time_inteval){
   document.getElementById("current_zoom").value = current_time_inteval;

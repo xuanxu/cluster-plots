@@ -65,13 +65,13 @@
                   <%= select_tag :recorded_timestamps, options_for_select([]), multiple: true, class: "w-full h-17 text-sm p-1" %>
                 </div>
                 <div class="b1">
-                  <%= button_tag "<i class='fa fa-xmark'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Clear list" %>
+                  <%= button_tag "<i class='fa fa-xmark'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Clear list", data: { action: "click->chart-buttons#clear_timestamps_list" } %>
                 </div>
                 <div class="b2">
-                  <%= button_tag "<i class='fa fa-minus'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Delete time" %>
+                  <%= button_tag "<i class='fa fa-minus'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Delete time", data: { action: "click->chart-buttons#remove_timestamp" } %>
                 </div>
                 <div class="b3">
-                  <%= button_tag "<i class='fa fa-download'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Download time listing" %>
+                  <%= button_tag "<i class='fa fa-download'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Download time listing", data: { action: "click->chart-buttons#save_timestamps_file" } %>
                 </div>
               </div>
             </div>

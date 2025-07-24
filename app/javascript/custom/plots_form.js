@@ -361,6 +361,7 @@ document.getElementById("save_panel_list").addEventListener('click', save_panels
 function get_timestamp() {
   return new Date().toISOString().slice(0, 19).replace("T", "").replace(/-/g, "").replace(/:/g, "");
 }
+window.get_timestamp = get_timestamp;
 
 // Import panels selection from file
 function import_panels(){

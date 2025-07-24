@@ -93,4 +93,34 @@ export default class extends Controller {
   update_plots_title() {
     window.all_charts["title"].setTitle({text: document.getElementById("new_plot_title").value});
   }
+
+  remove_timestamp() {
+    var options = document.getElementById("recorded_timestamps").options;
+    var timestamp_list = document.getElementById("recorded_timestamps");
+    for (var i = options.length - 1; i >= 0; i--) {
+      if (options[i].selected == true) {
+        timestamp_list.remove(i);
+      }
+    }
+  }
+
+  clear_timestamps_list() {
+    var options = document.getElementById("recorded_timestamps").options.length = 0;
+  }
+
+  save_timestamps_file() {
+    var timestamps_file_content = [];
+
+    var timestamps = document.getElementById("recorded_timestamps").options;
+    for (var i = 0; i < timestamps.length; i++) {
+      timestamps_file_content.push(timestamps[i].value);
+    }
+
+    var blob = new Blob([timestamps_file_content.join("\n")], {type: "text/plain;charset=utf-8"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "CSA_timestamps_" + get_timestamp() +".txt";
+    a.click();
+  }
 }

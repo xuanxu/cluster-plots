@@ -30,7 +30,6 @@ window.set_cef_files_list = set_cef_files_list;
 // Add entry to timepstamps list
 function record_timestamp(new_timestamp) {
   var timestamp_list = document.getElementById("recorded_timestamps");
-
   if (typeof(new_timestamp)!== "undefined" && new_timestamp !== null) {
     var option = document.createElement("option");
     option.value = new_timestamp;

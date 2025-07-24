@@ -1020,7 +1020,3 @@ function zoom_in_selection(event) {
     window.dispatchEvent(new CustomEvent("zoom_in"));
   }
 }
-
-function record_timestamp(x){
-  alert(x);
-}

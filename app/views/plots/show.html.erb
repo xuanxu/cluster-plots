@@ -35,7 +35,7 @@
 
 
           <div class="flex">
-            <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1400px] bg-white shadow-md grow">
+            <div id="plots_container" class="container mx-auto mt-3 px-2 py-2 max-w-[1400px] bg-white shadow-md grow">
               <div id="title-chart" style="height: 50px"></div>
               <% if @plot_info.nil? || @plot_info.is_a?(String) %>
                 <div id="form-error-message" class="font-bold text-red-500 text-center mb-[55px]">‼️ <%= @plot_info %></div>
@@ -49,9 +49,34 @@
           </div>
         </div>
 
-        <div id="adjusts_panel" class="col-span-0 h-full hidden whitespace-nowrap w-full mt-2 ml-1">
-            <%= button_tag "<i class='fa fa-pen-to-square'></i> <span class='hidden lg:inline'>Change title</span>".html_safe, type: "button", id: "XXXXXX1", class: "action_button_small" %>
-            <%= button_tag "<i class='fa fa-stopwatch'></i> <span class='hidden lg:inline'>Record timestamps</span>".html_safe, type: "button", id: "XXXXXX2", class: "action_button_small" %>
+        <div id="adjusts_panel" class="col-span-0 h-full hidden whitespace-nowrap w-full pt-1 mt-2 ml-1" data-controller="chart-buttons">
+          <div class="h-[116px]">
+            <%= button_tag "<i class='fa fa-pen-to-square'></i> <span class='hidden lg:inline'>Change title</span>".html_safe, type: "button", id: "change_title_action", class: "action_button_small", data: { action: "click->chart-buttons#toggle_change_title_panel" }  %>
+            <%= button_tag "<i class='fa fa-stopwatch'></i> <span class='hidden lg:inline'>Record timestamps</span>".html_safe, type: "button", id: "record_timestamps_action", class: "action_button_small", data: { action: "click->chart-buttons#toggle_record_timestamps_panel" }  %>
+
+            <div id="change_title_mini_panel" class="mt-4 py-2 px-1 hidden">
+              <input type="text" id="new_plot_title" class="w-[80%] text-sm px-1" placeholder="2020-01-01T00:02:20Z 2020-01-01T00:02:36Z" />
+              <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon active", title: "Update title" %>
+            </div>
+
+            <div id="record_timestamps_mini_panel" class="mt-4 px-1 hidden">
+              <div class="grid-timestamps">
+                <div class="a1">
+                  <%= select_tag :recorded_timestamps, options_for_select([]), multiple: true, class: "w-full h-17 text-sm p-1" %>
+                </div>
+                <div class="b1">
+                  <%= button_tag "<i class='fa fa-xmark'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Clear list" %>
+                </div>
+                <div class="b2">
+                  <%= button_tag "<i class='fa fa-minus'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Delete time" %>
+                </div>
+                <div class="b3">
+                  <%= button_tag "<i class='fa fa-download'></i>".html_safe, type: "button", class: "action_button_icon_small active align-text-top", title: "Download time listing" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

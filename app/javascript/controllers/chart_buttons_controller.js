@@ -58,4 +58,34 @@ export default class extends Controller {
     document.getElementById("main_plots_panel").classList.remove("col-span-8");
     document.getElementById("main_plots_panel").classList.add("col-span-10");
   }
+
+  toggle_change_title_panel() {
+    const change_title_panel = document.getElementById("change_title_mini_panel");
+    if (change_title_panel.classList.contains("hidden")) {
+      document.getElementById("record_timestamps_mini_panel").classList.add("hidden");
+      document.getElementById("record_timestamps_action").classList.remove("active");
+      change_title_panel.classList.remove("hidden");
+      change_title_panel.classList.add("block");
+      document.getElementById("change_title_action").classList.add("active");
+    } else {
+      change_title_panel.classList.remove("block");
+      change_title_panel.classList.add("hidden");
+      document.getElementById("change_title_action").classList.remove("active");
+    }
+  }
+
+  toggle_record_timestamps_panel() {
+    const record_timestamps_panel = document.getElementById("record_timestamps_mini_panel");
+    if (record_timestamps_panel.classList.contains("hidden")) {
+      document.getElementById("change_title_mini_panel").classList.add("hidden");
+      document.getElementById("change_title_action").classList.remove("active");
+      record_timestamps_panel.classList.remove("hidden");
+      record_timestamps_panel.classList.add("block");
+      document.getElementById("record_timestamps_action").classList.add("active");
+    } else {
+      record_timestamps_panel.classList.remove("block");
+      record_timestamps_panel.classList.add("hidden");
+      document.getElementById("record_timestamps_action").classList.remove("active");
+    }
+  }
 }

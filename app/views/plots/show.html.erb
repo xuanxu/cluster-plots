@@ -50,13 +50,13 @@
         </div>
 
         <div id="adjusts_panel" class="col-span-0 h-full hidden whitespace-nowrap w-full pt-1 mt-2 ml-1" data-controller="chart-buttons">
-          <div class="h-[116px]">
+          <div class="h-[115px]">
             <%= button_tag "<i class='fa fa-pen-to-square'></i> <span class='hidden lg:inline'>Change title</span>".html_safe, type: "button", id: "change_title_action", class: "action_button_small", data: { action: "click->chart-buttons#toggle_change_title_panel" }  %>
             <%= button_tag "<i class='fa fa-stopwatch'></i> <span class='hidden lg:inline'>Record timestamps</span>".html_safe, type: "button", id: "record_timestamps_action", class: "action_button_small", data: { action: "click->chart-buttons#toggle_record_timestamps_panel" }  %>
 
             <div id="change_title_mini_panel" class="mt-4 py-2 px-1 hidden">
               <input type="text" id="new_plot_title" class="w-[80%] text-sm px-1" value=""/>
-              <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon active", title: "Update title", data: { action: "click->chart-buttons#update_plots_title" } %>
+              <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon_small active", title: "Update title", data: { action: "click->chart-buttons#update_plots_title" } %>
             </div>
 
             <div id="record_timestamps_mini_panel" class="mt-4 px-1 hidden">
@@ -76,6 +76,11 @@
               </div>
             </div>
           </div>
+
+          <% @plot_info["panels_arr"].size.times do |i| %>
+            <div class="border border-red-800 h-[250px]"></div>
+          <% end %>
+
 
         </div>
       </div>

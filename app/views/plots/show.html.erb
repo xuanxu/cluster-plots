@@ -78,10 +78,14 @@
           </div>
 
           <% @plot_info["panels_arr"].size.times do |i| %>
-            <div class="border border-red-800 h-[250px]"></div>
+            <div id="controls_plot_<%= i %>" class="h-[250px]">
+              <span class="panel_control">Y title <i class="float-right fa fa-caret-down"></i></span>
+              <span class="panel_control">Y range <i class="float-right fa fa-caret-down"></i></span>
+              <span class="panel_control">Y axis type <i class="float-right fa fa-caret-down"></i></span>
+              <span class="panel_control active">Z range <i class="float-right fa fa-caret-up"></i></span>
+              <span class="panel_control">Add Y=0 line</span>
+            </div>
           <% end %>
-
-
         </div>
       </div>
     </div>

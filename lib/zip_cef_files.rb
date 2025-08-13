@@ -17,7 +17,7 @@ module ZipCefFiles
     begin
       zip_file = Tempfile.new("cefs_#{rand(9999999)}.zip")
 
-      Zip::File.open(zip_file.path, Zip::File::CREATE) do |zipfile|
+      Zip::File.open(zip_file.path, create: true) do |zipfile|
         cef_file_names.each do |cef_file_name|
           cef_files_path = File.join(CEF_FILES_PATH, cef_file_name)
           zipfile.add(cef_file_name, cef_files_path) if File.exist?(cef_files_path)

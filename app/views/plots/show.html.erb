@@ -84,12 +84,12 @@
           <% end %>
         </div>
       </div>
-    </div>
 
-    <script>
-      var chart_json_data = '<%= @plot_info.to_json.html_safe %>';
-      var chart_start_datetime = '<%= @start_date + "T" + @start_time %>';
-      var chart_stop_datetime = '<%= @stop_date + "T" + @stop_time %>';
-    </script>
-   <% end %>
+      <script>
+        var chart_json_data = '<%= @plot_info.to_json.html_safe %>';
+        var chart_start_datetime = '<%= @start_date + "T" + @start_time %>';
+        var chart_stop_datetime = '<%= @stop_date + "T" + @stop_time %>';
+      </script>
+    <% end %>
+  </div>
 </turbo-frame>

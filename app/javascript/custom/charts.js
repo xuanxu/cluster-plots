@@ -261,7 +261,8 @@ function plot_line(plot_data, nplot){
           color: '#A9A9A9',
           width: 2,
           value: 0,
-          dashStyle: 'ShortDash'
+          dashStyle: 'ShortDash',
+          id: 'y_zero_' + nplot,
         }],
         height: sub_height,
         top: subTop + '%',

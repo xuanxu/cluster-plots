@@ -123,4 +123,27 @@ export default class extends Controller {
     a.download = "CSA_timestamps_" + get_timestamp() +".txt";
     a.click();
   }
+
+  show_y_zero_line() {
+    var nplot = Number(this.element.dataset.nplot);
+    window.all_charts["plot_charts"][nplot].yAxis[0].addPlotLine({
+      color: '#A9A9A9',
+      width: 2,
+      value: 0,
+      dashStyle: 'ShortDash',
+			zIndex: 2,
+			id: "y_zero_" + nplot
+		});
+
+    document.getElementById("y_zero_" + nplot + "_on").classList.add("hidden");
+    document.getElementById("y_zero_" + nplot + "_off").classList.remove("hidden");
+  }
+
+  hide_y_zero_line() {
+    var nplot = Number(this.element.dataset.nplot);
+    window.all_charts["plot_charts"][nplot].yAxis[0].removePlotLine("y_zero_" + nplot);
+
+    document.getElementById("y_zero_" + nplot + "_off").classList.add("hidden");
+    document.getElementById("y_zero_" + nplot + "_on").classList.remove("hidden");
+  }
 }

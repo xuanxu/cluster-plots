@@ -37,12 +37,8 @@
           <div class="flex">
             <div id="plots_container" class="container mx-auto mt-3 px-2 py-2 max-w-[1400px] bg-white shadow-md grow">
               <div id="title-chart" style="height: 50px"></div>
-              <% if @plot_info.nil? || @plot_info.is_a?(String) %>
-                <div id="form-error-message" class="font-bold text-red-500 text-center mb-[55px]">‼️ <%= @plot_info %></div>
-              <% else %>
-                <% @plot_info["panels_arr"].size.times do |i| %>
-                  <div id="highcharts_plot_<%= i %>"></div>
-                <% end %>
+              <% @plot_info["panels_arr"].size.times do |i| %>
+                <div id="highcharts_plot_<%= i %>"></div>
               <% end %>
               <div id="axis-chart" xstyle="height: 50px"></div>
             </div>

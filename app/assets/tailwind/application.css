@@ -56,6 +56,9 @@
   span.panel_control{
      @apply border-b border-red-900 text-sm cursor-pointer text-red-900 hover:text-red-800 active:text-red-700 disabled:text-gray-500 block w-full px-1;
   }
+  span.panel_link{
+    @apply border-b border-red-900 text-sm cursor-pointer text-red-900 hover:text-red-800 active:bg-red-950 active:text-white block w-full px-1;
+  }
   span.active{
     @apply bg-red-900 text-red-50 hover:bg-red-950 hover:text-white;
   }

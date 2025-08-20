@@ -147,6 +147,34 @@ export default class extends Controller {
     document.getElementById("y_zero_" + nplot + "_on").classList.remove("hidden");
   }
 
+  toggle_edit_y_title(){
+    var nplot = Number(this.element.dataset.nplot);
+    var y_title = document.getElementById("y_title_" + nplot);
+    var icon = document.getElementById("y_title_" + nplot + "_icon");
+    var edit_y_title = document.getElementById("edit_y_title_" + nplot);
+
+    if (edit_y_title.classList.contains("hidden")) {
+      collapse_plot_controls(nplot, this.element.dataset.plottype);
+      edit_y_title.classList.remove("hidden");
+      y_title.classList.add("active");
+      icon.classList.remove("fa-caret-down");
+      icon.classList.add("fa-caret-up");
+    } else {
+      edit_y_title.classList.add("hidden");
+      y_title.classList.remove("active");
+      icon.classList.remove("fa-caret-up");
+      icon.classList.add("fa-caret-down");
+    }
+  }
+
+  update_y_title() {
+    var nplot = Number(this.element.dataset.nplot);
+    var plot_type = String(this.element.dataset.plottype);
+    var new_y_title = document.getElementById("new_y_title_" + nplot).value;
+    var axis_with_title = plot_type === "line" ? 0 : 1;
+    window.all_charts["plot_charts"][nplot].yAxis[axis_with_title].setTitle({text: new_y_title});
+  }
+
   collapse_plot_controls(nplot, plot_type) {
     controls = [];
     if (plot_type === "line") {

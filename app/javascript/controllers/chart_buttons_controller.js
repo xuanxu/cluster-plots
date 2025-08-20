@@ -174,4 +174,43 @@ export default class extends Controller {
     var axis_with_title = plot_type === "line" ? 0 : 1;
     window.all_charts["plot_charts"][nplot].yAxis[axis_with_title].setTitle({text: new_y_title});
   }
+
+  toggle_edit_y_axis_type(){
+    var nplot = Number(this.element.dataset.nplot);
+    var y_axis_type = document.getElementById("y_axis_type_" + nplot);
+    var icon = document.getElementById("y_axis_type_" + nplot + "_icon");
+    var edit_y_axis_type = document.getElementById("edit_y_axis_type_" + nplot);
+
+    if (edit_y_axis_type.classList.contains("hidden")) {
+      collapse_plot_controls(nplot, this.element.dataset.plottype);
+      edit_y_axis_type.classList.remove("hidden");
+      y_axis_type.classList.add("active");
+      icon.classList.remove("fa-caret-down");
+      icon.classList.add("fa-caret-up");
+    } else {
+      edit_y_axis_type.classList.add("hidden");
+      y_axis_type.classList.remove("active");
+      icon.classList.remove("fa-caret-up");
+      icon.classList.add("fa-caret-down");
+    }
+  }
+
+  update_y_axis_type({ params: { axis }}) {
+    if (axis === "linear" || axis === "logarithmic"){
+      var nplot = Number(this.element.dataset.nplot);
+      var plot_type = String(this.element.dataset.plottype);
+      var plot = window.all_charts["plot_charts"][nplot];
+      var linear_option = document.getElementById("new_y_axis_type_" + nplot + "_linear");
+
+      if (axis === "logarithmic" && (plot.yAxis[0].getExtremes().min <= 0 || plot.yAxis[0].getExtremes().max <= 0)) {
+        alert('Can not switch to logarithmic scale: Y axis range must be positive');
+        linear_option.checked = true;
+      } else {
+        plot.yAxis[0].update({ type: axis}, false);
+        plot.yAxis[1].update({ type: axis}, true);
+      }
+      linear_option.focus();
+      linear_option.blur();
+    }
+  }
 }

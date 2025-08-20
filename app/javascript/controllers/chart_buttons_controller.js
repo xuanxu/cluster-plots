@@ -146,4 +146,23 @@ export default class extends Controller {
     document.getElementById("y_zero_" + nplot + "_off").classList.add("hidden");
     document.getElementById("y_zero_" + nplot + "_on").classList.remove("hidden");
   }
+
+  collapse_plot_controls(nplot, plot_type) {
+    controls = [];
+    if (plot_type === "line") {
+      controls = ["y_title", "y_range", "y_axis_type"];
+    } else if (plot_type === "spectrogram") {
+      controls = ["y_title", "y_range","z_range"];
+    }
+    controls.forEach(control => {
+      var control_element = document.getElementById(control + "_" + nplot);
+      if (control_element && control_element.classList.contains("active")){
+        control_element.classList.remove("active");
+        document.getElementById("edit_" + control + "_" + nplot).classList.add("hidden");
+        var icon = document.getElementById(control + "_" + nplot + "_icon");
+        icon.classList.remove("fa-caret-up");
+        icon.classList.add("fa-caret-down");
+      }
+    });
+  }
 }

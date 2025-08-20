@@ -86,7 +86,7 @@
                 <%= tag.span("Add Y=0 line", id: "y_zero_#{i}_on", data: { action: "click->chart-buttons#show_y_zero_line"}, class: "panel_link hidden", title: "Highlight Y=0 line (only valid for linear scale if 0 is included in the range)") %>
                 <%= tag.span("Remove Y=0 line", id: "y_zero_#{i}_off", data: { action: "click->chart-buttons#hide_y_zero_line"}, class: "panel_link", title: "Remove Y=0 line") %>
               <% elsif @plot_info["panels_arr"][i]["panel_type"] == "spectrogram" %>
-                <span class="panel_control">Z range <i class="float-right fa fa-caret-up"></i></span>
+                <span class="panel_control">Z range <i class="float-right fa fa-caret-down"></i></span>
               <% end %>
             <% end %>
             </div>

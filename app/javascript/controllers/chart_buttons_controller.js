@@ -147,21 +147,21 @@ export default class extends Controller {
     document.getElementById("y_zero_" + nplot + "_on").classList.remove("hidden");
   }
 
-  toggle_edit_y_title(){
+  toggle_edit_plot_control({ params: { control }}){
     var nplot = Number(this.element.dataset.nplot);
-    var y_title = document.getElementById("y_title_" + nplot);
-    var icon = document.getElementById("y_title_" + nplot + "_icon");
-    var edit_y_title = document.getElementById("edit_y_title_" + nplot);
+    var plot_control = document.getElementById(control + "_" + nplot);
+    var icon = document.getElementById(control + "_" + nplot + "_icon");
+    var edit_plot_control = document.getElementById("edit_" + control + "_" + nplot);
 
-    if (edit_y_title.classList.contains("hidden")) {
+    if (edit_plot_control.classList.contains("hidden")) {
       collapse_plot_controls(nplot, this.element.dataset.plottype);
-      edit_y_title.classList.remove("hidden");
-      y_title.classList.add("active");
+      edit_plot_control.classList.remove("hidden");
+      plot_control.classList.add("active");
       icon.classList.remove("fa-caret-down");
       icon.classList.add("fa-caret-up");
     } else {
-      edit_y_title.classList.add("hidden");
-      y_title.classList.remove("active");
+      edit_plot_control.classList.add("hidden");
+      plot_control.classList.remove("active");
       icon.classList.remove("fa-caret-up");
       icon.classList.add("fa-caret-down");
     }
@@ -173,26 +173,6 @@ export default class extends Controller {
     var new_y_title = document.getElementById("new_y_title_" + nplot).value;
     var axis_with_title = plot_type === "line" ? 0 : 1;
     window.all_charts["plot_charts"][nplot].yAxis[axis_with_title].setTitle({text: new_y_title});
-  }
-
-  toggle_edit_y_axis_type(){
-    var nplot = Number(this.element.dataset.nplot);
-    var y_axis_type = document.getElementById("y_axis_type_" + nplot);
-    var icon = document.getElementById("y_axis_type_" + nplot + "_icon");
-    var edit_y_axis_type = document.getElementById("edit_y_axis_type_" + nplot);
-
-    if (edit_y_axis_type.classList.contains("hidden")) {
-      collapse_plot_controls(nplot, this.element.dataset.plottype);
-      edit_y_axis_type.classList.remove("hidden");
-      y_axis_type.classList.add("active");
-      icon.classList.remove("fa-caret-down");
-      icon.classList.add("fa-caret-up");
-    } else {
-      edit_y_axis_type.classList.add("hidden");
-      y_axis_type.classList.remove("active");
-      icon.classList.remove("fa-caret-up");
-      icon.classList.add("fa-caret-down");
-    }
   }
 
   update_y_axis_type({ params: { axis }}) {

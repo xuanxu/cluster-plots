@@ -75,14 +75,14 @@
           <% @plot_info["panels_arr"].size.times do |i| %>
             <div id="controls_plot_<%= i %>" class="h-[250px]" data-controller="chart-buttons" data-nplot="<%= i %>" data-plottype="<%= @plot_info["panels_arr"][i]["panel_type"] %>">
             <% unless @plot_info["panels_arr"][i]["panel_type"] == "status" %>
-              <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
+              <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
               <div id="edit_y_title_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
                 <input type="text" id="new_y_title_<%= i %>" class="w-[80%] text-sm ml-1 px-1" value=""/>
                 <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon_small active", title: "Update title", data: { action: "click->chart-buttons#update_y_title" } %>
               </div>
               <span id="y_range_<%= i %>" class="panel_control">Y range <i class="float-right fa fa-caret-down"></i></span>
               <% if @plot_info["panels_arr"][i]["panel_type"] == "line" %>
-                <span id="y_axis_type_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_y_axis_type">Y axis type <i id="y_axis_type_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
+                <span id="y_axis_type_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_axis_type">Y axis type <i id="y_axis_type_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
                 <div id="edit_y_axis_type_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
                   <label class="cursor-pointer block text-sm px-1 cursor-pointer text-red-900 hover:text-red-800 opacity-60 has-checked:opacity-100">
                     <input id="new_y_axis_type_<%= i %>_linear" type="radio" name="new_y_axis_type_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" <%= "checked" if @plot_info["panels_arr"][i]["subpanels"][0]["ytype"] == "linear" %> data-action="click->chart-buttons#update_y_axis_type" data-chart-buttons-axis-param="linear"> Linear

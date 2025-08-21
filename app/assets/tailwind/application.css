@@ -63,6 +63,12 @@
     @apply bg-red-900 text-red-50 hover:bg-red-950 hover:text-white;
   }
   input.panel_text{
-    @apply ml-1 px-1 py-1 outline-offset-1
+    @apply ml-1 px-1 py-1 outline-offset-1;
+  }
+  input.panel_radio{
+    @apply caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem];
+  }
+  label.panel_label{
+    @apply cursor-pointer block text-sm px-1 cursor-pointer text-red-900 hover:text-red-800 opacity-60 has-checked:opacity-100;
   }
 }

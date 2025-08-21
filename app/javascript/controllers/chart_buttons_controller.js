@@ -193,4 +193,38 @@ export default class extends Controller {
       linear_option.blur();
     }
   }
+
+  update_line_y_range({ params: { yrange }}) {
+    var nplot = Number(this.element.dataset.nplot);
+    var plot = window.all_charts["plot_charts"][nplot];
+    var min_field = document.getElementById("min_y_range_" + nplot);
+    var max_field = document.getElementById("max_y_range_" + nplot);
+
+    if (yrange === "default"){
+      min_field.value = Number(min_field.dataset.default).toFixed(3);
+      max_field.value = Number(max_field.dataset.default).toFixed(3);
+    } else if (yrange === "auto") {
+      min_field.value = Number(min_field.dataset.auto).toFixed(3);
+      max_field.value = Number(max_field.dataset.auto).toFixed(3);
+    } else if (yrange === "custom") {
+      min_field.value = Number(min_field.value);
+      max_field.value = Number(max_field.value);
+      document.getElementById("new_y_range_" + nplot + "_default").checked = false;
+      if (document.getElementById("new_y_range_" + nplot + "_auto")){
+        document.getElementById("new_y_range_" + nplot + "_auto").checked = false;
+      }
+    }
+
+    var min_value = Number(min_field.value);
+    var max_value = Number(max_field.value);
+    if (isNaN(min_value) || isNaN(max_value) || min_value >= max_value) {
+      alert("Invalid Y range values. Please enter valid numbers.");
+      return;
+    } else {
+      plot.yAxis[0].setExtremes(min_value, max_value, false);
+      plot.yAxis[1].setExtremes(min_value, max_value);
+      max_field.focus();
+      max_field.blur();
+    }
+  }
 }

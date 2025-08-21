@@ -77,7 +77,7 @@
             <% unless @plot_info["panels_arr"][i]["panel_type"] == "status" %>
               <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
               <div id="edit_y_title_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
-                <input type="text" id="new_y_title_<%= i %>" class="w-[80%] text-sm ml-1 px-1" value=""/>
+                <input type="text" id="new_y_title_<%= i %>" class="w-[80%] text-sm ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['ytitle'] %>"/>
                 <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon_small active", title: "Update title", data: { action: "click->chart-buttons#update_y_title" } %>
               </div>
               <span id="y_range_<%= i %>" class="panel_control">Y range <i class="float-right fa fa-caret-down"></i></span>

@@ -124,9 +124,9 @@ function plot_line(plot_data, nplot){
       if (Array.isArray(point)) {
         return [
           // Convert timestamp to number if it's a string
-          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+          typeof point[0] === 'string' ? Number(point[0]) : point[0],
           // Convert value to number if it's a string
-          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+          typeof point[1] === 'string' ? Number(point[1]) : point[1]
         ];
       }
       return point;
@@ -349,10 +349,10 @@ function plot_heatmap(plot_data, nplot){
       if (Array.isArray(point)) {
         return [
           // Convert timestamp to number if it's a string
-          typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+          typeof point[0] === 'string' ? Number(point[0]) : point[0],
           // Convert values to numbers if they are a string
-          typeof point[1] === 'string' ? parseFloat(point[1]) : point[1],
-          typeof point[2] === 'string' ? parseFloat(point[2]) : point[2],
+          typeof point[1] === 'string' ? Number(point[1]) : point[1],
+          typeof point[2] === 'string' ? Number(point[2]) : point[2],
         ];
       }
       return point;
@@ -740,9 +740,9 @@ function add_subpanels(plot, plot_data, nplot) {
         if (Array.isArray(point)) {
           return [
             // Convert timestamp to number if it's a string
-            typeof point[0] === 'string' ? parseFloat(point[0]) : point[0],
+            typeof point[0] === 'string' ? Number(point[0]) : point[0],
             // Convert value to number if it's a string
-            typeof point[1] === 'string' ? parseFloat(point[1]) : point[1]
+            typeof point[1] === 'string' ? Number(point[1]) : point[1]
           ];
         }
         return point;

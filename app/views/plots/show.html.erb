@@ -88,7 +88,7 @@
                     <input id="new_y_axis_type_<%= i %>_linear" type="radio" name="new_y_axis_type_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" <%= "checked" if @plot_info["panels_arr"][i]["subpanels"][0]["ytype"] == "linear" %> data-action="click->chart-buttons#update_y_axis_type" data-chart-buttons-axis-param="linear"> Linear
                   </label>
                   <label class="cursor-pointer block text-sm px-1 cursor-pointer text-red-900 hover:text-red-800 opacity-60 has-checked:opacity-100">
-                    <input type="radio" name="new_y_axis_type_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" <%= "checked" if @plot_info["panels_arr"][i]["subpanels"][0]["ytype"] != "linear" %> data-action="click->chart-buttons#update_y_axis_type" data-chart-buttons-axis-param="logarithmic"> Logarithmic
+                    <input id="new_y_axis_type_<%= i %>_logarithmic" type="radio" name="new_y_axis_type_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" <%= "checked" if @plot_info["panels_arr"][i]["subpanels"][0]["ytype"] != "linear" %> data-action="click->chart-buttons#update_y_axis_type" data-chart-buttons-axis-param="logarithmic"> Logarithmic
                   </label>
                 </div>
 

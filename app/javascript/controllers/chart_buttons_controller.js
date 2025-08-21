@@ -215,6 +215,16 @@ export default class extends Controller {
       }
     }
 
+    if (document.getElementById("new_y_axis_type_" + nplot + "_logarithmic").checked) {
+      if (min_field.value <= 0) {
+        alert("Can not set Y range with negative or zero values in logarithmic scale: Adjusting range to minimum positive value");
+        min_field.value = 0.000001.toExponential(2);
+      }
+      if (max_field.value <= 0) {
+        max_field.value = 0.00001.toExponential(2);
+      }
+    }
+
     var min_value = Number(min_field.value);
     var max_value = Number(max_field.value);
     if (isNaN(min_value) || isNaN(max_value) || min_value >= max_value) {

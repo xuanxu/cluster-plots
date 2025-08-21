@@ -62,4 +62,7 @@
   span.active{
     @apply bg-red-900 text-red-50 hover:bg-red-950 hover:text-white;
   }
+  input.panel_text{
+    @apply ml-1 px-1 py-1 outline-offset-1
+  }
 }

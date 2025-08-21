@@ -77,7 +77,7 @@
             <% unless @plot_info["panels_arr"][i]["panel_type"] == "status" %>
               <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
               <div id="edit_y_title_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
-                <input type="text" id="new_y_title_<%= i %>" class="w-[80%] text-sm ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['ytitle'] %>"/>
+                <input type="text" id="new_y_title_<%= i %>" class="w-[80%] text-sm panel_text" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['ytitle'] %>"/>
                 <%= button_tag "<i class='fa fa-repeat'></i>".html_safe, type: "button", class: "action_button_icon_small active", title: "Update title", data: { action: "click->chart-buttons#update_y_title" } %>
               </div>
 
@@ -101,9 +101,9 @@
                     <input id="new_y_range_<%= i %>_auto" type="radio" name="new_y_range_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" data-action="click->chart-buttons#update_line_y_range" data-chart-buttons-yrange-param="auto"> Auto-scaling
                   </label>
                   <span class="block py-1 text-sm text-red-900">
-                    <input type="text" id="min_y_range_<%= i %>" class="w-[30%] text-xs ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-auto="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_hc'][0] %>"/>
+                    <input type="text" id="min_y_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-auto="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_hc'][0] %>"/>
                     to
-                    <input type="text" id="max_y_range_<%= i %>" class="w-[30%] text-xs ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-auto="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_hc'][1] %>"/>
+                    <input type="text" id="max_y_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-auto="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_hc'][1] %>"/>
                   </span>
                   <%= button_tag "<i class='fa fa-up-right-and-down-left-from-center'></i> Update".html_safe, type: "button", class: "action_button_icon_small ml-1 px-1 active", title: "Update Y range", data: { action: "click->chart-buttons#update_line_y_range", chart_buttons_yrange_param: "custom" } %>
                 </div>
@@ -117,9 +117,9 @@
                     <input id="new_y_range_<%= i %>_default" type="radio" name="new_y_range_<%= i %>" class="caret-red-900 accent-red-800 focus:border-0 focus:outline-0 bg-red-800 w-[0.75rem] h-[0.75rem]" data-action="click->chart-buttons#update_spectogram_y_range" data-chart-buttons-yrange-param="default" checked> Default scale
                   </label>
                   <span class="block py-1 text-sm text-red-900">
-                    <input type="text" id="min_y_range_<%= i %>" class="w-[30%] text-xs ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange'][0] %>" data-ytype="<%= @plot_info['panels_arr'][i]['subpanels'].first['ytype'] %>" />
+                    <input type="text" id="min_y_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][0] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange'][0] %>" data-ytype="<%= @plot_info['panels_arr'][i]['subpanels'].first['ytype'] %>" />
                     to
-                    <input type="text" id="max_y_range_<%= i %>" class="w-[30%] text-xs ml-1 px-1 outline-offset-1" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange'][1] %>"/>
+                    <input type="text" id="max_y_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange_caa'][1] %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['yrange'][1] %>"/>
                   </span>
                   <%= button_tag "<i class='fa fa-up-right-and-down-left-from-center'></i> Update".html_safe, type: "button", class: "action_button_icon_small ml-1 px-1 active", title: "Update Y range", data: { action: "click->chart-buttons#update_spectogram_y_range", chart_buttons_yrange_param: "custom" } %>
                 </div>

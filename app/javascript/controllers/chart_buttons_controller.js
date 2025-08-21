@@ -237,4 +237,46 @@ export default class extends Controller {
       max_field.blur();
     }
   }
+
+  update_spectogram_y_range({ params: { yrange }}) {
+    var nplot = Number(this.element.dataset.nplot);
+    var plot = window.all_charts["plot_charts"][nplot];
+    var min_field = document.getElementById("min_y_range_" + nplot);
+    var max_field = document.getElementById("max_y_range_" + nplot);
+    var min_default = Number(min_field.dataset.default);
+    var max_default = Number(max_field.dataset.default);
+    var y_type = min_field.dataset.ytype;
+
+    if (yrange === "default"){
+      min_field.value = min_default.toFixed(1);
+      max_field.value = max_default.toFixed(1);
+    } else if (yrange === "custom") {
+      min_field.value = Number(min_field.value);
+      max_field.value = Number(max_field.value);
+      document.getElementById("new_y_range_" + nplot + "_default").checked = false;
+    }
+
+    var min_value = Number(min_field.value);
+    var max_value = Number(max_field.value);
+    if (isNaN(min_value) || isNaN(max_value) || min_value >= max_value) {
+      alert("Invalid Y range values. Please enter valid numbers.");
+      return;
+    } else if ((min_value < min_default) || (max_value > max_default)) {
+      alert("The selected range can't exceed the original one : [" + min_default + ',' + max_default + "]" );
+      return;
+    } else {
+      var min_value_data = min_value;
+      var max_value_data = max_value;
+
+      if (y_type != "linear") {
+        min_value_data = Math.log10(min_value);
+        max_value_data = Math.log10(max_value);
+      }
+
+      plot.yAxis[0].setExtremes(min_value_data, max_value_data, false);
+      plot.yAxis[1].setExtremes(min_value, max_value);
+      max_field.focus();
+      max_field.blur();
+    }
+  }
 }

@@ -262,7 +262,7 @@ export default class extends Controller {
       alert("Invalid Y range values. Please enter valid numbers.");
       return;
     } else if ((min_value < min_default) || (max_value > max_default)) {
-      alert("The selected range can't exceed the original one : [" + min_default + ',' + max_default + "]" );
+      alert("The selected range can't exceed the original one : [" + min_default + ', ' + max_default + "]" );
       return;
     } else {
       var min_value_data = min_value;
@@ -275,6 +275,32 @@ export default class extends Controller {
 
       plot.yAxis[0].setExtremes(min_value_data, max_value_data, false);
       plot.yAxis[1].setExtremes(min_value, max_value);
+      max_field.focus();
+      max_field.blur();
+    }
+  }
+
+  update_z_range({ params: { zrange }}) {
+    var nplot = Number(this.element.dataset.nplot);
+    var plot = window.all_charts["plot_charts"][nplot];
+    var min_field = document.getElementById("min_z_range_" + nplot);
+    var max_field = document.getElementById("max_z_range_" + nplot);
+    var min_value = Number(min_field.dataset.default);
+    var max_value = Number(max_field.dataset.default);
+
+    if (zrange === "custom") {
+      min_value = Number(min_field.value);
+      max_value = Number(max_field.value);
+      document.getElementById("new_z_range_" + nplot + "_default").checked = false;
+    }
+
+    if (isNaN(min_value) || isNaN(max_value) || min_value >= max_value) {
+      alert("Invalid Z range values. Please enter valid numbers.");
+      return;
+    } else {
+      min_field.value = min_value.toExponential(2);
+      max_field.value = max_value.toExponential(2);
+      plot.colorAxis[0].update({min: min_value, max: max_value });
       max_field.focus();
       max_field.blur();
     }

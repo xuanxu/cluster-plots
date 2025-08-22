@@ -124,7 +124,18 @@
                   <%= button_tag "<i class='fa fa-up-right-and-down-left-from-center'></i> Update".html_safe, type: "button", class: "action_button_icon_small ml-1 px-1 active", title: "Update Y range", data: { action: "click->chart-buttons#update_spectogram_y_range", chart_buttons_yrange_param: "custom" } %>
                 </div>
 
-                <span class="panel_control">Z range <i class="float-right fa fa-caret-down"></i></span>
+                <span id="z_range_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="z_range">Z range <i id="z_range_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
+                <div id="edit_z_range_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
+                  <label class="panel_label">
+                    <input id="new_z_range_<%= i %>_default" type="radio" name="new_z_range_<%= i %>" class="panel_radio" data-action="click->chart-buttons#update_z_range" data-chart-buttons-zrange-param="default" checked> Default scale
+                  </label>
+                  <span class="block py-1 text-sm text-red-900">
+                    <input type="text" id="min_z_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= sprintf('%e', @plot_info['panels_arr'][i]['subpanels'].first['zrange'][0]) %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['zrange'][0] %>"/>
+                    to
+                    <input type="text" id="max_z_range_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= sprintf('%e', @plot_info['panels_arr'][i]['subpanels'].first['zrange'][1]) %>" data-default="<%= @plot_info['panels_arr'][i]['subpanels'].first['zrange'][1] %>"/>
+                  </span>
+                  <%= button_tag "<i class='fa fa-swatchbook'></i> Update".html_safe, type: "button", class: "action_button_icon_small ml-1 px-1 active", title: "Update Z range", data: { action: "click->chart-buttons#update_z_range", chart_buttons_zrange_param: "custom" } %>
+                </div>
               <% end %>
             <% end %>
             </div>

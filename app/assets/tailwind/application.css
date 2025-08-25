@@ -53,6 +53,12 @@
   button.active{
     @apply bg-red-900 text-red-50 hover:bg-red-950;
   }
+  select.action_button{
+    @apply text-sm mb-1 bg-white border-none text-red-900 hover:bg-red-900 hover:text-white active:bg-red-800 active:text-red-50 disabled:bg-gray-300 disabled:text-gray-500 py-2 px-4 rounded-sm;
+  }
+  select.download_icon{
+    @apply bg-[url(/imgs/download_red900.png)] bg-size-[14px] bg-position-[center_left_16px] pl-[38px] hover:bg-[url(/imgs/download_white.png)];
+  }
   span.panel_control{
      @apply border-b border-red-900 text-sm cursor-pointer text-red-900 hover:text-red-800 active:text-red-700 disabled:text-gray-500 block w-full px-1;
   }

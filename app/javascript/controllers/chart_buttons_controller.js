@@ -305,4 +305,12 @@ export default class extends Controller {
       max_field.blur();
     }
   }
+
+  export_plot() {
+    var download_type = document.getElementById("save_plot").value;
+    if (download_type != "") {
+      Highcharts.exportCharts(window.all_charts["plot_charts"], {type: download_type});
+      document.getElementById("save_plot").value = "";
+    }
+  }
 }

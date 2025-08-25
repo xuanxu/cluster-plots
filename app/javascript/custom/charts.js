@@ -1021,3 +1021,77 @@ function zoom_in_selection(event) {
     window.dispatchEvent(new CustomEvent("zoom_in"));
   }
 }
+
+
+/* EXPORTING FUNCTIONALITY */
+/* from the can-i-export-multiple-charts-to-the-same-image-or-pdf section at  */
+/* https://www.highcharts.com/docs/getting-started/frequently-asked-questions */
+
+/**
+ * Create a global getSVG method that takes an array of charts as an argument.
+ * The SVG is returned.
+ */
+Highcharts.getSVG = async function (charts, options) {
+  let top = 0,
+      width = 0;
+
+  const svgArr = [],
+    addSVG = function (svgres) {
+    // Grab width/height from exported chart
+      const svgWidth = +svgres.match(/^<svg[^>]*width\s*=\s*\"?(\d+)\"?[^>]*>/)[1],
+            svgHeight = +svgres.match(/^<svg[^>]*height\s*=\s*\"?(\d+)\"?[^>]*>/)[1];
+
+      // Offset the position of this chart in the final SVG
+      let svg = svgres.replace(
+          '<svg',
+          `<g transform="translate(0,${top})" `
+      );
+      svg = svg.replace('</svg>', '</g>');
+      top += svgHeight;
+      width = Math.max(width, svgWidth);
+      svgArr.push(svg);
+    },
+    exportChart = async function (i) {
+      try {
+        if (charts[i]) {
+          charts[i].exporting.downloadSVG = () => {
+            console.log('Single chart export disabled');
+          };
+          const svg = await charts[i].exporting.localExport(
+            options,
+            {}
+          );
+          addSVG(svg);
+          // Export next only when this SVG is received
+          return exportChart(i + 1);
+        }
+      } catch {
+        console.log('Failed to get SVG', i);
+      }
+    };
+    await exportChart(0);
+    return `<svg version="1.1" width="${width}" height="${top}"
+            viewBox="0 0 ${width} ${top}"
+            xmlns="http://www.w3.org/2000/svg">
+              ${svgArr.join('')}
+            </svg>`;
+};
+
+/**
+ * Create a global exportCharts method that takes an array of charts as an
+ * argument, and exporting options as the second argument
+ */
+Highcharts.exportCharts = async function (charts, options) {
+  options = Highcharts.merge(Highcharts.getOptions().exporting, options);
+
+  try {
+    // Get SVG asynchronously
+    const svg = await Highcharts.getSVG(charts, options);
+
+    // Download the resulting SVG
+    await Highcharts.downloadSVGLocal(svg, options);
+  } catch {
+    console.log('Failed to export on client side');
+  }
+};
+

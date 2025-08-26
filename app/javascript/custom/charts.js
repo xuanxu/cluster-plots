@@ -773,6 +773,7 @@ function titleChart(titleText) {
   title_chart = new Highcharts.Chart({
     chart: {
       renderTo: "title-chart",
+      height: 50,
       events: { click: undefined },
     },
     exporting: {
@@ -1034,7 +1035,6 @@ function zoom_in_selection(event) {
 Highcharts.getSVG = async function (charts, options) {
   let top = 0,
       width = 0;
-
   const svgArr = [],
     addSVG = function (svgres) {
     // Grab width/height from exported chart
@@ -1058,7 +1058,7 @@ Highcharts.getSVG = async function (charts, options) {
             console.log('Single chart export disabled');
           };
           const svg = await charts[i].exporting.localExport(
-            options,
+            Highcharts.merge(options, charts[i].exporting.options),
             {}
           );
           addSVG(svg);

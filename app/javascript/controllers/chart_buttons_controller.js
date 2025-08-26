@@ -309,7 +309,8 @@ export default class extends Controller {
   export_plot() {
     var download_type = document.getElementById("save_plot").value;
     if (download_type != "") {
-      Highcharts.exportCharts(window.all_charts["plot_charts"], {type: download_type});
+      var charts_to_plot = [window.all_charts["title"], ...window.all_charts["plot_charts"], window.all_charts["axis"]]
+      Highcharts.exportCharts(charts_to_plot, {type: download_type});
       document.getElementById("save_plot").value = "";
     }
   }

@@ -334,4 +334,14 @@ export default class extends Controller {
       plot_chart.xAxis[0].update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
     });
   }
+
+  line_thickness(){
+    var line_thickness_option = document.getElementById("line_thickness").value;
+
+    window.all_charts["plot_charts"].forEach(plot_chart => {
+      plot_chart.series.forEach(plot_serie => {
+        if(plot_serie.type === "line") { plot_serie.update({ lineWidth: line_thickness_option }) }
+      });
+    });
+  }
 }

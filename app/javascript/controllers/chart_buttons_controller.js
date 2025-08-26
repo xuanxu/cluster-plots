@@ -337,11 +337,28 @@ export default class extends Controller {
 
   line_thickness(){
     var line_thickness_option = document.getElementById("line_thickness").value;
+    if (line_thickness_option === "") { line_thickness_option = 2 }
 
     window.all_charts["plot_charts"].forEach(plot_chart => {
       plot_chart.series.forEach(plot_serie => {
         if(plot_serie.type === "line") { plot_serie.update({ lineWidth: line_thickness_option }) }
       });
     });
+  }
+
+  font_size(){
+    var font_size_option = document.getElementById("font_size").value;
+    if (font_size_option === "") { font_size_option = 11}
+
+    window.all_charts["plot_charts"].forEach(plot_chart => {
+      plot_chart.yAxis[0].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
+      
+      if (plot_chart.series[0].type === "heatmap") {
+        plot_chart.yAxis[1].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
+        plot_chart.colorAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+      }
+    });
+
+    window.all_charts["axis"].xAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
   }
 }

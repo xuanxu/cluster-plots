@@ -314,4 +314,24 @@ export default class extends Controller {
       document.getElementById("save_plot").value = "";
     }
   }
+
+  grid_display(){
+    var grid_option = document.getElementById("grid_options").value;
+    var major_grid = 1;
+    var minor_grid = 1;
+
+    if(grid_option === 'major'){
+      minor_grid = 0;
+    } else if (grid_option === 'off'){
+      major_grid = 0;
+      minor_grid = 0;
+    } 
+
+    window.all_charts["plot_charts"].forEach(plot_chart => {
+      plot_chart.yAxis.forEach(y_axis => {
+        y_axis.update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
+      });
+      plot_chart.xAxis[0].update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
+    });
+  }
 }

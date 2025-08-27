@@ -1,0 +1,135 @@
+<div data-controller="chart-buttons" class="text-sm">
+  <span id="spacecraft_info_heading" class="cursor-pointer text-sm text-red-900 my-2 block" data-action="click->chart-buttons#toggle_spacecraft_info_controls">Add spacecraft info <i class="fa fa-caret-right"></i></span>
+
+  <div id="spacecraft_info_controls" class="container mt-3 px-4 py-2 max-w-(--max-custom-width) bg-white shadow-md grow hidden">
+    <div class="block w-full pb-1 mb-6">
+      <nav id="spacecraft_info_missions" class="font-bold space-x-6 whitespace-nowrap">
+        <span id="spacecraft_info_cluster" class="spacecraft_mission_option spacecraft_mission_selected" data-chart-buttons-mission-param="cluster" data-action="click->chart-buttons#show_spacecraft_info_options"><%= image_tag "cluster-icon.png", width: "20", class: "inline" %> Cluster</span>
+        <span id="spacecraft_info_double_star" class="spacecraft_mission_option" data-chart-buttons-mission-param="double_star" data-action="click->chart-buttons#show_spacecraft_info_options"><%= image_tag "double-star-icon.png", width: "20", class: "inline" %> Double Star</span>
+      </nav>
+    </div>
+
+
+    <div id="cluster_spacecraft_options">
+      <div class="block mb-3">
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="C1" value="1" class="align-middle border-red-900"> C1
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="C2" value="1" class="align-middle border-red-900"> C2
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="C3" value="1" class="align-middle border-red-900"> C3
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="C4" value="1" class="align-middle border-red-900"> C4
+        </label>
+      </div>
+
+      <div class="block py-2">
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="X" value="X" class="align-middle border-red-900"> X (GSE)
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="Y" value="Y" class="align-middle border-red-900"> Y (GSE)
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="Z" value="Z" class="align-middle border-red-900"> Z (GSE)
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="r" value="r" class="align-middle border-red-900"> distance to Earth (RE)
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="il" value="il" class="align-middle border-red-900"> Invariant latitude
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="mlt" value="mlt" class="align-middle border-red-900"> Magnetic local time
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="l" value="l" class="align-middle border-red-900"> L shell
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="sc_min" value="sc_min" class="align-middle border-red-900"> min SC distance
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="sc_max" value="sc_max" class="align-middle border-red-900"> max SC distance
+        </label>
+      </div>
+
+      <div class="block py-2 my-1">
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Select all</span>
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Deselect all</span>
+      </div>
+
+      <div class="block py-4 my-2">
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-plus'></i> Add</span>
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-minus'></i> Remove</span>
+      </div>
+    </div>
+
+    <div id="double_star_spacecraft_options" class="hidden">
+      <div class="block mb-3">
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="D1" value="1" class="align-middle border-red-900"> D1
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="D2" value="1" class="align-middle border-red-900"> D2
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="D3" value="1" class="align-middle border-red-900"> D3
+        </label>
+
+        <label class="align-middle mr-3">
+          <input type="radio" name="spacecraft" id="D4" value="1" class="align-middle border-red-900"> D4
+        </label>
+      </div>
+
+      <div class="block py-2">
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="r" value="ds_r" class="align-middle border-red-900">
+          distance to Earth (RE)
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="il" value="ds_il" class="align-middle border-red-900">
+          Invariant latitude
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="mlt" value="ds_mlt" class="align-middle border-red-900">
+          Magnetic local time
+        </label>
+
+        <label class="align-middle mr-3 block">
+          <input type="checkbox" id="l" value="ds_l" class="align-middle border-red-900">
+          L value
+        </label>
+      </div>
+
+      <div class="block py-2 my-1">
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Select all</span>
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Deselect all</span>
+      </div>
+
+      <div class="block py-4 my-2">
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-plus'></i> Add</span>
+        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-minus'></i> Remove</span>
+      </div>
+    </div>
+
+
+  </div>
+</div>

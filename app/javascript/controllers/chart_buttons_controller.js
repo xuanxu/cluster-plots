@@ -361,4 +361,39 @@ export default class extends Controller {
 
     window.all_charts["axis"].xAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
   }
+
+  toggle_spacecraft_info_controls() {
+    var heading = document.getElementById("spacecraft_info_heading");
+    var controls_container = document.getElementById("spacecraft_info_controls");
+
+    if (controls_container.classList.contains("hidden")) {
+      controls_container.classList.add("block");
+      controls_container.classList.remove("hidden");
+      heading.innerHTML = "Spacecraft info <i class='fa fa-caret-down'></i>"
+    } else {
+      controls_container.classList.add("hidden");
+      controls_container.classList.remove("block");
+      heading.innerHTML = "Add spacecraft info <i class='fa fa-caret-right'></i>"
+    }
+  }
+
+  show_spacecraft_info_options({ params: { mission } }){
+    var cluster_options = document.getElementById("cluster_spacecraft_options");
+    var double_star_options = document.getElementById("double_star_spacecraft_options");
+
+    var cluster_link = document.getElementById("spacecraft_info_cluster");
+    var double_star_link = document.getElementById("spacecraft_info_double_star");
+
+    if (mission === "cluster") {
+      cluster_options.classList.remove("hidden");
+      double_star_options.classList.add("hidden");
+      cluster_link.classList.add("spacecraft_mission_selected");
+      double_star_link.classList.remove("spacecraft_mission_selected");
+    } else if (mission === "double_star") {
+      double_star_options.classList.remove("hidden");
+      cluster_options.classList.add("hidden");
+      double_star_link.classList.add("spacecraft_mission_selected");
+      cluster_link.classList.remove("spacecraft_mission_selected");
+    }
+  }
 }

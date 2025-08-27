@@ -43,7 +43,8 @@
               <% @plot_info["panels_arr"].size.times do |i| %>
                 <div id="highcharts_plot_<%= i %>"></div>
               <% end %>
-              <div id="axis-chart" xstyle="height: 50px"></div>
+              <div id="axis-chart" style="height: 50px"></div>
+              <div id="spacecraft-info"></div>
             </div>
           </div>
         </div>
@@ -146,6 +147,8 @@
           <% end %>
         </div>
       </div>
+
+      <%= render "plots/spacecraft_info" %>
 
       <script>
         var chart_json_data = '<%= @plot_info.to_json.html_safe %>';

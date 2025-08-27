@@ -9,6 +9,10 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+:root {
+  --max-custom-width: 1500px;
+}
+
 @keyframes textappear {
   0% {
     color: #752929;

@@ -11,7 +11,7 @@
       </div>
 
       <div class="flex">
-        <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-[1500px] bg-white shadow-md grow">
+        <div id="plots_container" class="container mx-auto mt-3 px-4 py-2 max-w-(--max-custom-width) bg-white shadow-md grow">
           <div id="form-error-message" class="font-bold text-lg text-red-500 text-center my-[50px]">‼️ <%= @plot_info %></div>
         </div>
         <script>
@@ -38,7 +38,7 @@
           </div>
 
           <div class="flex">
-            <div id="plots_container" class="container mx-auto mt-3 px-2 py-2 max-w-[1500px] bg-white shadow-md grow">
+            <div id="plots_container" class="container mx-auto mt-3 px-2 py-2 max-w-(--max-custom-width) bg-white shadow-md grow">
               <div id="title-chart" style="height: 50px"></div>
               <% @plot_info["panels_arr"].size.times do |i| %>
                 <div id="highcharts_plot_<%= i %>"></div>

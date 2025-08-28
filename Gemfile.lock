@@ -260,6 +260,8 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
+    requestjs-rails (0.0.13)
+      railties (>= 7.1.0)
     rexml (3.4.1)
     rubocop (1.79.2)
       json (~> 2.3)
@@ -403,6 +405,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
+  requestjs-rails
   rubocop-rails-omakase
   rubyzip
   selenium-webdriver

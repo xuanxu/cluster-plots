@@ -42,6 +42,9 @@ gem "thruster", require: false
 
 gem "tailwindcss-rails", "~> 4.0"
 
+# Perform local requests from JS
+gem "requestjs-rails"
+
 # Parse JSON faster
 gem "oj"
 

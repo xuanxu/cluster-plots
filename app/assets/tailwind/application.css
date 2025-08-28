@@ -92,4 +92,13 @@
   span.spacecraft_mission_selected {
     @apply border-b-3 border-red-900 hover:border-red-900 text-red-900;
   }
+  span.spacecraft_action {
+    @apply cursor-pointer text-sm rounded-sm p-2 border border-red-900 text-white bg-red-900 hover:bg-red-800 active:bg-red-700;
+  }
+  span.spacecraft_action_minor {
+    @apply cursor-pointer text-sm rounded-sm p-1 border border-red-900 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700;
+  }
+  span.spacecraft_action_disabled {
+    @apply text-sm border border-stone-300 rounded-sm p-2 bg-stone-500 text-white;
+  }
 }

@@ -396,4 +396,17 @@ export default class extends Controller {
       cluster_link.classList.remove("spacecraft_mission_selected");
     }
   }
+
+  spacecraft_info_action_on_all({ params: { mission, action } }){
+    if (mission === "cluster") {
+      var options = document.getElementById("cluster_spacecraft_list").querySelectorAll("input[type='checkbox']");
+    } else if (mission === "double_star") {
+      var options = document.getElementById("double_star_spacecraft_list").querySelectorAll("input[type='checkbox']");
+    }
+
+    for (var i = 0; i < options.length; i++) {
+      options[i].checked = (action === "select");
+    }
+  }
+
 }

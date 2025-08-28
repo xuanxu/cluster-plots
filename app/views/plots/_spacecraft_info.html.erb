@@ -29,7 +29,7 @@
         </label>
       </div>
 
-      <div class="block py-2">
+      <div id="cluster_spacecraft_list" class="block py-2">
         <label class="align-middle mr-3 block">
           <input type="checkbox" id="X" value="X" class="align-middle border-red-900"> X (GSE)
         </label>
@@ -68,13 +68,13 @@
       </div>
 
       <div class="block py-2 my-1">
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Select all</span>
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Deselect all</span>
+        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="cluster" data-chart-buttons-action-param="select" data-action="click->chart-buttons#spacecraft_info_action_on_all">Select all</span>
+        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="cluster" data-chart-buttons-action-param="deselect" data-action="click->chart-buttons#spacecraft_info_action_on_all">Deselect all</span>
       </div>
 
       <div class="block py-4 my-2">
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-plus'></i> Add</span>
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-minus'></i> Remove</span>
+        <span class="spacecraft_action" title="Add spacecraft info to chart"><i class='fa fa-plus'></i> Add</span>
+        <span class="spacecraft_action_disabled" title="Remove spacecraft info from chart"><i class='fa fa-minus'></i> Remove</span>
       </div>
     </div>
 
@@ -97,7 +97,7 @@
         </label>
       </div>
 
-      <div class="block py-2">
+      <div id="double_star_spacecraft_list" class="block py-2">
         <label class="align-middle mr-3 block">
           <input type="checkbox" id="r" value="ds_r" class="align-middle border-red-900">
           distance to Earth (RE)
@@ -120,13 +120,13 @@
       </div>
 
       <div class="block py-2 my-1">
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Select all</span>
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-1 text-red-900 hover:bg-red-900 hover:text-white active:bg-red-700">Deselect all</span>
+        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="double_star" data-chart-buttons-action-param="select" data-action="click->chart-buttons#spacecraft_info_action_on_all">Select all</span>
+        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="double_star" data-chart-buttons-action-param="deselect" data-action="click->chart-buttons#spacecraft_info_action_on_all">Deselect all</span>
       </div>
 
       <div class="block py-4 my-2">
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-plus'></i> Add</span>
-        <span class="cursor-pointer text-sm border border-red-900 rounded-sm p-2 hover:bg-red-800 bg-red-900 text-white active:bg-red-700"><i class='fa fa-minus'></i> Remove</span>
+        <span class="spacecraft_action" title="Add spacecraft info to chart"><i class='fa fa-plus'></i> Add</span>
+        <span class="spacecraft_action_disabled" title="Remove spacecraft info from chart"><i class='fa fa-minus'></i> Remove</span>
       </div>
     </div>
 

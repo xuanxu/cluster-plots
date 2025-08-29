@@ -71,5 +71,4 @@ class PlotsController < ApplicationController
   def spacecraft_info_params
     params.require(:spacecraft_info).permit(:mission, :spacecraft, :start, :stop, info_list: [], time_ticks: [])
   end
-
 end

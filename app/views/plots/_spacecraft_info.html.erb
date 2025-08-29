@@ -1,11 +1,11 @@
-<div data-controller="chart-buttons" class="text-sm">
-  <span id="spacecraft_info_heading" class="cursor-pointer text-sm text-red-900 my-2 block" data-action="click->chart-buttons#toggle_spacecraft_info_controls">Add spacecraft info <i class="fa fa-caret-right"></i></span>
+<div data-controller="spacecraft-info" class="text-sm">
+  <span id="spacecraft_info_heading" class="cursor-pointer text-sm text-red-900 my-2 block" data-action="click->spacecraft-info#toggle_controls">Add spacecraft info <i class="fa fa-caret-right"></i></span>
 
   <div id="spacecraft_info_controls" class="container mt-3 px-4 py-2 max-w-(--max-custom-width) bg-white shadow-md grow hidden">
     <div class="block w-full pb-1 mb-6">
       <nav id="spacecraft_info_missions" class="font-bold space-x-6 whitespace-nowrap">
-        <span id="spacecraft_info_cluster" class="spacecraft_mission_option spacecraft_mission_selected" data-chart-buttons-mission-param="cluster" data-action="click->chart-buttons#show_spacecraft_info_options"><%= image_tag "cluster-icon.png", width: "20", class: "inline" %> Cluster</span>
-        <span id="spacecraft_info_double_star" class="spacecraft_mission_option" data-chart-buttons-mission-param="double_star" data-action="click->chart-buttons#show_spacecraft_info_options"><%= image_tag "double-star-icon.png", width: "20", class: "inline" %> Double Star</span>
+        <span id="spacecraft_info_cluster" class="spacecraft_mission_option spacecraft_mission_selected" data-spacecraft-info-mission-param="cluster" data-action="click->spacecraft-info#show_options"><%= image_tag "cluster-icon.png", width: "20", class: "inline" %> Cluster</span>
+        <span id="spacecraft_info_double_star" class="spacecraft_mission_option" data-spacecraft-info-mission-param="double_star" data-action="click->spacecraft-info#show_options"><%= image_tag "double-star-icon.png", width: "20", class: "inline" %> Double Star</span>
       </nav>
     </div>
 
@@ -68,8 +68,8 @@
       </div>
 
       <div class="block py-2 my-1">
-        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="cluster" data-chart-buttons-action-param="select" data-action="click->chart-buttons#spacecraft_info_action_on_all">Select all</span>
-        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="cluster" data-chart-buttons-action-param="deselect" data-action="click->chart-buttons#spacecraft_info_action_on_all">Deselect all</span>
+        <span class="spacecraft_action_minor" data-spacecraft-info-mission-param="cluster" data-spacecraft-info-action-param="select" data-action="click->spacecraft-info#action_on_all">Select all</span>
+        <span class="spacecraft_action_minor" data-spacecraft-info-mission-param="cluster" data-spacecraft-info-action-param="deselect" data-action="click->spacecraft-info#action_on_all">Deselect all</span>
       </div>
 
       <div class="block py-4 my-2">
@@ -120,8 +120,8 @@
       </div>
 
       <div class="block py-2 my-1">
-        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="double_star" data-chart-buttons-action-param="select" data-action="click->chart-buttons#spacecraft_info_action_on_all">Select all</span>
-        <span class="spacecraft_action_minor" data-chart-buttons-mission-param="double_star" data-chart-buttons-action-param="deselect" data-action="click->chart-buttons#spacecraft_info_action_on_all">Deselect all</span>
+        <span class="spacecraft_action_minor" data-spacecraft-info-mission-param="double_star" data-spacecraft-info-action-param="select" data-action="click->spacecraft-info#action_on_all">Select all</span>
+        <span class="spacecraft_action_minor" data-spacecraft-info-mission-param="double_star" data-spacecraft-info-action-param="deselect" data-action="click->spacecraft-info#action_on_all">Deselect all</span>
       </div>
 
       <div class="block py-4 my-2">

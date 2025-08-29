@@ -47,6 +47,12 @@ class PlotsController < ApplicationController
     end
   end
 
+  def spacecraft_info
+    data = spacecraft_info_params
+
+    render json: { message: "Spacecraft query OK: Mission: #{data[:mission]}, Spacecraft: #{data[:spacecraft]}\nRequired info: #{data[:info_list].join(", ")}\nFrom: #{data[:start]}\nTo: #{data[:stop]}" }
+  end
+
   private
   def load_panels
     @cluster_panels_by_instrument = Panel.ready.by_mission("cluster").to_a.group_by { |panel| panel.experiment }
@@ -61,4 +67,9 @@ class PlotsController < ApplicationController
   def cef_files_params
     params.permit(:cefs, :times)
   end
+
+  def spacecraft_info_params
+    params.require(:spacecraft_info).permit(:mission, :spacecraft, :start, :stop, info_list: [], time_ticks: [])
+  end
+
 end

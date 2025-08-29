@@ -50,4 +50,78 @@ export default class extends Controller {
     }
   }
 
+  async add_spacecraft_info({ params: { mission } }){
+    var spacecraft_code = 0;
+    var mission_code = 0;
+    var options = null;
+    var info_list = [];
+    var ticks_iso = [];
+
+    if (mission === "cluster") {
+      if (document.getElementById('C1').checked == true) {
+          spacecraft_code = 1;
+      } else if (document.getElementById('C2').checked == true) {
+          spacecraft_code = 2;
+      } else if (document.getElementById('C3').checked == true) {
+          spacecraft_code = 3;
+      } else if (document.getElementById('C4').checked == true) {
+          spacecraft_code = 4;
+      } else {
+          alert('Please select a spacecraft');
+          return;
+      }
+      mission_code = 1;
+      options = document.getElementById("cluster_spacecraft_list").querySelectorAll("input[type='checkbox']");
+    } else if (mission === "double_star"){
+      if (document.getElementById('D1').checked == true) {
+          spacecraft_code = 1;
+      } else if (document.getElementById('D2').checked == true) {
+          spacecraft_code = 2;
+      } else {
+          alert('Please select a spacecraft');
+          return;
+      }
+      mission_code = 2;
+      options = document.getElementById("double_star_spacecraft_list").querySelectorAll("input[type='checkbox']");
+    } else {
+      alert('Invalid mission');
+      return;
+    }
+
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].checked) {
+        info_list.push(options[i].value);
+      }
+    }
+    //info_list = JSON.stringify(info_list);
+
+    var ticks = window.all_charts["plot_charts"][0].xAxis[0].tickPositions;
+    for (var t = 0; t < ticks.length; t++) {
+      ticks_iso.push(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ", ticks[t]));
+    }
+    //ticks_iso = JSON.stringify(ticks_iso);
+
+    var date_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].min);
+    var date_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].max);
+
+    var query_data = {
+      start: date_start,
+      stop: date_stop,
+      time_ticks: ticks_iso,
+      mission: mission_code,
+      spacecraft: spacecraft_code,
+      info_list: info_list
+    }
+
+    const response = await post('/plots/spacecraft_info', { body: { spacecraft_info: query_data, contentType: "application/json" } })
+    if (response.ok) {
+      alert("OK!")
+      var info = await response.json;
+      alert(info["message"]);
+    } else {
+      alert("Error!")
+      alert(await response.status)
+    }
+  }
+
 }

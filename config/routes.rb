@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       post :generate
       get :cef_files
+      post :spacecraft_info
     end
   end
 

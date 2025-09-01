@@ -16,7 +16,7 @@ def str_to_num(s):
         return float(s)
 
 
-def run_sc_info(list_ticks,list_info,sc,missionID,start,stop,date_orig,json_file):
+def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, json_file):
 
     if missionID == '1':
         list_dataset = ['C'+str(sc)+'_JP_AUX_PMP','CL_SP_AUX','C'+str(sc)+'_CP_AUX_POSGSE_1M']
@@ -344,3 +344,66 @@ def run_sc_info(list_ticks,list_info,sc,missionID,start,stop,date_orig,json_file
     with open (json_file,'w') as f:
         json.dump({'sc_info':sc_info},f,sort_keys=True, indent=4, cls=JsonCustomEncoder)
 
+
+def main(argv):
+
+    USAGE = """\nUSAGE: \n
+           python run_sc_info.py (-m | --mission) mission_id (-s | --spacecraft) spacecraft_id (-i | --info) list_info (-t | --ticks) list_ticks (-b | --begin) start_date (-e | --end) end_date (-o | --orig) orig_dates (-j | --json) json_file \n
+           eg: python run_sc_info.py -i 'l,mlt,r,X,Y,Z' -t '10,11,12,13' -m '1' -s '3' -b '2001-03-17T00:00:00Z' -e '2001-03-18T00:00:00Z' -j 'test.json' -o '2001-03-17T00:00:00Z/2001-03-18T00:00:00Z'\n
+             mission :     id of the requested mission (1 = cluster, 2 = double star)
+             spacecraft:   id of the requested spacecraft (1-4 for cluster, 1-2 for double star)
+             list_info :   parameters to retrieve from the spacecraft data
+             list_ticks :  time marks in the X axis
+             begin/end :   interval of the plot
+             orig :        interval of the input cef file to request (the app adds 5 minutes at the beginning/end of the requested interval)
+             json_file :   name of the file to write with the data \n  """
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], 'm:s:i:t:b:e:j:o:h', ['mission=', 'spacecraft=', 'info=', 'ticks=', 'begin=', 'end=', 'orig=', 'json=', 'help'])
+    except getopt.GetoptError as err:
+        # print help information and exit:
+        print(str(err)) # will print something like "option -a not recognized"
+        print(USAGE)
+        sys.exit(2)
+
+    missionID = ""
+    sc = ""
+    list_info = ""
+    list_ticks = ""
+    start = ""
+    stop = ""
+    date_orig = ""
+    json_file = ""
+
+    for opt, arg in opts:
+        if opt in ('-h', '--help'):
+          print(USAGE)
+          sys.exit(2)
+        elif opt in ('-m', '--mission'):
+          missionID = arg
+        elif opt in ('-s', '--spacecraft'):
+          sc = arg
+        elif opt in ('-i', '--info'):
+          list_info = arg
+        elif opt in ('-t', '--ticks'):
+          list_ticks = arg
+        elif opt in ('-b', '--begin'):
+          start = arg
+        elif opt in ('-e', '--end'):
+          stop = arg
+        elif opt in ('-o', '--orig'):
+          date_orig = arg
+        elif opt in ('-j', '--json'):
+          json_file = arg
+        else:
+          print(USAGE)
+          sys.exit(2)
+
+    if date_orig == '':
+      date_orig = start + '/' + stop
+
+    run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, json_file)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

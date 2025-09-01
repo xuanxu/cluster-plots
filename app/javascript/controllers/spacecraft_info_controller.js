@@ -93,6 +93,10 @@ export default class extends Controller {
         info_list.push(options[i].value);
       }
     }
+    if (info_list.length === 0) {
+      alert('You have not selected any parameter');
+      return;
+    }
     //info_list = JSON.stringify(info_list);
 
     var ticks = window.all_charts["plot_charts"][0].xAxis[0].tickPositions;

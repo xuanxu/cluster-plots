@@ -219,11 +219,7 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
     print('LIST_CEF: ',list_cef)
     print('gen_panels:', time.time() - startTime)
 
-#print 'res:',res
-
     return res
-
-
 
 
 ####################################################################################################################################

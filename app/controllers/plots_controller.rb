@@ -7,6 +7,12 @@ class PlotsController < ApplicationController
   def new
   end
 
+  def show
+    if @plot.nil?
+      redirect_to new_plot_path
+    end
+  end
+
   def generate
     panels = plot_params[:panels]
     time_interval = plot_params[:time_interval]
@@ -38,12 +44,6 @@ class PlotsController < ApplicationController
       send_data '{"error": "' + e.message + '"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
     rescue
       send_data '{"error": "Error generating the zip file, please try again later"}', filename: "error_retrieving_cef_files.json", type: "application/json", disposition: "attachment"
-    end
-  end
-
-  def show
-    if @plot.nil?
-      redirect_to new_plot_path
     end
   end
 

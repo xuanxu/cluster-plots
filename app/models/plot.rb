@@ -21,7 +21,6 @@ class Plot
     end
   end
 
-
   def spacecraft_data(params)
     if valid_spacecraft_params?(params)
       generate_spacecraft_data(params)

@@ -48,9 +48,15 @@ class PlotsController < ApplicationController
   end
 
   def spacecraft_info
-    data = spacecraft_info_params
+    data = Plot.new.spacecraft_data(spacecraft_info_params)
 
-    render json: { message: "Spacecraft query OK: Mission: #{data[:mission]}, Spacecraft: #{data[:spacecraft]}\nRequired info: #{data[:info_list].join(", ")}\nFrom: #{data[:start]}\nTo: #{data[:stop]}" }
+    if data.is_a?(String)
+      reply = { status: "Error", info: data }
+    else
+      reply = { status: "OK", info: data.to_json }
+    end
+
+    render json: reply
   end
 
   private
@@ -69,6 +75,6 @@ class PlotsController < ApplicationController
   end
 
   def spacecraft_info_params
-    params.require(:spacecraft_info).permit(:mission, :spacecraft, :start, :stop, info_list: [], time_ticks: [])
+    params.require(:spacecraft_info).permit(:mission, :spacecraft, :start_at, :end_at, info_list: [], time_ticks: [])
   end
 end

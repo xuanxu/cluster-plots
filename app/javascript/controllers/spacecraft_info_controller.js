@@ -105,12 +105,12 @@ export default class extends Controller {
     }
     //ticks_iso = JSON.stringify(ticks_iso);
 
-    var date_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].min);
-    var date_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].max);
+    var datetime_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].min);
+    var datetime_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].max);
 
     var query_data = {
-      start: date_start,
-      stop: date_stop,
+      start_at: datetime_start,
+      end_at: datetime_stop,
       time_ticks: ticks_iso,
       mission: mission_code,
       spacecraft: spacecraft_code,
@@ -121,10 +121,10 @@ export default class extends Controller {
     if (response.ok) {
       alert("OK!")
       var info = await response.json;
-      alert(info["message"]);
+      alert(info["status"]);
+      alert(info["info"]);
     } else {
       alert("Error!")
-      alert(await response.status)
     }
   }
 

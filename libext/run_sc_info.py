@@ -1,8 +1,8 @@
-import sys, os
+import sys
+import os
 import getopt
 import subprocess
 import numpy as np
-import os
 import ceflib
 import json
 from datetime import datetime, timedelta
@@ -19,9 +19,9 @@ def str_to_num(s):
 def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, json_file):
 
     if missionID == '1':
-        list_dataset = ['C'+str(sc)+'_JP_AUX_PMP','CL_SP_AUX','C'+str(sc)+'_CP_AUX_POSGSE_1M']
+        list_dataset = ['C'+str(sc)+'_JP_AUX_PMP', 'CL_SP_AUX', 'C'+str(sc)+'_CP_AUX_POSGSE_1M']
     else:
-        list_dataset = ['D'+str(sc)+'_JP_AUX_PMP','D'+str(sc)+'_SP_AUX']
+        list_dataset = ['D'+str(sc)+'_JP_AUX_PMP', 'D'+str(sc)+'_SP_AUX']
 
     EarthRadius = 6371.2
 
@@ -38,43 +38,43 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     delta_sec = (date_stop-date_start).total_seconds()
 
     # get list of possible ticks for the saved images (as it can be different to the ones displayed on screen)
-    if delta_sec > 492480:		# > 5j 16h 48 min => 24h
-        delta_t = 86400			
-    elif delta_sec > 273600:		# > 3j 4h => 12h
-        delta_t = 43200			
-    elif delta_sec > 191520:		# > 2j 5h 12 min => 8h
-        delta_t = 28800			
-    elif delta_sec > 136800:		# > 1j 14h => 6h
-        delta_t = 21600			
-    elif delta_sec > 93636:		# > 1j 2h 36 min => 4h
-        delta_t = 14400			
-    elif delta_sec > 68400:		# > 19h => 3h
-        delta_t = 10800			
-    elif delta_sec > 41040:		# > 11h 24 min => 2h
-        delta_t = 7200			
-    elif delta_sec > 20520:		# > 5h 42 min => 1h
+    if delta_sec > 492480:  # > 5j 16h 48 min => 24h
+        delta_t = 86400
+    elif delta_sec > 273600:  # > 3j 4h => 12h
+        delta_t = 43200
+    elif delta_sec > 191520:  # > 2j 5h 12 min => 8h
+        delta_t = 28800
+    elif delta_sec > 136800:  # > 1j 14h => 6h
+        delta_t = 21600
+    elif delta_sec > 93636:  # > 1j 2h 36 min => 4h
+        delta_t = 14400
+    elif delta_sec > 68400:  # > 19h => 3h
+        delta_t = 10800
+    elif delta_sec > 41040:  # > 11h 24 min => 2h
+        delta_t = 7200
+    elif delta_sec > 20520:  # > 5h 42 min => 1h
         delta_t = 3600
-    elif delta_sec > 10260:		# > 2h 51 min => 30 min
-        delta_t = 1800		
-    elif delta_sec > 5700:		# > 1h 35 min => 15 min
-        delta_t = 900			
-    elif delta_sec > 3420:		# > 57h => 10 min
-        delta_t = 600			
-    elif delta_sec > 1596:		# > 26 min 36s => 5 min
+    elif delta_sec > 10260:  # > 2h 51 min => 30 min
+        delta_t = 1800
+    elif delta_sec > 5700:  # > 1h 35 min => 15 min
+        delta_t = 900
+    elif delta_sec > 3420:  # > 57h => 10 min
+        delta_t = 600
+    elif delta_sec > 1596:  # > 26 min 36s => 5 min
         delta_t = 300
-    elif delta_sec > 685:		# > 11 min 25s => 2 min
-        delta_t = 120			
-    elif delta_sec > 342:		# > 5 min 42s => 1 min
-        delta_t = 60			
-    elif delta_sec > 171:		# > 2 min 51 s => 30s
+    elif delta_sec > 685:  # > 11 min 25s => 2 min
+        delta_t = 120
+    elif delta_sec > 342:  # > 5 min 42s => 1 min
+        delta_t = 60
+    elif delta_sec > 171:  # > 2 min 51 s => 30s
         delta_t = 30
-    elif delta_sec > 95:		# > 1 min 35s => 15s
+    elif delta_sec > 95:  # > 1 min 35s => 15s
         delta_t = 15
-    elif delta_sec > 57:		# > 57s => 10s
+    elif delta_sec > 57:  # > 57s => 10s
         delta_t = 10
     elif delta_sec > 26:
         delta_t = 5
-    else: 
+    else:
         delta_t = 2
 
     # ticks list
@@ -98,7 +98,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     for dataset in list_dataset:
         # check if a "larger" CEF file exists
         cef_file_orig = file_dir+dataset+"__"+strDate_orig+"_V00.cef.gz"
-        cefmerge_file = dataset+"__"+strDate+"_V00" # cefmerge adds the .cef"
+        cefmerge_file = dataset+"__"+strDate+"_V00"  # cefmerge adds the .cef"
 
         if os.path.isfile(cef_file_orig):
             # extract only relevant time interval
@@ -109,25 +109,24 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         else:
             # request file from csa
             cef_file = file_dir+dataset+"__"+strDate+"_V00.cef.gz"
-            if os.path.isfile(cef_file) == False:
+            if os.path.isfile(cef_file) is False:
                 cmd = os.getenv("APP_PATH") + "/download_data_csa "+dataset+" "+start+" "+stop+" "+file_dir
                 subprocess.call(cmd, shell=True)
 
         list_cef.append(cef_file)
 
-    #remove Z from ISO time for js conversion
-    #sc_info = [{'name': 'axis_ticks', 'data': [(ceflib.milli_to_isotime(x,3))[:-1] for x in ticks]}]
-    sc_info = [{'name': 'axis_ticks', 'data': [(ceflib.milli_to_isotime(x,3)) for x in ticks]}]
+    # remove Z from ISO time for js conversion
+    # sc_info = [{'name': 'axis_ticks', 'data': [(ceflib.milli_to_isotime(x,3))[:-1] for x in ticks]}]
+    sc_info = [{'name': 'axis_ticks', 'data': [(ceflib.milli_to_isotime(x, 3)) for x in ticks]}]
 
-
-    if 'X' in list_info or 'Y' in list_info or 'Z' in list_info :
+    if 'X' in list_info or 'Y' in list_info or 'Z' in list_info:
         # get SC position info from POSGSE
         sc_pos_tag = 'sc_r_xyz_gse'
         time_tag = 'time_tags'
 
         # read cef file
         cef = list_cef[2]
-        itp_data = np.empty((len(ticks),3))
+        itp_data = np.empty((len(ticks), 3))
         itp_data[:] = np.NAN
 
         if os.path.isfile(cef):
@@ -137,28 +136,26 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
 
             data = np.array([el/EarthRadius for el in ceflib.var(sc_pos_tag)])
             time = np.array(ceflib.var(time_tag))
-            fillval = str_to_num(ceflib.vattr(sc_pos_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(sc_pos_tag, "FILLVAL"))
             idx_fill = np.where(data == fillval)
             if idx_fill[0].any():
-                data[idx_fill]=np.nan
+                data[idx_fill] = np.nan
 
             # interpolate to match ticks
             for n in range(3):
-                #itp_data[:,n] = 10*(np.around(np.interp(ticks,time,np.squeeze(data[:,n])))/10)
-                itp_data[:,n] = np.interp(ticks,time,np.squeeze(data[:,n]))
+                # itp_data[:,n] = 10*(np.around(np.interp(ticks,time,np.squeeze(data[:,n])))/10)
+                itp_data[:, n] = np.interp(ticks, time, np.squeeze(data[:, n]))
 
                 ceflib.close()
 
         # replace Nan with None for javascript
         itp_data = np.array(np.where(np.isnan(itp_data), None, itp_data))
         if 'X' in list_info:
-            sc_info.append({'name': 'X (GSE,Re)', 'data': itp_data[:,0]})
+            sc_info.append({'name': 'X (GSE,Re)', 'data': itp_data[:, 0]})
         if 'Y' in list_info:
-            sc_info.append({'name': 'Y (GSE,Re)', 'data': itp_data[:,1]})
+            sc_info.append({'name': 'Y (GSE,Re)', 'data': itp_data[:, 1]})
         if 'Z' in list_info:
-            sc_info.append({'name': 'Z (GSE,Re)', 'data': itp_data[:,2]})
-
-
+            sc_info.append({'name': 'Z (GSE,Re)', 'data': itp_data[:, 2]})
 
     if 'r' in list_info:
         # get SC distance info from SP
@@ -184,30 +181,29 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
 
             time = np.array(ceflib.var(time_tag))
 
-            fillval = str_to_num(ceflib.vattr(sc_pos_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(sc_pos_tag, "FILLVAL"))
             idx_fill = np.where(data1 == fillval)
             if idx_fill[0].any():
-                data1[idx_fill]=np.nan
+                data1[idx_fill] = np.nan
 
             if missionID == 1:
                 data_min = np.array(ceflib.var(sc_min_tag))
-                fillval = str_to_num(ceflib.vattr(sc_min_tag,"FILLVAL"))
+                fillval = str_to_num(ceflib.vattr(sc_min_tag, "FILLVAL"))
                 idx_fill = np.where(data_min == fillval)
                 if idx_fill[0].any():
-                    data_min[idx_fill]=np.nan
+                    data_min[idx_fill] = np.nan
 
                 data_max = np.array(ceflib.var(sc_max_tag))
-                fillval = str_to_num(ceflib.vattr(sc_max_tag,"FILLVAL"))
+                fillval = str_to_num(ceflib.vattr(sc_max_tag, "FILLVAL"))
                 idx_fill = np.where(data_max == fillval)
                 if idx_fill[0].any():
-                    data_max[idx_fill]=np.nan
+                    data_max[idx_fill] = np.nan
 
                 data2 = np.array(ceflib.var(sc_diff_tag))
-                fillval = str_to_num(ceflib.vattr(sc_diff_tag,"FILLVAL"))
+                fillval = str_to_num(ceflib.vattr(sc_diff_tag, "FILLVAL"))
                 idx_fill = np.where(data2 == fillval)
                 if idx_fill[0].any():
-                    data2[idx_fill]=np.nan
-
+                    data2[idx_fill] = np.nan
 
             # calculate distance:
             if missionID == 1:
@@ -215,14 +211,14 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             else:
                 data = data1
 
-            data = np.sqrt(np.power(data[:,0],2)+np.power(data[:,1],2)+np.power(data[:,2],2))/EarthRadius
+            data = np.sqrt(np.power(data[:, 0], 2)+np.power(data[:, 1], 2)+np.power(data[:, 2], 2))/EarthRadius
 
             # interpolate to match ticks
-            itp_data = np.around(np.interp(ticks,time,data),decimals=1)
+            itp_data = np.around(np.interp(ticks, time, data), decimals=1)
 
             if missionID == 1:
-                data_min = np.around(np.interp(ticks,time,data_min),decimals=1)
-                data_max = np.around(np.interp(ticks,time,data_max),decimals=1)
+                data_min = np.around(np.interp(ticks, time, data_min), decimals=1)
+                data_max = np.around(np.interp(ticks, time, data_max), decimals=1)
 
             ceflib.close()
 
@@ -230,8 +226,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         itp_data = np.array(np.where(np.isnan(itp_data), None, itp_data))
         sc_info.append({'name': 'r', 'data': itp_data})
 
-
-    if 'il' in list_info or 'mlt' in list_info or 'l' in list_info :
+    if 'il' in list_info or 'mlt' in list_info or 'l' in list_info:
 
         # get IL/MLT/L info from PMP
         il_tag = 'Invar_Lat'
@@ -256,30 +251,29 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             time = np.array(ceflib.var(time_tag))
 
             il_data = np.array(ceflib.var(il_tag))
-            fillval = str_to_num(ceflib.vattr(il_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(il_tag, "FILLVAL"))
             idx_fill = np.where(il_data == fillval)
             if idx_fill[0].any():
-                il_data[idx_fill]=np.nan
+                il_data[idx_fill] = np.nan
 
             mlt_data = np.array(ceflib.var(mlt_tag))
-            fillval = str_to_num(ceflib.vattr(mlt_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(mlt_tag, "FILLVAL"))
             idx_fill = np.where(mlt_data == fillval)
             if idx_fill[0].any():
-                mlt_data[idx_fill]=np.nan
+                mlt_data[idx_fill] = np.nan
 
             l_data = np.array(ceflib.var(l_tag))
-            fillval = str_to_num(ceflib.vattr(l_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(l_tag, "FILLVAL"))
             idx_fill = np.where(l_data == fillval)
             if idx_fill[0].any():
-                l_data[idx_fill]=np.nan
+                l_data[idx_fill] = np.nan
 
             # interpolate to match ticks
-            itp_il_data = np.around(np.interp(ticks,time,il_data),decimals=1)
-            itp_mlt_data = np.around(np.interp(ticks,time,mlt_data),decimals=1)
-            itp_l_data = np.around(np.interp(ticks,time,l_data),decimals=1)
+            itp_il_data = np.around(np.interp(ticks, time, il_data), decimals=1)
+            itp_mlt_data = np.around(np.interp(ticks, time, mlt_data), decimals=1)
+            itp_l_data = np.around(np.interp(ticks, time, l_data), decimals=1)
 
             ceflib.close()
-
 
         # replace Nan with None for javascript
         if 'il' in list_info:
@@ -292,7 +286,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             itp_l_data = np.array(np.where(np.isnan(itp_l_data), None, itp_l_data))
             sc_info.append({'name': 'L shell', 'data': itp_l_data})
 
-    if 'sc_max' in list_info or 'sc_min' in list_info :
+    if 'sc_max' in list_info or 'sc_min' in list_info:
         # get SC min/max distance info from SP
         sc_min_tag = 'sc_dr_min'
         sc_max_tag = 'sc_dr_max'
@@ -313,20 +307,20 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             time = np.array(ceflib.var(time_tag))
 
             data_min = np.array(ceflib.var(sc_min_tag))
-            fillval = str_to_num(ceflib.vattr(sc_min_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(sc_min_tag, "FILLVAL"))
             idx_fill = np.where(data_min == fillval)
             if idx_fill[0].any():
-                data_min[idx_fill]=np.nan
+                data_min[idx_fill] = np.nan
 
             data_max = np.array(ceflib.var(sc_max_tag))
-            fillval = str_to_num(ceflib.vattr(sc_max_tag,"FILLVAL"))
+            fillval = str_to_num(ceflib.vattr(sc_max_tag, "FILLVAL"))
             idx_fill = np.where(data_max == fillval)
             if idx_fill[0].any():
-                data_max[idx_fill]=np.nan
+                data_max[idx_fill] = np.nan
 
             # interpolate to match ticks
-            data_max = np.around(np.interp(ticks,time,data_max),decimals=1)
-            data_min = np.around(np.interp(ticks,time,data_min),decimals=1)
+            data_max = np.around(np.interp(ticks, time, data_max), decimals=1)
+            data_min = np.around(np.interp(ticks, time, data_min), decimals=1)
 
             ceflib.close()
 
@@ -338,11 +332,9 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             data_max = np.array(np.where(np.isnan(data_max), None, data_max))
             sc_info.append({'name': 'max SC dist', 'data': data_max})
 
-
-
-    #print(json_file)
-    with open (json_file,'w') as f:
-        json.dump({'sc_info':sc_info},f,sort_keys=True, indent=4, cls=JsonCustomEncoder)
+    # print(json_file)
+    with open(json_file, 'w') as f:
+        json.dump({'sc_info': sc_info}, f, sort_keys=True, indent=4, cls=JsonCustomEncoder)
 
 
 def main(argv):
@@ -362,7 +354,7 @@ def main(argv):
         opts, args = getopt.getopt(sys.argv[1:], 'm:s:i:t:b:e:j:o:h', ['mission=', 'spacecraft=', 'info=', 'ticks=', 'begin=', 'end=', 'orig=', 'json=', 'help'])
     except getopt.GetoptError as err:
         # print help information and exit:
-        print(str(err)) # will print something like "option -a not recognized"
+        print(str(err))  # will print something like "option -a not recognized"
         print(USAGE)
         sys.exit(2)
 
@@ -377,30 +369,30 @@ def main(argv):
 
     for opt, arg in opts:
         if opt in ('-h', '--help'):
-          print(USAGE)
-          sys.exit(2)
+            print(USAGE)
+            sys.exit(2)
         elif opt in ('-m', '--mission'):
-          missionID = arg
+            missionID = arg
         elif opt in ('-s', '--spacecraft'):
-          sc = arg
+            sc = arg
         elif opt in ('-i', '--info'):
-          list_info = arg
+            list_info = arg
         elif opt in ('-t', '--ticks'):
-          list_ticks = arg
+            list_ticks = arg
         elif opt in ('-b', '--begin'):
-          start = arg
+            start = arg
         elif opt in ('-e', '--end'):
-          stop = arg
+            stop = arg
         elif opt in ('-o', '--orig'):
-          date_orig = arg
+            date_orig = arg
         elif opt in ('-j', '--json'):
-          json_file = arg
+            json_file = arg
         else:
-          print(USAGE)
-          sys.exit(2)
+            print(USAGE)
+            sys.exit(2)
 
     if date_orig == '':
-      date_orig = start + '/' + stop
+        date_orig = start + '/' + stop
 
     run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, json_file)
 

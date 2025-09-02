@@ -1,5 +1,6 @@
 import sys
 import os
+from os.path import join, dirname
 import getopt
 import subprocess
 import numpy as np
@@ -25,7 +26,9 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
 
     EarthRadius = 6371.2
 
-    file_dir = os.getenv("FILE_PATH_DEV")
+    ROOT_PATH = dirname(__file__)
+    file_dir = join(ROOT_PATH, "results", "cef_files")
+    json_file_path = join(ROOT_PATH, "results", "json_charts", json_file)
 
     strDate = start[0:4]+start[5:7]+start[8:10]+"_"+start[11:13]+start[14:16]+start[17:19]+"_"+stop[0:4]+stop[5:7]+stop[8:10]+"_"+stop[11:13]+stop[14:16]+stop[17:19]
     stopo = (date_orig.split('/'))[1]
@@ -110,7 +113,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             # request file from csa
             cef_file = file_dir+dataset+"__"+strDate+"_V00.cef.gz"
             if os.path.isfile(cef_file) is False:
-                cmd = os.getenv("APP_PATH") + "/download_data_csa "+dataset+" "+start+" "+stop+" "+file_dir
+                cmd = ROOT_PATH + "/download_data_csa "+dataset+" "+start+" "+stop+" "+file_dir
                 subprocess.call(cmd, shell=True)
 
         list_cef.append(cef_file)
@@ -127,7 +130,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         # read cef file
         cef = list_cef[2]
         itp_data = np.empty((len(ticks), 3))
-        itp_data[:] = np.NAN
+        itp_data[:] = np.nan
 
         if os.path.isfile(cef):
             # read cef file
@@ -170,7 +173,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         # read cef file
         cef = list_cef[1]
         itp_data = np.empty(len(ticks))
-        itp_data[:] = np.NAN
+        itp_data[:] = np.nan
 
         if os.path.isfile(cef):
             # read cef file
@@ -237,11 +240,11 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         # read cef file
         cef = list_cef[0]
         itp_il_data = np.empty(len(ticks))
-        itp_il_data[:] = np.NAN
+        itp_il_data[:] = np.nan
         itp_mlt_data = np.empty(len(ticks))
-        itp_mlt_data[:] = np.NAN
+        itp_mlt_data[:] = np.nan
         itp_l_data = np.empty(len(ticks))
-        itp_l_data[:] = np.NAN
+        itp_l_data[:] = np.nan
 
         if os.path.isfile(cef):
             # read cef file
@@ -295,9 +298,9 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         # read cef file
         cef = list_cef[1]
         data_max = np.empty(len(ticks))
-        data_max[:] = np.NAN
+        data_max[:] = np.nan
         data_min = np.empty(len(ticks))
-        data_min[:] = np.NAN
+        data_min[:] = np.nan
 
         if os.path.isfile(cef):
             # read cef file
@@ -332,8 +335,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             data_max = np.array(np.where(np.isnan(data_max), None, data_max))
             sc_info.append({'name': 'max SC dist', 'data': data_max})
 
-    # print(json_file)
-    with open(json_file, 'w') as f:
+    with open(json_file_path, 'w') as f:
         json.dump({'sc_info': sc_info}, f, sort_keys=True, indent=4, cls=JsonCustomEncoder)
 
 

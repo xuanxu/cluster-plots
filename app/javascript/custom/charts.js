@@ -83,11 +83,11 @@ function plot_line(plot_data, nplot){
   // custom ticks ?
   var flag_ticks = json.ytickflag;
   var tick_val = undefined;
-  if (flag_ticks == 1) { tick_val = json.ytickval; }
+  if (flag_ticks === 1) { tick_val = json.ytickval; }
 
   var yoffset = 60;
   var ywidth = undefined;
-  if (json.rotate == 0) {
+  if (json.rotate === 0) {
     yoffset = 80;
     ywidth = 150;
   }
@@ -101,7 +101,7 @@ function plot_line(plot_data, nplot){
     }
 
     var display_legend = true;
-    if (json.plot[l].legend == 0) {
+    if (json.plot[l].legend === 0) {
       display_legend = false;
     }
     var name = json.plot[l].name;
@@ -247,7 +247,7 @@ function plot_line(plot_data, nplot){
           style: { fontSize: font_size },
           formatter: function () {
             var label = this.axis.defaultLabelFormatter.call(this);
-            if (flag_ticks == 1) {
+            if (flag_ticks === 1) {
               var tickvalues = json.ytickval;
               var ticknames = json.yticktxt;
               var idx = tickvalues.findIndex(tic => tic === this.value);
@@ -616,7 +616,7 @@ function add_subpanels(plot, plot_data, nplot) {
 
     var tick_values = undefined;
     var flag_ticks = subpanel_json.ytickflag;
-    if (flag_ticks == 1) {
+    if (flag_ticks === 1) {
       tick_values = subpanel_json.ytickval;
       var left_yAxis_index = subpanel_index * 2
       axis_labels[left_yAxis_index] = subpanel_json.yticktxt;
@@ -624,7 +624,7 @@ function add_subpanels(plot, plot_data, nplot) {
 
     var yoffset = 60;
     var ywidth = undefined;
-    if (subpanel_json.rotate == 0) {
+    if (subpanel_json.rotate === 0) {
       yoffset = 80;
       ywidth = 150;
     }
@@ -648,7 +648,7 @@ function add_subpanels(plot, plot_data, nplot) {
       labels: {
         style :{ fontSize: font_size },
         formatter: function () {
-          if (flag_ticks == 1) {
+          if (flag_ticks === 1) {
             var idx = tick_values.findIndex(tic => tic === this.value);
             return axis_labels[this.axis.index][idx];
           } else {
@@ -729,7 +729,7 @@ function add_subpanels(plot, plot_data, nplot) {
       var display_legend = true;
       var line_plot_info = subpanel_json.plot[l];
       var line_name = line_plot_info.name
-      if (subpanel_json.plot[l].legend == 0) {
+      if (subpanel_json.plot[l].legend === 0) {
         display_legend = false;
       } else if (l === 0) {
         line_name += '<br/> ... <br/>';

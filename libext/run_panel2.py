@@ -57,7 +57,7 @@ def get_data(list_arg):
         cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
         # request file from server
         if int(flag_server) == 1:
-                cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
+            cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
 
         if int(flag_csa) == 1:
             download_data_csa(dataset,n_start,n_stop,file_dir)
@@ -73,7 +73,7 @@ def get_data(list_arg):
             print(cmd)
             subprocess.call(cmd, shell=True)
         else:
-            print("can't find expected input file for cefmerge:",cef_file)
+            print("can't find expected input file for cefmerge:", cef_file)
 
 
         cef_file = join(file_dir, cefmerge_file + ".cef")

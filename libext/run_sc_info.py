@@ -99,18 +99,18 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     list_cef = []
     for dataset in list_dataset:
         # check if a "larger" CEF file exists
-        cef_file_orig = file_dir+dataset+"__"+strDate_orig+"_V00.cef.gz"
-        cefmerge_file = dataset+"__"+strDate+"_V00"  # cefmerge adds the .cef"
+        cef_file_orig = join(file_dir, dataset + "__" + strDate_orig + "_V00.cef.gz")
+        cefmerge_file = dataset + "__" + strDate + "_V00"  # cefmerge adds the .cef"
 
         if os.path.isfile(cef_file_orig):
             # extract only relevant time interval
             cmd = os.getenv("CEFMERGE") + " " + cef_file_orig + " -t " + start + "/" + stop + " -o " + cefmerge_file + " -O " + file_dir
             subprocess.call(cmd, shell=True)
 
-            cef_file = file_dir + cefmerge_file + ".cef"
+            cef_file = join(file_dir, cefmerge_file + ".cef")
         else:
             # request file from csa
-            cef_file = file_dir+dataset+"__"+strDate+"_V00.cef.gz"
+            cef_file = join(file_dir, dataset + "__" + strDate + "_V00.cef.gz")
             if os.path.isfile(cef_file) is False:
                 cmd = ROOT_PATH + "/download_data_csa " + dataset + " " + start + " " + stop + " " + file_dir
                 subprocess.call(cmd, shell=True)

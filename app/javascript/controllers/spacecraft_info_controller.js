@@ -105,8 +105,10 @@ export default class extends Controller {
     }
     //ticks_iso = JSON.stringify(ticks_iso);
 
-    var datetime_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].min);
-    var datetime_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", window.all_charts["axis"].xAxis[0].max);
+    var min_x_value = window.all_charts["axis"].xAxis[0].min;
+    var max_x_value = window.all_charts["axis"].xAxis[0].max;
+    var datetime_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", min_x_value);
+    var datetime_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", max_x_value);
 
     var query_data = {
       start_at: datetime_start,
@@ -119,13 +121,19 @@ export default class extends Controller {
 
     const response = await post('/plots/spacecraft_info', { body: { spacecraft_info: query_data, contentType: "application/json" } })
     if (response.ok) {
-      alert("OK!")
-      var info = await response.json;
-      alert(info["status"]);
-      alert(info["info"]);
+      var json_response = await response.json;
+      if (json_response["status"] === "OK") {
+        const info = JSON.parse(json_response["info"]);
+        plot_spacecraft_info(info, spacecraft_code, mission_code, info_list, min_x_value, max_x_value);
+      } else if (json_response["status"] === "Error") {
+        alert("Error: " + json_response["info"]);
+      } else {
+        alert("Unknown response from server");
+      }
     } else {
-      alert("Error!")
+      alert("Error getting spacecraft info")
     }
   }
+
 
 }

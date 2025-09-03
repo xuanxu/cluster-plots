@@ -320,7 +320,7 @@ function plot_line(plot_data, nplot){
 function plot_heatmap(plot_data, nplot){
   var plot = undefined;
   var json = plot_data.subpanels[0];
-	// define range to use
+  // define range to use
   var zrange = json.zrange;
   var ymin = json.yrange[0];
   var ymax = json.yrange[1];
@@ -541,7 +541,7 @@ function plot_heatmap(plot_data, nplot){
     },
     colorAxis: {
       stops: [
-        [0, '#000000'],		// lower than min range
+        [0, '#000000'],    // lower than min range
         [0.125, '#0000ff'],
         [0.25, '#007FFF'],
         [0.375, '#00ffff'],
@@ -549,7 +549,7 @@ function plot_heatmap(plot_data, nplot){
         [0.625, '#ffff00'],
         [0.75, '#FF7F00'],
         [0.875, '#ff0000'],
-        [1, '#7F0000']		// higher than max range
+        [1, '#7F0000']    // higher than max range
       ],
       type: json.ztype,
       min: zrange[0],
@@ -609,7 +609,7 @@ function add_subpanels(plot, plot_data, nplot) {
     var subpanel_json = plot_data.subpanels[subpanel_index];
 
     var sub_height = subpanel_json.size - 2 + '%';
-	  var num_lines = subpanel_json.plot.length;
+    var num_lines = subpanel_json.plot.length;
     subTop = subTop - subpanel_json.size;
     var bck_color = '#FFFAFA';
     if ( plot.yAxis.length % 4 === 0 ) { bck_color = 'white'; }
@@ -634,14 +634,14 @@ function add_subpanels(plot, plot_data, nplot) {
 
     plot.addAxis({
       id: 'subpanel_yAxis.' + subpanel_index,
-		  title: {
+      title: {
         enabled: true,
-		    rotation: subpanel_json.rotate,
+        rotation: subpanel_json.rotate,
         offset: yoffset,
         style :{
-				  fontSize: font_size,
-				  width: ywidth
-		    },
+          fontSize: font_size,
+          width: ywidth
+        },
         text: subpanel_json.ytitle
       },
       tickPositions: tick_values,
@@ -682,7 +682,7 @@ function add_subpanels(plot, plot_data, nplot) {
       lineColor: '#CBD6EA',
       tickColor: '#CBD6EA',
       minorTickColor: '#CBD6EA',
-	  });
+    });
 
     var new_axis_index = plot.yAxis.length - 1;
     // axis on the opposite side to close the box
@@ -748,13 +748,13 @@ function add_subpanels(plot, plot_data, nplot) {
         return point;
       });
 
-	    var line = {
+      var line = {
         name: line_name,
         showInLegend: display_legend,
         color: line_plot_info.color,
         lineWidth: line_plot_info.thick,
         data: convertedData,
-		    yAxis: new_axis_index,
+        yAxis: new_axis_index,
         marker: {
           enabled: undefined,
           symbol: 'circle',
@@ -1095,3 +1095,128 @@ Highcharts.exportCharts = async function (charts, options) {
   }
 };
 
+/**
+ * Create HighCharts chart to plot spacecraft information
+ */
+
+window.plot_spacecraft_info = function(json_data, spacecraft_id, mission_id, info_list, min_x_value, max_x_value) {
+  var data = [];
+  var spacecraft_label = [];
+
+  var available_info_list = ['X','Y','Z','r','il','mlt','l','sc_min','sc_max'];
+  var spacecraft_colors = {
+    "C1": "black",
+    "C2": "red",
+    "C3": "LimeGreen",
+    "C4": "blue",
+    "D1": "navy",
+    "D2": "magenta"
+  };
+
+  var spacecraft_name = "";
+  if (mission_id === 1) {
+    spacecraft_name = "C" + spacecraft_id;
+  } else {
+    spacecraft_name = "D" + spacecraft_id;
+  }
+
+  var spacecraft_color = spacecraft_colors[spacecraft_name];
+  var title = '<span style="color:white;">--<br>'+'<span style="fill: '+ spacecraft_color +';  font-weight:bold;"> '+ spacecraft_name +' <br><span style="color: '+ spacecraft_color +';">----<br>';
+
+  for (var i = 0; i < json_data.sc_info[0].data.length; i++) {
+    data.push([Date.parse(json_data.sc_info[0].data[i]), null]);
+    var lab = ' <br><span style="color: '+ spacecraft_color +';">----<br>';
+    for (var s = 0; s < json_data.sc_info.length-1; s++) {
+      lab = lab + (json_data.sc_info[s + 1].data[i] === null ? '-' : Number(json_data.sc_info[s+1].data[i]).toFixed(1)).toString() + '<br>';
+    }
+    spacecraft_label.push([Date.parse(json_data.sc_info[0].data[i]), lab]);
+  }
+
+  for (var s = 0; s < json_data.sc_info.length-1; s++) {
+    title = title + '<span style="font-weight:bold;">' + json_data.sc_info[s + 1].name + '<br>';
+  }
+
+  // in order to avoid the title to shift depending on the number of elements selected I write the non-selected info but make it invisible
+  for (var s = 0; s < available_info_list.length-1; s++) {
+    if (info_list.indexOf(available_info_list[s]) === -1) {
+      title = title + '<span style="visibility:hidden; font-weight:bold;">' + available_info_list[s] + '<br>';
+    }
+  }
+
+  var spacecraft_info_chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'spacecraft-info',
+      type: 'line',
+      zoomType: 'none',
+      marginBottom: 435
+    },
+    exporting: {
+      sourceWidth: 1000,
+      sourceHeight: 150,
+      buttons: {
+        contextButton: {
+          enabled: false
+        }
+      }
+    },
+    yAxis: [{
+      showEmpty: true,
+      title: {
+        style: {
+          fontSize: "11px"
+        },
+        enabled: true,
+        text: title,
+        offset: -100,
+        x: -60,
+        rotation: 0,
+        align: 'low'
+      }
+    }] ,
+    xAxis: [{
+      type: 'datetime',
+      min: min_x_value,
+      max: max_x_value,
+      title: {
+        enabled: false,
+      },
+      showEmpty: true,
+      labels: {
+        style: {
+          fontSize: "11px"
+        },
+        y: 25,
+        x:12,
+        align: "right",
+        allowOverlap: true,
+        formatter: function() {
+          var found = false;
+          for (var idx_tick = 0; idx_tick < spacecraft_label.length; idx_tick++) {
+            if (spacecraft_label[idx_tick][0] === this.value) {
+              found = true;
+              break;
+            }
+          }
+          if (found === true) {
+            return spacecraft_label[idx_tick][1];
+          } else {
+            return false;
+          }
+        },
+      },
+      lineColor: '#CBD6EA',
+      tickColor: '#CBD6EA',
+      minorTickColor: '#CBD6EA'
+    }]
+
+  });
+
+  var line = {
+    color: 'black',
+    data: data,
+    showInLegend: false
+  }
+  spacecraft_info_chart.addSeries(line, false);
+  spacecraft_info_chart.redraw();
+
+}

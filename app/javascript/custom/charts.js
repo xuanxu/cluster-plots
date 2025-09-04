@@ -24,6 +24,7 @@ function process_plots_data(){
 }
 
 function show_plots(jsonData){
+  all_charts = {}
   window.all_charts = {title: undefined, axis: undefined, plot_charts: [], spacecraft: undefined};
   setHighchartsGlobalSettings();
   const json_panels = JSON.parse(jsonData);

@@ -18,6 +18,9 @@ def str_to_num(s):
 
 
 def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, json_file):
+    list_info = list_info.split(",")
+    list_ticks = list_ticks.split(",")
+
     if missionID == '1':
         list_dataset = ['C'+str(sc)+'_JP_AUX_PMP', 'CL_SP_AUX', 'C'+str(sc)+'_CP_AUX_POSGSE_1M']
     else:

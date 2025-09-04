@@ -1204,6 +1204,12 @@ window.plot_spacecraft_info = function(json_data, spacecraft_id, mission_id, inf
           }
         },
       },
+      lineWidth: 2,
+      tickWidth: 2,
+      tickLength: 5,
+      minorTickLength: 2,
+      minorTickWidth: 2,
+      minorTickInterval: 'auto',
       lineColor: '#CBD6EA',
       tickColor: '#CBD6EA',
       minorTickColor: '#CBD6EA'

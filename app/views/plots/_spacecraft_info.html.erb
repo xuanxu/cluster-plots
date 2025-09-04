@@ -73,7 +73,8 @@
 
       <div class="block py-4 my-2">
         <span class="spacecraft_action" title="Add spacecraft info to chart" data-spacecraft-info-mission-param="cluster" data-action="click->spacecraft-info#add_spacecraft_info"><i class='fa fa-plus'></i> Add</span>
-        <span class="spacecraft_action_disabled" title="Remove spacecraft info from chart"><i class='fa fa-minus'></i> Remove</span>
+        <span class="spacecraft_action_disabled" id="remove_cluster" title="Remove spacecraft info from chart" data-action="click->spacecraft-info#remove_spacecraft_info_plot"><i class='fa fa-minus'></i> Remove</span>
+        <%= image_tag "loading.gif", id: "loading_cluster", alt: "Requesting spacecraft data", class: "w-[32px] hidden" %>
       </div>
     </div>
 
@@ -117,7 +118,8 @@
 
       <div class="block py-4 my-2">
         <span class="spacecraft_action" title="Add spacecraft info to chart" data-spacecraft-info-mission-param="double_star" data-action="click->spacecraft-info#add_spacecraft_info"><i class='fa fa-plus'></i> Add</span>
-        <span class="spacecraft_action_disabled" title="Remove spacecraft info from chart"><i class='fa fa-minus'></i> Remove</span>
+        <span class="spacecraft_action_disabled" id="remove_double_star" title="Remove spacecraft info from chart" data-action="click->spacecraft-info#remove_spacecraft_info_plot"><i class='fa fa-minus'></i> Remove</span>
+        <%= image_tag "loading.gif", id: "loading_double_star", alt: "Requesting spacecraft data", class: "w-[32px] hidden" %>
       </div>
     </div>
 

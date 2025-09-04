@@ -157,5 +157,18 @@ export default class extends Controller {
     }
   }
 
+  remove_spacecraft_info_plot() {
+    if (window.all_charts["spacecraft"] != undefined) {
+      window.all_charts["spacecraft"].destroy();
+      window.all_charts["spacecraft"] = undefined;
+
+      var remove_cluster_link = document.getElementById("remove_cluster");
+      var remove_double_star_link = document.getElementById("remove_double_star");
+      remove_cluster_link.classList.add("spacecraft_action_disabled");
+      remove_cluster_link.classList.remove("spacecraft_action");
+      remove_double_star_link.classList.add("spacecraft_action_disabled");
+      remove_double_star_link.classList.remove("spacecraft_action");
+    }
+  }
 
 }

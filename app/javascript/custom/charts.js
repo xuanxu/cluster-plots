@@ -24,7 +24,7 @@ function process_plots_data(){
 }
 
 function show_plots(jsonData){
-  window.all_charts = {title: undefined, axis: undefined, plot_charts: []};
+  window.all_charts = {title: undefined, axis: undefined, plot_charts: [], spacecraft: undefined};
   setHighchartsGlobalSettings();
   const json_panels = JSON.parse(jsonData);
 
@@ -1225,4 +1225,7 @@ window.plot_spacecraft_info = function(json_data, spacecraft_id, mission_id, inf
   spacecraft_info_chart.addSeries(line, false);
   spacecraft_info_chart.redraw();
 
+  window.all_charts["spacecraft"] = spacecraft_info_chart;
+
+  return spacecraft_info_chart;
 }

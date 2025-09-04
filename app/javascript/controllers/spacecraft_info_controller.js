@@ -56,6 +56,7 @@ export default class extends Controller {
     var options = null;
     var info_list = [];
     var ticks_iso = [];
+    var loading_image = null;
 
     if (mission === "cluster") {
       if (document.getElementById('C1').checked == true) {
@@ -72,6 +73,7 @@ export default class extends Controller {
       }
       mission_code = 1;
       options = document.getElementById("cluster_spacecraft_list").querySelectorAll("input[type='checkbox']");
+      loading_image = document.getElementById("loading_cluster");
     } else if (mission === "double_star"){
       if (document.getElementById('D1').checked == true) {
           spacecraft_code = 1;
@@ -83,6 +85,7 @@ export default class extends Controller {
       }
       mission_code = 2;
       options = document.getElementById("double_star_spacecraft_list").querySelectorAll("input[type='checkbox']");
+      loading_image = document.getElementById("loading_double_star");
     } else {
       alert('Invalid mission');
       return;
@@ -119,18 +122,37 @@ export default class extends Controller {
       info_list: info_list
     }
 
+    loading_image.classList.add("inline");
+    loading_image.classList.remove("hidden");
+
+    var remove_cluster_link = document.getElementById("remove_cluster");
+    var remove_double_star_link = document.getElementById("remove_double_star");
+
     const response = await post('/plots/spacecraft_info', { body: { spacecraft_info: query_data, contentType: "application/json" } })
     if (response.ok) {
       var json_response = await response.json;
       if (json_response["status"] === "OK") {
         const info = JSON.parse(json_response["info"]);
         plot_spacecraft_info(info, spacecraft_code, mission_code, info_list, min_x_value, max_x_value);
+
+        remove_cluster_link.classList.remove("spacecraft_action_disabled");
+        remove_cluster_link.classList.add("spacecraft_action");
+        remove_double_star_link.classList.remove("spacecraft_action_disabled");
+        remove_double_star_link.classList.add("spacecraft_action");
+        loading_image.classList.add("hidden");
+        loading_image.classList.remove("inline");
       } else if (json_response["status"] === "Error") {
-        alert("Error: " + json_response["info"]);
+        loading_image.classList.add("hidden");
+        loading_image.classList.remove("inline");
+        alert("Request failed: " + json_response["info"]);
       } else {
+        loading_image.classList.add("hidden");
+        loading_image.classList.remove("inline");
         alert("Unknown response from server");
       }
     } else {
+      loading_image.classList.add("hidden");
+      loading_image.classList.remove("inline");
       alert("Error getting spacecraft info")
     }
   }

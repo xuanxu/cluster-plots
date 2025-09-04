@@ -360,6 +360,12 @@ export default class extends Controller {
     });
 
     window.all_charts["axis"].xAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+
+    if (window.all_charts["spacecraft"] != undefined) {
+      const font_for_spacecraft_plot = Math.min(font_size_option, 11);
+      window.all_charts["spacecraft"].xAxis[0].update({ labels: { style :{ fontSize: font_for_spacecraft_plot } }});
+      window.all_charts["spacecraft"].yAxis[0].update({ title: { style :{ fontSize: font_for_spacecraft_plot } }});
+    }
   }
 
 }

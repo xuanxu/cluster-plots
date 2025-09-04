@@ -1,6 +1,12 @@
 // Show or hide plot borders
 function manageBorder(action="show") {
   const borderable_charts = window.all_charts["plot_charts"] || [];
+  if (window.all_charts["axis"] != undefined) {
+    borderable_charts.push(window.all_charts["axis"]);
+  }
+  if (window.all_charts["spacecraft"] != undefined) {
+    borderable_charts.push(window.all_charts["spacecraft"]);
+  }
   const border_width = action === "show" ? 1 : 0;
   for (var i = 0; i < borderable_charts.length; i++) {
     borderable_charts[i].update({chart: { borderWidth: border_width }});

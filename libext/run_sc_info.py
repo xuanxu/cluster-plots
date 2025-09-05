@@ -82,13 +82,10 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     else:
         delta_t = 2
 
-    # ticks list
-    start_day = datetime.strptime(start[0:4]+start[5:7]+start[8:10], "%Y%m%d")
     delta = timedelta(seconds=delta_t)
-
     start_dt = date_start
-
     ticks = [ceflib.isotime_to_milli(i) for i in list_ticks]
+
     while start_dt <= date_stop:
         # add current date to list by converting  it to iso format
         if ceflib.isotime_to_milli(start_dt.isoformat()+"Z") not in ticks:
@@ -101,22 +98,12 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     # retrieve the CEF files
     list_cef = []
     for dataset in list_dataset:
-        # check if a "larger" CEF file exists
-        cef_file_orig = join(file_dir, dataset + "__" + strDate_orig + "_V00.cef.gz")
-        cefmerge_file = dataset + "__" + strDate + "_V00"  # cefmerge adds the .cef"
-
-        if os.path.isfile(cef_file_orig):
-            # extract only relevant time interval
-            cmd = os.getenv("CEFMERGE") + " " + cef_file_orig + " -t " + start + "/" + stop + " -o " + cefmerge_file + " -O " + file_dir
+        # request file from csa if needed
+        cef_file = join(file_dir, dataset + "__" + strDate + "_V00.cef.gz")
+        if os.path.isfile(cef_file) is False:
+            print("Downloading CEF file from CSA for dataset ", dataset)
+            cmd = ROOT_PATH + "/download_data_csa " + dataset + " " + start + " " + stop + " " + file_dir
             subprocess.call(cmd, shell=True)
-
-            cef_file = join(file_dir, cefmerge_file + ".cef")
-        else:
-            # request file from csa
-            cef_file = join(file_dir, dataset + "__" + strDate + "_V00.cef.gz")
-            if os.path.isfile(cef_file) is False:
-                cmd = ROOT_PATH + "/download_data_csa " + dataset + " " + start + " " + stop + " " + file_dir
-                subprocess.call(cmd, shell=True)
 
         list_cef.append(cef_file)
 

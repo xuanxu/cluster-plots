@@ -45,69 +45,14 @@ def is_empty_gzip_file(filename):
 
 def get_data(list_arg):
 
-    [dataset,flag_server,flag_csa,file_dir,strDate,strDate_orig,n_start,n_stop,flag_first] = list_arg
+    [dataset, file_dir, strDate, n_start, n_stop] = list_arg
 
-    if '_FGM_' in dataset :
-        # always need to go back to the server for FGM as the time interval 
-        # could have changed the input dataset required during a zoom action  
-        flag_server = 1
+    cef_file = join(file_dir, dataset + "__" + strDate + "_V00.cef.gz")
+    download_data_csa(dataset, n_start, n_stop, file_dir)
 
-
-    if int(flag_server) == 1:
-        cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
-        # request file from server
-        if int(flag_server) == 1:
-            cef_file = join(file_dir, dataset+"__"+strDate+"_V00.cef.gz")
-
-        if int(flag_csa) == 1:
-            download_data_csa(dataset,n_start,n_stop,file_dir)
-        else:
-            download_data_caa(dataset, n_start, n_stop, cef_file)
-    else:
-        # extract just the wanted data
-        cef_file = join(file_dir, dataset+"__"+strDate_orig+"_V00.cef.gz")
-        cefmerge_file = dataset+"__"+strDate+"_V00" # cefmerge adds the .cef"
-
-        if os.path.isfile(cef_file):
-            cmd = os.getenv("CEFMERGE") + " " + cef_file + " -t " + n_start + "/" + n_stop + " -o " + cefmerge_file + " -O " + file_dir
-            print(cmd)
-            subprocess.call(cmd, shell=True)
-        else:
-            print("can't find expected input file for cefmerge:", cef_file)
-
-
-        cef_file = join(file_dir, cefmerge_file + ".cef")
-
-    print(" * CEF file:", cef_file);
+    print("* CEF file:", cef_file);
 
     return cef_file
-
-
-#################################################################################################################################
-def download_data_caa(ds, start_date, stop_date, out_filename):
-
-    print("DOWNLOADING DATA FROM CAA")
-
-    _CEFMERGE_INCLUDES = '-I /caa/shared/header_includes  -I /caa/shared/header_includes/aspoc -I /caa/shared/header_includes/aux -I /caa/shared/header_includes/cis -I /caa/shared/header_includes/edi -I /caa/shared/header_includes/efw -I /caa/shared/header_includes/fgm -I /caa/shared/header_includes/peace  -I /caa/shared/header_includes/rapid  -I /caa/shared/header_includes/staff  -I /caa/shared/header_includes/wbd -I /caa/shared/header_includes/whisper -I /caa/shared/header_includes/double_star  -I /caa/shared/header_includes/double_star/aspoc -I /caa/shared/header_includes/double_star/aux -I /caa/shared/header_includes/double_star/hia/ -I /caa/shared/header_includes/double_star/peace -I /caa/shared/header_includes/double_star/staff-dwp -I /caa/shared/header_includes/double_star/fgm '
-
-
-    cmd = 'perl -I /home/caa_ops/TOOLS/DB_ACCESS /home/caa_ops/TOOLS/DB_ACCESS/dBListCEFFiles.pl {} {} {} 2001-01-01 100000000 - ' \
-            ' | /caa/shared/software/cefmerge {} -t {}/{} -stdout | ' \
-            ' gzip -c > {}'.format(
-                ds, start_date, stop_date,
-                _CEFMERGE_INCLUDES, start_date, stop_date,
-                out_filename,
-    )
-
-    print(cmd)
-
-    ret = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if ret.returncode != 0:
-        raise RuntimeError('{} returned {}: {} {}'.format(cmd, ret.returncode, ret.stdout, ret.stderr))
-
-    # if there's no data the script produces an empty file which causes problems
-    if is_empty_gzip_file(out_filename):
-        os.remove(out_filename)
 
 #################################################################################################################################
 
@@ -119,7 +64,7 @@ def download_data_csa(ds, start_date, stop_date, file_dir):
 
 #################################################################################################################################
 
-def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,flag_server,output_type,plot_name,upd_list,list_zeroes):
+def run_panel2(list_panel, start, stop, date_orig, json_file_name, cef_path, output_type, plot_name, upd_list, list_zeroes):
     file_dir =  join(dirname(__file__), "results", "cef_files")
     xml_dir = join(dirname(__file__), "xml")
     json_file = join(dirname(__file__), "results", "json_charts", json_file_name)
@@ -186,16 +131,12 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
     n_stopo = (Time(stopo) + TimeDelta(300.0, format='sec')).isot+'Z'
 
     strDate = n_start[0:4]+n_start[5:7]+n_start[8:10]+"_"+n_start[11:13]+n_start[14:16]+n_start[17:19]+"_"+n_stop[0:4]+n_stop[5:7]+n_stop[8:10]+"_"+n_stop[11:13]+n_stop[14:16]+n_stop[17:19]
-    strDate_orig = n_starto[0:4]+n_starto[5:7]+n_starto[8:10]+"_"+n_starto[11:13]+n_starto[14:16]+n_starto[17:19]+"_"+n_stopo[0:4]+n_stopo[5:7]+n_stopo[8:10]+"_"+n_stopo[11:13]+n_stopo[14:16]+n_stopo[17:19]
-
-    # retrieve the CEF files
-    flag_first = 1
 
     # va stocker les threads qu'on va lancer.
     threadList = []
 
     for dataset in list_dataset:
-        arg_list = [dataset,flag_server,flag_csa,file_dir,strDate,strDate_orig,n_start,n_stop,flag_first]
+        arg_list = [dataset, file_dir, strDate, n_start, n_stop]
         curThread = GetCEFThread(arg_list)
         curThread.start()	# on lance le thread
         threadList.append(curThread)	# on ajoute le thread a la list
@@ -228,12 +169,10 @@ def run_panel2(list_panel,start,stop,date_orig,json_file_name,cef_path,flag_csa,
 def main(argv):
 
     USAGE = """\nUSAGE: \n
-           python run_panel2.py (-p | --panel) panel (-b | --begin) begin (-e | --end) stop (-c | --csa) flag_csa (-s | --server) flag_server (-n | --name) name  (-u | --update) upd (-o | --orig) orig  (-t | --output-type) type (-f | --cef-path) tmp_path  (-z | --zeroes) zeroes \n
-           eg: python run_panel2.py -b '2001-03-17T00:00:00Z' -e '2001-03-18T00:00:00Z' -p 'C1_CG_EFW_L3_P_CAA' -n 'test.ps' -t 'highcharts' -c 1 -j 'test.json' -o '2001-03-17T00:00:00Z/2001-03-18T00:00:00Z' -u 'upd.list'\n
+           python run_panel2.py (-p | --panel) panel (-b | --begin) begin (-e | --end) stop (-n | --name) name  (-u | --update) upd (-o | --orig) orig  (-t | --output-type) type (-f | --cef-path) tmp_path  (-z | --zeroes) zeroes \n
+           eg: python run_panel2.py -b '2001-03-17T00:00:00Z' -e '2001-03-18T00:00:00Z' -p 'C1_CG_EFW_L3_P_CAA' -n 'test.ps' -t 'highcharts' -j 'test.json' -o '2001-03-17T00:00:00Z/2001-03-18T00:00:00Z' -u 'upd.list'\n
              begin/end :   interval of the plot
              orig :        interval of the input cef file to request (the app adds 5 minutes at the beginning/end of the requested interval)
-             flag_server : request new file from CAA/CSA (when zooming use cefmerge on the file already on disk)
-             flag_csa :    request data from the csa command line instead of the caa one
              tmp_path:	   path to store the cef file
              output_type : for now only 'hc' (highcharts -> json output) is implemented
              name :        ignored, ps plotting not implemented 
@@ -241,15 +180,13 @@ def main(argv):
              upd :         file sent by the server when updating filter information \n  """
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'p:c:s:b:e:o:n:t:f:j:u:h', ['panel=', 'csa=', 'server=', 'begin=', 'end=', 'orig=', 'name=', 'output_type=', 'cef_path=', 'json=', 'update=', 'help'])
+        opts, args = getopt.getopt(sys.argv[1:], 'p:b:e:o:n:t:f:j:u:h', ['panel=', 'begin=', 'end=', 'orig=', 'name=', 'output_type=', 'cef_path=', 'json=', 'update=', 'help'])
     except getopt.GetoptError as err:
         # print help information and exit:
         print(str(err)) # will print something like "option -a not recognized"
         print(USAGE)
         sys.exit(2)
 
-    flag_server = 1
-    flag_csa = 1
     output_type = 'highcharts'
     upd_list = ''
     zeroes_list = ''
@@ -270,10 +207,6 @@ def main(argv):
            date_orig = arg
         elif opt in ('-p', '--panel'):
             list_panel = arg
-        elif opt in ('-c', '--csa'):
-            flag_csa = arg
-        elif opt in ('-s', '--server'):
-            flag_server = arg
         elif opt in ('-t', '--output_type'):
             output_type = arg
         elif opt in ('-f', '--cef-path'):
@@ -293,7 +226,7 @@ def main(argv):
     if date_orig == '':
         date_orig = start + '/' + stop 
 
-    run_panel2(list_panel,start,stop,date_orig,json_file,cef_path,flag_csa,flag_server,output_type,name,upd_list,zeroes_list)
+    run_panel2(list_panel, start, stop, date_orig, json_file, cef_path, output_type, name, upd_list, zeroes_list)
 
 
 if __name__ == "__main__":

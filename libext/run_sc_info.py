@@ -125,7 +125,6 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
             # read cef file
             ceflib.verbosity(0)
             ceflib.read(cef)
-
             data = np.array([el/EarthRadius for el in ceflib.var(sc_pos_tag)])
             time = np.array(ceflib.var(time_tag))
             fillval = str_to_num(ceflib.vattr(sc_pos_tag, "FILLVAL"))
@@ -135,8 +134,8 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
 
             # interpolate to match ticks
             for n in range(3):
-                # itp_data[:,n] = 10*(np.around(np.interp(ticks,time,np.squeeze(data[:,n])))/10)
-                itp_data[:, n] = np.interp(ticks, time, np.squeeze(data[:, n]))
+                if data.shape[0] > 1:
+                    itp_data[:, n] = np.interp(ticks, time, np.squeeze(data[:, n]))
 
                 ceflib.close()
 
@@ -261,9 +260,12 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
                 l_data[idx_fill] = np.nan
 
             # interpolate to match ticks
-            itp_il_data = np.around(np.interp(ticks, time, il_data), decimals=1)
-            itp_mlt_data = np.around(np.interp(ticks, time, mlt_data), decimals=1)
-            itp_l_data = np.around(np.interp(ticks, time, l_data), decimals=1)
+            if il_data.shape[0] > 1:
+                itp_il_data = np.around(np.interp(ticks, time, il_data), decimals=1)
+            if mlt_data.shape[0] > 1:
+                itp_mlt_data = np.around(np.interp(ticks, time, mlt_data), decimals=1)
+            if l_data.shape[0] > 1:
+                itp_l_data = np.around(np.interp(ticks, time, l_data), decimals=1)
 
             ceflib.close()
 

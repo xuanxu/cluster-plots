@@ -309,12 +309,17 @@ export default class extends Controller {
   export_plot() {
     var download_type = document.getElementById("save_plot").value;
     var charts_to_plot = []
+    var filename_dates = "";
+    if (typeof(chart_start_datetime) !== "undefined" && typeof(chart_stop_datetime) !== "undefined"){
+      filename_dates = "_" + chart_start_datetime + "_" + chart_stop_datetime;
+      filename_dates = filename_dates.replace(/[TZ:-]/g, "");
+    }
     if (download_type != "") {
       charts_to_plot = [window.all_charts["title"], ...window.all_charts["plot_charts"], window.all_charts["axis"]]
       if (window.all_charts["spacecraft"] != undefined) {
         charts_to_plot.push(window.all_charts["spacecraft"]);
       }
-      Highcharts.exportCharts(charts_to_plot, {type: download_type});
+      Highcharts.exportCharts(charts_to_plot, {type: download_type, filename: "Cluster_Plot" + filename_dates});
       document.getElementById("save_plot").value = "";
     }
   }

@@ -35,7 +35,6 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     strDate = start[0:4]+start[5:7]+start[8:10]+"_"+start[11:13]+start[14:16]+start[17:19]+"_"+stop[0:4]+stop[5:7]+stop[8:10]+"_"+stop[11:13]+stop[14:16]+stop[17:19]
     stopo = (date_orig.split('/'))[1]
     starto = (date_orig.split('/'))[0]
-    strDate_orig = starto[0:4]+starto[5:7]+starto[8:10]+"_"+starto[11:13]+starto[14:16]+starto[17:19]+"_"+stopo[0:4]+stopo[5:7]+stopo[8:10]+"_"+stopo[11:13]+stopo[14:16]+stopo[17:19]
 
     # calculate time range in seconds
     date_start = datetime.strptime(start, "%Y-%m-%dT%H:%M:%SZ")

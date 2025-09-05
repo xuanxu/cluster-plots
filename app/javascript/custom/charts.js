@@ -778,7 +778,7 @@ function titleChart(titleText) {
       events: { click: undefined },
     },
     exporting: {
-      sourceWidth: 1000,
+      sourceWidth: 1200,
       sourceHeight: 50
     },
     title:{
@@ -804,7 +804,7 @@ function axisChart(start, stop) {
       events: { click: undefined },
     },
     exporting: {
-      sourceWidth: 1000,
+      sourceWidth: 1200,
       sourceHeight: 40
     },
     yAxis: [{
@@ -876,7 +876,7 @@ function setHighchartsGlobalSettings(){
     },
     exporting: {
       allowHTML: true,
-      sourceWidth: 1000,
+      sourceWidth: 1200,
       sourceHeight: 300,
       fallbackToExportServer: false, // Ensure the export happens on the client side or not at all
       buttons: {
@@ -1152,8 +1152,8 @@ window.plot_spacecraft_info = function(json_data, spacecraft_id, mission_id, inf
       marginBottom: 435
     },
     exporting: {
-      sourceWidth: 1000,
-      sourceHeight: 150,
+      sourceWidth: 1200,
+      sourceHeight: 200,
       buttons: {
         contextButton: {
           enabled: false

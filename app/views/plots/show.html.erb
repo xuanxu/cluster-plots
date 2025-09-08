@@ -19,12 +19,15 @@
         </script>
       </div>
     <% else %>
+      <div class="mt-2 text-sm">
+        <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden lg:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
+        <%= select_tag :save_plot, options_for_select([["PNG", "image/png"], ["JPEG", "image/jpeg"], ["PDF", "application/pdf"]]), prompt: "Save plot", class: "action_button download_icon", title: "Save plot", data: { controller: "chart-buttons", action: "change->chart-buttons#export_plot" } %>
+        <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden lg:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", title: "Download CEF files", class: "action_button", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
+      </div>
+
       <div id="panels_container" class="grid grid-cols-10 gap-0">
         <div id="main_plots_panel" class="col-span-10">
-          <div data-controller="chart-buttons" class="block w-full mt-2 py-1 whitespace-nowrap text-sm">
-            <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden lg:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
-            <%= select_tag :save_plot, options_for_select([["PNG", "image/png"], ["JPEG", "image/jpeg"], ["PDF", "application/pdf"]]), prompt: "Save plot", class: "action_button download_icon", title: "Save plot", data: { action: "change->chart-buttons#export_plot" } %>
-            <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden lg:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", title: "Download CEF files", class: "action_button", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
+          <div data-controller="chart-buttons" class="block w-full mt-1 py-1 whitespace-nowrap text-sm">
             <%= select_tag :grid_options, options_for_select([["All", "all"], ["Major", "major"], ["Off", "off"]]), prompt: "Grid", class: "action_button grid_icon", title: "Grid options", data: { action: "change->chart-buttons#grid_display" } %>
             <%= select_tag :line_thickness, options_for_select([["1 px", "1"], ["2 px", "2"], ["3 px", "3"], ["4 px", "4"]]), prompt: "Line", class: "action_button line_icon", title: "Select line thickness", data: { action: "change->chart-buttons#line_thickness" } %>
             <%= select_tag :font_size, options_for_select([["9 px", "9"], ["10 px", "10"], ["11 px", "11"], ["12 px", "12"], ["13 px", "13"], ["14 px", "14"], ["15 px", "15"], ["16 px", "16"]]), prompt: "Font size", class: "action_button font_icon", title: "Adjust font size", data: { action: "change->chart-buttons#font_size" } %>

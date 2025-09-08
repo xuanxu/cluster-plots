@@ -377,4 +377,15 @@ export default class extends Controller {
     }
   }
 
+  import_export_options(){
+    var import_export_selector = document.getElementById("save_or_export_options");
+    var action_to_perform = import_export_selector.value;
+
+    if (action_to_perform === "save") {
+    } else if (action_to_perform === "import") {
+    }
+
+    import_export_selector.value = "";
+  }
+
 }

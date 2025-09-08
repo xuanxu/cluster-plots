@@ -68,6 +68,9 @@
   select.font_icon{
     @apply bg-[url(/imgs/font_red900.png)] bg-size-[14px] bg-position-[center_left_16px] hover:bg-[url(/imgs/font_white.png)] pl-[33px] lg:pl-[38px] max-lg:w-[49.5px];
   }
+  select.import_icon{
+    @apply bg-[url(/imgs/import_red900.png)] bg-size-[14px] bg-position-[center_left_16px] hover:bg-[url(/imgs/import_white.png)] pl-[33px] lg:pl-[38px] max-lg:w-[49.5px];
+  }
   span.panel_control{
      @apply border-b border-red-900 text-sm cursor-pointer text-red-900 hover:text-red-800 active:text-red-700 disabled:text-gray-500 block w-full px-1;
   }

@@ -49,20 +49,18 @@ window.record_timestamp = record_timestamp;
 // Collapse plot controls
 // nplot is the plot number, plot_type is the type of plot (line or spectrogram)
 window.collapse_plot_controls = function(nplot, plot_type) {
-    var controls = [];
-    if (plot_type === "line") {
-      controls = ["y_title", "y_range", "y_axis_type"];
-    } else if (plot_type === "spectrogram") {
-      controls = ["y_title", "y_range","z_range"];
-    }
-    controls.forEach(control => {
-      var control_element = document.getElementById(control + "_" + nplot);
-      if (control_element && control_element.classList.contains("active")){
-        control_element.classList.remove("active");
-        document.getElementById("edit_" + control + "_" + nplot).classList.add("hidden");
-        var icon = document.getElementById(control + "_" + nplot + "_icon");
-        icon.classList.remove("fa-caret-up");
-        icon.classList.add("fa-caret-down");
-      }
-    });
+  var controls = [];
+  if (plot_type === "line") {
+    controls = ["y_title", "y_range", "y_axis_type"];
+  } else if (plot_type === "spectrogram") {
+    controls = ["y_title", "y_range","z_range"];
   }
+  controls.forEach(control => {
+    var control_element = document.getElementById(control + "_" + nplot);
+    if (control_element && control_element.classList.contains("active")){
+      control_element.classList.remove("active");
+      document.getElementById("edit_" + control + "_" + nplot).classList.add("hidden");
+      var icon = document.getElementById(control + "_" + nplot + "_icon");
+      icon.classList.remove("fa-caret-up");
+      icon.classList.add("fa-caret-down");
+    }

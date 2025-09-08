@@ -64,3 +64,30 @@ window.collapse_plot_controls = function(nplot, plot_type) {
       icon.classList.remove("fa-caret-up");
       icon.classList.add("fa-caret-down");
     }
+  });
+}
+
+window.save_plot_options = function(){
+  var plot_options = {
+    grid: "",
+    line_thickness: "",
+    font_size: "",
+    crossline: "0",
+    border: "0"
+  };
+
+  plot_options["grid"] = document.getElementById("grid_options").value;
+  plot_options["line_thickness"] = document.getElementById("line_thickness").value;
+  plot_options["font_size"] = document.getElementById("font_size").value;
+  plot_options["crossline"] = String(window.visibility_crossline);
+  if (window.all_charts["plot_charts"][0] != undefined){
+    plot_options["border"] = String(window.all_charts["plot_charts"][0].options.chart.borderWidth) || "0";
+  }
+
+  var blob = new Blob([JSON.stringify(plot_options)], {type: "text/plain;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "caa-plot_options-" + get_timestamp() +".json";
+  a.click();
+}

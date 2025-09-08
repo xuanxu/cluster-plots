@@ -382,7 +382,9 @@ export default class extends Controller {
     var action_to_perform = import_export_selector.value;
 
     if (action_to_perform === "save") {
+      save_plot_options();
     } else if (action_to_perform === "import") {
+      document.getElementById("import_plot_options").click();
     }
 
     import_export_selector.value = "";

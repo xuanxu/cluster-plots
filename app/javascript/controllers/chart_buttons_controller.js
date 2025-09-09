@@ -334,7 +334,9 @@ export default class extends Controller {
     } else if (grid_option === 'off'){
       major_grid = 0;
       minor_grid = 0;
-    } 
+    } else {
+      document.getElementById("grid_options").value = "";
+    }
 
     window.all_charts["plot_charts"].forEach(plot_chart => {
       plot_chart.yAxis.forEach(y_axis => {
@@ -346,6 +348,10 @@ export default class extends Controller {
 
   line_thickness(){
     var line_thickness_option = document.getElementById("line_thickness").value;
+    if (Number(line_thickness_option) < 1 || Number(line_thickness_option) > 4) {
+      line_thickness_option = 2;
+      document.getElementById("line_thickness").value = "";
+    }
     if (line_thickness_option === "") { line_thickness_option = 2 }
 
     window.all_charts["plot_charts"].forEach(plot_chart => {
@@ -357,6 +363,10 @@ export default class extends Controller {
 
   font_size(){
     var font_size_option = document.getElementById("font_size").value;
+    if (Number(font_size_option) < 9 || Number(font_size_option) > 16) {
+      font_size_option = 11;
+      document.getElementById("font_size").value = "";
+    }
     if (font_size_option === "") { font_size_option = 11}
 
     window.all_charts["plot_charts"].forEach(plot_chart => {

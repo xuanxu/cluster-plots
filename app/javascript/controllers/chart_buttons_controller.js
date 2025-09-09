@@ -394,10 +394,60 @@ export default class extends Controller {
     if (action_to_perform === "save") {
       save_plot_options();
     } else if (action_to_perform === "import") {
-      document.getElementById("import_plot_options").click();
+      document.getElementById("import_plot_options_file").click();
     }
 
     import_export_selector.value = "";
+  }
+
+  load_plot_options(){
+    var options_file = document.getElementById('import_plot_options_file').files[0];
+    var reader = new FileReader();
+
+    var loading_image = document.getElementById("loading_plot_options");
+    loading_image.classList.add("inline");
+    loading_image.classList.remove("hidden");
+
+    reader.onload = function(event){
+      try {
+        var plot_options = JSON.parse(event.target.result);
+        if ("grid" in plot_options){
+          document.getElementById("grid_options").value = plot_options.grid;
+          document.getElementById("grid_options").dispatchEvent(new Event('change'))
+        }
+        if ("line_thickness" in plot_options){
+          document.getElementById("line_thickness").value = plot_options.line_thickness;
+          document.getElementById("line_thickness").dispatchEvent(new Event('change'))
+        }
+        if ("font_size" in plot_options){
+          document.getElementById("font_size").value = plot_options.font_size;
+          document.getElementById("font_size").dispatchEvent(new Event('change'))
+        }
+        if ("crossline" in plot_options){
+          if ((Number(plot_options.crossline) === 1) && (window.visibility_crossline === 0)){
+            document.getElementById("show_crossline").click();
+          } else if ((Number(plot_options.crossline) === 0) && (window.visibility_crossline === 1)){
+            document.getElementById("hide_crossline").click();
+          }
+        }
+        if ("border" in plot_options){
+          if (Number(plot_options.border) === 1) {
+            document.getElementById("display_border").click();
+          } else if (Number(plot_options.border) === 0){
+            document.getElementById("hide_border").click();
+          }
+        }
+        alert("Plot options applied!");
+      } catch (e) {
+        alert("There was an error reading the file, make sure the content is valid JSON.");
+      } finally {
+        loading_image.classList.add("hidden");
+        loading_image.classList.remove("inline");
+      }
+    }
+    if(options_file){
+      reader.readAsText(options_file);
+    }
   }
 
 }

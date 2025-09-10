@@ -84,7 +84,7 @@ window.save_plot_options = function(){
     plot_options["border"] = String(window.all_charts["plot_charts"][0].options.chart.borderWidth) || "0";
   }
 
-  var blob = new Blob([JSON.stringify(plot_options, null, 2)], {type: "text/plain;charset=utf-8"});
+  var blob = new Blob([JSON.stringify(plot_options, null, 2)], {type: "application/json"});
   var url = URL.createObjectURL(blob);
   var a = document.createElement("a");
   a.href = url;

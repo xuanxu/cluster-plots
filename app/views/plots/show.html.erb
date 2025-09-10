@@ -84,7 +84,7 @@
           </div>
 
           <% @plot_info["panels_arr"].size.times do |i| %>
-            <div id="controls_plot_<%= i %>" class="h-[250px]" data-controller="chart-buttons" data-nplot="<%= i %>" data-plottype="<%= @plot_info["panels_arr"][i]["panel_type"] %>" data-panel-name="<%= @panel_names[i] %>">
+            <div id="controls_plot_<%= i %>" class="h-[250px]" data-controller="chart-buttons" data-nplot="<%= i %>" data-plottype="<%= @plot_info["panels_arr"][i]["panel_type"] %>" data-panelname="<%= @panel_names[i] %>">
             <% unless @plot_info["panels_arr"][i]["panel_type"] == "status" %>
               <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
               <div id="edit_y_title_<%= i %>" class="py-4 px-1 border border-red-900 hidden">

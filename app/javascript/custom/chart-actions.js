@@ -73,15 +73,82 @@ window.save_plot_options = function(){
     line_thickness: "",
     font_size: "",
     crossline: "0",
-    border: "0"
+    border: "0",
+    plots: {}
   };
 
   plot_options["grid"] = document.getElementById("grid_options").value;
   plot_options["line_thickness"] = document.getElementById("line_thickness").value;
   plot_options["font_size"] = document.getElementById("font_size").value;
   plot_options["crossline"] = String(window.visibility_crossline);
-  if (window.all_charts["plot_charts"][0] != undefined){
+
+  var nplots = window.all_charts["plot_charts"].length;
+  if (nplots > 0) {
     plot_options["border"] = String(window.all_charts["plot_charts"][0].options.chart.borderWidth) || "0";
+
+    for (var n = 0; n < window.all_charts["plot_charts"].length; n++) {
+      var chart = window.all_charts["plot_charts"][n];
+      var chart_controls = document.getElementById("controls_plot_" + n);
+      if (chart_controls) {
+        var plot_type = chart_controls.dataset.plottype;
+        if (plot_type === "line"){
+          var line_plot_options = {
+            y_title: window.all_charts["plot_charts"][n].yAxis[0].axisTitle.textStr
+          }
+
+          if (document.getElementById("new_y_axis_type_" + n + "_linear").checked) {
+            line_plot_options["y_axis_type"] = "linear";
+          } else if (document.getElementById("new_y_axis_type_" + n + "_logarithmic").checked) {
+            line_plot_options["y_axis_type"] = "logarithmic";
+          }
+
+          if (document.getElementById("new_y_range_" + n + "_auto").checked) {
+            line_plot_options["y_range"] = "auto";
+          } else if (document.getElementById("new_y_range_" + n + "_default").checked) {
+            line_plot_options["y_range"] = "default";
+          } else {
+            line_plot_options["y_range"] = "custom";
+          }
+          line_plot_options["y_range_values"] = {
+            min: document.getElementById("min_y_range_" + n).value,
+            max: document.getElementById("max_y_range_" + n).value
+          }
+
+          if (document.getElementById("y_zero_" + n + "_on").classList.contains("hidden")) {
+            line_plot_options["y_zero_line"] = "on";
+          } else {
+            line_plot_options["y_zero_line"] = "off";
+          }
+
+          plot_options["plots"][chart_controls.dataset.panelname] = line_plot_options;
+        } else if (plot_type === "spectrogram"){
+          var spectrogram_plot_options = {
+            y_title: window.all_charts["plot_charts"][n].yAxis[1].axisTitle.textStr,
+          }
+
+          if (document.getElementById("new_y_range_" + n + "_default").checked) {
+            spectrogram_plot_options["y_range"] = "default";
+          } else {
+            spectrogram_plot_options["y_range"] = "custom";
+          }
+          spectrogram_plot_options["y_range_values"] = {
+            min: document.getElementById("min_y_range_" + n).value,
+            max: document.getElementById("max_y_range_" + n).value
+          }
+
+          if (document.getElementById("new_z_range_" + n + "_default").checked) {
+            spectrogram_plot_options["z_range"] = "default";
+          } else {
+            spectrogram_plot_options["z_range"] = "custom";
+          }
+          spectrogram_plot_options["z_range_values"] = {
+            min: document.getElementById("min_z_range_" + n).value,
+            max: document.getElementById("max_z_range_" + n).value
+          }
+          plot_options["plots"][chart_controls.dataset.panelname] = spectrogram_plot_options;
+        }
+      }
+    }
   }
 
   var blob = new Blob([JSON.stringify(plot_options, null, 2)], {type: "application/json"});

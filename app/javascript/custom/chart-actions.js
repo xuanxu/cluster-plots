@@ -145,6 +145,7 @@ window.save_plot_options = function(){
             min: document.getElementById("min_z_range_" + n).value,
             max: document.getElementById("max_z_range_" + n).value
           }
+
           plot_options["plots"][chart_controls.dataset.panelname] = spectrogram_plot_options;
         }
       }

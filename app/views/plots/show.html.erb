@@ -21,8 +21,8 @@
     <% else %>
       <div class="mt-2 text-sm">
         <%= button_tag "<i class='fa fa-magnifying-glass-minus'></i> <span class='hidden lg:inline'>Zoom back</span>".html_safe, type: "button", id: "zoom_out", class: "action_button hidden", data: { controller: "zoom", action: "click->zoom#zoom_back" }  %>
-        <%= select_tag :save_plot, options_for_select([["PNG", "image/png"], ["JPEG", "image/jpeg"], ["PDF", "application/pdf"]]), prompt: "Save plot", class: "action_button download_icon", title: "Save plot", data: { controller: "chart-buttons", action: "change->chart-buttons#export_plot" } %>
-        <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden lg:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", title: "Download CEF files", class: "action_button", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
+        <%= select_tag :save_plot, options_for_select([["PNG", "image/png"], ["JPEG", "image/jpeg"], ["PDF", "application/pdf"]]), prompt: "Save plot", class: "action_button download_icon font-medium", title: "Save plot", data: { controller: "chart-buttons", action: "change->chart-buttons#export_plot" } %>
+        <%= button_tag "<i class='fa fa-file-zipper'></i> <span class='hidden lg:inline'>Download CEFs</span>".html_safe, type: "button", id: "download_cefs", title: "Download CEF files", class: "action_button font-medium", data: { controller: "cef-files", action: "click->cef-files#zip", cefs: ""}  %>
       </div>
 
       <div id="panels_container" class="grid grid-cols-10 gap-0">

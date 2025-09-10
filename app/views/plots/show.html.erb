@@ -38,7 +38,6 @@
             <%= select_tag :save_or_export_options, options_for_select([["Save options", "save"], ["Import options", "import"]]), prompt: "Import/Export options", class: "action_button import_icon", title: "Import/export options", data: { action: "change->chart-buttons#import_export_options" } %>
             <%= image_tag "loading.gif", id: "loading_plot_options", alt: "Loading plot options", class: "w-[30px] hidden" %>
 
-
             <%= button_tag "<i class='fa fa-sliders'></i>".html_safe, type: "button", id: "show_adjusts", class: "action_button float-right hidden lg:inline", title: "Adjust plots", data: { action: "click->chart-buttons#show_adjusts_panel" }  %>
             <%= button_tag "<i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "hide_adjusts", class: "action_button float-right hidden lg:hidden", title: "Hide adjusts panel", data: { action: "click->chart-buttons#hide_adjusts_panel" }  %>
             <input type="file" class="hidden" id="import_plot_options_file" accept=".json"  data-action="change->chart-buttons#load_plot_options"/>
@@ -85,7 +84,7 @@
           </div>
 
           <% @plot_info["panels_arr"].size.times do |i| %>
-            <div id="controls_plot_<%= i %>" class="h-[250px]" data-controller="chart-buttons" data-nplot="<%= i %>" data-plottype="<%= @plot_info["panels_arr"][i]["panel_type"] %>">
+            <div id="controls_plot_<%= i %>" class="h-[250px]" data-controller="chart-buttons" data-nplot="<%= i %>" data-plottype="<%= @plot_info["panels_arr"][i]["panel_type"] %>" data-panel-name="<%= @panel_names[i] %>">
             <% unless @plot_info["panels_arr"][i]["panel_type"] == "status" %>
               <span id="y_title_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="y_title">Y title <i id="y_title_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
               <div id="edit_y_title_<%= i %>" class="py-4 px-1 border border-red-900 hidden">

@@ -21,9 +21,9 @@ class PlotsController < ApplicationController
     @start_date, @start_time = start_datetime.split("T")
     @stop_date, @stop_time = end_datetime.split("T")
 
-    @p = panels.split(",").map(&:strip)
+    @panel_names = panels.split(",").map(&:strip)
 
-    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: @p.join(","))
+    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: @panel_names.join(","))
     @plot_info = @plot.process_data
 
     render :show

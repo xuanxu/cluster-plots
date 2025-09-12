@@ -53,7 +53,7 @@ window.collapse_plot_controls = function(nplot, plot_type) {
   if (plot_type === "line") {
     controls = ["y_title", "y_range", "y_axis_type"];
   } else if (plot_type === "spectrogram") {
-    controls = ["y_title", "y_range","z_range"];
+    controls = ["y_title", "y_range","z_range", "extra_filter"];
   }
   controls.forEach(control => {
     var control_element = document.getElementById(control + "_" + nplot);

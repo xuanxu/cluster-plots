@@ -21,10 +21,10 @@ class PlotsController < ApplicationController
     @start_date, @start_time = start_datetime.split("T")
     @stop_date, @stop_time = end_datetime.split("T")
 
-    @panel_names = panels.split(",").map(&:strip)
+    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: panels)
 
-    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: @panel_names.join(","))
     @plot_info = @plot.process_data
+    @panel_names = @plot_info["panels"].split(",") if @plot_info.is_a?(Hash) && @plot_info["panels"].present?
 
     render :show
   end

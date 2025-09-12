@@ -402,13 +402,13 @@ export default class extends Controller {
 
   load_plot_options(){
     var options_file = document.getElementById('import_plot_options_file').files[0];
+
     var reader = new FileReader();
-
-    var loading_image = document.getElementById("loading_plot_options");
-    loading_image.classList.add("inline");
-    loading_image.classList.remove("hidden");
-
     reader.onload = function(event){
+      var loading_image = document.getElementById("loading_plot_options");
+      loading_image.classList.remove("hidden");
+      loading_image.classList.add("inline");
+
       try {
         var plot_options = JSON.parse(event.target.result);
         if ("grid" in plot_options){
@@ -437,6 +437,91 @@ export default class extends Controller {
             document.getElementById("hide_border").click();
           }
         }
+
+        var panel_options = {};
+        if ("plots" in plot_options){
+          panel_options = plot_options.plots;
+        }
+
+        window.all_charts["plot_charts"].forEach((plot_chart, n) => {
+          var chart_controls = document.getElementById("controls_plot_" + n);
+          if (chart_controls) {
+            var panel_name = chart_controls.dataset.panelname;
+            if (panel_name && (panel_name in panel_options)) {
+              var plot_type = chart_controls.dataset.plottype;
+              var options_to_apply = panel_options[panel_name];
+
+              if (plot_type === "line"){
+                if ("y_title" in options_to_apply){
+                  document.getElementById("new_y_title_" + n).value = options_to_apply.y_title;
+                  document.getElementById("update_y_title_" + n).click();
+                }
+
+                var current_y_axis_type = document.getElementById("new_y_axis_type_" + n + "_linear").checked ? "linear" : "logarithmic";
+                var current_min_y_range_value = Number(document.getElementById("min_y_range_" + n).value);
+                var y_range_element = undefined;
+                var y_axis_type_element = undefined;
+                if ("y_range" in options_to_apply){
+                  if (["auto", "default"].includes(options_to_apply.y_range)) {
+                    y_range_element = document.getElementById("new_y_range_" + n + "_" + options_to_apply.y_range);
+                  } else if (options_to_apply.y_range === "custom" && "y_range_values" in options_to_apply) {
+                    document.getElementById("min_y_range_" + n).value = options_to_apply.y_range_values.min;
+                    document.getElementById("max_y_range_" + n).value = options_to_apply.y_range_values.max;
+                    y_range_element = document.getElementById("update_y_range_" + n);
+                  }
+                }
+                if ("y_axis_type" in options_to_apply){
+                  if (options_to_apply.y_axis_type === "linear" || options_to_apply.y_axis_type === "logarithmic") {
+                    y_axis_type_element = document.getElementById("new_y_axis_type_" + n + "_" + options_to_apply.y_axis_type);
+                  }
+                }
+                // To avoid problems when switching from logarithmic to linear scale with negative or zero values
+                if (current_y_axis_type === "linear" && current_min_y_range_value <= 0) {
+                  // In this case we have to apply first the y_range (if any) and then the y_axis_type (if any)
+                  if (y_range_element !== undefined) { y_range_element.click(); }
+                  if (y_axis_type_element !== undefined) { y_axis_type_element.click(); }
+                } else {
+                  // In this case we can apply first the y_axis_type (if any) and then the y_range (if any)
+                  if (y_axis_type_element !== undefined) { y_axis_type_element.click(); }
+                  if (y_range_element !== undefined) { y_range_element.click(); }
+                }
+
+                if ("y_zero_line" in options_to_apply){
+                  if (options_to_apply.y_zero_line === "on" && document.getElementById("y_zero_" + n + "_off").classList.contains("hidden")){
+                    document.getElementById("y_zero_" + n + "_on").click();
+                  } else if (options_to_apply.y_zero_line === "off" && document.getElementById("y_zero_" + n + "_on").classList.contains("hidden")){
+                    document.getElementById("y_zero_" + n + "_off").click();
+                  }
+                }
+
+              } else if (plot_type === "spectrogram"){
+                if ("y_title" in options_to_apply){
+                  document.getElementById("new_y_title_" + n).value = options_to_apply.y_title;
+                  document.getElementById("update_y_title_" + n).click();
+                }
+                if ("y_range" in options_to_apply){
+                  if (options_to_apply.y_range === "default"){
+                    document.getElementById("new_y_range_" + n + "_default").click();
+                  } else if (options_to_apply.y_range === "custom" && "y_range_values" in options_to_apply){
+                    document.getElementById("min_y_range_" + n).value = options_to_apply.y_range_values.min;
+                    document.getElementById("max_y_range_" + n).value = options_to_apply.y_range_values.max;
+                    document.getElementById("update_y_range_" + n).click();
+                  }
+                }
+                if ("z_range" in options_to_apply){
+                  if (options_to_apply.z_range === "default"){
+                    document.getElementById("new_z_range_" + n + "_default").click();
+                  } else if (options_to_apply.z_range === "custom" && "z_range_values" in options_to_apply){
+                    document.getElementById("min_z_range_" + n).value = options_to_apply.z_range_values.min;
+                    document.getElementById("max_z_range_" + n).value = options_to_apply.z_range_values.max;
+                    document.getElementById("update_z_range_" + n).click();
+                  }
+                }
+              }
+            }
+          }
+        });
+
         alert("Plot options applied!");
       } catch (e) {
         alert("There was an error reading the file, make sure the content is valid JSON.");

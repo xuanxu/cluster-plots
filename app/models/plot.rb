@@ -119,6 +119,8 @@ class Plot
     if panels.blank?
       self.data_error = "No panels selected"
       return false
+    else
+      self.panels = panels.split(",").map(&:strip).reject(&:blank?).join(",")
     end
 
     begin

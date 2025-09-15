@@ -1,6 +1,7 @@
 <%= form_tag(generate_plots_path, method: :post, id: "plots_info", data: { "turbo-frame" => "plots" }) do %>
   <%= hidden_field_tag "plot[time_interval]", "2000-01-01T00:00:00Z 2000-01-01T00:00:00Z" %>
   <%= hidden_field_tag "plot[panels]", "" %>
+  <%= hidden_field_tag "plot[zeroes]", "" %>
 <% end %>
 
 <div class="grid lg:grid-cols-3 gap-16 w-full grid-cols-1">

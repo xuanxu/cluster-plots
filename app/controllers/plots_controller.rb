@@ -16,12 +16,13 @@ class PlotsController < ApplicationController
   def generate
     panels = plot_params[:panels]
     time_interval = plot_params[:time_interval]
+    zeroes = plot_params[:zeroes]
 
     start_datetime, end_datetime = time_interval.split(" ")
     @start_date, @start_time = start_datetime.split("T")
     @stop_date, @stop_time = end_datetime.split("T")
 
-    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: panels)
+    @plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: panels, zeroes: zeroes)
 
     @plot_info = @plot.process_data
     @panel_names = @plot_info["panels"].split(",") if @plot_info.is_a?(Hash) && @plot_info["panels"].present?
@@ -67,7 +68,7 @@ class PlotsController < ApplicationController
   end
 
   def plot_params
-    params.require(:plot).permit(:panels, :time_interval)
+    params.require(:plot).permit(:panels, :time_interval, :zeroes)
   end
 
   def cef_files_params

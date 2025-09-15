@@ -412,12 +412,25 @@ document.getElementById("import_panels_file").addEventListener('change', load_pa
 var submit_plots_form = function(event) {
   hide_panels();
   show_loading_info();
-  var plot_panel_list = "";
+  document.getElementById("plot_zeroes").value = "";
+  var plot_panel_list = [];
   var panels = document.getElementById('panel_list').options;
 	for (var i = 0; i < panels.length; i++) {
-		plot_panel_list += panels[i].value + ",";
+		plot_panel_list.push(panels[i].value);
   }
-  document.getElementById("plot_panels").value = plot_panel_list;
+  document.getElementById("plot_panels").value = plot_panel_list.join(",");
+
+  var zeroes = [];
+  var zeroes_filters = document.getElementsByClassName("zero_checkbox");
+  for (var i = 0; i < zeroes_filters.length; i++) {
+    if (zeroes_filters[i].checked){
+      zeroes.push(zeroes_filters[i].value);
+    }
+  }
+  if (zeroes.length > 0) {
+    document.getElementById("plot_zeroes").value = zeroes.join(",");
+  }
+
   document.getElementById("plots_info").requestSubmit();
 }
 document.getElementById("submit_plots_info").addEventListener('click', function(event) { submit_plots_form(event) });

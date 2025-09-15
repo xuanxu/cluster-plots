@@ -180,7 +180,7 @@ def main(argv):
              upd :         file sent by the server when updating filter information \n  """
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'p:b:e:o:n:t:f:j:u:h', ['panel=', 'begin=', 'end=', 'orig=', 'name=', 'output_type=', 'cef_path=', 'json=', 'update=', 'help'])
+        opts, args = getopt.getopt(sys.argv[1:], 'p:b:e:o:n:t:f:j:u:z:h', ['panel=', 'begin=', 'end=', 'orig=', 'name=', 'output_type=', 'cef_path=', 'json=', 'update=', 'zeroes=', 'help'])
     except getopt.GetoptError as err:
         # print help information and exit:
         print(str(err)) # will print something like "option -a not recognized"

@@ -8,6 +8,7 @@ class Plot
   attribute :start_datetime, :string
   attribute :end_datetime, :string
   attribute :panels, :string
+  attribute :zeroes, :string
   attribute :json_file, :string
   attribute :mission, :string
   attribute :data_error, :string
@@ -43,6 +44,7 @@ class Plot
       "-b", start_datetime,
       "-e", end_datetime,
       "-p", panels,
+      "-z", zeroes,
       "-j", json_file,
       "-o", "#{start_datetime}/#{end_datetime}"
     ]
@@ -121,6 +123,12 @@ class Plot
       return false
     else
       self.panels = panels.split(",").map(&:strip).reject(&:blank?).join(",")
+    end
+
+    if zeroes.blank?
+      self.zeroes = ""
+    else
+      self.zeroes = zeroes.split(",").map(&:strip).reject(&:blank?).join(",")
     end
 
     begin

@@ -149,9 +149,9 @@
                   <%= button_tag "<i class='fa fa-swatchbook'></i> Update".html_safe, type: "button", id: "update_z_range_#{i}", class: "action_button_icon_small ml-1 px-1 active", title: "Update Z range", data: { action: "click->chart-buttons#update_z_range", chart_buttons_zrange_param: "custom" } %>
                 </div>
 
-                <% if @plot_info['panels_arr'][i]['button'].present? %>
+                <% if @plot_info['panels_arr'][i]['button'].present? && @plot_info['panels_arr'][i]['button']['button_type'] == "TEXT_RANGE" %>
                   <% extra_filter = @plot_info['panels_arr'][i]['button'] %>
-                  <span id="extra_filter_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-chart-buttons-control-param="extra_filter"><%= extra_filter["title"] %> (<%= extra_filter["unit"] %>) <i id="extra_filter_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
+                  <span id="extra_filter_<%= i %>" class="panel_control" data-action="click->chart-buttons#toggle_edit_plot_control" data-paramid="<%= extra_filter['paramid'] %> data-chart-buttons-control-param="extra_filter"><%= extra_filter["title"] %> (<%= extra_filter["unit"] %>) <i id="extra_filter_<%= i %>_icon" class="float-right fa fa-caret-down"></i></span>
                   <div id="edit_extra_filter_<%= i %>" class="py-4 px-1 border border-red-900 hidden">
                     <span class="block py-1 text-sm text-red-900">
                       <input type="text" id="min_extra_filter_<%= i %>" class="w-[30%] text-xs panel_text" value="<%= extra_filter['value'][0] %>" data-default="<%= extra_filter['value'][0] %>"/>

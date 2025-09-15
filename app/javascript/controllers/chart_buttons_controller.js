@@ -387,17 +387,12 @@ export default class extends Controller {
     }
   }
 
-  import_export_options(){
-    var import_export_selector = document.getElementById("save_or_export_options");
-    var action_to_perform = import_export_selector.value;
+  import_options(){
+    document.getElementById("import_plot_options_file").click();
+  }
 
-    if (action_to_perform === "save") {
-      save_plot_options();
-    } else if (action_to_perform === "import") {
-      document.getElementById("import_plot_options_file").click();
-    }
-
-    import_export_selector.value = "";
+  export_options(){
+    save_plot_options();
   }
 
   load_plot_options(){

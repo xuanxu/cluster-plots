@@ -423,23 +423,41 @@ export default class extends Controller {
 
   grid_display(){
     var grid_option = document.getElementById("grid_options").value;
-    var major_grid = 1;
-    var minor_grid = 1;
+    var show_grid = true;
+    var show_minor_grid = true;
 
     if(grid_option === 'major'){
-      minor_grid = 0;
+      show_minor_grid = false;
     } else if (grid_option === 'off'){
-      major_grid = 0;
-      minor_grid = 0;
+      show_grid = false;
+      show_minor_grid = false;
     } else {
       document.getElementById("grid_options").value = "";
     }
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.yAxis.forEach(y_axis => {
-        y_axis.update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
-      });
-      plot_chart.xAxis[0].update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        chart.setOption({
+          xAxis: {
+            splitLine: {
+              show: show_grid,
+              lineStyle: {
+                color: show_grid ? '#ADD8E6' : 'transparent',
+                width: 1
+              }
+            }
+          },
+          yAxis: {
+            splitLine: {
+              show: show_grid,
+              lineStyle: {
+                color: show_grid ? '#f0f0f0' : 'transparent',
+                width: 1
+              }
+            }
+          }
+        });
+      }
     });
   }
 
@@ -451,10 +469,26 @@ export default class extends Controller {
     }
     if (line_thickness_option === "") { line_thickness_option = 2 }
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.series.forEach(plot_serie => {
-        if(plot_serie.type === "line") { plot_serie.update({ lineWidth: line_thickness_option }) }
-      });
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        var option = chart.getOption();
+        var newSeries = option.series.map(series => {
+          if (series.type === "line") {
+            return {
+              ...series,
+              lineStyle: {
+                ...series.lineStyle,
+                width: Number(line_thickness_option)
+              }
+            };
+          }
+          return series;
+        });
+        
+        chart.setOption({
+          series: newSeries
+        });
+      }
     });
   }
 
@@ -466,21 +500,65 @@ export default class extends Controller {
     }
     if (font_size_option === "") { font_size_option = 11}
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.yAxis[0].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
-      
-      if (plot_chart.series[0].type === "heatmap") {
-        plot_chart.yAxis[1].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
-        plot_chart.colorAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        var option = chart.getOption();
+        var isHeatmap = option.series && option.series[0] && option.series[0].type === "heatmap";
+        
+        var updateOption = {
+          yAxis: {
+            nameTextStyle: {
+              fontSize: Number(font_size_option)
+            },
+            axisLabel: {
+              fontSize: Number(font_size_option)
+            }
+          },
+          xAxis: {
+            axisLabel: {
+              fontSize: Number(font_size_option)
+            }
+          }
+        };
+        
+        if (isHeatmap) {
+          updateOption.visualMap = {
+            textStyle: {
+              fontSize: Number(font_size_option)
+            }
+          };
+        }
+        
+        chart.setOption(updateOption);
       }
     });
 
-    window.all_charts["axis"].xAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+    // Update axis chart
+    if (window.all_charts["axis"] && window.all_charts["axis"].setOption) {
+      window.all_charts["axis"].setOption({
+        xAxis: {
+          axisLabel: {
+            fontSize: Number(font_size_option)
+          }
+        }
+      });
+    }
 
-    if (window.all_charts["spacecraft"] != undefined) {
+    // Update spacecraft chart
+    if (window.all_charts["spacecraft"] && window.all_charts["spacecraft"].setOption) {
       const font_for_spacecraft_plot = Math.min(font_size_option, 11);
-      window.all_charts["spacecraft"].xAxis[0].update({ labels: { style :{ fontSize: font_for_spacecraft_plot } }});
-      window.all_charts["spacecraft"].yAxis[0].update({ title: { style :{ fontSize: font_for_spacecraft_plot } }});
+      window.all_charts["spacecraft"].setOption({
+        xAxis: {
+          axisLabel: {
+            fontSize: Number(font_for_spacecraft_plot)
+          }
+        },
+        title: {
+          textStyle: {
+            fontSize: Number(font_for_spacecraft_plot)
+          }
+        }
+      });
     }
   }
 

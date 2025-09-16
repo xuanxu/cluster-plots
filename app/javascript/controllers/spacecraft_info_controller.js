@@ -102,16 +102,44 @@ export default class extends Controller {
     }
     //info_list = JSON.stringify(info_list);
 
-    var ticks = window.all_charts["plot_charts"][0].xAxis[0].tickPositions;
+    // Get axis ticks for spacecraft info - with Echarts we need to handle this differently
+    var ticks = [];
+    if (window.all_charts["plot_charts"][0] && window.all_charts["plot_charts"][0].getOption) {
+      var option = window.all_charts["plot_charts"][0].getOption();
+      // For Echarts, we'll generate tick positions based on the time range
+      var axisChart = window.all_charts["axis"];
+      if (axisChart && axisChart.getOption) {
+        var axisOption = axisChart.getOption();
+        var xAxis = axisOption.xAxis[0];
+        var min = xAxis.min;
+        var max = xAxis.max;
+        // Generate approximately 10 tick positions
+        var interval = (max - min) / 10;
+        for (var i = 0; i <= 10; i++) {
+          ticks.push(min + (i * interval));
+        }
+      }
+    }
+    
     for (var t = 0; t < ticks.length; t++) {
-      ticks_iso.push(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ", ticks[t]));
+      ticks_iso.push(new Date(ticks[t]).toISOString().replace('.000Z', 'Z'));
     }
     //ticks_iso = JSON.stringify(ticks_iso);
 
-    var min_x_value = window.all_charts["axis"].xAxis[0].min;
-    var max_x_value = window.all_charts["axis"].xAxis[0].max;
-    var datetime_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", min_x_value);
-    var datetime_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", max_x_value);
+    // Get time range from axis chart for Echarts
+    var min_x_value, max_x_value;
+    if (window.all_charts["axis"] && window.all_charts["axis"].getOption) {
+      var axisOption = window.all_charts["axis"].getOption();
+      min_x_value = axisOption.xAxis[0].min;
+      max_x_value = axisOption.xAxis[0].max;
+    } else {
+      // Fallback to current time if axis chart not available
+      min_x_value = Date.now() - 3600000; // 1 hour ago
+      max_x_value = Date.now();
+    }
+    
+    var datetime_start = new Date(min_x_value).toISOString().replace('.000Z', 'Z');
+    var datetime_stop = new Date(max_x_value).toISOString().replace('.000Z', 'Z');
 
     var query_data = {
       start_at: datetime_start,
@@ -159,7 +187,8 @@ export default class extends Controller {
 
   remove_spacecraft_info_plot() {
     if (window.all_charts["spacecraft"] != undefined) {
-      window.all_charts["spacecraft"].destroy();
+      // For Echarts, use dispose() instead of destroy()
+      window.all_charts["spacecraft"].dispose();
       window.all_charts["spacecraft"] = undefined;
 
       var remove_cluster_link = document.getElementById("remove_cluster");

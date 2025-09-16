@@ -1,5 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Helper function to generate timestamp
+function get_timestamp() {
+  var now = new Date();
+  return now.getFullYear() + 
+         String(now.getMonth() + 1).padStart(2, '0') + 
+         String(now.getDate()).padStart(2, '0') + '_' +
+         String(now.getHours()).padStart(2, '0') + 
+         String(now.getMinutes()).padStart(2, '0') + 
+         String(now.getSeconds()).padStart(2, '0');
+}
+
 export default class extends Controller {
   show_crossline() {
     var show_crossline_button = document.getElementById("show_crossline");
@@ -91,7 +102,14 @@ export default class extends Controller {
   }
 
   update_plots_title() {
-    window.all_charts["title"].setTitle({text: document.getElementById("new_plot_title").value});
+    var titleChart = window.all_charts["title"];
+    if (titleChart && titleChart.setOption) {
+      titleChart.setOption({
+        title: {
+          text: document.getElementById("new_plot_title").value
+        }
+      });
+    }
   }
 
   remove_timestamp() {
@@ -126,14 +144,37 @@ export default class extends Controller {
 
   show_y_zero_line() {
     var nplot = Number(this.element.dataset.nplot);
-    window.all_charts["plot_charts"][nplot].yAxis[0].addPlotLine({
-      color: '#A9A9A9',
-      width: 2,
-      value: 0,
-      dashStyle: 'ShortDash',
-			zIndex: 2,
-			id: "y_zero_" + nplot
-		});
+    var chart = window.all_charts["plot_charts"][nplot];
+    if (chart && chart.setOption) {
+      var option = chart.getOption();
+      if (!option.yAxis[0].axisLine) option.yAxis[0].axisLine = {};
+      if (!option.yAxis[0].axisLine.lineStyle) option.yAxis[0].axisLine.lineStyle = {};
+      
+      // Add zero line using markLine
+      var newOption = {
+        series: option.series.map((series, index) => {
+          if (index === 0) {
+            return {
+              ...series,
+              markLine: {
+                data: [{
+                  yAxis: 0,
+                  lineStyle: {
+                    color: '#A9A9A9',
+                    width: 2,
+                    type: 'dashed'
+                  }
+                }],
+                silent: true
+              }
+            };
+          }
+          return series;
+        })
+      };
+      
+      chart.setOption(newOption);
+    }
 
     document.getElementById("y_zero_" + nplot + "_on").classList.add("hidden");
     document.getElementById("y_zero_" + nplot + "_off").classList.remove("hidden");
@@ -141,7 +182,24 @@ export default class extends Controller {
 
   hide_y_zero_line() {
     var nplot = Number(this.element.dataset.nplot);
-    window.all_charts["plot_charts"][nplot].yAxis[0].removePlotLine("y_zero_" + nplot);
+    var chart = window.all_charts["plot_charts"][nplot];
+    if (chart && chart.setOption) {
+      var option = chart.getOption();
+      
+      // Remove zero line by removing markLine
+      var newOption = {
+        series: option.series.map((series, index) => {
+          if (index === 0) {
+            var newSeries = {...series};
+            delete newSeries.markLine;
+            return newSeries;
+          }
+          return series;
+        })
+      };
+      
+      chart.setOption(newOption);
+    }
 
     document.getElementById("y_zero_" + nplot + "_off").classList.add("hidden");
     document.getElementById("y_zero_" + nplot + "_on").classList.remove("hidden");
@@ -171,23 +229,38 @@ export default class extends Controller {
     var nplot = Number(this.element.dataset.nplot);
     var plot_type = String(this.element.dataset.plottype);
     var new_y_title = document.getElementById("new_y_title_" + nplot).value;
-    var axis_with_title = plot_type === "line" ? 0 : 1;
-    window.all_charts["plot_charts"][nplot].yAxis[axis_with_title].setTitle({text: new_y_title});
+    var chart = window.all_charts["plot_charts"][nplot];
+    
+    if (chart && chart.setOption) {
+      chart.setOption({
+        yAxis: {
+          name: new_y_title
+        }
+      });
+    }
   }
 
   update_y_axis_type({ params: { axis }}) {
     if (axis === "linear" || axis === "logarithmic"){
       var nplot = Number(this.element.dataset.nplot);
       var plot_type = String(this.element.dataset.plottype);
-      var plot = window.all_charts["plot_charts"][nplot];
+      var chart = window.all_charts["plot_charts"][nplot];
       var linear_option = document.getElementById("new_y_axis_type_" + nplot + "_linear");
 
-      if (axis === "logarithmic" && (plot.yAxis[0].getExtremes().min <= 0 || plot.yAxis[0].getExtremes().max <= 0)) {
-        alert('Can not switch to logarithmic scale: Y axis range must be positive');
-        linear_option.checked = true;
-      } else {
-        plot.yAxis[0].update({ type: axis}, false);
-        plot.yAxis[1].update({ type: axis}, true);
+      if (chart && chart.setOption) {
+        var option = chart.getOption();
+        var yAxisConfig = option.yAxis[0];
+        
+        if (axis === "logarithmic" && (yAxisConfig.min <= 0 || yAxisConfig.max <= 0)) {
+          alert('Can not switch to logarithmic scale: Y axis range must be positive');
+          linear_option.checked = true;
+        } else {
+          chart.setOption({
+            yAxis: {
+              type: axis === 'logarithmic' ? 'log' : 'value'
+            }
+          });
+        }
       }
       linear_option.focus();
       linear_option.blur();
@@ -231,8 +304,15 @@ export default class extends Controller {
       alert("Invalid Y range values. Please enter valid numbers.");
       return;
     } else {
-      plot.yAxis[0].setExtremes(min_value, max_value, false);
-      plot.yAxis[1].setExtremes(min_value, max_value);
+      var chart = window.all_charts["plot_charts"][nplot];
+      if (chart && chart.setOption) {
+        chart.setOption({
+          yAxis: {
+            min: min_value,
+            max: max_value
+          }
+        });
+      }
       max_field.focus();
       max_field.blur();
     }
@@ -273,8 +353,15 @@ export default class extends Controller {
         max_value_data = Math.log10(max_value);
       }
 
-      plot.yAxis[0].setExtremes(min_value_data, max_value_data, false);
-      plot.yAxis[1].setExtremes(min_value, max_value);
+      var chart = window.all_charts["plot_charts"][nplot];
+      if (chart && chart.setOption) {
+        chart.setOption({
+          yAxis: {
+            min: min_value,
+            max: max_value
+          }
+        });
+      }
       max_field.focus();
       max_field.blur();
     }
@@ -300,7 +387,16 @@ export default class extends Controller {
     } else {
       min_field.value = min_value.toExponential(2);
       max_field.value = max_value.toExponential(2);
-      plot.colorAxis[0].update({min: min_value, max: max_value });
+      
+      var chart = window.all_charts["plot_charts"][nplot];
+      if (chart && chart.setOption) {
+        chart.setOption({
+          visualMap: {
+            min: min_value,
+            max: max_value
+          }
+        });
+      }
       max_field.focus();
       max_field.blur();
     }
@@ -319,30 +415,49 @@ export default class extends Controller {
       if (window.all_charts["spacecraft"] != undefined) {
         charts_to_plot.push(window.all_charts["spacecraft"]);
       }
-      Highcharts.exportCharts(charts_to_plot, {type: download_type, filename: "Cluster_Plot" + filename_dates});
+      // Use the new Echarts export function
+      window.exportCharts(charts_to_plot, {type: download_type, filename: "Cluster_Plot" + filename_dates});
       document.getElementById("save_plot").value = "";
     }
   }
 
   grid_display(){
     var grid_option = document.getElementById("grid_options").value;
-    var major_grid = 1;
-    var minor_grid = 1;
+    var show_grid = true;
+    var show_minor_grid = true;
 
     if(grid_option === 'major'){
-      minor_grid = 0;
+      show_minor_grid = false;
     } else if (grid_option === 'off'){
-      major_grid = 0;
-      minor_grid = 0;
+      show_grid = false;
+      show_minor_grid = false;
     } else {
       document.getElementById("grid_options").value = "";
     }
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.yAxis.forEach(y_axis => {
-        y_axis.update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
-      });
-      plot_chart.xAxis[0].update({ gridLineWidth: major_grid, minorGridLineWidth: minor_grid });
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        chart.setOption({
+          xAxis: {
+            splitLine: {
+              show: show_grid,
+              lineStyle: {
+                color: show_grid ? '#ADD8E6' : 'transparent',
+                width: 1
+              }
+            }
+          },
+          yAxis: {
+            splitLine: {
+              show: show_grid,
+              lineStyle: {
+                color: show_grid ? '#f0f0f0' : 'transparent',
+                width: 1
+              }
+            }
+          }
+        });
+      }
     });
   }
 
@@ -354,10 +469,26 @@ export default class extends Controller {
     }
     if (line_thickness_option === "") { line_thickness_option = 2 }
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.series.forEach(plot_serie => {
-        if(plot_serie.type === "line") { plot_serie.update({ lineWidth: line_thickness_option }) }
-      });
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        var option = chart.getOption();
+        var newSeries = option.series.map(series => {
+          if (series.type === "line") {
+            return {
+              ...series,
+              lineStyle: {
+                ...series.lineStyle,
+                width: Number(line_thickness_option)
+              }
+            };
+          }
+          return series;
+        });
+        
+        chart.setOption({
+          series: newSeries
+        });
+      }
     });
   }
 
@@ -369,21 +500,65 @@ export default class extends Controller {
     }
     if (font_size_option === "") { font_size_option = 11}
 
-    window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.yAxis[0].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
-      
-      if (plot_chart.series[0].type === "heatmap") {
-        plot_chart.yAxis[1].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
-        plot_chart.colorAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+    window.all_charts["plot_charts"].forEach(chart => {
+      if (chart && chart.setOption) {
+        var option = chart.getOption();
+        var isHeatmap = option.series && option.series[0] && option.series[0].type === "heatmap";
+        
+        var updateOption = {
+          yAxis: {
+            nameTextStyle: {
+              fontSize: Number(font_size_option)
+            },
+            axisLabel: {
+              fontSize: Number(font_size_option)
+            }
+          },
+          xAxis: {
+            axisLabel: {
+              fontSize: Number(font_size_option)
+            }
+          }
+        };
+        
+        if (isHeatmap) {
+          updateOption.visualMap = {
+            textStyle: {
+              fontSize: Number(font_size_option)
+            }
+          };
+        }
+        
+        chart.setOption(updateOption);
       }
     });
 
-    window.all_charts["axis"].xAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
+    // Update axis chart
+    if (window.all_charts["axis"] && window.all_charts["axis"].setOption) {
+      window.all_charts["axis"].setOption({
+        xAxis: {
+          axisLabel: {
+            fontSize: Number(font_size_option)
+          }
+        }
+      });
+    }
 
-    if (window.all_charts["spacecraft"] != undefined) {
+    // Update spacecraft chart
+    if (window.all_charts["spacecraft"] && window.all_charts["spacecraft"].setOption) {
       const font_for_spacecraft_plot = Math.min(font_size_option, 11);
-      window.all_charts["spacecraft"].xAxis[0].update({ labels: { style :{ fontSize: font_for_spacecraft_plot } }});
-      window.all_charts["spacecraft"].yAxis[0].update({ title: { style :{ fontSize: font_for_spacecraft_plot } }});
+      window.all_charts["spacecraft"].setOption({
+        xAxis: {
+          axisLabel: {
+            fontSize: Number(font_for_spacecraft_plot)
+          }
+        },
+        title: {
+          textStyle: {
+            fontSize: Number(font_for_spacecraft_plot)
+          }
+        }
+      });
     }
   }
 

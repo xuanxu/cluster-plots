@@ -9,7 +9,14 @@ function manageBorder(action="show") {
   }
   const border_width = action === "show" ? 1 : 0;
   for (var i = 0; i < borderable_charts.length; i++) {
-    borderable_charts[i].update({chart: { borderWidth: border_width }});
+    if (borderable_charts[i] && borderable_charts[i].setOption) {
+      borderable_charts[i].setOption({
+        grid: { 
+          borderWidth: border_width,
+          borderColor: border_width > 0 ? '#000' : 'transparent'
+        }
+      });
+    }
   }
 }
 window.manageBorder = manageBorder;
@@ -84,16 +91,23 @@ window.save_plot_options = function(){
 
   var nplots = window.all_charts["plot_charts"].length;
   if (nplots > 0) {
-    plot_options["border"] = String(window.all_charts["plot_charts"][0].options.chart.borderWidth) || "0";
+    // For Echarts, we need to get border info differently
+    var firstChart = window.all_charts["plot_charts"][0];
+    if (firstChart && firstChart.getOption) {
+      var option = firstChart.getOption();
+      plot_options["border"] = (option.grid && option.grid[0] && option.grid[0].borderWidth) ? "1" : "0";
+    }
 
     for (var n = 0; n < window.all_charts["plot_charts"].length; n++) {
       var chart = window.all_charts["plot_charts"][n];
       var chart_controls = document.getElementById("controls_plot_" + n);
-      if (chart_controls) {
+      if (chart_controls && chart.getOption) {
         var plot_type = chart_controls.dataset.plottype;
+        var option = chart.getOption();
+        
         if (plot_type === "line"){
           var line_plot_options = {
-            y_title: window.all_charts["plot_charts"][n].yAxis[0].axisTitle.textStr
+            y_title: option.yAxis && option.yAxis[0] ? option.yAxis[0].name : ""
           }
 
           if (document.getElementById("new_y_axis_type_" + n + "_linear").checked) {
@@ -123,7 +137,7 @@ window.save_plot_options = function(){
           plot_options["plots"][chart_controls.dataset.panelname] = line_plot_options;
         } else if (plot_type === "spectrogram"){
           var spectrogram_plot_options = {
-            y_title: window.all_charts["plot_charts"][n].yAxis[1].axisTitle.textStr,
+            y_title: option.yAxis && option.yAxis[0] ? option.yAxis[0].name : "",
           }
 
           if (document.getElementById("new_y_range_" + n + "_default").checked) {
@@ -158,4 +172,15 @@ window.save_plot_options = function(){
   a.href = url;
   a.download = "caa-plot_options-" + get_timestamp() +".json";
   a.click();
+}
+
+// Helper function to generate timestamp
+function get_timestamp() {
+  var now = new Date();
+  return now.getFullYear() + 
+         String(now.getMonth() + 1).padStart(2, '0') + 
+         String(now.getDate()).padStart(2, '0') + '_' +
+         String(now.getHours()).padStart(2, '0') + 
+         String(now.getMinutes()).padStart(2, '0') + 
+         String(now.getSeconds()).padStart(2, '0');
 }

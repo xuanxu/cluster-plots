@@ -34,7 +34,7 @@ class Plot
   private
 
   def call_csa
-    return test_call if Rails.env.local?
+    return test_call if ENV["RESTRICT_CALLS"] == "local"
 
     json_file = "data-#{Time.now.strftime(('%Y%m%d%H%M%S')) }#{rand(999999)}.json"
 

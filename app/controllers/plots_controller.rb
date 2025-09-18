@@ -60,6 +60,24 @@ class PlotsController < ApplicationController
     render json: reply
   end
 
+  def regenerate_panel
+    panel = panel_params[:panel].strip
+    zeroes = panel_params[:zeroes].strip
+    start_datetime = panel_params[:start_at].strip
+    end_datetime = panel_params[:end_at].strip
+
+    plot = Plot.new(start_datetime: start_datetime, end_datetime: end_datetime, panels: panel, zeroes: zeroes)
+    data = plot.get_data_range(panel_params[:param_id], panel_params[:min_value], panel_params[:max_value])
+
+    if data.is_a?(String)
+      reply = { status: "Error", info: data }
+    else
+      reply = { status: "OK", info: data.to_json }
+    end
+
+    render json: reply
+  end
+
   private
   def load_panels
     @cluster_panels_by_instrument = Panel.ready.by_mission("cluster").to_a.group_by { |panel| panel.experiment }
@@ -69,6 +87,10 @@ class PlotsController < ApplicationController
 
   def plot_params
     params.require(:plot).permit(:panels, :time_interval, :zeroes)
+  end
+
+  def panel_params
+    params.require(:plot).permit(:panel, :start_at, :end_at, :zeroes, :param_id, :min_value, :max_value)
   end
 
   def cef_files_params

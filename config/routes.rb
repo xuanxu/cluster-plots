@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :generate
       get :cef_files
       post :spacecraft_info
+      post :regenerate_panel
     end
   end
 

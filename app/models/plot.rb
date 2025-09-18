@@ -31,9 +31,19 @@ class Plot
     end
   end
 
+  def get_data_range(param_id, min, max)
+    if valid_params? && valid_update_parameter_values?(param_id, min, max)
+      update_info = [ { paramid: param_id, value: "#{Float(min)},#{Float(max)}" } ]
+      call_csa(update_info)
+    else
+      Rails.logger.error "Data validation error on: #{data_error}"
+      data_error
+    end
+  end
+
   private
 
-  def call_csa
+  def call_csa(update_params = nil)
     return test_call if ENV["RESTRICT_CALLS"] == "local"
 
     json_file = "data-#{Time.now.strftime(('%Y%m%d%H%M%S')) }#{rand(999999)}.json"
@@ -50,6 +60,10 @@ class Plot
 
     if zeroes.present?
       pycom += [ "-z", zeroes ]
+    end
+
+    if update_params.is_a?(Array) && update_params.any?
+      pycom += [ "-u", update_params.to_json ]
     end
 
     log_info("Running command:", pycom.join(' '))
@@ -157,6 +171,25 @@ class Plot
         self.data_error = "Time interval must be less than 57 hours (one orbit) when panels from Cluster or Double Star are selected"
         return false
       end
+    end
+
+    true
+  end
+
+  def valid_update_parameter_values?(param_id, min, max)
+    if param_id.blank?
+      self.data_error = "No parameter selected for value update"
+      return false
+    end
+
+    if min.blank? || max.blank? || !(Float(min) rescue false) || !(Float(max) rescue false)
+      self.data_error = "Minimum and maximum values must be provided for the parameter update"
+      return false
+    end
+
+    if Float(min) >= Float(max)
+      self.data_error = "Minimum value must be less than maximum value for the parameter update"
+      return false
     end
 
     true

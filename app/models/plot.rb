@@ -32,8 +32,9 @@ class Plot
   end
 
   def get_data_range(param_id, min, max)
+    log_info("Max, min values for param update", [param_id, min, max])
     if valid_params? && valid_update_parameter_values?(param_id, min, max)
-      update_info = [ { paramid: param_id, value: "#{Float(min)},#{Float(max)}" } ]
+      update_info = [ { paramid: param_id, value: "#{min},#{max}" } ]
       call_csa(update_info)
     else
       Rails.logger.error "Data validation error on: #{data_error}"
@@ -182,8 +183,8 @@ class Plot
       return false
     end
 
-    if min.blank? || max.blank? || !(Float(min) rescue false) || !(Float(max) rescue false)
-      self.data_error = "Minimum and maximum values must be provided for the parameter update"
+    if min.blank? || max.blank? || !(Float(min) rescue false) || !(Float(max) rescue false) || min < 0 || max < 0
+      self.data_error = "Minimum and maximum positive values must be provided for the parameter update"
       return false
     end
 

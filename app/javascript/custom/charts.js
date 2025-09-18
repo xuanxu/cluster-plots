@@ -600,6 +600,7 @@ function plot_heatmap(plot_data, nplot){
 
   return plot;
 } // plot_heatmap
+window.plot_heatmap = plot_heatmap;
 
 function add_subpanels(plot, plot_data, nplot) {
   var subTop = 100 - plot_data.subpanels[0].size;

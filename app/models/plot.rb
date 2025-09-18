@@ -44,10 +44,13 @@ class Plot
       "-b", start_datetime,
       "-e", end_datetime,
       "-p", panels,
-      "-z", zeroes,
       "-j", json_file,
       "-o", "#{start_datetime}/#{end_datetime}"
     ]
+
+    if zeroes.present?
+      pycom += [ "-z", zeroes ]
+    end
 
     log_info("Running command:", pycom.join(' '))
     stdout_str, stderr_str, status = Open3.capture3(*pycom)

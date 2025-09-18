@@ -49,23 +49,17 @@ class Plot
       "-o", "#{start_datetime}/#{end_datetime}"
     ]
 
-    Rails.logger.info " * Running command: #{pycom.join(' ')}"
+    log_info("Running command:", pycom.join(' '))
     stdout_str, stderr_str, status = Open3.capture3(*pycom)
 
     if Rails.env.development?
-      Rails.logger.info "*************** DATA PROCESSING **************"
-      Rails.logger.info "#{status.success? ? 'OK' : 'Failure'}"
-      Rails.logger.info "**********************************************"
-      Rails.logger.info "#{stdout_str}"
-      Rails.logger.info "**********************************************"
+      log_info("Data processing", ["#{status.success? ? 'OK' : 'Failure'}", stdout_str])
     end
 
     if status.success?
       Oj.load_file("#{Rails.root}/libext/results/json_charts/#{json_file}")
     else
-      Rails.logger.info "****** ERROR GETTING/PROCESSING DATA *********"
-      Rails.logger.info "#{stderr_str}"
-      Rails.logger.info "**********************************************"
+      log_info("Error getting/processing data", stderr_str)
       "Error getting/processing data from the Cluster Science Archive"
     end
   end
@@ -96,23 +90,17 @@ class Plot
       "-o", "#{start_datetime}/#{end_datetime}"
     ]
 
-    Rails.logger.info " * Running command: #{pycom.join(' ')}"
+    log_info("Running command:", pycom.join(' '))
     stdout_str, stderr_str, status = Open3.capture3(*pycom)
 
     if Rails.env.development?
-      Rails.logger.info "*************** DATA PROCESSING **************"
-      Rails.logger.info "#{status.success? ? 'OK' : 'Failure'}"
-      Rails.logger.info "**********************************************"
-      Rails.logger.info "#{stdout_str}"
-      Rails.logger.info "**********************************************"
+      log_info("Data processing", ["#{status.success? ? 'OK' : 'Failure'}", stdout_str])
     end
 
     if status.success?
       Oj.load_file("#{Rails.root}/libext/results/json_charts/#{json_file}")
     else
-      Rails.logger.info "****** ERROR GETTING/PROCESSING SPACECRAFT DATA ******"
-      Rails.logger.info "#{stderr_str}"
-      Rails.logger.info "******************************************************"
+      log_info("Error getting/processing spacecraft data", stderr_str)
       "Error getting/processing spacecraft data from the Cluster Science Archive"
     end
   end
@@ -224,5 +212,20 @@ class Plot
     end
 
     true
+  end
+
+  def log_info(title, info)
+    if title.present?
+      title_str =  "*********** #{title.to_s.strip.upcase} ***********"
+    else
+      title_str =  "**************************************************"
+    end
+    Rails.logger.info title_str
+
+    info = [info].flatten
+    info.each do |line|
+      Rails.logger.info line.to_s
+      Rails.logger.info "*" * title_str.length
+    end
   end
 end

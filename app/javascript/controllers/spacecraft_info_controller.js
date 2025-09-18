@@ -100,13 +100,11 @@ export default class extends Controller {
       alert('You have not selected any parameter');
       return;
     }
-    //info_list = JSON.stringify(info_list);
 
     var ticks = window.all_charts["plot_charts"][0].xAxis[0].tickPositions;
     for (var t = 0; t < ticks.length; t++) {
       ticks_iso.push(Highcharts.dateFormat( "%Y-%m-%dT%H:%M:%SZ", ticks[t]));
     }
-    //ticks_iso = JSON.stringify(ticks_iso);
 
     var min_x_value = window.all_charts["axis"].xAxis[0].min;
     var max_x_value = window.all_charts["axis"].xAxis[0].max;
@@ -139,22 +137,17 @@ export default class extends Controller {
         remove_cluster_link.classList.add("spacecraft_action");
         remove_double_star_link.classList.remove("spacecraft_action_disabled");
         remove_double_star_link.classList.add("spacecraft_action");
-        loading_image.classList.add("hidden");
-        loading_image.classList.remove("inline");
       } else if (json_response["status"] === "Error") {
-        loading_image.classList.add("hidden");
-        loading_image.classList.remove("inline");
         alert("Request failed: " + json_response["info"]);
       } else {
-        loading_image.classList.add("hidden");
-        loading_image.classList.remove("inline");
         alert("Unknown response from server");
       }
     } else {
-      loading_image.classList.add("hidden");
-      loading_image.classList.remove("inline");
       alert("Error getting spacecraft info")
     }
+
+    loading_image.classList.add("hidden");
+    loading_image.classList.remove("inline");
   }
 
   remove_spacecraft_info_plot() {

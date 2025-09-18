@@ -11,6 +11,7 @@ from astropy.time import Time, TimeDelta
 import threading
 import getpass
 import time
+import json
 
 try:
     import xml.etree.cElementTree as ET
@@ -170,14 +171,14 @@ def main(argv):
 
     USAGE = """\nUSAGE: \n
            python run_panel2.py (-p | --panel) panel (-b | --begin) begin (-e | --end) stop (-n | --name) name  (-u | --update) upd (-o | --orig) orig  (-t | --output-type) type (-f | --cef-path) tmp_path  (-z | --zeroes) zeroes \n
-           eg: python run_panel2.py -b '2001-03-17T00:00:00Z' -e '2001-03-18T00:00:00Z' -p 'C1_CG_EFW_L3_P_CAA' -n 'test.ps' -t 'highcharts' -j 'test.json' -o '2001-03-17T00:00:00Z/2001-03-18T00:00:00Z' -u 'upd.list'\n
+           eg: python run_panel2.py -b '2001-03-17T00:00:00Z' -e '2001-03-18T00:00:00Z' -p 'C1_CG_EFW_L3_P_CAA' -n 'test.ps' -t 'highcharts' -j 'test.json' -o '2001-03-17T00:00:00Z/2001-03-18T00:00:00Z' -u '[{"paramid":"Sweep_Energy_medium__C3_CP_PEA_PITCH_FIX_DEFlux","value":"58.2,800"}]'\n
              begin/end :   interval of the plot
              orig :        interval of the input cef file to request (the app adds 5 minutes at the beginning/end of the requested interval)
              tmp_path:	   path to store the cef file
              output_type : for now only 'hc' (highcharts -> json output) is implemented
              name :        ignored, ps plotting not implemented 
              zeroes:	   filter zeroes for corresponding panel ?
-             upd :         file sent by the server when updating filter information \n  """
+             upd :         list in JSON format of params and values sent by the server when updating filter information \n  """
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'p:b:e:o:n:t:f:j:u:z:h', ['panel=', 'begin=', 'end=', 'orig=', 'name=', 'output_type=', 'cef_path=', 'json=', 'update=', 'zeroes=', 'help'])
@@ -188,7 +189,7 @@ def main(argv):
         sys.exit(2)
 
     output_type = 'highcharts'
-    upd_list = ''
+    upd_list = []
     zeroes_list = ''
     name = ''
     json_file = 'test.json'
@@ -216,7 +217,7 @@ def main(argv):
         elif opt in ('-j', '--json'):
             json_file = arg
         elif opt in ('-u', '--update'):
-            upd_list = arg
+            upd_list = json.loads(arg)
         elif opt in ('-z', '--zeroes'):
             zeroes_list = arg
         else:

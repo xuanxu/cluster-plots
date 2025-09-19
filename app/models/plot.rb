@@ -32,7 +32,7 @@ class Plot
   end
 
   def get_data_range(param_id, min, max)
-    log_info("Max, min values for param update", [param_id, min, max])
+    log_info("Max, min values for param update", [ param_id, min, max ])
     if valid_params? && valid_update_parameter_values?(param_id, min, max)
       update_info = [ { paramid: param_id, value: "#{min},#{max}" } ]
       call_csa(update_info)
@@ -67,11 +67,11 @@ class Plot
       pycom += [ "-u", update_params.to_json ]
     end
 
-    log_info("Running command:", pycom.join(' '))
+    log_info("Running command:", pycom.join(" "))
     stdout_str, stderr_str, status = Open3.capture3(*pycom)
 
     if Rails.env.development?
-      log_info("Data processing", ["#{status.success? ? 'OK' : 'Failure'}", stdout_str])
+      log_info("Data processing", [ "#{status.success? ? 'OK' : 'Failure'}", stdout_str ])
     end
 
     if status.success?
@@ -108,11 +108,11 @@ class Plot
       "-o", "#{start_datetime}/#{end_datetime}"
     ]
 
-    log_info("Running command:", pycom.join(' '))
+    log_info("Running command:", pycom.join(" "))
     stdout_str, stderr_str, status = Open3.capture3(*pycom)
 
     if Rails.env.development?
-      log_info("Data processing", ["#{status.success? ? 'OK' : 'Failure'}", stdout_str])
+      log_info("Data processing", [ "#{status.success? ? 'OK' : 'Failure'}", stdout_str ])
     end
 
     if status.success?
@@ -259,7 +259,7 @@ class Plot
     end
     Rails.logger.info title_str
 
-    info = [info].flatten
+    info = [ info ].flatten
     info.each do |line|
       Rails.logger.info line.to_s
       Rails.logger.info "*" * title_str.length

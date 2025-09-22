@@ -19,6 +19,14 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 libyaml-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Install Python 3.13
+RUN apt-get update -qq && apt-get install -y python3.13 python3.13-dev python3-pip
+
+RUN echo "alias python=python3.13" >> ~/.bashrc && \
+    echo "alias pip=pip3" >> ~/.bashrc
+
+RUN . ~/.bashrc
+
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -57,6 +65,9 @@ FROM base
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
+
+# Install Python dependencies
+RUN pip install -r ./libext/requirements.txt --break-system-packages
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \

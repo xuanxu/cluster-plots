@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+find ./libext/results/json_charts -name "*.json" -type f -mtime +1 -delete
+find ./libext/results/cef_files -name "*.cef.gz" -type f -mtime +2 -delete

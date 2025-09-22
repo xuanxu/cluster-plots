@@ -7,7 +7,7 @@ image: xuanxu33/cluster_plots
 # Deploy to these servers.
 servers:
   web:
-    - cluster-plots.go.esa.int
+    - csa-plots.go.esa.int
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: cluster-plots.go.esa.int
+  host: csa-plots.go.esa.int
 
 # Credentials for your image host.
 registry:

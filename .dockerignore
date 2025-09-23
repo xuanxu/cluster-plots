@@ -45,3 +45,14 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+# .DS_Store Mac files
+.DS_Store
+
+# Local scripts
+zzzzz*
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]

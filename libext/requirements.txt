@@ -1,4 +1,4 @@
-astropy
-numpy
-matplotlib
-bottleneck
+astropy==7.1.0
+numpy==2.3.3
+matplotlib==3.10.6
+Bottleneck==1.6.0

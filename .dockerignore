@@ -48,11 +48,16 @@
 
 # .DS_Store Mac files
 .DS_Store
+*/.DS_Store
+*/*/.DS_Store
 
 # Local scripts
 zzzzz*
+*/zzzzz*
 .vscode/
 
 # Python
 __pycache__/
+*/__pycache__/
 *.py[cod]
+*/*.py[cod]

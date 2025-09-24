@@ -22,10 +22,10 @@ RUN apt-get update -qq && \
 # Install Python 3.13
 RUN apt-get update -qq && apt-get install -y python3.13 python3.13-dev python3-pip
 
-RUN echo "alias python=python3.13" >> ~/.bashrc && \
-    echo "alias pip=pip3" >> ~/.bashrc
-
-RUN . ~/.bashrc
+RUN echo "alias python=python3.13" >> ~/.bash_aliases
+RUN echo "alias pip=pip3" >> ~/.bash_aliases
+RUN . ~/.bash_aliases
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Set production environment
 ENV RAILS_ENV="production" \

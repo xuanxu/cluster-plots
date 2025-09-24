@@ -32,9 +32,23 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
     file_dir = join(ROOT_PATH, "results", "cef_files")
     json_file_path = join(ROOT_PATH, "results", "json_charts", json_file)
 
-    strDate = start[0:4]+start[5:7]+start[8:10]+"_"+start[11:13]+start[14:16]+start[17:19]+"_"+stop[0:4]+stop[5:7]+stop[8:10]+"_"+stop[11:13]+stop[14:16]+stop[17:19]
+    # add +/- 1 minutes to the interval as we need at least a couple of points for the interpoltaion (cef are 1 minute resolution)
+    date_start = datetime.strptime(start, "%Y-%m-%dT%H:%M:%SZ") - timedelta(seconds=60)
+    date_stop = datetime.strptime(stop, "%Y-%m-%dT%H:%M:%SZ") + timedelta(seconds=60)
+
+    start_new = date_start.isoformat() + "Z"
+    stop_new = date_stop.isoformat() + "Z"
+
     stopo = (date_orig.split('/'))[1]
     starto = (date_orig.split('/'))[0]
+
+    date_starto = datetime.strptime(starto, "%Y-%m-%dT%H:%M:%SZ")-timedelta(seconds=300)
+    date_stopo = datetime.strptime(stopo, "%Y-%m-%dT%H:%M:%SZ")+timedelta(seconds=300)
+
+    starto = date_starto.isoformat() + "Z"
+    stopo = date_stopo.isoformat() + "Z"
+
+    strDate = start_new[0:4]+start_new[5:7]+start_new[8:10]+"_"+start_new[11:13]+start_new[14:16]+start_new[17:19]+"_"+stop_new[0:4]+stop_new[5:7]+stop_new[8:10]+"_"+stop_new[11:13]+stop_new[14:16]+stop_new[17:19]
 
     # calculate time range in seconds
     date_start = datetime.strptime(start, "%Y-%m-%dT%H:%M:%SZ")
@@ -101,7 +115,7 @@ def run_sc_info(list_ticks, list_info, sc, missionID, start, stop, date_orig, js
         cef_file = join(file_dir, dataset + "__" + strDate + "_V00.cef.gz")
         if os.path.isfile(cef_file) is False:
             print("Downloading CEF file from CSA for dataset ", dataset)
-            cmd = ROOT_PATH + "/download_data_csa " + dataset + " " + start + " " + stop + " " + file_dir
+            cmd = ROOT_PATH + "/download_data_csa " + dataset + " " + start_new + " " + stop_new + " " + file_dir
             subprocess.call(cmd, shell=True)
 
         list_cef.append(cef_file)

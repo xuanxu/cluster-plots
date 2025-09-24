@@ -56,11 +56,24 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
+## Compile CEFLIB
+# Build core C library
+WORKDIR /rails/libext/CEFLIB/LIB
+RUN ../build clean raz all
+WORKDIR /rails/libext/CEFLIB/C
+RUN ../build clean raz all
+# Build Python library
+WORKDIR /rails/libext/CEFLIB/PYTHON
+RUN pip install -r requirements-ceflib.txt --break-system-packages
+RUN ../build clean raz all
 
 
 # Final stage for app image
 FROM base
+
+# Copy the compiled CEFLIB library
+COPY --from=build /rails/libext/CEFLIB/PYTHON/*.so /rails/libext/
+RUN rm -rf /rails/libext/CEFLIB
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"

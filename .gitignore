@@ -1,5 +1,6 @@
 # Generated chart files
-/libext/results/
+/libext/results/json_charts/*.json
+/libext/results/cef_files/*.cef*
 
 # Local scripts
 zzzzz*

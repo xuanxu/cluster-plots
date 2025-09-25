@@ -64,7 +64,7 @@ WORKDIR /rails/libext/CEFLIB/C
 RUN ../build clean raz all
 # Build Python library
 WORKDIR /rails/libext/CEFLIB/PYTHON
-RUN pip install -r requirements-ceflib.txt --break-system-packages
+RUN pip install --break-system-packages --root-user-action ignore -r requirements-ceflib.txt
 RUN ../build clean raz all
 
 
@@ -80,7 +80,7 @@ COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Install Python dependencies
-RUN pip install -r ./libext/requirements.txt --break-system-packages
+RUN pip install --break-system-packages --root-user-action ignore -r ./libext/requirements.txt
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \

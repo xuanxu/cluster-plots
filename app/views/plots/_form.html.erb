@@ -34,7 +34,11 @@
 
     <div class="block w-full mt-2 py-1">
       <%= button_tag "<i class='fa-duotone fa-solid fa-chart-area'></i> Plot panels".html_safe, type: "button", id: "submit_plots_info", class: "main_action_button" %>
-      <div id="plot_times" class="text-slate-400">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
+      <div id="plot_times" class="text-slate-400" title="Click to edit">2000-01-01T00:00:00Z 2000-01-01T00:00:00Z</div>
+      <div id="edit_plot_times" class="hidden">
+        <input type="text" id="plot_times_new" class="w-2xs text-xs p-1" value="2000-01-01T00:00:00Z 2000-01-01T00:00:00Z"/>
+        <span id="set_new_plot_times" class="inline cursor-pointer text-xs underline decoration-blue-500 text-blue-500">Apply</span>
+      </div>
     </div>
   </div>
 

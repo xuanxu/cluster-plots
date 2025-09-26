@@ -33,6 +33,11 @@ function set_plot_times(initial_datetime, end_datetime) {
 }
 window.set_plot_times = set_plot_times;
 
+function view_edit_plot_times() {
+  document.getElementById("edit_plot_times").classList.remove("hidden");
+}
+document.getElementById("plot_times").addEventListener('click', view_edit_plot_times);
+
 // Update plot times
 function update_plot_times() {
   var start_date = document.getElementById("start_date");

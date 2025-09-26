@@ -24,8 +24,22 @@
     color: inherit;
   }
 }
+@keyframes texthighlight {
+  0% {
+    color: #1447e6;
+  }
+  50% {
+    color: #2b7fff;
+  }
+  100% {
+    color: #90a1b9;
+  }
+}
 .animation_text_in {
   animation: textappear 2s;
+}
+.animation_text_highlight {
+  animation: texthighlight 1s;
 }
 .grid-timestamps {
   display: grid;

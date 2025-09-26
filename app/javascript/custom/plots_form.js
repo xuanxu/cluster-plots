@@ -34,9 +34,31 @@ function set_plot_times(initial_datetime, end_datetime) {
 window.set_plot_times = set_plot_times;
 
 function view_edit_plot_times() {
+  document.getElementById("plot_times_new").value = document.getElementById("plot_times").innerHTML;
+  document.getElementById("plot_times").classList.remove("animation_text_highlight");
   document.getElementById("edit_plot_times").classList.remove("hidden");
 }
 document.getElementById("plot_times").addEventListener('click', view_edit_plot_times);
+
+function edit_plot_times() {
+  var new_plot_times = document.getElementById("plot_times_new").value.trim();
+  if (new_plot_times.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/)) {
+    var parts = new_plot_times.split(" ");
+    var start_datetime = parts[0];
+    var stop_datetime = parts[1];
+    document.getElementById("start_date").value = start_datetime.slice(0, 10);
+    document.getElementById("start_time").value = start_datetime.slice(11, 19);
+    document.getElementById("stop_date").value = stop_datetime.slice(0, 10);
+    document.getElementById("stop_time").value = stop_datetime.slice(11, 19);
+    update_plot_times();
+    document.getElementById("stop_time").dispatchEvent(new Event('change'));
+    document.getElementById("edit_plot_times").classList.add("hidden");
+    document.getElementById("plot_times").classList.add("animation_text_highlight");
+  } else {
+    alert("Invalid format. Please use: \nYYYY-MM-DDTHH:MM:SSZ YYYY-MM-DDTHH:MM:SSZ");
+  }
+}
+document.getElementById("set_new_plot_times").addEventListener('click', edit_plot_times);
 
 // Update plot times
 function update_plot_times() {

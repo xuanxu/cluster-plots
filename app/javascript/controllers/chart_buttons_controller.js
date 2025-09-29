@@ -370,10 +370,12 @@ export default class extends Controller {
     if (font_size_option === "") { font_size_option = 11}
 
     window.all_charts["plot_charts"].forEach(plot_chart => {
-      plot_chart.yAxis[0].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
+      var all_yAxis = plot_chart.yAxis;
+      for (var i = 0; i < all_yAxis.length; i++) {
+        all_yAxis[i].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
+      }
       
       if (plot_chart.series[0].type === "heatmap") {
-        plot_chart.yAxis[1].update({ labels: { style: { fontSize: font_size_option } }, title: { style: { fontSize: font_size_option } }});
         plot_chart.colorAxis[0].update({ labels: { style :{ fontSize: font_size_option } }});
       }
     });

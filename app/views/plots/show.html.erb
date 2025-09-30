@@ -48,7 +48,7 @@
             <div id="plots_container" class="container mx-auto mt-3 px-2 py-2 max-w-(--max-custom-width) bg-white shadow-md grow">
               <div id="title-chart" style="height: 50px"></div>
               <% @plot_info["panels_arr"].size.times do |i| %>
-                <div id="highcharts_plot_<%= i %>"></div>
+                <div id="chart_plot_<%= i %>"></div>
               <% end %>
               <div id="axis-chart" style="height: 50px"></div>
               <div id="spacecraft-info"></div>

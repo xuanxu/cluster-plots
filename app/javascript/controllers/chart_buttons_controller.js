@@ -319,7 +319,7 @@ export default class extends Controller {
       if (window.all_charts["spacecraft"] != undefined) {
         charts_to_plot.push(window.all_charts["spacecraft"]);
       }
-      Highcharts.exportCharts(charts_to_plot, {type: download_type, filename: "Cluster_Plot" + filename_dates});
+      window.exportChartsToImage(download_type, "Cluster_Plot" + filename_dates);
       document.getElementById("save_plot").value = "";
     }
   }

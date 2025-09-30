@@ -112,7 +112,7 @@ def calc_range(data,axis_type,plot_type):
 ############################################################################################################################
 ############################################################################################################################
 def create_json(sSubPanel,arrData):
-    print("In lib_highcharts")
+    print("In lib_echarts")
     data_div = []
     panel_type = 'line'
 
@@ -223,7 +223,7 @@ def create_json(sSubPanel,arrData):
             nonan_y_data = y_data[mask]
             nonan_x_data = x_data[mask]
 
-            # to avoid highcharts changing x axis boundaries add nan at beginning and end
+            # to avoid echartss changing x axis boundaries add nan at beginning and end
             # TBD: what if y_data multi-dimensional ???
             if flag_empty == 0:
                 if nonan_x_data[0] > glb.date_start_milli:
@@ -240,11 +240,11 @@ def create_json(sSubPanel,arrData):
             # replace Nan with None for javascript
             nonan_y_data = np.array(np.where(np.isnan(nonan_y_data), None, nonan_y_data))
 
-            # convert time vector to unix time for highchart time axis
+            # convert time vector to unix time for echarts time axis
             x_plot = ap.Time([(ceflib.milli_to_isotime(x,3)) for x in nonan_x_data], format='isot', scale='utc')
             x_epoch = np.array(x_plot.unix)*1000
 
-            # reshape data for highcharts => [[x,y],[x,y],...]
+            # reshape data for echartss => [[x,y],[x,y],...]
             data_hc = np.column_stack((x_epoch,nonan_y_data))
 
             color_hc = (elt['sLine'])['color']
@@ -305,7 +305,7 @@ def create_json(sSubPanel,arrData):
                 zrange = sZAxis['range']
 
             if ztype == 'logarithmic':
-                # put a fill val for zeroes. They will then be plotted in black by highcharts (different from white nan)
+                # put a fill val for zeroes. They will then be plotted in black by echartss (different from white nan)
                 z_data_tmp = np.array(np.where(z_data_tmp == 0., 1e-31, z_data_tmp))
 
                 # reshape z_data
@@ -327,7 +327,7 @@ def create_json(sSubPanel,arrData):
                 nonan_z_data = z_data[mask,:]
                 nonan_x_data = x_data[mask]
 
-                # to avoid highcharts changing x axis boundaries add nan at beginning and end of the time interval
+                # to avoid echartss changing x axis boundaries add nan at beginning and end of the time interval
                 delta_t = [el['arrDeltaP'] for (ind,el) in enumerate(arrData) if el['paramid'] == x_tag][0]
                 if nonan_x_data[0] > glb.date_start_milli+delta_t/2:
                     print("add start null")
@@ -347,12 +347,12 @@ def create_json(sSubPanel,arrData):
             #z_data = np.array(np.where(np.isnan(z_data), None, z_data))
             y_data = np.array(np.where(np.isnan(y_data), None, y_data))
 
-            # convert time vector to unix time for highchart time axis
+            # convert time vector to unix time for echarts time axis
             x_plot = ap.Time([(ceflib.milli_to_isotime(x,3)) for x in nonan_x_data], format='isot', scale='utc')
             #x_plot = ap.Time([(ceflib.milli_to_isotime(x,3)) for x in x_data], format='isot', scale='utc')
             x_epoch = np.ndarray.tolist(np.array(x_plot.unix)*1000)
 
-            # reshape data for highcharts => [[x,y,z]]
+            # reshape data for echartss => [[x,y,z]]
             data_hc = np.column_stack((np.repeat(x_epoch,len(y_data)),np.tile(y_data,len(nonan_x_data)),np.ravel(nonan_z_data)))
             #data_hc = np.column_stack((np.repeat(x_epoch,len(y_data)),np.tile(y_data,len(x_data)),np.ravel(z_data)))
 

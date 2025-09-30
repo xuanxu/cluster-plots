@@ -6,7 +6,7 @@ import ceflib
 import astropy.time as ap
 #import matplotlib.pyplot as plt
 import plot_data as pld
-import lib_highcharts as lhc
+import lib_echarts as lhc
 from matplotlib.dates import DateFormatter
 import getopt, sys
 from astropy.utils.misc import JsonCustomEncoder

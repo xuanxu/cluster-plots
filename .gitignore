@@ -9,6 +9,11 @@ zzzzz*
 # .DS_Store Mac files
 .DS_Store
 
+# Node modules and package files
+/node_modules/
+/package.json
+/package-lock.json
+
 # PYTHON RELATED FILES:
 
 # Byte-compiled / optimized / DLL files

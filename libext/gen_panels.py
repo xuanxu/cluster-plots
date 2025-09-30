@@ -141,12 +141,12 @@ def gen_panels(list_xml,list_cef,list_panels,start,stop,upd_list,json_file,list_
                     pld.plot_data(sPlot,sArrData,pos)
 
             startTime = time.time()
-            if output_type == "highcharts":
+            if output_type == "echarts":
                 json_subpan_arr.append(lhc.create_json(sSubpanel,sArrData))
             sub_number = sub_number+1
-            print('lib_highcharts:', time.time() - startTime)
+            print('lib_echarts:', time.time() - startTime)
 
-        if output_type == "highcharts":
+        if output_type == "echarts":
             # add json to panel array
             div = 'div'+str(pan_idx)
 
@@ -168,7 +168,7 @@ def gen_panels(list_xml,list_cef,list_panels,start,stop,upd_list,json_file,list_
         plt.setp(labels, rotation=30)
 
 
-    if output_type == "highcharts":
+    if output_type == "echarts":
         startTime = time.time()
 
         json_data = {'start':glb.date_start_iso,'stop':glb.date_stop_iso,'panels':list_panels,'zeroes':list_zeroes,'num_panels':num_panels,'panels_arr':json_panel_arr,'list_cef':list_cef}

@@ -344,8 +344,6 @@ function plot_heatmap(plot_data, nplot){
   var series = [];
   var num_lines = json.plot.length;
   for (var l = 0; l < num_lines; l++) {
-    var data = [];
-
     var convertedData = json.plot[l].data.map(point => {
       if (Array.isArray(point)) {
         return [
@@ -395,7 +393,6 @@ function plot_heatmap(plot_data, nplot){
       zoomType: 'x',
       events:{
         selection: function (event) {
-          event.preventDefault();
           return zoom_in_selection(event);
         },
         // Add the plot label (eg: C1 EFW)

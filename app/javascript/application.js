@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 // Apache ECharts library
-import * as echarts from "echarts"
+import echarts from "echarts"
 window.echarts = echarts;
 
 // Custom Cluster Plots files

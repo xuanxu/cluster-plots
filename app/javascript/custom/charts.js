@@ -534,7 +534,7 @@ function plot_heatmap(plot_data, nplot){
       margin: 0,
       verticalAlign: 'top',
       y: 35,
-      x: -30,
+      x: -16,
       symbolHeight: 170 // height of the colorbar
     },
     colorAxis: {

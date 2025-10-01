@@ -13,6 +13,8 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%# Load ECharts UMD build directly to ensure window.echarts is available %>
+    <%= javascript_include_tag "echarts-umd", "data-turbo-track": "reload", defer: false %>
     <%= javascript_importmap_tags %>
   </head>
 

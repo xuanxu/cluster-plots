@@ -2,17 +2,8 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-// Apache ECharts library - load UMD build
-// The UMD build will attach echarts to window.echarts automatically
-import "echarts-umd"
-
-// Ensure echarts is available globally
-// Give it a moment to initialize
-setTimeout(() => {
-  if (!window.echarts) {
-    console.error("ECharts failed to load");
-  }
-}, 0);
+// Apache ECharts library is loaded via script tag in layout
+// It should be available as window.echarts
 
 // Custom Cluster Plots files
 import "custom/plots_form"

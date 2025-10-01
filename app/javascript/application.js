@@ -2,13 +2,8 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-// Highcharts files
-import "highcharts/highcharts"
-import "highcharts/heatmap"
-import "highcharts/exporting"
-import "highcharts/offline-exporting"
-import "highcharts/export-data"
-import "highcharts/accessibility"
+// Apache ECharts library is loaded via script tag in layout
+// It should be available as window.echarts
 
 // Custom Cluster Plots files
 import "custom/plots_form"

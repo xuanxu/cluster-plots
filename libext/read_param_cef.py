@@ -45,7 +45,7 @@ def get_time_param(did):
 
     data = time_vect[idx_valid]
 
-    # make sure first/last points times are not outside of time range otherwise highcharts may extend the xaxis boundaries
+    # make sure first/last points times are not outside of time range otherwise echarts may extend the xaxis boundaries
     if ceflib.vattr(name,"VALUE_TYPE") == "ISO_TIME":
         if data.size > 1:
             data[0] = max([data[0],gb.date_start_milli])

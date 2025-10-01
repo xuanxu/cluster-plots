@@ -1,6 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 import { post } from '@rails/request.js'
 
+// Helper function to format date (replaces Highcharts.dateFormat)
+function formatDate(format, timestamp) {
+  const date = new Date(timestamp);
+  const pad = (n) => n < 10 ? '0' + n : n;
+  
+  return format
+    .replace('%Y', date.getUTCFullYear())
+    .replace('%m', pad(date.getUTCMonth() + 1))
+    .replace('%d', pad(date.getUTCDate()))
+    .replace('%H', pad(date.getUTCHours()))
+    .replace('%M', pad(date.getUTCMinutes()))
+    .replace('%S', pad(date.getUTCSeconds()));
+}
+
 export default class extends Controller {
   async update({ params: { nplot }}) {
     var min_level = Number(document.getElementById("min_extra_filter_" + nplot).value);
@@ -26,8 +40,8 @@ export default class extends Controller {
     var zeroes = document.getElementById("plot_zeroes").value
     var min_x_value = window.all_charts["axis"].xAxis[0].min;
     var max_x_value = window.all_charts["axis"].xAxis[0].max;
-    var datetime_start = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", min_x_value);
-    var datetime_stop = Highcharts.dateFormat("%Y-%m-%dT%H:%M:%SZ", max_x_value);
+    var datetime_start = formatDate("%Y-%m-%dT%H:%M:%SZ", min_x_value);
+    var datetime_stop = formatDate("%Y-%m-%dT%H:%M:%SZ", max_x_value);
 
     var query_data = {
       start_at: datetime_start,

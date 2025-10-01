@@ -150,6 +150,7 @@ function plot_line(plot_data, nplot){
   }
 
   var container = document.getElementById('chart_plot_' + nplot);
+  container.style.height = '250px';
   var chart = echarts.init(container);
   
   var option = {
@@ -531,6 +532,7 @@ function plot_heatmap(plot_data, nplot){
   }
 
   var container = document.getElementById('chart_plot_' + nplot);
+  container.style.height = '250px';
   var chart = echarts.init(container);
 
   // Define color stops for heatmap
@@ -991,6 +993,7 @@ window.plot_spacecraft_info = function(json_data, spacecraft_id, mission_id, inf
   }
 
   var container = document.getElementById('spacecraft-info');
+  container.style.height = '200px';
   var spacecraft_info_chart = echarts.init(container);
   
   // Build title text

@@ -364,7 +364,8 @@ function plot_line(plot_data, nplot){
       chart.setOption({
         xAxis: options
       });
-    }
+    },
+    tickPositions: []
   }];
   
   chart.yAxis = [{
@@ -829,6 +830,24 @@ function titleChart(titleText) {
   };
   
   title_chart.setOption(option);
+  
+  // Add compatibility wrapper for Highcharts API
+  title_chart.options = {
+    title: {
+      get text() {
+        var opt = title_chart.getOption();
+        return opt.title && opt.title[0] ? opt.title[0].text : '';
+      },
+      set text(value) {
+        title_chart.setOption({
+          title: {
+            text: value
+          }
+        });
+      }
+    }
+  };
+  
   all_charts["title"] = title_chart;
 }
 
@@ -886,6 +905,25 @@ function axisChart(start, stop) {
   };
   
   axis_chart.setOption(option);
+  
+  // Add compatibility wrapper for Highcharts API
+  axis_chart.xAxis = [{
+    get min() {
+      var opt = axis_chart.getOption();
+      return opt.xAxis && opt.xAxis[0] ? opt.xAxis[0].min : start;
+    },
+    get max() {
+      var opt = axis_chart.getOption();
+      return opt.xAxis && opt.xAxis[0] ? opt.xAxis[0].max : stop;
+    },
+    tickPositions: [],
+    update: function(options) {
+      axis_chart.setOption({
+        xAxis: options
+      });
+    }
+  }];
+  
   all_charts["axis"] = axis_chart;
 }
 

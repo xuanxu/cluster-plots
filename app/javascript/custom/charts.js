@@ -822,7 +822,12 @@ function axisChart(start, stop) {
           fontSize: '12px',
         },
         formatter: function () {
-          return Highcharts.dateFormat('%H:%M:%S', this.value);
+          var formatted_date = Highcharts.dateFormat('%H:%M:%S', this.value);
+          if (formatted_date == "00:00:00") {
+            return Highcharts.dateFormat('%b. %d', this.value);
+          } else {
+            return formatted_date;
+          }
         }
       },
       lineWidth: 2,

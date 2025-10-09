@@ -58,7 +58,7 @@ def get_data(list_arg):
 #################################################################################################################################
 
 def download_data_csa(ds, start_date, stop_date, file_dir):
-    print("DOWNLOADING DATA FROM CSA")
+    print("** DOWNLOADING DATA FROM CSA **")
     cmd = ROOT_PATH+"/download_data_csa "+ds+" "+start_date+" "+stop_date+" "+file_dir
     #print(cmd)
     subprocess.call(cmd, shell=True)

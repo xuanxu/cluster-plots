@@ -1,0 +1,15 @@
+name: csa-plots
+services:
+  web:
+    build: .
+    secrets:
+      - source: rails_master_key
+        target: /rails/config/master.key
+    ports:
+      - '80:80'
+    volumes:
+      - './storage:/rails/storage'
+
+secrets:
+  rails_master_key:
+    file: ./config/master.key

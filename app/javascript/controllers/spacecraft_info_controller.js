@@ -126,7 +126,8 @@ export default class extends Controller {
     var remove_cluster_link = document.getElementById("remove_cluster");
     var remove_double_star_link = document.getElementById("remove_double_star");
 
-    const response = await post('/plots/spacecraft_info', { body: { spacecraft_info: query_data, contentType: "application/json" } })
+    var request_path = url_prefix() + "/plots/spacecraft_info";
+    const response = await post(request_path, { body: { spacecraft_info: query_data, contentType: "application/json" } })
     if (response.ok) {
       var json_response = await response.json;
       if (json_response["status"] === "OK") {

@@ -39,7 +39,8 @@ export default class extends Controller {
       max_value: max_level
     }
 
-    const response = await post('/plots/regenerate_panel', { body: { plot: query_data, contentType: "application/json" } })
+    var request_path = url_prefix() + "/plots/regenerate_panel";
+    const response = await post(request_path, { body: { plot: query_data, contentType: "application/json" } })
     try {
       if (response.ok) {
         var json_response = await response.json;

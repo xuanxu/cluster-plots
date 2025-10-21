@@ -8,15 +8,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
-    <link rel="icon" href="/cluster-icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/cluster-icon.png">
+    <link rel="icon" href="<%= Rails.configuration.relative_url_root %>/cluster-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="<%= Rails.configuration.relative_url_root %>/cluster-icon.png">
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="antialiased text-slate-700 dark:text-slate-400 bg-zinc-100 dark:bg-slate-900">
+  <body class="antialiased text-slate-700 dark:text-slate-400 bg-zinc-100 dark:bg-slate-900" data-url-prefix="<%= Rails.configuration.relative_url_root %>">
     <%= render "shared/header" %>
     <main class="container mx-auto mt-3 mb-10 py-4 max-w-(--max-custom-width) bg-zinc-50 shadow-md">
       <div class="w-full px-6 block">
@@ -24,6 +24,7 @@
       </div>
     </main>
     <%= render "shared/footer" %>
+    <%= render "shared/prefixed-images" %>
     <script><!-- prevent FOUC -->0</script>
   </body>
 </html>

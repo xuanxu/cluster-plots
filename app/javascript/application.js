@@ -10,6 +10,9 @@ import "highcharts/offline-exporting"
 import "highcharts/export-data"
 import "highcharts/accessibility"
 
+// Custom URL prefix for when the app is deployed in a subfolder
+import "custom/url_prefix"
+
 // Custom Cluster Plots files
 import "custom/plots_form"
 

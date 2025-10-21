@@ -1,0 +1,16 @@
+<% # In case the application is served from a subdirectory, this partial defines CSS variables for custom image URLs with the correct prefix. %>
+<% # The images here are only referenced inside a CSS class %>
+<style>
+  :root {
+    --img-url-download: url('<%= Rails.configuration.relative_url_root %>/imgs/download_red900.png');
+    --img-url-grid: url('<%= Rails.configuration.relative_url_root %>/imgs/grid_red900.png');
+    --img-url-line_thickness: url('<%= Rails.configuration.relative_url_root %>/imgs/line_thickness_red900.png');
+    --img-url-font: url('<%= Rails.configuration.relative_url_root %>/imgs/font_red900.png');
+
+    --img-url-download-hover:url('<%= Rails.configuration.relative_url_root %>/imgs/download_white.png');
+    --img-url-grid-hover: url('<%= Rails.configuration.relative_url_root %>/imgs/grid_white.png');
+    --img-url-line_thickness-hover: url('<%= Rails.configuration.relative_url_root %>/imgs/line_thickness_white.png') ;
+    --img-url-font-hover: url('<%= Rails.configuration.relative_url_root %>/imgs/font_white.png');
+  }
+</style>
+

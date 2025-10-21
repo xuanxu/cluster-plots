@@ -14,7 +14,8 @@ export default class extends Controller {
     const params = new URLSearchParams();
     params.append("cefs", download_zip_button.dataset.cefs);
     params.append("times", download_zip_button.dataset.times);
-    location.assign("/plots/cef_files?" + params.toString());
+    var request_path = url_prefix() + "/plots/cef_files?";
+    location.assign(request_path + params.toString());
 
     download_zip_button.disabled = false;
   }

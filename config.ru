@@ -6,4 +6,3 @@ map ENV['RAILS_RELATIVE_URL_ROOT'] || "/" do
   run Rails.application
   Rails.application.load_server
 end
-

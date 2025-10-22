@@ -39,7 +39,7 @@
             <%= button_tag "<i class='fa fa-file-import'></i> <span class='hidden xl:inline'>Save options</span>".html_safe, type: "button", id: "export_options", title: "Export options to a file", class: "action_button", data: { action: "click->chart-buttons#export_options" } %>
             <%= image_tag "loading.gif", id: "loading_plot_options", alt: "Loading plot options", class: "w-[30px] hidden" %>
 
-            <%= button_tag "<i class='fa fa-sliders'></i>".html_safe, type: "button", id: "show_adjusts", class: "action_button float-right hidden lg:inline", title: "Adjust plots", data: { action: "click->chart-buttons#show_adjusts_panel" }  %>
+            <%= button_tag "<i class='fa fa-sliders'></i> <span class='hidden lg:inline'>Panel controls</span>".html_safe, type: "button", id: "show_adjusts", class: "action_button float-right hidden lg:inline", title: "Adjust plots", data: { action: "click->chart-buttons#show_adjusts_panel" }  %>
             <%= button_tag "<i class='fa fa-angles-right'></i>".html_safe, type: "button", id: "hide_adjusts", class: "action_button float-right hidden lg:hidden", title: "Hide adjusts panel", data: { action: "click->chart-buttons#hide_adjusts_panel" }  %>
             <input type="file" class="hidden" id="import_plot_options_file" accept=".json" data-action="change->chart-buttons#load_plot_options" />
           </div>

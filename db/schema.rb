@@ -10,22 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_18_095723) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_24_084256) do
   create_table "panels", force: :cascade do |t|
-    t.string "name", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", null: false
     t.string "experiment", null: false
-    t.string "title", null: false
-    t.integer "order", default: 0, null: false
     t.integer "mission", default: 1, null: false
+    t.string "name", null: false
+    t.integer "order", default: 0, null: false
     t.boolean "sc1", default: false, null: false
     t.boolean "sc2", default: false, null: false
     t.boolean "sc3", default: false, null: false
     t.boolean "sc4", default: false, null: false
     t.boolean "scM", default: false, null: false
     t.boolean "stage", default: false, null: false
-    t.boolean "zeroes", default: false, null: false
-    t.boolean "active", default: false, null: false
-    t.datetime "created_at", null: false
+    t.string "title", null: false
     t.datetime "updated_at", null: false
+    t.boolean "zeroes", default: false, null: false
   end
 end

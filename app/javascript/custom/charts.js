@@ -149,7 +149,7 @@ function plot_line(plot_data, nplot){
       }
     }
 
-    series.push(line);
+    series.unshift(line);
   }
 
   plot = new Highcharts.Chart({

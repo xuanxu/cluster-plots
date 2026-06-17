@@ -55,8 +55,8 @@ class Plot
       "-b", start_datetime,
       "-e", end_datetime,
       "-p", panels,
-      "-j", json_file,
-      "-o", "#{start_datetime}/#{end_datetime}"
+      "-j", json_file.shellescape,
+      "-o", "#{start_datetime}/#{end_datetime}".shellescape
     ]
 
     if zeroes.present?
@@ -104,8 +104,8 @@ class Plot
       "-t", axis_ticks,
       "-b", start_datetime,
       "-e", end_datetime,
-      "-j", json_file,
-      "-o", "#{start_datetime}/#{end_datetime}"
+      "-j", json_file.shellescape,
+      "-o", "#{start_datetime}/#{end_datetime}".shellescape
     ]
 
     log_info("Running command:", pycom.join(" "))
